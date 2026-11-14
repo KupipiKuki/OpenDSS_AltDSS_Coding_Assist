@@ -95,7 +95,7 @@ EPRI documentation supplies the OpenDSS model and language reference. DSS-Extens
 
 ## Build sequence and stop gates
 
-1. **Inventory:** index the source pages, repositories, release notes, package docs, examples, and existing OpenDSS Library files. Mark each source’s scope and version.
+1. **Inventory:** index the source pages, repositories, release notes, package docs, examples, and existing OpenDSS Library files. Mark each source’s scope and version. For versioned packages, compare the documentation version with the current repository release/tag and change log; record discrepancies for independent review rather than assuming the docs match the latest code.
 2. **Normalize:** define JSON schemas for object/property, API, example, and issue records; preserve source paths and evidence labels.
 3. **Extract:** generate initial catalogs from structured docs and source declarations; retain extraction provenance and flag uncertain fields for review.
 4. **Curate:** review API namespace boundaries, version distinctions, conflicting descriptions, and examples needing target execution.

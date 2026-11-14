@@ -1,4 +1,4 @@
-# Mistral Handoff: Phase 1 Audit
+# External Model Handoff: Phase 1 Audit
 
 ## Project context
 
@@ -10,10 +10,14 @@ Phase 1 is the **Inventory** step in the charter's build sequence. It covers the
 
 Act as an independent auditor for Phase 1. First inspect the repository and identify the Phase 1 plan and any inventory artifacts that already exist. Do not assume that an inventory has been completed merely because the charter describes it.
 
+The project owner has verified the documentation/release-version discrepancies recorded in `PHASE_1_SOURCE_INVENTORY.md` and requires an explicit comparison of documentation versions with the current package repositories and their change logs. Perform that comparison as a central part of the audit. The planned auditor is DeepSeek or MiniMax; follow this handoff in whichever model the owner selects.
+
 If an inventory artifact exists, audit it for:
 
 - Coverage of the in-scope source families and relevant existing project files.
 - Accurate source identity, title, publisher, URL or repository path, version, and review date.
+- Documentation version compared with the current repository release/tag and change log for each package.
+- Any mismatch classified as stale documentation, a release/source selection issue, or unresolved pending direct evidence; cite the relevant documentation page, repository release/tag, and change log entry.
 - Source scope, topic coverage, and known gaps being stated clearly.
 - Evidence labels and traceable provenance for substantive claims.
 - Separation of the five API/engine namespaces listed above.
@@ -25,6 +29,7 @@ If no inventory artifact exists, audit the Phase 1 plan's readiness instead. Ide
 
 - Review the repository files as evidence; do not modify files or create commits.
 - Do not invent source versions, API behavior, or project decisions. Mark uncertain items as unresolved.
+- Treat the source inventory's recorded release versions as an initial snapshot; independently inspect the current repository release/tag and corresponding change log before concluding that a mismatch is resolved.
 - Keep findings about source facts separate from recommendations about project scope.
 - Treat this as an audit, not authorization to choose the initial AltDSS-Python support version or settle other open decisions for the project owner.
 
