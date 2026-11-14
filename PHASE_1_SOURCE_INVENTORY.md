@@ -79,8 +79,9 @@ Evidence labels follow the [Coding Assistant Skill Framework template](https://g
 - [x] Every source family named in the charter has at least one source record.
 - [x] Source publisher, URL/path, version state, review date, topic coverage, and important gaps are represented.
 - [x] Project evidence labels match the pinned framework template.
-- [ ] Project owner reviews the inventory and confirms scope priorities.
-- [ ] Version mismatches and source-release selection are reconciled before Phase 2 extracts version-sensitive API records.
+- [x] Project owner reviews the inventory and confirms scope priorities.
+- [x] Version mismatches and source-release selection are reconciled before Phase 2 extracts version-sensitive API records.
+  - [ ] Separate audit of documentation versions and actual code repositories to be checked by DeepSeek or MiniMax models
 - [ ] Individual example collections and package release notes needed for the selected tasks are indexed to the level needed for Phase 2.
 
 Phase 1 remains **in progress** until the unchecked scope and source-review items are resolved. This inventory is a source map; it is not runtime validation or a compatibility claim.
