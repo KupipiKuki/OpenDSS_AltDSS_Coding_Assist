@@ -50,6 +50,7 @@ Use the Coding Assistant Skill Framework labels on each behavior or example reco
 - `Official-current`
 - `Official-versioned`
 - `Observed-working`
+- `Observed-export`
 - `Example-only`
 - `Inferred`
 - `Unverified`
