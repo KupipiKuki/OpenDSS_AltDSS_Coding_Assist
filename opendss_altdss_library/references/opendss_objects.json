@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OpenDSS Object Definition",
+  "type": "object",
+  "properties": {
+    "element_class": {"type": "string", "description": "e.g., 'Line', 'Load', 'Transformer'"},
+    "epri_doc_url": {"type": "string", "format": "uri"},
+    "properties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "data_type": {"type": "string", "enum": ["string", "real", "integer", "array", "boolean"]},
+          "default_value": {"type": "string"},
+          "description": {"type": "string"},
+          "evidence_label": {"type": "string", "enum": ["Official-current", "Official-versioned", "Inferred", "Unverified"]}
+        },
+        "required": ["name", "data_type", "evidence_label"]
+      }
+    },
+    "altdss_equivalent": {
+      "type": "string",
+      "description": "The corresponding altdss Python class/method, e.g., 'altdss.lines'"
+    }
+  },
+  "required": ["element_class", "epri_doc_url", "properties", "evidence_label"]
+}

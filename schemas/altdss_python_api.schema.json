@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AltDSS-Python API Catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "module_path": {"type": "string", "description": "e.g., altdss.lines"},
+      "class_name": {"type": "string"},
+      "target_version": {"type": "string", "const": "0.2.4"},
+      "description": {"type": "string"},
+      "methods": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "signature": {"type": "string"},
+            "batch_behavior": {"type": "string", "description": "How the method acts on collections/batches"},
+            "description": {"type": "string"},
+            "evidence_label": {"type": "string", "enum": ["Official-versioned", "Observed-export", "Inferred", "Unverified"]}
+          },
+          "required": ["name", "signature", "evidence_label"]
+        }
+      },
+      "properties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "type_hint": {"type": "string"},
+            "description": {"type": "string"},
+            "evidence_label": {"type": "string", "enum": ["Official-versioned", "Observed-export", "Inferred", "Unverified"]}
+          },
+          "required": ["name", "evidence_label"]
+        }
+      },
+      "evidence_label": {"type": "string", "enum": ["Official-versioned", "Observed-export", "Inferred", "Unverified"]}
+    },
+    "required": ["module_path", "target_version", "evidence_label"]
+  }
+}

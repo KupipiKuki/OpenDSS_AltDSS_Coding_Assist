@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Python Interface Comparison",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "opendss_concept": {"type": "string", "description": "e.g., 'Create a new Line element'"},
+      "dss_text_command": {"type": "string", "description": "e.g., 'New Line.myline bus1=x bus2=y length=1'"},
+      "interfaces": {
+        "type": "object",
+        "properties": {
+          "altdss": {"type": "string", "description": "e.g., altdss.lines.new(name='myline', bus1=['x'], bus2=['y'], length=1)"},
+          "dss_python": {"type": "string", "description": "e.g., dss.Lines.Name = 'myline'; dss.Lines.bus1 = 'x'"},
+          "opendssdirect": {"type": "string", "description": "e.g., opendssdirect.Lines.New('myline')"}
+        },
+        "required": ["altdss", "dss_python", "opendssdirect"]
+      },
+      "evidence_label": {"type": "string", "enum": ["Official-versioned", "Observed-working", "Inferred"]}
+    },
+    "required": ["opendss_concept", "dss_text_command", "interfaces", "evidence_label"]
+  }
+}

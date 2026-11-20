@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DSS and AltDSS Example Catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "example_id": {"type": "string"},
+      "task_description": {"type": "string"},
+      "language": {"type": "string", "enum": ["dss", "python_altdss", "python_dss", "python_opendssdirect"]},
+      "code_snippet": {"type": "string"},
+      "dependencies": {"type": "array", "items": {"type": "string"}},
+      "execution_status": {"type": "string", "enum": ["Example-only", "Observed-working"]},
+      "environment": {
+        "type": "object",
+        "properties": {
+          "python_version": {"type": "string"},
+          "altdss_version": {"type": "string"},
+          "backend_version": {"type": "string"}
+        }
+      },
+      "provenance": {
+        "type": "object",
+        "properties": {
+          "source_url": {"type": "string"},
+          "access_date": {"type": "string", "format": "date"}
+        }
+      },
+      "evidence_label": {"type": "string", "enum": ["Example-only", "Observed-working", "Unverified"]}
+    },
+    "required": ["example_id", "task_description", "language", "code_snippet", "execution_status", "evidence_label"]
+  }
+}

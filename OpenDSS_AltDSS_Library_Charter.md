@@ -105,9 +105,9 @@ EPRI documentation supplies the OpenDSS model and language reference. DSS-Extens
 
 **Stop gate:** Do not label the library compatible with an AltDSS release until its target version is stated and representative tasks have been validated against that version. A source review alone is not runtime validation.
 
-## Open decisions
+## Open decisions (Resolved / Tracked)
 
-- Exact AltDSS-Python package version to support first.
-- Whether the first implementation will build circuits through `altdss` objects, emit DSS text and compile it, or support both workflows.
-- Whether DSS-Python or OpenDSSDirect.py is needed in the production code path or only belongs in the comparison catalog.
-- Which representative circuits and operations will form the first regression set.
+- **Exact AltDSS-Python package version:** RESOLVED. Primary target is the stable line (`altdss` 0.2.4, `dss-python` 0.15.7, backend 0.14.5). Beta line (0.3.0b2+) will be documented as "Future Compatibility Notes" but not used for primary validation.
+- **Implementation workflow:** Tracked for Phase 2. Initial library will document both `altdss` object-oriented patterns and DSS text emission, with a preference for `altdss` batch operations where stable.
+- **Related packages:** DSS-Python and OpenDSSDirect.py will remain strictly in the `python_interface_comparison.json` catalog for interoperability reference, not as primary execution targets.
+- **Representative circuits:** IEEE 13-node and IEEE 34-node test cases will form the initial Phase 4 regression set.

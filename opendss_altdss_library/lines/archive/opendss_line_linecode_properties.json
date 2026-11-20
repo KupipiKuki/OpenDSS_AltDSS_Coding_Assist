@@ -1,0 +1,488 @@
+[
+  {
+    "element_class": "Line",
+    "epri_doc_url": "https://opendss.epri.com/Line.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Object name/identifier required when creating the element (DSS command syntax 'New Line.<name> ...'). Exposed via the 'name' attribute of every AltDSS-Python DSSObj.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "bus1",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Name of bus for terminal 1. Node order definitions optional.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "bus2",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Name of bus for terminal 2.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "linecode",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Name of an existing LineCode object containing impedance definitions. Primary impedance source, used together with length/units. Alternative impedance sources: geometry (+length), spacing+wires (+length), or direct rmatrix/xmatrix/cmatrix or r1/x1/c1/r0/x0/c0 definitions; the DSS engine (0.14.5) defines these alternative spec sets as {linecode, length}, {geometry, length}, and {spacing, wires, length}. If no line code or impedance data are specified, the default Line object is a 1000-ft overhead line with 336 MCM ACSR conductor on an 8-ft crossarm (EPRI Line element page).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "length",
+        "data_type": "real",
+        "default_value": 1.0,
+        "description": "Length multiplier to be applied to the impedance data; pairs with the selected impedance source (linecode, geometry, spacing+wires, or direct R/X/C data). Engine default (DSS C-API 0.14.5): 1.0 ('1 kFt' for the default 1000-ft construction).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "phases",
+        "data_type": "integer",
+        "default_value": 3,
+        "description": "No. of phases. Default = 3. A line has the same number of conductors per terminal as it has phases. Neutrals are not explicitly modeled unless declared as a 'phase', and the impedance matrices must be augmented accordingly.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "r1",
+        "data_type": "real",
+        "default_value": 0.058,
+        "description": "Positive-sequence resistance, ohms per unit length. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition. Default (default Line object): 0.058 ohms per 1000 ft (EPRI Line element page; engine sets R1 := 0.0580).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "x1",
+        "data_type": "real",
+        "default_value": 0.1206,
+        "description": "Positive-sequence reactance, ohms per unit length. Default (default Line object): 0.1206 ohms per 1000 ft (EPRI Line element page; engine sets X1 := 0.1206).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "r0",
+        "data_type": "real",
+        "default_value": 0.1784,
+        "description": "Zero-sequence resistance, ohms per unit length. Default (default Line object): 0.1784 ohms per 1000 ft (EPRI Line element page; engine sets R0 := 0.1784).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "x0",
+        "data_type": "real",
+        "default_value": 0.4047,
+        "description": "Zero-sequence reactance, ohms per unit length. Default (default Line object): 0.4047 ohms per 1000 ft (EPRI Line element page; engine sets X0 := 0.4047).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "c1",
+        "data_type": "real",
+        "default_value": 3.4,
+        "description": "Positive-sequence capacitance, nanofarads per unit length. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition. See also Cmatrix and B1. Default (default Line object): 3.4 nF per 1000 ft (EPRI page lists '3.4e-9 nF', i.e. 3.4 nF; engine stores C1 := 3.4e-9 F).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "c0",
+        "data_type": "real",
+        "default_value": 1.6,
+        "description": "Zero-sequence capacitance, nanofarads per unit length. Default (default Line object): 1.6 nF per 1000 ft (engine stores C0 := 1.6e-9 F).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "b1",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Alternate way to enter C1, microS per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "b0",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Alternate way to enter C0, microS per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "normamps",
+        "data_type": "real",
+        "default_value": 400.0,
+        "description": "Normal ampacity, amps. Engine default (DSS C-API 0.14.5): 400.0.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "emergamps",
+        "data_type": "real",
+        "default_value": 600.0,
+        "description": "Emergency ampacity, amps. Usually the one-hour rating. Engine default (DSS C-API 0.14.5): 600.0.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "faultrate",
+        "data_type": "real",
+        "default_value": 0.1,
+        "description": "Number of faults per year per unit length. This is the default for this general line construction. Engine default (DSS C-API 0.14.5): 0.1.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "pctperm",
+        "data_type": "real",
+        "default_value": 20.0,
+        "description": "Percent of the faults that become permanent (requiring a line crew to repair and a sustained interruption). Engine default (DSS C-API 0.14.5): 20.0.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "repair",
+        "data_type": "real",
+        "default_value": 3.0,
+        "description": "Hours to repair. Engine default (DSS C-API 0.14.5): 3.0 (HrsToRepair := 3.0 in the Line constructor).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "basefreq",
+        "data_type": "real",
+        "default_value": 60.0,
+        "description": "Base Frequency at which the impedance values are specified. Default = 60.0 Hz.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "rmatrix",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Series resistance matrix, ohms per unit length. See Command Language for syntax ('|' separates rows; extraneous numbers on each row are ignored). Lower triangle form is acceptable. Using any of Rmatrix, Xmatrix, Cmatrix forces the program to use the matrix values for line impedance definition. Alternative direct impedance source (no linecode needed).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "xmatrix",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Series reactance matrix, ohms per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "cmatrix",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Shunt nodal capacitance matrix, nanofarads per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "switch",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "{y/n | T/F} Default= no/false. Designates this line as a switch for graphics and algorithmic purposes. SIDE EFFECT: Sets R1=0.001 X1=0.0. You must reset if you want something different.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "rg",
+        "data_type": "real",
+        "default_value": 0.01805,
+        "description": "Carson earth return resistance per unit length used to compute impedance values at base frequency. For making better frequency adjustments. Does not apply to impedances defined by Geometry. Default values are same as for the default LineCode object: 0.01805 ohms per 1000 ft at 60 Hz for Rho=100 (EPRI Line element page). Set both Rg and Xg = 0 to disable earth return frequency adjustment.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "xg",
+        "data_type": "real",
+        "default_value": 0.155081,
+        "description": "Carson earth return reactance per unit length used to compute impedance values at base frequency. For making better frequency adjustments. Does not apply to impedances defined by Geometry. Default values are same as for the default LineCode object: 0.155081 ohms per 1000 ft at 60 Hz for Rho=100 (EPRI Line element page).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "rho",
+        "data_type": "real",
+        "default_value": 100,
+        "description": "Earth resistivity used to compute earth correction factor. Overrides Line geometry definition if specified. Default=100 meter ohms.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "geometry",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Geometry code for LineGeometry Object. Supercedes any previous definition of line impedance. Line constants are computed for each frequency change or rho change. CAUTION: may cause the number of phases to be redefined. Alternative impedance source, used together with length (engine spec set {geometry, length}).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "earthmodel",
+        "data_type": "string",
+        "default_value": null,
+        "description": "One of {Carson | FullCarson | Deri}. Default is the global value established with the Set EarthModel option. Used to override the global value for this line. Applies only when the 'geometry' property is used.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "units",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "Length Units = {none | mi | kft | km | m | Ft | in | cm} Default is None - assumes length units match impedance units.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "seasons",
+        "data_type": "integer",
+        "default_value": null,
+        "description": "Defines the number of ratings to be defined for the wire, to be used only when defining seasonal ratings using the 'Ratings' property.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "ratings",
+        "data_type": "array",
+        "default_value": null,
+        "description": "An array of ratings to be used when the seasonal ratings flag is True. It can be used to insert multiple ratings to change during a QSTS simulation to evaluate different ratings in lines.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "linetype",
+        "data_type": "string",
+        "default_value": "OH",
+        "description": "Code designating the type of line. One of: OH, UG, UG_TS, UG_CN, SWT_LDBRK, SWT_FUSE, SWT_SECT, SWT_REC, SWT_DISC, SWT_BRK, SWT_ELBOW. OpenDSS currently does not use this internally. Default is OH.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "epsrmedium",
+        "data_type": "real",
+        "default_value": 1.0,
+        "description": "Relative Permittivity of the medium, used by lines with a geometry definition. Default=1.0 (defaults to 1.0 for air). Absent from the DSS C-API 0.14.5 engine and not exposed in AltDSS-Python 0.2.4.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Name of an existing Line object to build this like.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "spacing",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Line spacing code (LineSpacing object) for line-constants calculation, used with the 'wires' property: the spacing must be assigned before wires (engine spec set {spacing, wires, length}). Documented in the EPRI Lines interface reference (https://opendss.epri.com/Spacing.html: 'This property sets/gets the line spacing code of the active Line').",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "wires",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Array of WireData names for use in an overhead line constants calculation, used with the 'spacing' property (spacing must be specified first; engine spec set {spacing, wires, length}). The DSS C-API 0.14.5 engine property is named 'wires' and binds to WireData objects (CNCables/TSCables are redundant aliases sharing the same storage). AltDSS-Python 0.2.4 exposes this property as LineProperties.Conductors, whose setter accepts WireData, CNData, or TSData objects or names.",
+        "evidence_label": "Official-versioned"
+      },
+      {
+        "name": "enabled",
+        "data_type": "boolean",
+        "default_value": true,
+        "description": "Indicates whether this element is enabled; a disabled element is removed from the circuit solution but not from memory and can be re-enabled. Default: True (engine). Documented in the EPRI element interface reference (https://opendss.epri.com/Enabled.html).",
+        "evidence_label": "Official-current"
+      }
+    ],
+    "required_properties": [
+      "name",
+      "bus1",
+      "bus2"
+    ],
+    "altdss_mapping": "altdss.Line",
+    "evidence_label": "Official-versioned"
+  },
+  {
+    "element_class": "LineCode",
+    "epri_doc_url": "https://opendss.epri.com/LineCode1.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Object name/identifier required when creating the element (DSS command syntax 'New LineCode.<name> ...'). Exposed via the 'name' attribute of every AltDSS-Python DSSObj.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "nphases",
+        "data_type": "integer",
+        "default_value": 3,
+        "description": "Number of phases. Default = 3.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "r1",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Positive-Sequence resistance, ohms per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "x1",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Positive-Sequence reactance, ohms per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "r0",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Zero-Sequence resistance, ohms per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "c1",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Positive-Sequence capacitance, nanofarads per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "c0",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Zero-Sequence capacitance, nanofarads per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "units",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "{mi | km | kft | m | ft | in | cm} Length units. If not specified, it is assumed that the units correspond to the length being used in the Line models. Engine default (DSS C-API 0.14.5): none (Units := UNITS_NONE).",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "rmatrix",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Series resistance matrix, ohms per unit length. The order of matrices expected is the number of phases; matrices may be entered in lower triangle form or full matrix and the result is always symmetrical ('|' separates rows, e.g. Rmatrix=\"11 | 21 22 | 31 32 33\"). If any Symmetrical Component data is specified, the impedance matrices are determined from that data.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "xmatrix",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Series reactance matrix, ohms per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "cmatrix",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Shunt nodal capacitance matrix, nanofarads per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "basefreq",
+        "data_type": "real",
+        "default_value": 60.0,
+        "description": "Base Frequency at which the impedance values are specified. Default = 60.0 Hz.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "normamps",
+        "data_type": "real",
+        "default_value": 400.0,
+        "description": "Normal ampacity, amps. Engine default (DSS C-API 0.14.5): 400.0.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "emergamps",
+        "data_type": "real",
+        "default_value": 600.0,
+        "description": "Emergency ampacity, amps. Engine default (DSS C-API 0.14.5): 600.0.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "faultrate",
+        "data_type": "real",
+        "default_value": 0.1,
+        "description": "Number of faults per year per unit length. This is the default for this general line construction. Engine default (DSS C-API 0.14.5): 0.1.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "pctperm",
+        "data_type": "real",
+        "default_value": 20.0,
+        "description": "Percent of the fault that become permanent (requiring a line crew to repair and a sustained interruption). Engine default (DSS C-API 0.14.5): 20.0.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "kron",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Y/N. Default=N. Perform Kron reduction on the impedance matrix after it is formed, reducing order by 1. Do this only on initial definition after matrices are defined. Ignored for symmetrical components.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "rg",
+        "data_type": "real",
+        "default_value": 0.01805,
+        "description": "Carson earth return resistance per unit length used to compute impedance values at base frequency. For making better adjustments of line impedance values for frequency for harmonics studies. Default= 0.01805 ohms per 1000 ft at 60 Hz. If you do not wish to adjust the earth return impedance for frequency, set both Rg and Xg to zero.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "xg",
+        "data_type": "real",
+        "default_value": 0.155081,
+        "description": "Carson earth return reactance per unit length used to compute impedance values at base frequency. For making better adjustments of line impedance values for frequency for harmonics studies. Default= 0.155081 ohms per 1000 ft at 60 Hz. If you do not wish to adjust the earth return impedance for frequency, set both Rg and Xg to zero.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "rho",
+        "data_type": "real",
+        "default_value": 100,
+        "description": "Earth resistivity used to compute earth correction factor. Default=100 meter ohms.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "neutral",
+        "data_type": "integer",
+        "default_value": null,
+        "description": "Designates which conductor is the 'neutral' conductor that will be eliminated by Kron reduction. Default is the last conductor (nphases value). After Kron reduction this property is set to 0. Subsequent issuing of Kron=Yes will not do anything until this property is set to a legitimate value. Applies only to LineCodes defined by R, X, and C matrix.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "b1",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Alternate way to specify C1. Micro-siemens per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "b0",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Alternate way to specify C0. Micro-siemens per unit length.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "seasons",
+        "data_type": "integer",
+        "default_value": null,
+        "description": "Defines the number of ratings to be defined for the wire, to be used only when defining seasonal ratings using the 'Ratings' property.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "ratings",
+        "data_type": "array",
+        "default_value": null,
+        "description": "An array of ratings to be used when the seasonal ratings flag is True. It can be used to insert multiple ratings to change during a QSTS simulation to evaluate different ratings in lines.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Name of an existing LineCode object to build this like.",
+        "evidence_label": "Official-current"
+      },
+      {
+        "name": "repair",
+        "data_type": "real",
+        "default_value": 0.0,
+        "description": "Hours to repair. Present in the DSS C-API 0.14.5 engine property table (LineCode.Repair, enum index 17, mapped to HrsToRepair) and in the DSS-Extensions format documentation, which list the engine default as 0.0; the LineCode constructor does not pre-initialize this field.",
+        "evidence_label": "Official-versioned"
+      },
+      {
+        "name": "linetype",
+        "data_type": "string",
+        "default_value": "OH",
+        "description": "Code designating the type of line (OH, UG, UG_TS, UG_CN, SWT_LDBRK, SWT_FUSE, SWT_SECT, SWT_REC, SWT_DISC, SWT_BRK, SWT_ELBOW). Present in the DSS C-API 0.14.5 engine property table (engine sets FLineType := 1, 'Default to OH Line') and in the DSS-Extensions format documentation; AltDSS-Python 0.2.4 docstring states 'Default is OH'.",
+        "evidence_label": "Official-versioned"
+      }
+    ],
+    "required_properties": [
+      "name"
+    ],
+    "altdss_mapping": "altdss.LineCode",
+    "evidence_label": "Official-versioned"
+  }
+]
