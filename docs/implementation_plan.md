@@ -202,7 +202,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 
 ## 8. Governance
 
-- **Roles.** DeepSeek is the architect and also contributed Phase 3A QA/QC. Codex is the primary coder. Mistral is the independent QA/QC reviewer. The project owner decides which findings block merge and approves scope changes.
+- **Roles.** Codex is the primary coder; Mistral is the independent QA/QC reviewer; the project owner decides which findings block merge and approves scope changes.
 - **Branches:** phase branches (`wp/phaseN`) created from `main`, with one milestone commit per phase; QA reports name the reviewed branch and commit or working-tree state.
 - **Evidence policy:**
   - `Observed-working` requires a committed example file, a harness run, an environment block, and a date.
@@ -232,7 +232,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.2 | 2026-11-21 | Architect review. Added Phase 2 closure checklist and exit criteria; adopted the six-artifact element package template; reprioritized Phase 3 to API/engine catalogs first, then dependency-ordered element packages with a scope cap; consolidated the source index and generalized the element schema; added committed validation tooling and the `Observed-working` evidence rule; defined Phase 4 fixtures and Phase 5 retrieval and release; recorded the owner decisions below |
 | 0.3 | 2026-11-21 | Phase 2 closed: validation harness committed, both examples recorded `Observed-working`, manifest reconciled, milestone merged. Owner decided the Phase 4 stop gate requires golden fixture results; added the golden fixture design (6.1–6.6) with source/provenance rules, golden format, tolerances, harness contracts, coverage matrix, acceptance, and risks |
 | 0.4 | 2026-11-21 | Phase 3A delivered: generated the AltDSS-Python API catalog from the pinned wheel, added 26 DSS C-API engine records, consolidated the source index into `references/sources.json` (18 records), and extended the validation harness for the record schemas. Owner confirmed the Phase 3 element scope and order |
-| 0.5 | 2026-11-21 | Recorded the Phase 3A QA/QC disposition, clarified the source-index migration, and recorded DeepSeek's architect role. |
+| 0.5 | 2026-11-21 | Recorded the Phase 3A QA/QC disposition, clarified the source-index migration, and corrected the Line/LineCode citation spans after the follow-up review. |
 
 ## 11. Owner decisions
 
