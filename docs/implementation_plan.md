@@ -52,7 +52,7 @@ These checks were run during this review to ground the plan. They do not replace
 | 4.2 | Add `tools/requirements-validation.txt` and `tools/run_examples.py`; execute both workflow examples; record `Observed-working` plus the `environment` block in `examples.json` and update the workflow page | Coder | Done: both examples PASS (Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5) |
 | 4.3 | Add `tools/validate_catalogs.py`; replace the manual `Test-Json` step in `skill.md` | Coder | Done: 9/9 schema pairs pass |
 | 4.4 | Reconcile `manifest.json`: status, validation text, gaps, and next actions | Coder | Done: status `phase-2-complete`, schema-valid |
-| 4.5 | Commit Phase 2 as one milestone commit on `Branch_wp/phase2`; owner merges to `main` | Coder / Owner | Done: milestone commit, fast-forward merge to `main` |
+| 4.5 | Commit Phase 2 as one milestone commit on the Phase 2 branch (`wp/phase2`); owner merges to `main` | Coder / Owner | Done: milestone commit, fast-forward merge to `main` |
 | 4.6 | Mark the Line/LineCode coder and QA/QC handoffs complete; retain them as the pattern reference | Coder | Done |
 
 **Exit criteria — all met**
@@ -200,7 +200,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 ## 8. Governance
 
 - **Roles:** Codex is the primary coder; Mistral is the independent QA/QC reviewer; the project owner decides which findings block merge and approves scope changes.
-- **Branches:** phase branches (`Branch_wp/phaseN`) with one milestone commit per phase; QA reports name the reviewed branch and commit or working-tree state.
+- **Branches:** phase branches (`wp/phaseN`) created from `main`, with one milestone commit per phase; QA reports name the reviewed branch and commit or working-tree state.
 - **Evidence policy:**
   - `Observed-working` requires a committed example file, a harness run, an environment block, and a date.
   - `Example-only` means inspected but not executed by the project harness.
