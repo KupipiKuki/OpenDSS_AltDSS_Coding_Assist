@@ -33,9 +33,7 @@ SCHEMA_PAIRS = {
     "references/lines/opendss_line_linecode_properties.json": (
         "schemas/catalogs/line_linecode_properties.schema.json"
     ),
-    "references/line_linecode_sources.json": (
-        "schemas/catalogs/line_linecode_sources.schema.json"
-    ),
+    "references/sources.json": "schemas/catalogs/sources.schema.json",
     "references/examples.json": "schemas/catalogs/examples.schema.json",
     "references/opendss_objects.json": "schemas/catalogs/opendss_objects.schema.json",
     "references/altdss_python_api.json": "schemas/catalogs/altdss_python_api.schema.json",
@@ -80,7 +78,12 @@ def main() -> int:
             continue
         try:
             instance = json.loads(target_path.read_text(encoding="utf-8"))
-            schema = json.loads((root / schema_rel).read_text(encoding="utf-8"))
+            schema_path = root / schema_rel
+            schema = json.loads(schema_path.read_text(encoding="utf-8"))
+            if isinstance(schema, dict) and "$id" not in schema:
+                # Give the schema a base URI so relative $refs (for example
+                # ../records/api.schema.json) resolve through the registry.
+                schema = {"$id": schema_path.as_uri(), **schema}
             validator = Draft202012Validator(
                 schema, registry=registry, format_checker=checker
             )

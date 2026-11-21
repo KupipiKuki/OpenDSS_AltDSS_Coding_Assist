@@ -1,7 +1,7 @@
 {
   "$schema": "schemas/catalogs/manifest.schema.json",
   "name": "opendss_altdss_library",
-  "status": "phase-2-complete",
+  "status": "phase-3-in-progress",
   "schema_version": "0.3.0-draft",
   "source_check_date": "2026-11-21",
   "plan": "docs/implementation_plan.md",
@@ -16,15 +16,17 @@
   "catalogs": {
     "phase_1": [
       "references/opendss_objects.json",
-      "references/altdss_python_api.json",
-      "references/dss_capi.json",
       "references/python_interface_comparison.json",
-      "references/examples.json",
       "references/troubleshooting.json",
       "references/lines/opendss_line_linecode_properties.json"
     ],
     "phase_2": [
-      "references/line_linecode_sources.json"
+      "references/examples.json",
+      "references/sources.json"
+    ],
+    "phase_3": [
+      "references/altdss_python_api.json",
+      "references/dss_capi.json"
     ]
   },
   "schemas": {
@@ -32,12 +34,14 @@
     "catalogs": "schemas/catalogs/"
   },
   "validation": {
-    "source_review": "Line/LineCode independent QA/QC passed with findings (2026-11-21); corrections E-1 and E-2 applied, E-3 deferred to Phase 3 curation.",
+    "source_review": "Line/LineCode independent QA/QC passed with findings (2026-11-21); E-1 and E-2 applied, E-3 deferred. Phase 3A API and engine catalogs were generated from the pinned tags and await independent QA/QC.",
     "schema_validation": "tools/validate_catalogs.py passes 9/9 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0) on 2026-11-21.",
-    "runtime": "tools/run_examples.py executed both Line/LineCode workflow examples successfully on 2026-11-21 (Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5); both records are Observed-working. Independent QA/QC creation and readback checks passed separately."
+    "runtime": "tools/run_examples.py executed both Line/LineCode workflow examples successfully on 2026-11-21 (Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5); both records are Observed-working. Engine behaviors recorded as tested in dss_capi.json were observed through the same pinned stack; records marked not-run were not executed."
   },
   "known_gaps": [
-    "Five catalog files are empty pending Phase 3 extraction: opendss_objects, altdss_python_api, dss_capi, python_interface_comparison, troubleshooting.",
+    "Three catalog files are still empty pending later phases: opendss_objects, python_interface_comparison, troubleshooting.",
+    "The generated altdss_python_api catalog covers object and collection classes; batch classes and setter-only pseudo-properties are described on their parent records, and internal _str proxies are excluded.",
+    "dss_capi.json covers Line and LineCode engine behavior; other element classes are added as their Phase 3B packages land.",
     "Property-level source_refs remain partial for Line/LineCode (E-3 deferred); new element packages require per-row citations.",
     "Fixture-based validation with IEEE 13- and 34-node circuits and golden results is planned for Phase 4; no golden fixtures exist yet.",
     "The beta package line (AltDSS-Python 0.3.0b2 and later) is documented as future compatibility only and not validated.",
@@ -48,15 +52,14 @@
   "phase_status": {
     "phase_1": "complete",
     "phase_2": "complete",
-    "phase_3": "planned",
+    "phase_3": "in-progress",
     "phase_4": "planned",
     "phase_5": "planned"
   },
   "next_actions": [
-    "Confirm Phase 3 scope and element order (plan decision 2).",
-    "Start Phase 3A: fill altdss_python_api and dss_capi from the pinned tags, and consolidate the source index into references/sources.json.",
-    "Create Phase 3 handoffs per workstream using the element package template in docs/implementation_plan.md.",
-    "Begin the LineGeometry, LineSpacing, and WireData package once 3A lands.",
+    "Independent QA/QC of the Phase 3A API and engine catalogs: generator determinism, coverage counts, and engine records against the pinned 0.14.5 source.",
+    "Start Phase 3B with the LineGeometry, LineSpacing, and WireData/CNData/TSData package.",
+    "Extend dss_capi.json with each element package's enums, specification sets, scales, and constructor defaults.",
     "Draft the Phase 4 golden fixture layout and harness before the first fixture is added."
   ]
 }

@@ -6,6 +6,13 @@ Use `manifest.json` for supported versions. The primary Python target is AltDSS-
 
 Keep `altdss`, `dss`, `opendssdirect`, and low-level C-API namespaces distinct. EPRI sources establish the OpenDSS model; DSS-Extensions sources establish their own package and engine behavior.
 
+## Where to look
+
+- Element property truth: the element catalog under `references/` (Line/LineCode today; more per Phase 3B).
+- Python signatures and property types: [altdss_python_api.json](references/altdss_python_api.json), generated from the pinned 0.2.4 wheel.
+- Engine behavior: [dss_capi.json](references/dss_capi.json), with file and line citations and a `tested` status per record.
+- Source and version index: [sources.json](references/sources.json); every example and catalog entry resolves its ids there.
+
 ## Working with records
 
 1. Search the library and source inventory before adding a claim.
@@ -17,9 +24,9 @@ Keep `altdss`, `dss`, `opendssdirect`, and low-level C-API namespaces distinct. 
 
 ## Phase placement
 
-Phase 1 established schemas, source inventory, package structure, handoffs, audits, and starter catalogs. Phase 2 delivered the Line/LineCode pilot and is complete: catalog, source index, workflow, examples (`Observed-working`), validation harness, and independent QA/QC. Phase 3 scales the same pattern to the API and engine catalogs and then to dependency-ordered element packages; Phase 4 runs fixture-based validation against recorded golden results; Phase 5 adds retrieval and release packaging. The [implementation plan](../docs/implementation_plan.md) carries scope, order, and exit criteria. Use the Line/LineCode package as the worked example, and confirm any version-sensitive claim against pinned primary evidence before generating code.
+Phase 1 established schemas, source inventory, package structure, handoffs, audits, and starter catalogs. Phase 2 delivered the Line/LineCode pilot and is complete: catalog, source index, workflow, examples (`Observed-working`), validation harness, and independent QA/QC. Phase 3A added the generated AltDSS-Python API catalog and the DSS C-API engine catalog; Phase 3B continues with dependency-ordered element packages; Phase 4 runs fixture-based validation against recorded golden results; Phase 5 adds retrieval and release packaging. The [implementation plan](../docs/implementation_plan.md) carries scope, order, and exit criteria. Use the Line/LineCode package as the worked example, and confirm any version-sensitive claim against pinned primary evidence before generating code.
 
-For Line and LineCode creation, start with the workflow guide. Use the example catalog to find the script and its execution status, then resolve its `source_ids` in the source index. [Workflow guide](../docs/workflows/line_linecode.md) · [Example catalog](references/examples.json) · [Source index](references/line_linecode_sources.json)
+For Line and LineCode creation, start with the workflow guide. Use the example catalog to find the script and its execution status, then resolve its `source_ids` in the source index. [Workflow guide](../docs/workflows/line_linecode.md) · [Example catalog](references/examples.json) · [Source index](references/sources.json)
 
 ## Validation language
 
@@ -30,6 +37,7 @@ Run the committed harness before any catalog or example change:
 ```powershell
 python opendss_altdss_library/tools/validate_catalogs.py
 python opendss_altdss_library/tools/run_examples.py
+python opendss_altdss_library/tools/build_altdss_api_catalog.py --source-dir <extracted-wheel>/altdss --out opendss_altdss_library/references/altdss_python_api.json
 ```
 
 Every catalog declared in `manifest.json` must have a schema pairing in `validate_catalogs.py`; an unpinned catalog fails the run on purpose. When the Phase 4 harness lands, fixture results are compared against `golden.json` within recorded tolerances, and golden files change only through the approved update path.

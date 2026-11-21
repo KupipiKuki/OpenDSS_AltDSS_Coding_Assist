@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version:** 0.3 (Phase 2 closed; Phase 4 golden-fixture design added)
+**Plan version:** 0.4 (Phase 2 closed; Phase 3A delivered; Phase 4 golden-fixture design)
 **Plan date:** 2026-11-21
-**Current phase:** Phase 2 complete (merged); Phase 3 ready to start
+**Current phase:** Phase 3A delivered; independent QA/QC pending
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -14,12 +14,13 @@ This plan supersedes the phase prose in [Phase 1 README](phase_1/README.md) and 
 |---|---|---|
 | Phase 1 foundation | Complete, committed at `3263daa` | Charter, source inventory, external audit, schemas |
 | Line/LineCode catalog | Remediated, source-reviewed, independently QA'd, findings resolved | [Audit](audits/line_linecode_schema_audit.md) · [QA/QC report](audits/line_linecode_phase2_qaqc.md) |
-| Source and release index | 15 records, version-scoped, schema-valid | [line_linecode_sources.json](../opendss_altdss_library/references/line_linecode_sources.json) |
+| Source index | 18 records, version-scoped, schema-valid; consolidated from the Line/LineCode index | [sources.json](../opendss_altdss_library/references/sources.json) |
 | Examples | Two files and two records, both `Observed-working` with a recorded environment | [Examples](../opendss_altdss_library/references/examples.json) · [Workflow](workflows/line_linecode.md) |
 | Schema validation | `tools/validate_catalogs.py`: 9/9 manifest-and-catalog pairs pass Draft 2020-12 with format checking | [validate_catalogs.py](../opendss_altdss_library/tools/validate_catalogs.py) |
 | Runtime evidence | `tools/run_examples.py` executes both examples successfully on the pinned stack; independent QA/QC creation and readback checks passed separately | [run_examples.py](../opendss_altdss_library/tools/run_examples.py) · [QA/QC runtime section](audits/line_linecode_phase2_qaqc.md#runtime-result-pass) |
-| Remaining catalogs | Five empty: `opendss_objects`, `altdss_python_api`, `dss_capi`, `python_interface_comparison`, `troubleshooting` | [references/](../opendss_altdss_library/references/) |
-| Validation tooling | Committed: `tools/requirements-validation.txt`, `tools/validate_catalogs.py`, `tools/run_examples.py` | [tools/](../opendss_altdss_library/tools/) |
+| API and engine catalogs | Phase 3A delivered: 99 AltDSS-Python class records and 26 DSS C-API engine records, generated from the pinned tags | [altdss_python_api.json](../opendss_altdss_library/references/altdss_python_api.json) · [dss_capi.json](../opendss_altdss_library/references/dss_capi.json) · [3A audit](audits/phase3a_api_catalogs_audit.md) |
+| Remaining catalogs | Three empty: `opendss_objects`, `python_interface_comparison`, `troubleshooting` | [references/](../opendss_altdss_library/references/) |
+| Validation tooling | Committed: `tools/requirements-validation.txt`, `tools/validate_catalogs.py`, `tools/run_examples.py`, `tools/build_altdss_api_catalog.py` | [tools/](../opendss_altdss_library/tools/) |
 | Phase 2 commit | Committed as the Phase 2 milestone and merged to `main` on owner approval (2026-11-21) | `git log` |
 
 ## 2. Phase map
@@ -27,8 +28,8 @@ This plan supersedes the phase prose in [Phase 1 README](phase_1/README.md) and 
 | Project phase | Charter steps | Objective | State |
 |---|---|---|---|
 | Phase 1 Foundation | 1–2 Inventory, Normalize | Scope, sources, schemas, package structure, starter catalogs | Complete (`3263daa`) |
-| Phase 2 Pilot | 3–4 Extract, Curate | Remediate Line/LineCode; prove the record pattern end to end (catalog, source index, workflow, examples, audit) | Working tree complete; closure actions in Section 4 |
-| Phase 3 Scale-out | 3–4 | API and engine catalogs, then dependency-ordered element packages using the proven pattern | Planned (Section 5) |
+| Phase 2 Pilot | 3–4 Extract, Curate | Remediate Line/LineCode; prove the record pattern end to end (catalog, source index, workflow, examples, audit) | Complete and merged (`1d4088f`) |
+| Phase 3 Scale-out | 3–4 | API and engine catalogs, then dependency-ordered element packages using the proven pattern | 3A delivered; 3B next |
 | Phase 4 Validation | 6 Validate | Fixture circuits (IEEE 13 and 34 per charter), solved-model checks, property-readback matrices, example upgrade to `Observed-working` | Planned (Section 6) |
 | Phase 5 Retrieve and Release | 5, 7 | Search and retrieval over the catalogs; skill packaging; release record | Planned (Section 7) |
 
@@ -81,7 +82,9 @@ The Line/LineCode package is now the reference implementation of the element pac
 |---|---|---|
 | `altdss_python_api.json` | Extract from the pinned wrappers: classes and `module_path`, `new`/`batch_new` signatures, property names and type hints from the `TypedDicts` and property blocks, batch behavior, docstring-derived descriptions | Every record `Official-versioned` at 0.2.4; casing matches source exactly (`pctPerm` vs `PctPerm`, `rho`, `Conductors`); schema-valid |
 | `dss_capi.json` | `records/api.schema.json` records for engine identity, property enums, specification sets, scaling functions, constructor defaults, and documented DBS/extension behaviors, each tied to 0.14.5 file and line range | Every record version-scoped; no mutable `master` citations; schema-valid |
-| `references/sources.json` | Single index; migrate existing 15 records | Unique ids; every `version_or_ref` set for DSS-Extensions sources, `null` for undated EPRI pages with scope note |
+| `references/sources.json` | Single index; migrate existing 15 records, add the Phase 3A source entries | Unique ids; every `version_or_ref` set for DSS-Extensions sources, `null` for undated EPRI pages with scope note |
+
+**Status 2026-11-21:** delivered. The API catalog is generated by `tools/build_altdss_api_catalog.py` from the extracted `altdss==0.2.4` wheel (99 classes, 1,094 properties, 180 methods; batch classes and setter-only pseudo-properties described on their parent records; internal `_str` proxies excluded). The engine catalog holds 26 hand-curated records tied to `Line.pas` and `LineCode.pas` line ranges, with `tested` status reflecting what was actually executed. The source index moved to `references/sources.json` (18 records) and the old Line/LineCode index pair was removed. Independent QA/QC is the next action.
 
 ### 5.3 Workstream 3B — Element packages, in order
 
@@ -228,10 +231,11 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.1 | 2026-11 (implicit) | Phase 1 plan lived in the charter and Phase 1 README; Phase 2 described as catalog remediation plus example indexing |
 | 0.2 | 2026-11-21 | Architect review. Added Phase 2 closure checklist and exit criteria; adopted the six-artifact element package template; reprioritized Phase 3 to API/engine catalogs first, then dependency-ordered element packages with a scope cap; consolidated the source index and generalized the element schema; added committed validation tooling and the `Observed-working` evidence rule; defined Phase 4 fixtures and Phase 5 retrieval and release; recorded the owner decisions below |
 | 0.3 | 2026-11-21 | Phase 2 closed: validation harness committed, both examples recorded `Observed-working`, manifest reconciled, milestone merged. Owner decided the Phase 4 stop gate requires golden fixture results; added the golden fixture design (6.1–6.6) with source/provenance rules, golden format, tolerances, harness contracts, coverage matrix, acceptance, and risks |
+| 0.4 | 2026-11-21 | Phase 3A delivered: generated the AltDSS-Python API catalog from the pinned wheel, added 26 DSS C-API engine records, consolidated the source index into `references/sources.json` (18 records), and extended the validation harness for the record schemas. Owner confirmed the Phase 3 element scope and order |
 
 ## 11. Owner decisions
 
 1. **Merge approval — resolved 2026-11-21.** Owner approved; Phase 2 milestone committed and merged to `main`.
-2. **Phase 3 scope confirmation — open.** Confirm the six element packages in 5.3 and their order; additional elements are a new owner decision.
+2. **Phase 3 scope confirmation — resolved 2026-11-21.** Owner confirmed the six element packages in 5.3 and their order; additional elements are a new owner decision.
 3. **Phase 4 stop gate — resolved 2026-11-21.** Recorded golden fixture results are required; cross-interface consistency alone is not sufficient. Design in Section 6.
 

@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Line and LineCode Workflow Source Index",
+  "title": "Library Source Index",
+  "description": "Version-scoped index of every page, repository, release, and package the catalogs cite. Records are referenced by id from example and catalog records.",
   "type": "array",
   "minItems": 1,
   "items": {

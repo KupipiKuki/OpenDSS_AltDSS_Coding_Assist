@@ -50,4 +50,4 @@ Expected lengths are 1.0, 0.25, and 0.40 km. For an existing circuit, use a sepa
 | Modeling a switch | Set `Switch` before any intended impedance, length, or units overrides. The pinned setter changes those values. |
 | Specifying units | Declare LineCode impedance per unit length and the Line length unit. In these examples, both use km and capacitance is in nF/km. |
 
-[Line/LineCode property catalog](../../opendss_altdss_library/references/lines/opendss_line_linecode_properties.json) · [Source and release index](../../opendss_altdss_library/references/line_linecode_sources.json) · [Pinned Line engine](https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas)
+[Line/LineCode property catalog](../../opendss_altdss_library/references/lines/opendss_line_linecode_properties.json) · [Source and release index](../../opendss_altdss_library/references/sources.json) · [Pinned Line engine](https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas)

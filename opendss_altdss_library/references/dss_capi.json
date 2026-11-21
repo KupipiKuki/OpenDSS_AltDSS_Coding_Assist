@@ -1,1 +1,669 @@
-[]
+[
+  {
+    "id": "capi-engine-0145",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API 0.14.5 release",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/releases/tag/0.14.5",
+      "section_or_record": "tag 0.14.5",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "DSS C-API",
+    "name": "engine version 0.14.5",
+    "signature_or_shape": "Tag 0.14.5 resolves to commit 87d85c2622c8281b92255335bc7c09b11191b21d.",
+    "arguments": null,
+    "returns_or_effects": "Backend engine used by dss-python 0.15.7 and altdss 0.2.4 for every claim in this library.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Package metadata reported dss-python-backend 0.14.5 at run time; the engine-reported version string was not queried separately."
+    ]
+  },
+  {
+    "id": "capi-line-prop-enum",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "TLineProp enum, L55-L86",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineProp",
+    "name": "Line property index enum",
+    "signature_or_shape": "Bus1, Bus2, LineCode, Length, Phases, R1, X1, R0, X0, C1, C0, RMatrix, XMatrix, CMatrix, Switch, Rg, Xg, rho, Geometry, Units, Spacing, Wires, EarthModel, CNCables, TSCables, B1, B0, Seasons, Ratings, LineType",
+    "arguments": null,
+    "returns_or_effects": "Defines the engine property rows for Line. CNCables and TSCables are redundant aliases of Wires.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The AltDSS-Python wrapper exposes 35 of these rows as keywords; Wires is mirrored as the Python property Conductors and CNCables/TSCables are not exposed."
+    ]
+  },
+  {
+    "id": "capi-linecode-prop-enum",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineCode engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
+      "section_or_record": "TLineCodeProp enum, L98-L131",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineCodeProp",
+    "name": "LineCode property index enum",
+    "signature_or_shape": "NPhases, R1, X1, R0, X0, C1, C0, Units, RMatrix, XMatrix, CMatrix, BaseFreq, NormAmps, EmergAmps, FaultRate, PctPerm, Repair, Kron, Rg, Xg, rho, Neutral, B1, B0, Seasons, Ratings, LineType",
+    "arguments": null,
+    "returns_or_effects": "Defines the engine property rows for LineCode, including Repair (HrsToRepair) and LineType.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-line-specsets",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "SpecSetNames and SpecSets, L302-L320",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "Line specification sets",
+    "signature_or_shape": "LineCode+Length; LineGeometry+Length; Spacing+Wires+Length; R1+X1+R0+X0+C1+C0; R1+X1+R0+X0+B1+B0; RMatrix+XMatrix+CMatrix",
+    "arguments": null,
+    "returns_or_effects": "Complete impedance input combinations recognized by the engine. They are not the minimum properties a text command or Python constructor accepts.",
+    "errors_or_edge_cases": "A commented-out spacing+wires+cncables+tscables+length set exists in the source but is not active.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "Mirrored in the Line/LineCode property catalog under property_requirements.conditional."
+    ]
+  },
+  {
+    "id": "capi-linecode-specsets",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineCode engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
+      "section_or_record": "SpecSetNames and SpecSets, L215-L226",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineCodeObj",
+    "name": "LineCode specification sets",
+    "signature_or_shape": "R1+X1+R0+X0+C1+C0; R1+X1+R0+X0+B1+B0; RMatrix+XMatrix+CMatrix",
+    "arguments": null,
+    "returns_or_effects": "Complete impedance input combinations for LineCode.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-line-cseq-scale",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "GetCSeqScale, L253-L259; wired to C1/C0 at L474-L475",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "C1 and C0 scaling",
+    "signature_or_shape": "Getter: FUnitsConvert * 1.0e-9; setter: 1.0e-9",
+    "arguments": null,
+    "returns_or_effects": "The constructor stores capacitance in farads (C1 := 3.4e-9, C0 := 1.6e-9); the public property reports nanofarads per unit length.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed readback on a new Line: C1 = 3.4, C0 = 1.6.",
+      "The EPRI Line page states the default as 3.4e-9 nF per 1000 ft, which is unit-inconsistent; use the engine scale."
+    ]
+  },
+  {
+    "id": "capi-line-zseq-scale",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "GetZSeqScale, L245-L251; wired to R/X at L470-L473",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "R1, X1, R0 and X0 scaling",
+    "signature_or_shape": "Getter: FUnitsConvert; setter: 1",
+    "arguments": null,
+    "returns_or_effects": "Sequence impedances are stored in the engine length units and reported with the length conversion applied.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed readback on a new Line: R1 = 0.058, X1 = 0.1206, R0 = 0.1784, X0 = 0.4047."
+    ]
+  },
+  {
+    "id": "capi-linecode-cseq-scale",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineCode engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
+      "section_or_record": "PropertyScale for C1/C0, L303-L306",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineCodeObj",
+    "name": "C1 and C0 scaling",
+    "signature_or_shape": "PropertyScale[C1] = PropertyScale[C0] = 1.0e-9; flags Units_nF_per_length",
+    "arguments": null,
+    "returns_or_effects": "LineCode stores farads internally and exposes nanofarads per unit length.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed readback on a new LineCode: C1 = 3.4, C0 = 1.6."
+    ]
+  },
+  {
+    "id": "capi-linecode-b1-b0",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineCode engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
+      "section_or_record": "GetC1C0Scale, L197-L200; B1/B0 rows, L309-L315",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineCodeObj",
+    "name": "B1 and B0 derivation",
+    "signature_or_shape": "B1 and B0 share the C1/C0 storage with scale 1 / (2*pi*BaseFrequency) * 1.0e-6; flagged Redundant and Units_uS_per_length",
+    "arguments": null,
+    "returns_or_effects": "B1/B0 are an alternate microsiemens-per-unit-length entry for C1/C0, derived at the current base frequency.",
+    "errors_or_edge_cases": "Changing BaseFreq changes the reported B1/B0 for unchanged capacitance.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed readback at 60 Hz: B1 = 1.2818, B0 = 0.6032 uS per unit length for the default C1/C0."
+    ]
+  },
+  {
+    "id": "capi-line-wires-alias",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "Wires row and aliases, L325-L346; SetWires, L795-L810",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "Wires row aliases and JSON name",
+    "signature_or_shape": "PropertyNameJSON[Wires] = 'Conductors'; Wires is a conductor object-reference array; CNCables and TSCables are Redundant with Wires and share LineWireData",
+    "arguments": null,
+    "returns_or_effects": "AltDSS-Python exposes the row as Conductors. SetWires requires LineSpacingObj to be assigned first and otherwise reports message 18102.",
+    "errors_or_edge_cases": "Assigning conductors before spacing fails with 'You must assign the LineSpacing before the Wires Property'.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed: Line.new(..., Spacing='sp', Conductors=['w1','w1','w1']) succeeded and read back three conductors."
+    ]
+  },
+  {
+    "id": "capi-line-switch-side-effects",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "Switch property flag L415; setter side effects L672-L701",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "Switch setter side effects",
+    "signature_or_shape": "Switch flagged Ordering_First. Setting Switch=True marks SymComponentsChanged, clears linecode/geometry/spacing specs, sets R1=X1=R0=X0=1.0, C1=1.1e-9, C0=1.0e-9, Len=0.001, and resets length units",
+    "arguments": null,
+    "returns_or_effects": "A line marked as a switch starts with the switch impedance and length defaults regardless of prior values.",
+    "errors_or_edge_cases": "The branch does not assign SymComponentsModel; sequence-model selection comes from the constructor default and the r1/x1/r0/x0/C1/C0/B1/B0 branch.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed after Switch=True: R1=X1=R0=X0=1.0, C1=1.1, C0=1.0, Length=0.001, Units=none."
+    ]
+  },
+  {
+    "id": "capi-line-defaults",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "TLineObj.Create, L933-L1006",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "constructor defaults",
+    "signature_or_shape": "Phases=3, Nconds=3, Nterms=2, IsSwitch=False, R1=0.0580, X1=0.1206, R0=0.1784, X0=0.4047, C1=3.4e-9, C0=1.6e-9, Len=1.0, Rg=0.01805, Xg=0.155081, rho=100.0, NormAmps=400.0, EmergAmps=600.0, PctPerm=20.0, FaultRate=0.1, HrsToRepair=3.0, LengthUnits=NONE, FLineType=1 (OH)",
+    "arguments": null,
+    "returns_or_effects": "A new Line starts with the default 1000-ft overhead sequence data and 336 MCM ACSR-style impedance.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "All listed values were read back through the wrapper on a new Line."
+    ]
+  },
+  {
+    "id": "capi-line-initial-ratings",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "constructor ratings initialization, L1003-L1006",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "initial seasonal ratings",
+    "signature_or_shape": "NumAmpRatings := 1; AmpRatings[0] := NormAmps",
+    "arguments": null,
+    "returns_or_effects": "Seasons reads 1 and Ratings reads [400] for a new Line.",
+    "errors_or_edge_cases": "Applying a line code, geometry, or later edits can change the ratings.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-line-basefreq-inherit",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "constructor comment L974; FetchLineCode L496-L501",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "BaseFreq inheritance",
+    "signature_or_shape": "The constructor does not assign BaseFrequency ('set in base class'); FetchLineCode assigns BaseFrequency := LineCodeObj.BaseFrequency",
+    "arguments": null,
+    "returns_or_effects": "A Line uses the circuit or line-code base frequency rather than a fixed constructor value.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed BaseFreq = 60.0 for a new Line in a 60 Hz circuit."
+    ]
+  },
+  {
+    "id": "capi-line-bus-required",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "bus properties, L403-L411",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "Bus1 and Bus2 required flags",
+    "signature_or_shape": "Both are TPropertyType.BusProperty with TPropertyFlag.Required",
+    "arguments": null,
+    "returns_or_effects": "A Line model needs both terminal buses to be complete.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "AltDSS-Python new() requires only the name positionally; the required flag governs model completeness."
+    ]
+  },
+  {
+    "id": "capi-line-phases-nconds",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "phases setter branch, L620-L637",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "Phases change reallocates conductors",
+    "signature_or_shape": "When phases changes and no geometry is set under the sequence model, NConds := FNphases and the element data is recalculated",
+    "arguments": null,
+    "returns_or_effects": "A Line has the same number of conductors per terminal as phases when geometry is not used.",
+    "errors_or_edge_cases": "If a geometry is in use, the change is rejected with message 18101 and the previous phase count is restored.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-line-seq-params-model",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "sequence-parameter branch, L639-L652",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "Setting R1/X1/R0/X0/C1/C0/B1/B0 selects the sequence model",
+    "signature_or_shape": "KillLineCodeSpecified, KillGeometrySpecified, KillSpacingSpecified, ResetLengthUnits, SymComponentsChanged := TRUE, SymComponentsModel := TRUE",
+    "arguments": null,
+    "returns_or_effects": "Any sequence parameter replaces prior line code, geometry, and spacing specifications.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "This is the branch that sets SymComponentsModel := TRUE; the Switch branch does not."
+    ]
+  },
+  {
+    "id": "capi-line-matrix-model",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "matrix branch, L653-L671",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "Setting RMatrix/XMatrix/CMatrix selects the matrix model",
+    "signature_or_shape": "KillLineCodeSpecified, SymComponentsModel := FALSE, clears sequence tracking for R/X/C/B, ResetLengthUnits, KillGeometrySpecified, KillSpacingSpecified",
+    "arguments": null,
+    "returns_or_effects": "Matrix values replace sequence and line-code definitions.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-line-length-units",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "constructor length and units, L950-L996",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineObj",
+    "name": "Length and Units defaults",
+    "signature_or_shape": "Len := 1.0 (commented '1 kFt'); LengthUnits := UNITS_NONE; UserLengthUnits := UNITS_NONE; FUnitsConvert := 1.0",
+    "arguments": null,
+    "returns_or_effects": "Length defaults to 1 in the impedance length unit; declaring Units changes the modeled length conversion.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed: Length = 1.0 and Units = none (0) on a new Line."
+    ]
+  },
+  {
+    "id": "capi-linecode-defaults",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineCode engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
+      "section_or_record": "TLineCodeObj.Create, L456-L504",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineCodeObj",
+    "name": "constructor defaults",
+    "signature_or_shape": "NPhases=3, Neutral=NPhases, R1=0.0580, X1=0.1206, R0=0.1784, X0=0.4047, C1=3.4e-9, C0=1.6e-9, Units=NONE, NormAmps=400.0, EmergAmps=600.0, PctPerm=20.0, FaultRate=0.1, Rg=0.01805, Xg=0.155081, rho=100.0, FLineType=1 (OH), NumAmpRatings=1",
+    "arguments": null,
+    "returns_or_effects": "A new LineCode matches the default Line sequence data and ratings.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "All listed values were read back through the wrapper on a new LineCode."
+    ]
+  },
+  {
+    "id": "capi-linecode-basefreq-dynamic",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineCode engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
+      "section_or_record": "DynamicDefault flag L275; constructor L486",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineCodeObj",
+    "name": "BaseFreq dynamic default",
+    "signature_or_shape": "PropertyFlags[basefreq] include DynamicDefault, NonNegative, NonZero, Units_Hz; constructor assigns Basefrequency := ActiveCircuit.Fundamental",
+    "arguments": null,
+    "returns_or_effects": "BaseFreq follows the active circuit fundamental; there is no fixed constructor constant.",
+    "errors_or_edge_cases": "The EPRI LineCode page states a 60.0 Hz default; that does not describe the pinned engine's circuit-dependent initialization.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed BaseFreq = 60.0 on a new LineCode in a 60 Hz circuit."
+    ]
+  },
+  {
+    "id": "capi-linecode-requires-circuit",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineCode engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
+      "section_or_record": "TLineCode.Create, L175-L185",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineCode",
+    "name": "RequiresCircuit",
+    "signature_or_shape": "RequiresCircuit := true",
+    "arguments": null,
+    "returns_or_effects": "LineCode objects can only be created when an active circuit exists.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "All observed LineCode runs were inside an active circuit; the no-circuit error path was not exercised."
+    ]
+  },
+  {
+    "id": "capi-linecode-neutral-kron",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineCode engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
+      "section_or_record": "Neutral initialization L463, L524; Kron reduction L690",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineCodeObj",
+    "name": "Neutral conductor and Kron reduction",
+    "signature_or_shape": "FNeutralConductor := NPhases at construction and on phase change; DoKronReduction sets FNeutralConductor := 0 and reduces the matrix order by one",
+    "arguments": null,
+    "returns_or_effects": "Neutral designates the conductor removed by Kron reduction; after reduction it reads 0 and must be reset before another reduction.",
+    "errors_or_edge_cases": "Kron is ignored for symmetrical-component definitions.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed Neutral = 3 on a new three-phase LineCode."
+    ]
+  },
+  {
+    "id": "capi-linecode-units-none",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineCode engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
+      "section_or_record": "constructor units, L487",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineCodeObj",
+    "name": "Units default",
+    "signature_or_shape": "Units := UNITS_NONE",
+    "arguments": null,
+    "returns_or_effects": "Length units default to none; impedance values are assumed compatible with the length units used by Line models.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed: Units = none (0) on a new LineCode."
+    ]
+  },
+  {
+    "id": "capi-linecode-repair-uninitialized",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineCode engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
+      "section_or_record": "repair row L281; constructor L456-L504",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineCodeObj",
+    "name": "Repair (HrsToRepair) initial value",
+    "signature_or_shape": "The Repair row maps to HrsToRepair, but TLineCodeObj.Create contains no HrsToRepair assignment",
+    "arguments": null,
+    "returns_or_effects": "The repair field is zero-initialized; readback is 0.0 until assigned.",
+    "errors_or_edge_cases": "Do not state a 3.0 default for LineCode.Repair; 3.0 belongs to the Line constructor.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed initial readback: LineCode.Repair = 0.0; Line.Repair = 3.0."
+    ]
+  },
+  {
+    "id": "capi-line-no-epsrmedium",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "TLineProp enum, L55-L86",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TLineProp",
+    "name": "epsrmedium absence",
+    "signature_or_shape": "No epsrmedium member exists in the Line property enum or any Line engine property row",
+    "arguments": null,
+    "returns_or_effects": "A property named epsrmedium cannot be set or read through the pinned engine.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5 (observed via altdss 0.2.4)",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5; 2026-11-21",
+      "result": "pass"
+    },
+    "notes": [
+      "Observed: hasattr(line, 'epsrmedium'/'EpsrMedium'/'EPSRMedium') is False."
+    ]
+  }
+]
