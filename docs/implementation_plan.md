@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version:** 0.11 (Phase 3B package 2 reviewed; owner disposition pending)
+**Plan version:** 0.12 (Phase 3B package 2 accepted; package 3 handed to the coder)
 **Plan date:** 2026-11-21
-**Current phase:** Phase 3B package 2 (Circuit and Vsource) passed coder validation, independent QA/QC, and architect/auditor review. Owner disposition precedes package 3.
+**Current phase:** Phase 3B package 3 (Transformer and XfmrCode) handed to the coder; package 2 accepted by the owner.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -99,7 +99,7 @@ The Line/LineCode package is now the reference implementation of the element pac
 
 Each package follows the template and definition of done in 5.4. Package 1 has its catalog, workflow, two executed examples, and five-class readback matrix. Independent QA/QC found no blocking issues and the architect/auditor review applied one optional citation correction. The owner accepted package 1 on 2026-11-21 and directed package 2, whose coder handoff is issued: [Circuit and Vsource coder handoff](handoffs/Phase_3B_Circuit_Vsource_Coder_handoff.md). [Coder handoff](handoffs/Phase_3B_LineGeometry_WireData_Coder_handoff.md) · [Build audit](audits/phase3b_line_geometry_wires_audit.md) · [QA/QC report](audits/phase3b_line_geometry_wires_qaqc.md) · [Architect/auditor review](audits/phase3b_line_geometry_wires_architect_audit.md)
 
-Package 2 has its Circuit command and Vsource catalog, two executed examples, and a matrix of constructor readbacks and focused probes. Independent QA/QC found no blocking issues and the architect/auditor review required no corrections; two non-blocking observations are recorded. Owner disposition precedes package 3. [Build audit](audits/phase3b_circuit_vsource_audit.md) · [QA/QC report](audits/phase3b_circuit_vsource_qaqc.md) · [Architect/auditor review](audits/phase3b_circuit_vsource_architect_audit.md)
+Package 2 has its Circuit command and Vsource catalog, two executed examples, and a matrix of constructor readbacks and focused probes. Independent QA/QC found no blocking issues and the architect/auditor review required no corrections; two non-blocking observations are recorded. The owner accepted package 2 on 2026-11-21 and directed package 3, whose coder handoff is issued: [Transformer and XfmrCode coder handoff](handoffs/Phase_3B_Transformer_Coder_handoff.md). [Build audit](audits/phase3b_circuit_vsource_audit.md) · [QA/QC report](audits/phase3b_circuit_vsource_qaqc.md) · [Architect/auditor review](audits/phase3b_circuit_vsource_architect_audit.md)
 
 ### 5.4 Element package template (definition of done)
 
@@ -241,6 +241,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.9 | 2026-11-21 | Recorded the owner's acceptance of Phase 3B package 1 and issued the package-2 (Circuit and Vsource) coder handoff with the verified scope decision, evidence pins, and behavior traps. |
 | 0.10 | 2026-11-21 | Added the Circuit and Vsource package, recorded coder validation, and prepared independent QA/QC. |
 | 0.11 | 2026-11-21 | Recorded the Phase 3B package-2 dispositions: independent QA/QC passed with no blocking findings, and the architect/auditor review re-derived coverage, defaults, family precedence, and runtime on a clean environment with no required corrections. |
+| 0.12 | 2026-11-21 | Recorded the owner's acceptance of Phase 3B package 2 and issued the package-3 (Transformer and XfmrCode) coder handoff with the winding-model scope, pinned evidence, and the engine hazards found while preparing it. |
 
 ## 11. Owner decisions
 
@@ -249,4 +250,5 @@ Both new tools read the pinned environment and refuse to run when installed vers
 3. **Phase 4 stop gate — resolved 2026-11-21.** Recorded golden fixture results are required; cross-interface consistency alone is not sufficient. Design in Section 6.
 4. **Role assignment — resolved 2026-11-21.** Architect/auditor: DeepSeek. Coder: GPT-6.2 Sol. Independent QA/QC: Mistral 4. The owner decides merge and scope. This supersedes the coder name used in earlier phase documents; Phase 1 records DeepSeek only as the owner-selected external auditor, so this decision is the record of the later architect/auditor role.
 5. **Phase 3B package 1 acceptance — resolved 2026-11-21.** Owner accepted package 1 after independent QA/QC (PASS, no blocking findings) and the architect/auditor review (PASS, optional correction A-1 applied), and directed package 2 (Circuit and Vsource).
+6. **Phase 3B package 2 acceptance — resolved 2026-11-21.** Owner accepted package 2 after independent QA/QC (PASS, no blocking findings) and the architect/auditor review (PASS, no required corrections), and directed package 3 (Transformer and XfmrCode, including the shared XfmrCode object; `AutoTrans` remains deferred to a later owner decision).
 
