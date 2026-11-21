@@ -1,6 +1,6 @@
 # OpenDSS AltDSS Library Package
 
-**Status:** The owner accepted Phase 3B package 1. Package 2 passed coder validation and awaits independent QA/QC. [Package 2 audit](../docs/audits/phase3b_circuit_vsource_audit.md) · [Implementation plan](../docs/implementation_plan.md)
+**Status:** The owner accepted Phase 3B package 1. Package 2 passed independent QA/QC with no blocking findings and architect/auditor review with no required corrections. Owner disposition precedes package 3. [Package 2 build audit](../docs/audits/phase3b_circuit_vsource_audit.md) · [QA/QC report](../docs/audits/phase3b_circuit_vsource_qaqc.md) · [Architect/auditor review](../docs/audits/phase3b_circuit_vsource_architect_audit.md) · [Implementation plan](../docs/implementation_plan.md)
 **Target:** AltDSS-Python 0.2.4, DSS-Python 0.15.7, backend 0.14.5
 
 ## Contents
