@@ -32,7 +32,7 @@
     "source": {
       "title": "DSS C-API Line engine source",
       "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
-      "section_or_record": "TLineProp enum, L55-L86",
+      "section_or_record": "TLineProp enum, L60-L91",
       "accessed_or_captured": "2026-11-21"
     },
     "kind": "api",
@@ -48,7 +48,7 @@
       "result": "not-run"
     },
     "notes": [
-      "The AltDSS-Python wrapper exposes 35 of these rows as keywords; Wires is mirrored as the Python property Conductors and CNCables/TSCables are not exposed."
+      "The AltDSS-Python Line wrapper exposes 35 properties. Of these, 28 map to rows in TLineProp, including Wires as Conductors. The other seven come from the engine's parent classes. CNCables and TSCables have no separate wrapper properties."
     ]
   },
   {
@@ -58,7 +58,7 @@
     "source": {
       "title": "DSS C-API LineCode engine source",
       "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
-      "section_or_record": "TLineCodeProp enum, L98-L131",
+      "section_or_record": "TLineCodeProp enum, L60-L89",
       "accessed_or_captured": "2026-11-21"
     },
     "kind": "api",
@@ -211,7 +211,7 @@
     "source": {
       "title": "DSS C-API LineCode engine source",
       "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineCode.pas",
-      "section_or_record": "GetC1C0Scale, L197-L200; B1/B0 rows, L309-L315",
+      "section_or_record": "GetC1C0Scale, L197-L200; B1/B0 rows, L308-L315",
       "accessed_or_captured": "2026-11-21"
     },
     "kind": "api",
@@ -647,7 +647,7 @@
     "source": {
       "title": "DSS C-API Line engine source",
       "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
-      "section_or_record": "TLineProp enum, L55-L86",
+      "section_or_record": "TLineProp enum, L60-L91",
       "accessed_or_captured": "2026-11-21"
     },
     "kind": "api",

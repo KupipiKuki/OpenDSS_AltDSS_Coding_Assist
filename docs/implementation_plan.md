@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version:** 0.4 (Phase 2 closed; Phase 3A delivered; Phase 4 golden-fixture design)
+**Plan version:** 0.5 (Phase 3A QA/QC corrections applied)
 **Plan date:** 2026-11-21
-**Current phase:** Phase 3A delivered; independent QA/QC pending
+**Current phase:** Phase 3A reviewed and corrected. Phase 3B is next.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -18,7 +18,7 @@ This plan supersedes the phase prose in [Phase 1 README](phase_1/README.md) and 
 | Examples | Two files and two records, both `Observed-working` with a recorded environment | [Examples](../opendss_altdss_library/references/examples.json) · [Workflow](workflows/line_linecode.md) |
 | Schema validation | `tools/validate_catalogs.py`: 9/9 manifest-and-catalog pairs pass Draft 2020-12 with format checking | [validate_catalogs.py](../opendss_altdss_library/tools/validate_catalogs.py) |
 | Runtime evidence | `tools/run_examples.py` executes both examples successfully on the pinned stack; independent QA/QC creation and readback checks passed separately | [run_examples.py](../opendss_altdss_library/tools/run_examples.py) · [QA/QC runtime section](audits/line_linecode_phase2_qaqc.md#runtime-result-pass) |
-| API and engine catalogs | Phase 3A delivered: 99 AltDSS-Python class records and 26 DSS C-API engine records, generated from the pinned tags | [altdss_python_api.json](../opendss_altdss_library/references/altdss_python_api.json) · [dss_capi.json](../opendss_altdss_library/references/dss_capi.json) · [3A audit](audits/phase3a_api_catalogs_audit.md) |
+| API and engine catalogs | Phase 3A delivered 99 generated AltDSS-Python class records and 26 curated DSS C-API engine records. QA/QC findings are resolved. | [altdss_python_api.json](../opendss_altdss_library/references/altdss_python_api.json) · [dss_capi.json](../opendss_altdss_library/references/dss_capi.json) · [3A audit](audits/phase3a_api_catalogs_audit.md) |
 | Remaining catalogs | Three empty: `opendss_objects`, `python_interface_comparison`, `troubleshooting` | [references/](../opendss_altdss_library/references/) |
 | Validation tooling | Committed: `tools/requirements-validation.txt`, `tools/validate_catalogs.py`, `tools/run_examples.py`, `tools/build_altdss_api_catalog.py` | [tools/](../opendss_altdss_library/tools/) |
 | Phase 2 commit | Committed as the Phase 2 milestone and merged to `main` on owner approval (2026-11-21) | `git log` |
@@ -29,7 +29,7 @@ This plan supersedes the phase prose in [Phase 1 README](phase_1/README.md) and 
 |---|---|---|---|
 | Phase 1 Foundation | 1–2 Inventory, Normalize | Scope, sources, schemas, package structure, starter catalogs | Complete (`3263daa`) |
 | Phase 2 Pilot | 3–4 Extract, Curate | Remediate Line/LineCode; prove the record pattern end to end (catalog, source index, workflow, examples, audit) | Complete and merged (`1d4088f`) |
-| Phase 3 Scale-out | 3–4 | API and engine catalogs, then dependency-ordered element packages using the proven pattern | 3A delivered; 3B next |
+| Phase 3 Scale-out | 3–4 | API and engine catalogs, then dependency-ordered element packages using the proven pattern | 3A QA/QC corrections applied. 3B next. |
 | Phase 4 Validation | 6 Validate | Fixture circuits (IEEE 13 and 34 per charter), solved-model checks, property-readback matrices, example upgrade to `Observed-working` | Planned (Section 6) |
 | Phase 5 Retrieve and Release | 5, 7 | Search and retrieval over the catalogs; skill packaging; release record | Planned (Section 7) |
 
@@ -72,7 +72,7 @@ The Line/LineCode package is now the reference implementation of the element pac
 
 - **Infrastructure before breadth.** The empty `altdss_python_api` and `dss_capi` catalogs are the machine-readable ground truth every element package cites. Filling them once removes repeated per-element wrapper and engine research and reduces QA variance.
 - **Dependencies before convenience.** `Line.wires` already showed cross-element coupling: conductor and geometry objects gate a documented Line path. Element packages land in dependency order.
-- **One shared source index.** Replace the per-workflow source index with a single `references/sources.json` (ids, `version_or_ref`, access date, scope). Migrate the 15 Line/LineCode records into it and keep the old file as a pointer stub. Every catalog and example references ids, never duplicated URLs.
+- **One shared source index.** Phase 3A migrated the 15 Line/LineCode source records into `references/sources.json` with the same IDs and removed the superseded index and schema. Use source IDs for shared index references and keep claim-level citations where the record schema calls for them.
 - **One general element schema.** Add `schemas/catalogs/element_properties.schema.json` (generalized `element_class`, property-level `source_refs` required) for new elements. The Line/LineCode schema stays as published; it is not retrofitted.
 - **Scope cap.** Phase 3 covers the elements named in 5.3 only. Adding elements is an owner decision.
 
@@ -84,7 +84,7 @@ The Line/LineCode package is now the reference implementation of the element pac
 | `dss_capi.json` | `records/api.schema.json` records for engine identity, property enums, specification sets, scaling functions, constructor defaults, and documented DBS/extension behaviors, each tied to 0.14.5 file and line range | Every record version-scoped; no mutable `master` citations; schema-valid |
 | `references/sources.json` | Single index; migrate existing 15 records, add the Phase 3A source entries | Unique ids; every `version_or_ref` set for DSS-Extensions sources, `null` for undated EPRI pages with scope note |
 
-**Status 2026-11-21:** delivered. The API catalog is generated by `tools/build_altdss_api_catalog.py` from the extracted `altdss==0.2.4` wheel (99 classes, 1,094 properties, 180 methods; batch classes and setter-only pseudo-properties described on their parent records; internal `_str` proxies excluded). The engine catalog holds 26 hand-curated records tied to `Line.pas` and `LineCode.pas` line ranges, with `tested` status reflecting what was actually executed. The source index moved to `references/sources.json` (18 records) and the old Line/LineCode index pair was removed. Independent QA/QC is the next action.
+**Status 2026-11-21:** Independent QA/QC passed with findings. It reproduced the generated catalog from the pinned wheel and checked the 26 curated engine records and shared source index. The coder corrected the citation ranges and documentation findings. [Review report](audits/phase3a_api_catalogs_qaqc.md) · [Finding disposition](audits/phase3a_api_catalogs_audit.md#independent-qaqc-disposition)
 
 ### 5.3 Workstream 3B — Element packages, in order
 
@@ -202,7 +202,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 
 ## 8. Governance
 
-- **Roles:** Codex is the primary coder; Mistral is the independent QA/QC reviewer; the project owner decides which findings block merge and approves scope changes.
+- **Roles.** DeepSeek is the architect and also contributed Phase 3A QA/QC. Codex is the primary coder. Mistral is the independent QA/QC reviewer. The project owner decides which findings block merge and approves scope changes.
 - **Branches:** phase branches (`wp/phaseN`) created from `main`, with one milestone commit per phase; QA reports name the reviewed branch and commit or working-tree state.
 - **Evidence policy:**
   - `Observed-working` requires a committed example file, a harness run, an environment block, and a date.
@@ -232,6 +232,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.2 | 2026-11-21 | Architect review. Added Phase 2 closure checklist and exit criteria; adopted the six-artifact element package template; reprioritized Phase 3 to API/engine catalogs first, then dependency-ordered element packages with a scope cap; consolidated the source index and generalized the element schema; added committed validation tooling and the `Observed-working` evidence rule; defined Phase 4 fixtures and Phase 5 retrieval and release; recorded the owner decisions below |
 | 0.3 | 2026-11-21 | Phase 2 closed: validation harness committed, both examples recorded `Observed-working`, manifest reconciled, milestone merged. Owner decided the Phase 4 stop gate requires golden fixture results; added the golden fixture design (6.1–6.6) with source/provenance rules, golden format, tolerances, harness contracts, coverage matrix, acceptance, and risks |
 | 0.4 | 2026-11-21 | Phase 3A delivered: generated the AltDSS-Python API catalog from the pinned wheel, added 26 DSS C-API engine records, consolidated the source index into `references/sources.json` (18 records), and extended the validation harness for the record schemas. Owner confirmed the Phase 3 element scope and order |
+| 0.5 | 2026-11-21 | Recorded the Phase 3A QA/QC disposition, clarified the source-index migration, and recorded DeepSeek's architect role. |
 
 ## 11. Owner decisions
 

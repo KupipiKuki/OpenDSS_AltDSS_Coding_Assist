@@ -1,6 +1,6 @@
 # OpenDSS AltDSS Library Package
 
-**Status:** Phase 3A delivered: API and engine catalogs built from the pinned tags and schema-valid, pending independent QA/QC. See the [implementation plan](../docs/implementation_plan.md).
+**Status:** Phase 3A API and engine catalog QA/QC passed with findings. The corrections are applied. [Finding disposition](../docs/audits/phase3a_api_catalogs_audit.md#independent-qaqc-disposition) · [Implementation plan](../docs/implementation_plan.md)
 **Target:** AltDSS-Python 0.2.4, DSS-Python 0.15.7, backend 0.14.5
 
 ## Contents
