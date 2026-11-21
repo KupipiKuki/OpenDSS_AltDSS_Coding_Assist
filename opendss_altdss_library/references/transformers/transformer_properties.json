@@ -679,7 +679,7 @@
         "source_refs": [
           "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L932",
           "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1016-L1038",
-          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
           "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196"
         ]
       },
@@ -694,7 +694,7 @@
         "source_refs": [
           "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L933",
           "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1016-L1038",
-          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
           "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196"
         ]
       },
@@ -708,7 +708,7 @@
         "altdss_keyword": "FaultRate",
         "source_refs": [
           "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L934",
-          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
           "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196",
           "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
         ]
@@ -723,7 +723,7 @@
         "altdss_keyword": "pctPerm",
         "source_refs": [
           "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L935",
-          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
           "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196"
         ]
       },
@@ -737,7 +737,7 @@
         "altdss_keyword": "Repair",
         "source_refs": [
           "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L936",
-          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
           "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196"
         ]
       },

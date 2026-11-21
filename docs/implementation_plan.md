@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version** 0.13 (Phase 3B package 3 ready for independent QA/QC)
+**Plan version** 0.14 (Phase 3B package 3 reviewed; owner disposition pending)
 **Plan date:** 2026-11-21
-**Current phase:** Phase 3B package 3 (Transformer and XfmrCode) handed to the coder; package 2 accepted by the owner.
+**Current phase:** Phase 3B package 3 (Transformer and XfmrCode) passed coder validation, independent QA/QC, and architect/auditor review. Owner disposition precedes package 4.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -101,7 +101,7 @@ Each package follows the template and definition of done in 5.4. Package 1 has i
 
 Package 2 has its Circuit command and Vsource catalog, two executed examples, and a matrix of constructor readbacks and focused probes. Independent QA/QC found no blocking issues and the architect/auditor review required no corrections; two non-blocking observations are recorded. The owner accepted package 2 on 2026-11-21 and directed package 3, whose coder handoff is issued: [Transformer and XfmrCode coder handoff](handoffs/Phase_3B_Transformer_Coder_handoff.md). [Build audit](audits/phase3b_circuit_vsource_audit.md) · [QA/QC report](audits/phase3b_circuit_vsource_qaqc.md) · [Architect/auditor review](audits/phase3b_circuit_vsource_architect_audit.md)
 
-Package 3 adds Transformer and XfmrCode for two- and three-winding models, two executed examples, and a runtime matrix. The coder validated 12 schema pairs and eight examples on the pinned stack. Independent QA/QC and architect review precede owner disposition and the start of package 4. [Build audit](audits/phase3b_transformer_audit.md) · [QA/QC handoff](handoffs/Phase_3B_Transformer_QAQC_handoff.md)
+Package 3 adds Transformer and XfmrCode for two- and three-winding models, two executed examples, and a runtime matrix. Independent QA/QC and the architect review passed; the review found and corrected one citation that ran past the end of `PDClass.pas` (E-1) and recorded one harness attribution issue (E-2). Owner disposition precedes package 4. [Build audit](audits/phase3b_transformer_audit.md) · [QA/QC report](audits/phase3b_transformer_qaqc.md) · [Architect/auditor review](audits/phase3b_transformer_architect_audit.md)
 
 ### 5.4 Element package template (definition of done)
 
@@ -245,6 +245,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.11 | 2026-11-21 | Recorded the Phase 3B package-2 dispositions: independent QA/QC passed with no blocking findings, and the architect/auditor review re-derived coverage, defaults, family precedence, and runtime on a clean environment with no required corrections. |
 | 0.12 | 2026-11-21 | Recorded the owner's acceptance of Phase 3B package 2 and issued the package-3 (Transformer and XfmrCode) coder handoff with the winding-model scope, pinned evidence, and the engine hazards found while preparing it. |
 | 0.13 | 2026-11-21 | Added Transformer and XfmrCode for two- and three-winding models, recorded pinned runtime validation, and prepared independent QA/QC. |
+| 0.14 | 2026-11-21 | Recorded the Phase 3B package-3 dispositions: independent QA/QC passed with no blocking findings, and the architect/auditor review re-derived the winding model, defaults, and runtime on a clean environment, found and corrected one out-of-range citation (E-1), and recorded one non-blocking harness observation (E-2). |
 
 ## 11. Owner decisions
 

@@ -1,6 +1,6 @@
 # OpenDSS AltDSS Library Package
 
-**Status** The owner accepted Phase 3B packages 1 and 2. Package 3 covers Transformer and XfmrCode and is ready for independent QA/QC. [Package 3 build audit](../docs/audits/phase3b_transformer_audit.md) · [QA/QC handoff](../docs/handoffs/Phase_3B_Transformer_QAQC_handoff.md) · [Implementation plan](../docs/implementation_plan.md)
+**Status** The owner accepted Phase 3B packages 1 and 2. Package 3 (Transformer and XfmrCode) passed independent QA/QC and architect review; one broken citation was corrected in that review. Owner disposition precedes package 4. [Package 3 build audit](../docs/audits/phase3b_transformer_audit.md) · [QA/QC report](../docs/audits/phase3b_transformer_qaqc.md) · [Architect/auditor review](../docs/audits/phase3b_transformer_architect_audit.md) · [Implementation plan](../docs/implementation_plan.md)
 **Target:** AltDSS-Python 0.2.4, DSS-Python 0.15.7, backend 0.14.5
 
 ## Contents
