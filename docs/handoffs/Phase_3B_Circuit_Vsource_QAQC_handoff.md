@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase3`
 - **Baseline** `861a6e6`
-- **Package revision** Coder working tree based on `861a6e6`. Pin the package commit after staging and committing this revision.
+- **Package revision** `555f4f6f6cb86aef556bb61d7515f33a39780de8`. Review the catalog and runtime artifacts at this pinned commit. The follow-up commit supplies the handoff pin.
 
 Review the Circuit and Vsource package using the boundary set by the coder handoff. Record the reviewed commit and clean or dirty working-tree state. [Coder handoff](Phase_3B_Circuit_Vsource_Coder_handoff.md) · [Build audit](../audits/phase3b_circuit_vsource_audit.md)
 
