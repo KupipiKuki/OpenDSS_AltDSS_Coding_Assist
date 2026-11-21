@@ -3,7 +3,7 @@
 **Build date:** 2026-11-21
 **Artifacts:** [altdss_python_api.json](../../opendss_altdss_library/references/altdss_python_api.json) · [dss_capi.json](../../opendss_altdss_library/references/dss_capi.json) · [sources.json](../../opendss_altdss_library/references/sources.json) · [generator](../../opendss_altdss_library/tools/build_altdss_api_catalog.py)
 **Targets:** AltDSS-Python `0.2.4` (tag `2b6fa7e5961cedaf8482c07d377b20bdab4a1bee`), DSS C-API `0.14.5` (tag `87d85c2622c8281b92255335bc7c09b11191b21d`)
-**Status:** built and schema-valid; independent QA/QC pending.
+**Status:** built and schema-valid at commit `45a004d` on `wp/phase3`; independent QA/QC pending.
 
 ## Method
 

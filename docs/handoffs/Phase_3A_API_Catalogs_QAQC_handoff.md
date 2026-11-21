@@ -2,9 +2,43 @@
 
 ## Review target
 
-Review the Phase 3A working revision on `wp/phase3` against the Phase 2 merge commit `8053b67` (or `1d4088f` if the docs commit is out of scope). Read [the build audit](../audits/phase3a_api_catalogs_audit.md), then inspect the generated catalog, the engine records, and the generator against the pinned sources. Record the reviewed branch and commit or working-tree state in your report.
+Review the committed Phase 3A revision on `wp/phase3` — catalog commit `45a004d` (any later docs-only commit on the branch does not change the catalogs) — against the Phase 2 merge baseline `8053b67` on `main`. Read [the build audit](../audits/phase3a_api_catalogs_audit.md), then inspect the generated catalog, the engine records, and the generator against the pinned sources. Record the reviewed branch, commit, and clean/dirty state in your report.
 
-Artifacts: [altdss_python_api.json](../../opendss_altdss_library/references/altdss_python_api.json) · [dss_capi.json](../../opendss_altdss_library/references/dss_capi.json) · [sources.json](../../opendss_altdss_library/references/sources.json) · [generator](../../opendss_altdss_library/tools/build_altdss_api_catalog.py) · [schemas](../../opendss_altdss_library/schemas/catalogs/)
+Artifacts: [altdss_python_api.json](../../opendss_altdss_library/references/altdss_python_api.json) · [dss_capi.json](../../opendss_altdss_library/references/dss_capi.json) · [sources.json](../../opendss_altdss_library/references/sources.json) · [generator](../../opendss_altdss_library/tools/build_altdss_api_catalog.py) · [schemas](../../opendss_altdss_library/schemas/catalogs/) · [manifest](../../opendss_altdss_library/manifest.json) · [plan](../implementation_plan.md)
+
+## Review setup
+
+```powershell
+git clone https://github.com/KupipiKuki/OpenDSS_AltDSS_Coding_Assist.git
+cd OpenDSS_AltDSS_Coding_Assist
+git checkout wp/phase3
+git log --oneline -3            # expect 45a004d at or just below the tip
+git status --porcelain          # record the reviewed state; start clean
+
+python -m venv .venv
+.venv\Scripts\python -m pip install -r opendss_altdss_library/tools/requirements-validation.txt
+.venv\Scripts\python opendss_altdss_library/tools/validate_catalogs.py
+.venv\Scripts\python opendss_altdss_library/tools/run_examples.py
+```
+
+Generator determinism check (network required for the wheel):
+
+```powershell
+.venv\Scripts\python -m pip download altdss==0.2.4 --no-deps -d .review
+.venv\Scripts\python -c "import zipfile; zipfile.ZipFile('.review/altdss-0.2.4-py3-none-any.whl').extractall('.review/src')"
+.venv\Scripts\python opendss_altdss_library/tools/build_altdss_api_catalog.py --source-dir .review/src/altdss --out .review/altdss_python_api.json
+git diff --no-index --stat .review/altdss_python_api.json opendss_altdss_library/references/altdss_python_api.json
+# empty output = byte-identical
+```
+
+Engine source for citation checks:
+
+```powershell
+curl.exe -L https://raw.githubusercontent.com/dss-extensions/dss_capi/0.14.5/src/PDElements/Line.pas -o .review/Line.pas
+curl.exe -L https://raw.githubusercontent.com/dss-extensions/dss_capi/0.14.5/src/General/LineCode.pas -o .review/LineCode.pas
+```
+
+Scope boundaries already declared in the audit (flag only if mislabelled, not as missing coverage by themselves): batch classes are described through `batch_new` rather than separate records; setter-only pseudo-properties such as `Like` and `Kron` are not itemized; internal `_str` proxies are excluded; engine records cover Line and LineCode only.
 
 ## Audit checklist
 
@@ -20,7 +54,7 @@ Artifacts: [altdss_python_api.json](../../opendss_altdss_library/references/altd
 
 ## Report format
 
-Save the report as `docs/audits/phase3a_api_catalogs_qaqc.md`.
+Save the report as `docs/audits/phase3a_api_catalogs_qaqc.md`. Add only that report; do not change the catalogs under review.
 
 - **STATUS:** PASS / PASS WITH FINDINGS / FAIL
 - **COVERAGE FINDINGS:** missing, spurious, duplicated, or mislabelled records or classes
