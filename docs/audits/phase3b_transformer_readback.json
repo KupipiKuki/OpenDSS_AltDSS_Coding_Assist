@@ -1,0 +1,1135 @@
+{
+  "environment": {
+    "python_version": "3.14.6",
+    "altdss_version": "0.2.4",
+    "dss_python_version": "0.15.7",
+    "backend_version": "0.14.5",
+    "platform": "Windows 11 AMD64",
+    "date": "2026-11-21"
+  },
+  "defaults": {
+    "Transformer": {
+      "name": {
+        "status": "read back",
+        "value": "readback_default"
+      },
+      "phases": {
+        "status": "read back",
+        "value": 3
+      },
+      "windings": {
+        "status": "read back",
+        "value": 2
+      },
+      "pctr": {
+        "status": "read back",
+        "value": [
+          0.2,
+          0.2
+        ]
+      },
+      "rneut": {
+        "status": "read back",
+        "value": [
+          -1.0,
+          -1.0
+        ]
+      },
+      "xneut": {
+        "status": "read back",
+        "value": [
+          0.0,
+          0.0
+        ]
+      },
+      "buses": {
+        "status": "read back",
+        "value": [
+          "readback_default_1",
+          "readback_default_2"
+        ],
+        "note": "Generated from the object name."
+      },
+      "conns": {
+        "status": "read back",
+        "value": [
+          0,
+          0
+        ],
+        "enum_members": [
+          "wye",
+          "wye"
+        ]
+      },
+      "kvs": {
+        "status": "read back",
+        "value": [
+          12.47,
+          12.47
+        ]
+      },
+      "kvas": {
+        "status": "read back",
+        "value": [
+          1000.0,
+          1000.0
+        ]
+      },
+      "taps": {
+        "status": "read back",
+        "value": [
+          1.0,
+          1.0
+        ]
+      },
+      "xhl": {
+        "status": "read back",
+        "value": 7.000000000000001
+      },
+      "xht": {
+        "status": "read back",
+        "value": 35.0
+      },
+      "xlt": {
+        "status": "read back",
+        "value": 30.0
+      },
+      "xscarray": {
+        "status": "read back",
+        "value": [
+          7.000000000000001
+        ]
+      },
+      "thermal": {
+        "status": "read back",
+        "value": 2.0
+      },
+      "n": {
+        "status": "read back",
+        "value": 0.8
+      },
+      "m": {
+        "status": "read back",
+        "value": 0.8
+      },
+      "flrise": {
+        "status": "read back",
+        "value": 65.0
+      },
+      "hsrise": {
+        "status": "read back",
+        "value": 15.0
+      },
+      "pctloadloss": {
+        "status": "read back",
+        "value": 0.4
+      },
+      "pctnoloadloss": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "normhkva": {
+        "status": "read back",
+        "value": 1100.0
+      },
+      "emerghkva": {
+        "status": "read back",
+        "value": 1500.0
+      },
+      "sub": {
+        "status": "read back",
+        "value": false
+      },
+      "maxtap": {
+        "status": "read back",
+        "value": [
+          1.1,
+          1.1
+        ]
+      },
+      "mintap": {
+        "status": "read back",
+        "value": [
+          0.9,
+          0.9
+        ]
+      },
+      "numtaps": {
+        "status": "read back",
+        "value": [
+          32,
+          32
+        ]
+      },
+      "subname": {
+        "status": "read back",
+        "value": ""
+      },
+      "pctimag": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "ppm_antifloat": {
+        "status": "read back",
+        "value": 1.0
+      },
+      "pctrs": {
+        "status": "read back",
+        "value": [
+          0.2,
+          0.2
+        ]
+      },
+      "bank": {
+        "status": "read back",
+        "value": ""
+      },
+      "xfmrcode": {
+        "status": "read back",
+        "value": null
+      },
+      "xrconst": {
+        "status": "read back",
+        "value": false
+      },
+      "x12": {
+        "status": "read back",
+        "value": 7.000000000000001
+      },
+      "x13": {
+        "status": "read back",
+        "value": 35.0
+      },
+      "x23": {
+        "status": "read back",
+        "value": 30.0
+      },
+      "leadlag": {
+        "status": "read back",
+        "value": 0,
+        "enum_member": "Lag"
+      },
+      "core": {
+        "status": "read back",
+        "value": 0,
+        "enum_member": "shell"
+      },
+      "rdcohms": {
+        "status": "read back",
+        "value": [
+          0.08811717666666669,
+          0.08811717666666669
+        ]
+      },
+      "seasons": {
+        "status": "read back",
+        "value": 1
+      },
+      "ratings": {
+        "status": "read back",
+        "value": [
+          1100.0
+        ]
+      },
+      "normamps": {
+        "status": "read back",
+        "value": 50.9290534168876
+      },
+      "emergamps": {
+        "status": "read back",
+        "value": 69.44870920484672
+      },
+      "faultrate": {
+        "status": "read back",
+        "value": 0.007
+      },
+      "pctperm": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "repair": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "basefreq": {
+        "status": "read back",
+        "value": 60.0
+      },
+      "enabled": {
+        "status": "read back",
+        "value": true
+      },
+      "like": {
+        "status": "action",
+        "note": "Creation keyword and method with no getter."
+      },
+      "wdg": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "Wdg",
+        "text": "1",
+        "value": 1
+      },
+      "bus": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "Bus",
+        "text": "readback_default_1",
+        "value": "readback_default_1"
+      },
+      "conn": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "Conn",
+        "text": "wye",
+        "value": "wye"
+      },
+      "kv": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "kV",
+        "text": "12.47",
+        "value": 12.47
+      },
+      "kva": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "kVA",
+        "text": "1000",
+        "value": 1000.0
+      },
+      "tap": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "Tap",
+        "text": "1",
+        "value": 1.0
+      },
+      "%r": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "%R",
+        "text": "0.2",
+        "value": 0.2
+      },
+      "rneut_scalar": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "RNeut",
+        "text": "-1",
+        "value": -1.0
+      },
+      "xneut_scalar": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "XNeut",
+        "text": "0",
+        "value": 0.0
+      }
+    },
+    "XfmrCode": {
+      "name": {
+        "status": "read back",
+        "value": "readback_default"
+      },
+      "phases": {
+        "status": "read back",
+        "value": 3
+      },
+      "windings": {
+        "status": "read back",
+        "value": 2
+      },
+      "pctr": {
+        "status": "read back",
+        "value": [
+          0.2,
+          0.2
+        ]
+      },
+      "rneut": {
+        "status": "read back",
+        "value": [
+          -1.0,
+          -1.0
+        ]
+      },
+      "xneut": {
+        "status": "read back",
+        "value": [
+          0.0,
+          0.0
+        ]
+      },
+      "conns": {
+        "status": "read back",
+        "value": [
+          0,
+          0
+        ],
+        "enum_members": [
+          "wye",
+          "wye"
+        ]
+      },
+      "kvs": {
+        "status": "read back",
+        "value": [
+          12.47,
+          12.47
+        ]
+      },
+      "kvas": {
+        "status": "read back",
+        "value": [
+          1000.0,
+          1000.0
+        ]
+      },
+      "taps": {
+        "status": "read back",
+        "value": [
+          1.0,
+          1.0
+        ]
+      },
+      "xhl": {
+        "status": "read back",
+        "value": 7.000000000000001
+      },
+      "xht": {
+        "status": "read back",
+        "value": 35.0
+      },
+      "xlt": {
+        "status": "read back",
+        "value": 30.0
+      },
+      "xscarray": {
+        "status": "read back",
+        "value": [
+          0.0
+        ]
+      },
+      "thermal": {
+        "status": "read back",
+        "value": 2.0
+      },
+      "n": {
+        "status": "read back",
+        "value": 0.8
+      },
+      "m": {
+        "status": "read back",
+        "value": 0.8
+      },
+      "flrise": {
+        "status": "read back",
+        "value": 65.0
+      },
+      "hsrise": {
+        "status": "read back",
+        "value": 15.0
+      },
+      "pctloadloss": {
+        "status": "read back",
+        "value": 0.4
+      },
+      "pctnoloadloss": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "normhkva": {
+        "status": "read back",
+        "value": 1100.0
+      },
+      "emerghkva": {
+        "status": "read back",
+        "value": 1500.0
+      },
+      "maxtap": {
+        "status": "read back",
+        "value": [
+          1.1,
+          1.1
+        ]
+      },
+      "mintap": {
+        "status": "read back",
+        "value": [
+          0.9,
+          0.9
+        ]
+      },
+      "numtaps": {
+        "status": "read back",
+        "value": [
+          32,
+          32
+        ]
+      },
+      "pctimag": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "ppm_antifloat": {
+        "status": "read back",
+        "value": 1.0
+      },
+      "pctrs": {
+        "status": "read back",
+        "value": [
+          0.2,
+          0.2
+        ]
+      },
+      "x12": {
+        "status": "read back",
+        "value": 7.000000000000001
+      },
+      "x13": {
+        "status": "read back",
+        "value": 35.0
+      },
+      "x23": {
+        "status": "read back",
+        "value": 30.0
+      },
+      "rdcohms": {
+        "status": "read back",
+        "value": [
+          0.26435153000000006,
+          0.26435153000000006
+        ]
+      },
+      "seasons": {
+        "status": "read back",
+        "value": 1
+      },
+      "ratings": {
+        "status": "read back",
+        "value": [
+          600.0
+        ]
+      },
+      "like": {
+        "status": "action",
+        "note": "Creation keyword and method with no getter."
+      },
+      "wdg": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "Wdg",
+        "text": "1",
+        "value": 1
+      },
+      "conn": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "Conn",
+        "text": "wye",
+        "value": "wye"
+      },
+      "kv": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "kV",
+        "text": "12.47",
+        "value": 12.47
+      },
+      "kva": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "kVA",
+        "text": "1000",
+        "value": 1000.0
+      },
+      "tap": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "Tap",
+        "text": "1",
+        "value": 1.0
+      },
+      "%r": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "%R",
+        "text": "0.2",
+        "value": 0.2
+      },
+      "rneut_scalar": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "RNeut",
+        "text": "-1",
+        "value": -1.0
+      },
+      "xneut_scalar": {
+        "status": "DSS text readback",
+        "dss_text_keyword": "XNeut",
+        "text": "0",
+        "value": 0.0
+      }
+    }
+  },
+  "enums": {
+    "Connection": {
+      "wye": 0,
+      "delta": 1
+    },
+    "CoreType": {
+      "shell": 0,
+      "one_phase": 1,
+      "three_leg": 3,
+      "four_leg": 4,
+      "five_leg": 5,
+      "core_1_phase": 9
+    },
+    "PhaseSequence": {
+      "Lag": 0,
+      "Lead": 1
+    }
+  },
+  "winding_resize": {
+    "Transformer": {
+      "before": {
+        "Conns": [
+          1,
+          0
+        ],
+        "kVs": [
+          12.47,
+          4.16
+        ],
+        "kVAs": [
+          900.0,
+          800.0
+        ],
+        "Taps": [
+          1.05,
+          0.95
+        ],
+        "pctR": [
+          0.3,
+          0.5
+        ],
+        "X13": 35.0,
+        "XSCArray": [
+          7.000000000000001
+        ],
+        "Buses": [
+          "primary.1",
+          "secondary.1"
+        ]
+      },
+      "after": {
+        "Conns": [
+          0,
+          0,
+          0
+        ],
+        "kVs": [
+          12.47,
+          12.47,
+          12.47
+        ],
+        "kVAs": [
+          1000.0,
+          1000.0,
+          1000.0
+        ],
+        "Taps": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "pctR": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "X13": 35.0,
+        "XSCArray": [
+          7.000000000000001,
+          30.0,
+          30.0
+        ],
+        "Buses": [
+          "primary.1",
+          "secondary.1",
+          "resize_3"
+        ]
+      },
+      "topology_3ph": {
+        "terminals": 3,
+        "conductors_per_terminal": 4
+      },
+      "topology_1ph": {
+        "terminals": 3,
+        "conductors_per_terminal": 2
+      }
+    },
+    "XfmrCode": {
+      "before": {
+        "Conns": [
+          1,
+          0
+        ],
+        "kVs": [
+          12.47,
+          4.16
+        ],
+        "kVAs": [
+          900.0,
+          800.0
+        ],
+        "Taps": [
+          1.05,
+          0.95
+        ],
+        "pctR": [
+          0.3,
+          0.5
+        ],
+        "X13": 35.0,
+        "XSCArray": [
+          0.0
+        ]
+      },
+      "after": {
+        "Conns": [
+          0,
+          0,
+          0
+        ],
+        "kVs": [
+          12.47,
+          12.47,
+          12.47
+        ],
+        "kVAs": [
+          1000.0,
+          1000.0,
+          1000.0
+        ],
+        "Taps": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "pctR": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "X13": 35.0,
+        "XSCArray": [
+          0.0,
+          30.0,
+          30.0
+        ]
+      }
+    }
+  },
+  "windings_one": {
+    "Transformer": {
+      "direct_setter_readback": 2,
+      "edit_readback": 2,
+      "edit_error": "(#2020031) Transformer.one_direct.Windings: Value (1) must be greater than one."
+    },
+    "XfmrCode": {
+      "direct_setter_readback": 2,
+      "edit_readback": 2,
+      "edit_error": "(#2020031) XfmrCode.one_direct.Windings: Value (1) must be greater than one."
+    }
+  },
+  "text_and_taps": {
+    "bus_length_error": "(#20200424) Transformer.wrong_length.Buses: Invalid number of elements. Expected 2 elements, got 4.",
+    "python_taps": [
+      1.5,
+      1.0
+    ],
+    "dss_taps": [
+      1.5,
+      1.0
+    ],
+    "max_taps": [
+      1.1,
+      1.1
+    ],
+    "min_taps": [
+      0.9,
+      0.9
+    ],
+    "selected_winding_text": {
+      "Transformer": {
+        "Wdg": "2",
+        "Conn": "delta",
+        "kV": "4.16",
+        "kVA": "700",
+        "Tap": "0.98",
+        "%R": "0.45",
+        "RNeut": "0.1",
+        "XNeut": "0.2",
+        "Bus": "secondary.1.2.3.0"
+      },
+      "XfmrCode": {
+        "Wdg": "2",
+        "Conn": "delta",
+        "kV": "4.16",
+        "kVA": "700",
+        "Tap": "0.98",
+        "%R": "0.45",
+        "RNeut": "0.1",
+        "XNeut": "0.2"
+      }
+    }
+  },
+  "load_loss_and_ratings": {
+    "Transformer": {
+      "pctR_after_loss_write": [
+        0.5,
+        0.5
+      ],
+      "pctLoadLoss_after_pctR": 0.9000000000000001,
+      "pctLoadLoss_after_pctRs": 1.2,
+      "ratings_from_kVAs": [
+        880.0000000000001,
+        1200.0
+      ],
+      "ratings_from_winding_1": [
+        770.0000000000001,
+        1050.0
+      ],
+      "kVAs_after_winding_1": [
+        700.0,
+        700.0
+      ]
+    },
+    "XfmrCode": {
+      "pctR_after_loss_write": [
+        0.5,
+        0.5
+      ],
+      "pctLoadLoss_after_pctR": 0.9000000000000001,
+      "pctLoadLoss_after_pctRs": 1.2,
+      "ratings_from_kVAs": [
+        880.0000000000001,
+        1200.0
+      ],
+      "ratings_from_winding_1": [
+        770.0000000000001,
+        1050.0
+      ],
+      "kVAs_after_winding_1": [
+        700.0,
+        700.0
+      ]
+    }
+  },
+  "impedance": {
+    "Transformer": {
+      "from_scalars": [
+        8.0,
+        31.0,
+        28.999999999999996
+      ],
+      "from_array": [
+        11.0,
+        21.0,
+        31.0
+      ],
+      "scalars_after_array_write": [
+        8.0,
+        31.0,
+        28.999999999999996
+      ],
+      "after_scalar_edit": [
+        9.0,
+        31.0,
+        28.999999999999996
+      ]
+    },
+    "XfmrCode": {
+      "from_scalars": [
+        8.0,
+        31.0,
+        28.999999999999996
+      ],
+      "from_array": [
+        11.0,
+        21.0,
+        31.0
+      ],
+      "scalars_after_array_write": [
+        8.0,
+        31.0,
+        28.999999999999996
+      ],
+      "after_scalar_edit": [
+        9.0,
+        31.0,
+        28.999999999999996
+      ]
+    }
+  },
+  "dc_resistance": {
+    "voltage_va_base_ohms": 51.83363333333334,
+    "initial_ohms": [
+      0.08811717666666669,
+      0.08811717666666669
+    ],
+    "derived_ohms": [
+      0.17623435333333337,
+      0.35246870666666674
+    ],
+    "array_write_after_recalculation": [
+      0.35246870666666674,
+      0.6
+    ],
+    "scalar_writes_after_recalculation": [
+      0.5,
+      0.6
+    ]
+  },
+  "three_winding_code": {
+    "converged": true,
+    "buses": [
+      "source.1.2.3.0",
+      "secondary.1.2.3.0",
+      "tertiary.1.2.3.0"
+    ],
+    "terminals": 3,
+    "code": "three_phase",
+    "initial": {
+      "kVs": [
+        12.47,
+        4.16,
+        2.4
+      ],
+      "kVAs": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "pctR": [
+        0.2,
+        0.2,
+        0.2
+      ],
+      "XHL": 7.000000000000001,
+      "XSCArray": [
+        7.000000000000001,
+        35.0,
+        30.0
+      ]
+    },
+    "edited_code": {
+      "kVs": [
+        13.2,
+        4.8,
+        2.4
+      ],
+      "kVAs": [
+        1200.0,
+        1200.0,
+        1200.0
+      ],
+      "pctR": [
+        0.3,
+        0.3,
+        0.3
+      ],
+      "XHL": 8.0,
+      "XSCArray": [
+        8.0,
+        35.0,
+        30.0
+      ]
+    },
+    "after_code_edit": {
+      "kVs": [
+        12.47,
+        4.16,
+        2.4
+      ],
+      "kVAs": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "pctR": [
+        0.2,
+        0.2,
+        0.2
+      ],
+      "XHL": 7.000000000000001,
+      "XSCArray": [
+        7.000000000000001,
+        35.0,
+        30.0
+      ]
+    },
+    "after_reassignment": {
+      "kVs": [
+        13.2,
+        4.8,
+        2.4
+      ],
+      "kVAs": [
+        1200.0,
+        1200.0,
+        1200.0
+      ],
+      "pctR": [
+        0.3,
+        0.3,
+        0.3
+      ],
+      "XHL": 8.0,
+      "XSCArray": [
+        8.0,
+        35.0,
+        30.0
+      ]
+    }
+  },
+  "loaded_two_winding_results": {
+    "load_kw": 100,
+    "load_power_factor": 1,
+    "converged": true,
+    "presolve_winding_currents_a": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "winding_currents_a": [
+      [
+        4.631823724302002,
+        -0.0327088123641488
+      ],
+      [
+        -4.631823725423395,
+        0.032685663083157124
+      ],
+      [
+        -13.884337473739862,
+        0.09790905694626417
+      ],
+      [
+        13.88433698462255,
+        -0.09797841794397755
+      ],
+      [
+        -2.3442385250361895,
+        -3.99492260465081
+      ],
+      [
+        2.344218477731488,
+        3.994934180262476
+      ],
+      [
+        7.026960468795096,
+        11.975234437710128
+      ],
+      [
+        -7.0270202926226375,
+        -11.975199333623209
+      ],
+      [
+        -2.287585198808415,
+        4.02763141779451
+      ],
+      [
+        2.2876052472345236,
+        -4.027619844125184
+      ],
+      [
+        6.8573770035732196,
+        -12.073143496993225
+      ],
+      [
+        -6.857316690628522,
+        12.073177753904247
+      ]
+    ],
+    "winding_1_voltages_v": [
+      [
+        7199.468046124706,
+        -0.34875467364652696
+      ],
+      [
+        -3600.036054171901,
+        -6234.747843935869
+      ],
+      [
+        -3599.4319912502583,
+        6235.0965998262445
+      ]
+    ],
+    "winding_2_voltages_v": [
+      [
+        2400.6673615315844,
+        -16.92893723010604
+      ],
+      [
+        -1214.994570699432,
+        -2070.5744523705657
+      ],
+      [
+        -1185.6727905950463,
+        2087.50339000475
+      ]
+    ],
+    "loss_order": [
+      "total",
+      "load",
+      "no_load"
+    ],
+    "complex_losses_va": [
+      [
+        40.034999308634724,
+        701.612038307208
+      ],
+      [
+        40.034999308634724,
+        701.612038307208
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "dss_wdgcurrents": "4.631939, (-0.4046), 13.88468, (179.6), 4.631939, (-120.4), 13.88468, (59.596), 4.631939, (119.6), 13.88468, (-60.404), "
+  }
+}

@@ -1513,5 +1513,397 @@
     "notes": [
       "Default readbacks are in the matrix. Shape-driven solves and Ideal mode behavior were source reviewed."
     ]
+  },
+  {
+    "id": "capi-transformer-winding-struct",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "Winding record and selector",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "TWinding and WindingArray, L162-L187; property mapping, L390-L393 and L450-L542",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "TWinding records; 1-based ActiveWinding selected by wdg.",
+    "arguments": null,
+    "returns_or_effects": "DSS text accesses the selected winding. AltDSS-Python exposes array-valued properties. Bus records are managed through the circuit element.",
+    "errors_or_edge_cases": "DSS Buses with the wrong count raises #20200424 in the probed Python array path.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-windings-reset",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "Windings allocation and reset",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "Windings flag, L446-L448; side effects, L633-L665; winding initialization, L1361-L1381",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Windings 2 or 3; Nterms follows Windings.",
+    "arguments": null,
+    "returns_or_effects": "The setter reinitializes each winding record and reallocates reactance and terminal data. The 2-to-3 probe preserved the first two buses and generated the third.",
+    "errors_or_edge_cases": "Direct Python set/read of Windings=1 leaves 2. The edit call reports #2020031. This package limits models to 2 or 3 windings.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-xfmrcode-winding-struct",
+    "kind": "api",
+    "namespace_or_type": "XfmrCode",
+    "name": "Shared winding layout and resize",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API XfmrCode.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas",
+      "section_or_record": "Winding offsets and flags, L223-L227 and L248-L290; resize, L408-L429; constructor, L532-L571",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "TWinding records; wdg selects a 1-based index.",
+    "arguments": null,
+    "returns_or_effects": "Resizing initializes every winding record. The code contains no transformer bus assignments.",
+    "errors_or_edge_cases": "Direct Python set/read of Windings=1 leaves 2. The edit call reports #2020031.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-topology-phases",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "Phase and terminal dimensions",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "Phase side effect, L623-L626; resize, L633-L665; constructor, L830-L841",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "NConds = Phases + 1; Nterms = Windings.",
+    "arguments": null,
+    "returns_or_effects": "Three winding terminals have four conductors each for a three-phase model and two each for a one-phase model.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-resistance-scaling",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "Winding resistance and load loss",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "Scalar and array scales, L482-L493; load-loss side effects, L679-L703",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "DSS %R / %Rs and Python pctR / pctRs are percent values; PropertyScale=0.01.",
+    "arguments": null,
+    "returns_or_effects": "Load-loss assignment splits percent loss across windings 1 and 2. Their Rpu sum supplies the loss readback after a resistance edit.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-xfmrcode-resistance-scaling",
+    "kind": "api",
+    "namespace_or_type": "XfmrCode",
+    "name": "Shared definition resistance and load loss",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API XfmrCode.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas",
+      "section_or_record": "Scalar scale, L284-L287; array scale, L355-L361; side effects, L444-L457",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Scalar %R and array %Rs share the winding resistance field.",
+    "arguments": null,
+    "returns_or_effects": "The shared definition applies the same first-two-winding loss and resistance rules as Transformer.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-reactance-array",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "Reactance array representation and update",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "Array size and scale, L340-L343 and L410-L414; scalar mapping, L571-L596; tracking, L687-L719; recalculation, L963-L978",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "XSCArray length n*(n-1)/2; values [X12] or [X12, X13, X23], in percent.",
+    "arguments": null,
+    "returns_or_effects": "Scalar reactance edits rebuild the active array. Explicit XSCArray writes store the pair values and leave scalar readbacks unchanged. Scalar edits clear XSCArray and XfmrCode sequence entries when tracking is enabled.",
+    "errors_or_edge_cases": "3-winding resize yields [7, 30, 30] while X13 still reads 35. Set the complete impedance family.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-xfmrcode-reactance-array",
+    "kind": "api",
+    "namespace_or_type": "XfmrCode",
+    "name": "Shared definition reactance initialization",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API XfmrCode.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas",
+      "section_or_record": "Scale, L233-L237 and L305-L324; edits, L458-L493; constructor, L540-L552",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "XSCArray length n*(n-1)/2; initial values are zero-filled for a bare two-winding code.",
+    "arguments": null,
+    "returns_or_effects": "Scalars initialize to 7, 35 and 30 percent. After a scalar reactance edit the array is rebuilt; an explicit array write leaves the scalar readbacks unchanged.",
+    "errors_or_edge_cases": "A bare code reads XSCArray=[0]. A 2-to-3 resize reads [0, 30, 30]. Supply explicit impedance.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-specification-sets",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "Transformer impedance specification sets",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "Sets and ordering, L379-L403; kV array alternative, L495-L500; bus flags, L516-L525",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "XfmrCode; X12/X13/X23/kV; XSCArray/kV.",
+    "arguments": null,
+    "returns_or_effects": "Use the code first or set an impedance family plus winding voltages. Buses supplies winding connections.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The examples exercise creation and copy. They do not test engine formal specification-set enforcement."
+    ]
+  },
+  {
+    "id": "capi-transformer-xfmrcode-specification-sets",
+    "kind": "api",
+    "namespace_or_type": "XfmrCode",
+    "name": "XfmrCode impedance specification sets",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API XfmrCode.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas",
+      "section_or_record": "Sets, L214-L221; required kV, L257-L259 and L363-L368",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "X12/X13/X23 or XSCArray, with winding kV specified.",
+    "arguments": null,
+    "returns_or_effects": "The winding definition can supply either a scalar reactance family or the explicit pair array.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-tap-write",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "Tap property versus tap-changing control",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "Property registration, L462-L477 and L509-L514; tap effects, L723-L739; control setter, L1391-L1426",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Taps array or DSS wdg + tap; separate Set_PresentTap control setter.",
+    "arguments": null,
+    "returns_or_effects": "Both property paths retained 1.5 per unit with limits of 0.9 and 1.1. The control setter clamps to configured limits in source.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "The result covers property writes. No tap control was executed."
+    ]
+  },
+  {
+    "id": "capi-transformer-code-copy",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "XfmrCode assignment",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "Object reference and ordering, L399-L403; setter branch, L704-L705; copy, L2040-L2098",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Transformer.XfmrCode accepts a code object or name.",
+    "arguments": null,
+    "returns_or_effects": "Assignment copies the source code properties. Subsequent code edits leave the transformer unchanged until reassignment. Assign the code before per-transformer overrides.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-rdc-ohms",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "Winding DC resistance",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "Registration and flag, L479-L480 and L706-L707; winding defaults, L1361-L1374; derivation, L980-L1010",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "RdcOhms = abs(0.85 * Rpu) * VBase^2 / VABase when unspecified.",
+    "arguments": null,
+    "returns_or_effects": "An explicit scalar text write marks the selected winding specified. After an AltDSS array edit, the probe found winding 1 still derived and winding 2 retained its explicit value.",
+    "errors_or_edge_cases": "Use the wdg-selected text write for each explicit winding resistance on the pinned stack.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-kva-ratings",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "Winding kVA and service ratings",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "kVA and kVAs side effects, L666-L686; current derived ratings, L1016-L1038",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "NormHkVA = 1.1 * kVA[1]; EmergHkVA = 1.5 * kVA[1] after applicable kVA edits.",
+    "arguments": null,
+    "returns_or_effects": "A kVAs write or DSS winding-1 kVA edit restores these derived values. Set explicit ratings afterwards.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-transformer-wdgcurrents",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "WdgCurrents and WindingCurrents()",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Transformer.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+      "section_or_record": "DSS text formatting, L345-L366 and L395-L397; engine calculation, L1512-L1577",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "DSS WdgCurrents is a read-only string. The API returns 2 * Phases * Windings complex currents.",
+    "arguments": null,
+    "returns_or_effects": "Typed current results are phase-major, with two entries per winding in winding order. The two-winding probe read 12 pre-solve zeros and 12 solved values.",
+    "errors_or_edge_cases": "Open terminals can give incorrect winding results.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Typed array sizing is in CAPI_Alt.pas L1636-L1644. Python method mapping is in TransformerExtras.py L7-L14."
+    ]
+  },
+  {
+    "id": "capi-transformer-winding-voltages-losses",
+    "kind": "api",
+    "namespace_or_type": "Transformer",
+    "name": "WindingVoltages(winding) and LossesByType()",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API CAPI_Alt.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/CAPI/CAPI_Alt.pas",
+      "section_or_record": "Transformer result interfaces, L1623-L1655",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "WindingVoltages takes a 1-based winding and returns one complex voltage per phase. LossesByType returns three complex VA values.",
+    "arguments": null,
+    "returns_or_effects": "Loss order is total, load, no-load. The loaded example verified two winding voltages, positive load losses and zero no-load losses.",
+    "errors_or_edge_cases": "Winding voltages can be incorrect with open terminals. The C API checks the winding index.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Transformer and XfmrCode readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Python wrappers are in TransformerExtras.py L16-L29."
+    ]
   }
 ]

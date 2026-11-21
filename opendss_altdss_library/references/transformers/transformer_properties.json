@@ -1,0 +1,1738 @@
+[
+  {
+    "element_class": "Transformer",
+    "epri_doc_url": "https://opendss.epri.com/Transformer1.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Assign a unique object name within its DSS class. The collection takes it as the separate name argument.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L1832-L1852",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L828"
+        ]
+      },
+      {
+        "name": "phases",
+        "data_type": "integer",
+        "default_value": 3,
+        "description": "Number of electrical phases. Transformer allocates one extra conductor per terminal for the neutral connection.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Phases",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L890",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L438-L440",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L618-L626",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "windings",
+        "data_type": "integer",
+        "default_value": 2,
+        "description": "Number of windings. This package supports 2 and 3. A valid write reinitializes the winding records. Set Windings before supplying winding data. ",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Windings",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L891",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L446-L448",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L633-L665",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "pctr",
+        "data_type": "array",
+        "default_value": [
+          0.2,
+          0.2
+        ],
+        "description": "One value per winding in winding order. Percent winding resistance on the winding-1 kVA base. DSS text uses %R for the selected winding and %Rs for an array. Recomputes pctLoadLoss from windings 1 and 2.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctR",
+        "dss_text_keyword": "%Rs",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L892",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L482-L484",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L679-L703",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "rneut",
+        "data_type": "array",
+        "default_value": [
+          -1,
+          -1
+        ],
+        "description": "One value per winding in winding order. Wye neutral resistance in ohms. A negative value leaves the internal neutral open. Bus node assignments separately control external grounding.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RNeut",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L893",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L465-L467",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "xneut",
+        "data_type": "array",
+        "default_value": [
+          0,
+          0
+        ],
+        "description": "One value per winding in winding order. Wye neutral reactance in ohms. Can be positive or negative.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XNeut",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L894",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L469-L471",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "buses",
+        "data_type": "array",
+        "default_value": null,
+        "description": "One value per winding in winding order. Transformer bus names with optional node suffixes. The engine lowercases names and generates initial buses using the object name. Supply explicit buses for a usable model.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Buses",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L895",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L521-L525"
+        ]
+      },
+      {
+        "name": "conns",
+        "data_type": "array",
+        "default_value": [
+          0,
+          0
+        ],
+        "description": "One value per winding in winding order. Winding connection. Python reads Connection members (wye=0 and delta=1) and accepts enum values, integers, or strings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Conns",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L896",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L533-L538",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L90-L113",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "kvs",
+        "data_type": "array",
+        "default_value": [
+          12.47,
+          12.47
+        ],
+        "description": "One value per winding in winding order. Rated winding voltage in kV. Use line-to-line kV for three-phase transformers and voltage across the winding for single-phase transformers.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kVs",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L897",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L495-L500",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "kvas",
+        "data_type": "array",
+        "default_value": [
+          1000,
+          1000
+        ],
+        "description": "One value per winding in winding order. Rated winding power in kVA. The first winding establishes the impedance base and recalculates NormHkVA and EmergHkVA.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kVAs",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L898",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L502-L507",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L666-L685",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "taps",
+        "data_type": "array",
+        "default_value": [
+          1,
+          1
+        ],
+        "description": "One value per winding in winding order. Per-unit voltage ratio taps. Ordinary Transformer Taps and DSS tap property writes store values directly. Use the configured tap limits when choosing values.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Taps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L899",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L509-L514",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1391-L1426",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "xhl",
+        "data_type": "real",
+        "default_value": 7,
+        "description": "Percent short-circuit reactance between windings 1 and 2 on the winding-1 kVA base. Alias of X12.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XHL",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L900",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L572-L578",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "xht",
+        "data_type": "real",
+        "default_value": 35,
+        "description": "Percent short-circuit reactance between windings 1 and 3 on the winding-1 kVA base. Alias of X13. Applies to three windings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XHT",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L901",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L573-L579",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "xlt",
+        "data_type": "real",
+        "default_value": 30,
+        "description": "Percent short-circuit reactance between windings 2 and 3 on the winding-1 kVA base. Alias of X23. Applies to three windings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XLT",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L902",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L574-L580",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "xscarray",
+        "data_type": "array",
+        "default_value": [
+          7
+        ],
+        "description": "Percent short-circuit reactance array on the winding-1 kVA base. Use [X12] or [X12, X13, X23]. Explicit array writes leave scalar readbacks intact. A later scalar edit rebuilds the array from the scalar family. A bare two-winding Transformer reads [7]. After resizing to three windings it reads [7, 30, 30] until an impedance family is set.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XSCArray",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L903",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L387",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L963-L978",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "thermal",
+        "data_type": "real",
+        "default_value": 2,
+        "description": "Thermal time constant in hours. The pinned engine registers this input as unused.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Thermal",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L904",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L545-L546",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "n",
+        "data_type": "real",
+        "default_value": 0.8,
+        "description": "Thermal exponent n for full-load temperature rise. The pinned engine registers this input as unused.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "n",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L905",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L548-L552",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "m",
+        "data_type": "real",
+        "default_value": 0.8,
+        "description": "Thermal exponent m for hot-spot temperature rise. The pinned engine registers this input as unused.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "m",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L906",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L549-L553",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "flrise",
+        "data_type": "real",
+        "default_value": 65,
+        "description": "Full-load temperature rise in degrees Celsius. The pinned engine registers this input as unused.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "FLRise",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L907",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L550-L554",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "hsrise",
+        "data_type": "real",
+        "default_value": 15,
+        "description": "Hot-spot temperature rise in degrees Celsius. The pinned engine registers this input as unused.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "HSRise",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L908",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L551-L555",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "pctloadloss",
+        "data_type": "real",
+        "default_value": 0.4,
+        "description": "Percent load loss on the winding-1 kVA base. A write splits the value evenly between the first two winding resistances.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctLoadLoss",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L909",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L557",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L679-L703",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "pctnoloadloss",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "No-load loss in percent of winding-1 kVA, represented by the core-loss branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctNoLoadLoss",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L910",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L558",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "normhkva",
+        "data_type": "real",
+        "default_value": 1100,
+        "description": "Normal service rating in kVA. A kVAs write or a scalar kVA edit on winding 1 resets it to 1.1 times winding-1 kVA.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "NormHkVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L911",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L561-L562",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L666-L685",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "emerghkva",
+        "data_type": "real",
+        "default_value": 1500,
+        "description": "Emergency service rating in kVA. A kVAs write or a scalar kVA edit on winding 1 resets it to 1.5 times winding-1 kVA.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "EmergHkVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L912",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L564-L565",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L666-L685",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "sub",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Substation designation flag for reporting.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Sub",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L913",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L426-L428",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "maxtap",
+        "data_type": "array",
+        "default_value": [
+          1.1,
+          1.1
+        ],
+        "description": "One value per winding in winding order. Maximum per-unit tap for the tap-changing control path. DSS text uses the selected winding.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "MaxTap",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L914",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L473-L474",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "mintap",
+        "data_type": "array",
+        "default_value": [
+          0.9,
+          0.9
+        ],
+        "description": "One value per winding in winding order. Minimum per-unit tap for the tap-changing control path. DSS text uses the selected winding.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "MinTap",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L915",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L476-L477",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "numtaps",
+        "data_type": "array",
+        "default_value": [
+          32,
+          32
+        ],
+        "description": "One value per winding in winding order. Number of tap steps spanning MinTap to MaxTap. DSS text uses the selected winding.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "NumTaps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L916",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L541-L542",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "subname",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Substation name used for reporting.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "SubName",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L917",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L433-L435",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "pctimag",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "No-load magnetizing current as a percentage of rated current.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctIMag",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L918",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L559",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "ppm_antifloat",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Anti-float admittance factor in parts per million. The engine scales this input by 1e-6.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "ppm_Antifloat",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L919",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L568-L569",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "pctrs",
+        "data_type": "array",
+        "default_value": [
+          0.2,
+          0.2
+        ],
+        "description": "One value per winding in winding order. Array alias of pctR in Python. The DSS array keyword is %Rs. The first two winding values determine pctLoadLoss.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctRs",
+        "dss_text_keyword": "%Rs",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L920",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L487-L493",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L679-L703",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "bank",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Name used to identify the transformer bank in exports.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Bank",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L921",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L432-L434",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "xfmrcode",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "Reference to an XfmrCode object by name or object. Assignment copies phases, windings and transformer parameters at that moment. Assign before buses and local overrides. The constructor starts without a code.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XfmrCode",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L922",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L385",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L2040-L2098",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "xrconst",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Keep the reactance-to-resistance ratio constant as frequency changes.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XRConst",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L923",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L427-L429",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "x12",
+        "data_type": "real",
+        "default_value": 7,
+        "description": "Percent short-circuit reactance between windings 1 and 2 on the winding-1 kVA base. Alias of XHL.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "X12",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L924",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L386",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "x13",
+        "data_type": "real",
+        "default_value": 35,
+        "description": "Percent short-circuit reactance between windings 1 and 3 on the winding-1 kVA base. Alias of XHT. Applies to three windings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "X13",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L925",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L386",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "x23",
+        "data_type": "real",
+        "default_value": 30,
+        "description": "Percent short-circuit reactance between windings 2 and 3 on the winding-1 kVA base. Alias of XLT. Applies to three windings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "X23",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L926",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L386",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "leadlag",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "HV-to-LV phase displacement convention for mixed wye/delta connections. PhaseSequence.Lag=0 and Lead=1.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "LeadLag",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L927",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L421-L423",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L90-L113",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "core",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "Transformer core type. CoreType values are shell=0, one_phase=1, three_leg=3, four_leg=4, five_leg=5, and core_1_phase=9.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Core",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L928",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L417-L419",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L90-L113",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "rdcohms",
+        "data_type": "array",
+        "default_value": null,
+        "description": "One value per winding in winding order. Winding DC resistance in ohms. For Transformer, the derived value is abs(0.85 times Rpu) times winding voltage base squared divided by winding-1 VA. Use DSS wdg and RDCOhms for each winding that must retain an explicit value after recalculation.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RDCOhms",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L929",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L479-L480",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L980-L1010",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "seasons",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Number of seasonal kVA ratings. Set before Ratings so the engine sizes the rating array.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Seasons",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L930",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L442-L444",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "ratings",
+        "data_type": "array",
+        "default_value": [
+          1100
+        ],
+        "description": "Seasonal kVA ratings in season order. Match Seasons.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Ratings",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L931",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L406-L408",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "normamps",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Inherited normal current rating in amperes. Transformer recalculation derives it from NormHkVA, phases and the winding-1 voltage factor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "NormAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L932",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1016-L1038",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196"
+        ]
+      },
+      {
+        "name": "emergamps",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Inherited emergency current rating in amperes. Transformer recalculation derives it from EmergHkVA, phases and the winding-1 voltage factor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "EmergAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L933",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1016-L1038",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196"
+        ]
+      },
+      {
+        "name": "faultrate",
+        "data_type": "real",
+        "default_value": 0.007,
+        "description": "Inherited expected failure rate per year.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "FaultRate",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L934",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "pctperm",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Inherited percentage of faults that become permanent.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctPerm",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L935",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196"
+        ]
+      },
+      {
+        "name": "repair",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Inherited repair time in hours after a permanent fault.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Repair",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L936",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196"
+        ]
+      },
+      {
+        "name": "basefreq",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Inherited base frequency in Hz, initialized from the active circuit fundamental.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "BaseFreq",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L937",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L99",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205"
+        ]
+      },
+      {
+        "name": "enabled",
+        "data_type": "boolean",
+        "default_value": true,
+        "description": "Inherited flag controlling whether the transformer participates in the circuit solution.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Enabled",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L938",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L99",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Copy settings from another object of the same class. Creation keyword and action method with no getter.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Like",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L939"
+        ]
+      },
+      {
+        "name": "wdg",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Select a winding using its 1-based index before reading or writing the scalar values. DSS text scalar access uses Wdg. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "Wdg",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L450-L452",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "bus",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Bus and optional node suffixes for the selected winding. The initial bus depends on the transformer name. DSS text scalar access uses Bus. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "Bus",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L517-L524"
+        ]
+      },
+      {
+        "name": "conn",
+        "data_type": "string",
+        "default_value": "wye",
+        "description": "Connection of the selected winding. The text query reads wye or delta. DSS text scalar access uses Conn. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "Conn",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L528-L530",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L90-L113",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "kv",
+        "data_type": "real",
+        "default_value": 12.47,
+        "description": "Rated winding voltage in kV. The engine specification sets use this property; kVs is its array alternative. DSS text scalar access uses kV. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "kV",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L386-L387",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "kva",
+        "data_type": "real",
+        "default_value": 1000,
+        "description": "Rated kVA of the selected winding. A winding-1 write also sets the other winding ratings and resets normal and emergency kVA. In a two-winding model a winding-2 scalar write also updates winding 1. DSS text scalar access uses kVA. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "kVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L459-L460",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L666-L685",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "tap",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Per-unit tap of the selected winding. The Transformer text property stores it directly even outside MinTap and MaxTap. DSS text scalar access uses Tap. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "Tap",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L462-L463",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "%r",
+        "data_type": "real",
+        "default_value": 0.2,
+        "description": "Percent series resistance of the selected winding on the winding-1 kVA base. The engine stores the per-unit value and updates pctLoadLoss. DSS text scalar access uses %R. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "%R",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L482-L484",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L679-L703",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "rneut_scalar",
+        "data_type": "real",
+        "default_value": -1,
+        "description": "Wye neutral resistance in ohms for the selected winding. Negative values leave the internal neutral open. DSS text scalar access uses RNeut. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "RNeut",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L465-L467",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      },
+      {
+        "name": "xneut_scalar",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Wye neutral reactance in ohms for the selected winding. DSS text scalar access uses XNeut. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "XNeut",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L469-L471",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L822-L893"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name",
+      "buses"
+    ],
+    "property_requirements": {
+      "required": [
+        "name",
+        "buses"
+      ],
+      "conditional": [
+        {
+          "when": "choosing an explicit engine specification set",
+          "requirement_groups": [
+            [
+              "xfmrcode"
+            ],
+            [
+              "x12",
+              "x13",
+              "x23",
+              "kv"
+            ],
+            [
+              "xscarray",
+              "kv"
+            ]
+          ],
+          "notes": "Engine groups use scalar kV with kVs as its array alternative. Buses supplies wiring for each set. XfmrCode is ordered first. The Python constructor itself can allocate with only name.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L379-L388",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L495-L525",
+            "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L1832-L1852"
+          ]
+        }
+      ]
+    },
+    "altdss_mapping": "ctx.Transformer.new(name, **properties) creates the object. Python winding data is array-valued. DSS text has a separate wdg-selected scalar path.",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "dss_capi": "0.14.5",
+      "opendss_documentation": "EPRI online documentation is mixed-version"
+    },
+    "sources": [
+      {
+        "title": "EPRI OpenDSS Transformer",
+        "url": "https://opendss.epri.com/Transformer1.html",
+        "accessed": "2026-11-21",
+        "scope": "Class and property concepts."
+      },
+      {
+        "title": "AltDSS-Python Transformer wrapper",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py",
+        "accessed": "2026-11-21",
+        "scope": "Python properties and creation signature."
+      },
+      {
+        "title": "DSS C-API Transformer engine",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+        "accessed": "2026-11-21",
+        "scope": "Property registration, specification sets, default values, and write effects."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true,
+      "dss_text": true
+    },
+    "notes": [
+      "Scope covers two and three windings. Arrays are in 1-based winding order except XSCArray and Ratings, which are ordered by winding pair and season respectively.",
+      "Default values describe a fresh two-winding object. Null includes generated, context-dependent, derived, absent, or action-only values. See the readback matrix for each case.",
+      "WindingCurrents(), WindingVoltages(winding), and LossesByType() are methods. The engine WdgCurrents text result is recorded in the engine catalog."
+    ]
+  },
+  {
+    "element_class": "XfmrCode",
+    "epri_doc_url": "https://opendss.epri.com/XfmrCode.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Assign a unique object name within its DSS class. The collection takes it as the separate name argument.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L1262-L1282",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L538"
+        ]
+      },
+      {
+        "name": "phases",
+        "data_type": "integer",
+        "default_value": 3,
+        "description": "Number of phases copied to a Transformer that uses this code.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Phases",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L606",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L240-L242",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L239-L242",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "windings",
+        "data_type": "integer",
+        "default_value": 2,
+        "description": "Number of windings. This package supports 2 and 3. A valid write reinitializes the winding records. Set Windings before supplying winding data. ",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Windings",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L607",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L248-L250",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L415-L429",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "pctr",
+        "data_type": "array",
+        "default_value": [
+          0.2,
+          0.2
+        ],
+        "description": "One value per winding in winding order. Percent winding resistance on the winding-1 kVA base. DSS text uses %R for the selected winding and %Rs for an array. Recomputes pctLoadLoss from windings 1 and 2.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctR",
+        "dss_text_keyword": "%Rs",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L608",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L284-L286",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L444-L457",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "rneut",
+        "data_type": "array",
+        "default_value": [
+          -1,
+          -1
+        ],
+        "description": "One value per winding in winding order. Wye neutral resistance in ohms. A negative value leaves the internal neutral open. Bus node assignments separately control external grounding.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RNeut",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L609",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L267-L269",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "xneut",
+        "data_type": "array",
+        "default_value": [
+          0,
+          0
+        ],
+        "description": "One value per winding in winding order. Wye neutral reactance in ohms. Can be positive or negative.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XNeut",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L610",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L271-L273",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "conns",
+        "data_type": "array",
+        "default_value": [
+          0,
+          0
+        ],
+        "description": "One value per winding in winding order. Winding connection. Python reads Connection members (wye=0 and delta=1) and accepts enum values, integers, or strings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Conns",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L611",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L298-L303",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L90-L113",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "kvs",
+        "data_type": "array",
+        "default_value": [
+          12.47,
+          12.47
+        ],
+        "description": "One value per winding in winding order. Rated winding voltage in kV. Use line-to-line kV for three-phase transformers and voltage across the winding for single-phase transformers.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kVs",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L612",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L363-L368",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "kvas",
+        "data_type": "array",
+        "default_value": [
+          1000,
+          1000
+        ],
+        "description": "One value per winding in winding order. Rated winding power in kVA. The first winding establishes the impedance base and recalculates NormHkVA and EmergHkVA.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kVAs",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L613",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L370-L375",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L430-L450",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "taps",
+        "data_type": "array",
+        "default_value": [
+          1,
+          1
+        ],
+        "description": "One value per winding in winding order. Per-unit voltage ratio taps. Ordinary Transformer Taps and DSS tap property writes store values directly. Use the configured tap limits when choosing values.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Taps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L614",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L377-L382",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "xhl",
+        "data_type": "real",
+        "default_value": 7,
+        "description": "Percent short-circuit reactance between windings 1 and 2 on the winding-1 kVA base. Alias of X12.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XHL",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L615",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L306-L312",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "xht",
+        "data_type": "real",
+        "default_value": 35,
+        "description": "Percent short-circuit reactance between windings 1 and 3 on the winding-1 kVA base. Alias of X13. Applies to three windings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XHT",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L616",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L307-L313",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "xlt",
+        "data_type": "real",
+        "default_value": 30,
+        "description": "Percent short-circuit reactance between windings 2 and 3 on the winding-1 kVA base. Alias of X23. Applies to three windings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XLT",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L617",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L308-L314",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "xscarray",
+        "data_type": "array",
+        "default_value": [
+          0
+        ],
+        "description": "Percent short-circuit reactance array on the winding-1 kVA base. Use [X12] or [X12, X13, X23]. Explicit array writes leave scalar readbacks intact. A later scalar edit rebuilds the array from the scalar family. A bare code starts with a zero-filled reactance array even though its scalar fields are initialized to 7, 35 and 30 percent. Set a coherent impedance family before assigning the code.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XSCArray",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L618",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L220",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L473-L495",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "thermal",
+        "data_type": "real",
+        "default_value": 2,
+        "description": "Thermal time constant in hours. The pinned engine registers this input as unused.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Thermal",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L619",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L331-L332",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "n",
+        "data_type": "real",
+        "default_value": 0.8,
+        "description": "Thermal exponent n for full-load temperature rise. The pinned engine registers this input as unused.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "n",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L620",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L334-L338",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "m",
+        "data_type": "real",
+        "default_value": 0.8,
+        "description": "Thermal exponent m for hot-spot temperature rise. The pinned engine registers this input as unused.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "m",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L621",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L335-L339",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "flrise",
+        "data_type": "real",
+        "default_value": 65,
+        "description": "Full-load temperature rise in degrees Celsius. The pinned engine registers this input as unused.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "FLRise",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L622",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L336-L340",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "hsrise",
+        "data_type": "real",
+        "default_value": 15,
+        "description": "Hot-spot temperature rise in degrees Celsius. The pinned engine registers this input as unused.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "HSRise",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L623",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L337-L341",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "pctloadloss",
+        "data_type": "real",
+        "default_value": 0.4,
+        "description": "Percent load loss on the winding-1 kVA base. A write splits the value evenly between the first two winding resistances.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctLoadLoss",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L624",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L343",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L444-L457",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "pctnoloadloss",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "No-load loss in percent of winding-1 kVA, represented by the core-loss branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctNoLoadLoss",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L625",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L344",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "normhkva",
+        "data_type": "real",
+        "default_value": 1100,
+        "description": "Normal service rating in kVA. A kVAs write or a scalar kVA edit on winding 1 resets it to 1.1 times winding-1 kVA.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "NormHkVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L626",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L346-L347",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L430-L450",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "emerghkva",
+        "data_type": "real",
+        "default_value": 1500,
+        "description": "Emergency service rating in kVA. A kVAs write or a scalar kVA edit on winding 1 resets it to 1.5 times winding-1 kVA.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "EmergHkVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L627",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L349-L350",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L430-L450",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "maxtap",
+        "data_type": "array",
+        "default_value": [
+          1.1,
+          1.1
+        ],
+        "description": "One value per winding in winding order. Maximum per-unit tap for the tap-changing control path. DSS text uses the selected winding.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "MaxTap",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L628",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L275-L276",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "mintap",
+        "data_type": "array",
+        "default_value": [
+          0.9,
+          0.9
+        ],
+        "description": "One value per winding in winding order. Minimum per-unit tap for the tap-changing control path. DSS text uses the selected winding.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "MinTap",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L629",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L278-L279",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "numtaps",
+        "data_type": "array",
+        "default_value": [
+          32,
+          32
+        ],
+        "description": "One value per winding in winding order. Number of tap steps spanning MinTap to MaxTap. DSS text uses the selected winding.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "NumTaps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L630",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L289-L290",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "pctimag",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "No-load magnetizing current as a percentage of rated current.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctIMag",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L631",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L352",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "ppm_antifloat",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Anti-float admittance factor in parts per million. The engine scales this input by 1e-6.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "ppm_Antifloat",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L632",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L327-L328",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "pctrs",
+        "data_type": "array",
+        "default_value": [
+          0.2,
+          0.2
+        ],
+        "description": "One value per winding in winding order. Array alias of pctR in Python. The DSS array keyword is %Rs. The first two winding values determine pctLoadLoss.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctRs",
+        "dss_text_keyword": "%Rs",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L633",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L355-L361",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L444-L457",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "x12",
+        "data_type": "real",
+        "default_value": 7,
+        "description": "Percent short-circuit reactance between windings 1 and 2 on the winding-1 kVA base. Alias of XHL.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "X12",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L634",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L219",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "x13",
+        "data_type": "real",
+        "default_value": 35,
+        "description": "Percent short-circuit reactance between windings 1 and 3 on the winding-1 kVA base. Alias of XHT. Applies to three windings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "X13",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L635",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L219",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "x23",
+        "data_type": "real",
+        "default_value": 30,
+        "description": "Percent short-circuit reactance between windings 2 and 3 on the winding-1 kVA base. Alias of XLT. Applies to three windings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "X23",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L636",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L219",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "rdcohms",
+        "data_type": "array",
+        "default_value": null,
+        "description": "One value per winding in winding order. Winding DC resistance in ohms. The code initializes it from 0.85 times Rpu using the winding's line-to-line kV and kVA. The Transformer recalculates unspecified values when it copies the code.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RDCOhms",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L637",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L281-L282",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L552",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "seasons",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Number of seasonal kVA ratings. Set before Ratings so the engine sizes the rating array.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Seasons",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L638",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L244-L246",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "ratings",
+        "data_type": "array",
+        "default_value": [
+          600
+        ],
+        "description": "Seasonal kVA ratings in season order. Match Seasons.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Ratings",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L639",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L229-L231",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Copy settings from another object of the same class. Creation keyword and action method with no getter.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Like",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L640"
+        ]
+      },
+      {
+        "name": "wdg",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Select a winding using its 1-based index before reading or writing the scalar values. DSS text scalar access uses Wdg. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "Wdg",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L252-L254",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "conn",
+        "data_type": "string",
+        "default_value": "wye",
+        "description": "Connection of the selected winding. The text query reads wye or delta. DSS text scalar access uses Conn. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "Conn",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L293-L295",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L90-L113",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "kv",
+        "data_type": "real",
+        "default_value": 12.47,
+        "description": "Rated winding voltage in kV. The engine specification sets use this property; kVs is its array alternative. DSS text scalar access uses kV. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "kV",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L257-L259",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "kva",
+        "data_type": "real",
+        "default_value": 1000,
+        "description": "Rated kVA of the selected winding. A winding-1 write also sets the other winding ratings and resets normal and emergency kVA. In a two-winding model a winding-2 scalar write also updates winding 1. DSS text scalar access uses kVA. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "kVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L261-L262",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L430-L450",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "tap",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Per-unit tap of the selected winding. The Transformer text property stores it directly even outside MinTap and MaxTap. DSS text scalar access uses Tap. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "Tap",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L264-L265",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "%r",
+        "data_type": "real",
+        "default_value": 0.2,
+        "description": "Percent series resistance of the selected winding on the winding-1 kVA base. The engine stores the per-unit value and updates pctLoadLoss. DSS text scalar access uses %R. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "%R",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L284-L286",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L444-L457",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "rneut_scalar",
+        "data_type": "real",
+        "default_value": -1,
+        "description": "Wye neutral resistance in ohms for the selected winding. Negative values leave the internal neutral open. DSS text scalar access uses RNeut. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "RNeut",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L267-L269",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      },
+      {
+        "name": "xneut_scalar",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Wye neutral reactance in ohms for the selected winding. DSS text scalar access uses XNeut. The pinned wrapper has no winding-selector scalar accessor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "dss_text_keyword": "XNeut",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L271-L273",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1361-L1381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L532-L572"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name",
+      "kvs"
+    ],
+    "property_requirements": {
+      "required": [
+        "name",
+        "kvs"
+      ],
+      "conditional": [
+        {
+          "when": "choosing an explicit engine specification set",
+          "requirement_groups": [
+            [
+              "x12",
+              "x13",
+              "x23"
+            ],
+            [
+              "xscarray"
+            ]
+          ],
+          "notes": "Set kVs for a usable definition. Select a coherent reactance family before assigning the code. The Python constructor itself can allocate with only name.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L214-L221",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas#L363-L368",
+            "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L1262-L1282"
+          ]
+        }
+      ]
+    },
+    "altdss_mapping": "ctx.XfmrCode.new(name, **properties) creates the object. Python winding data is array-valued. DSS text has a separate wdg-selected scalar path.",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "dss_capi": "0.14.5",
+      "opendss_documentation": "EPRI online documentation is mixed-version"
+    },
+    "sources": [
+      {
+        "title": "EPRI OpenDSS XfmrCode",
+        "url": "https://opendss.epri.com/XfmrCode.html",
+        "accessed": "2026-11-21",
+        "scope": "Class and property concepts."
+      },
+      {
+        "title": "AltDSS-Python XfmrCode wrapper",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py",
+        "accessed": "2026-11-21",
+        "scope": "Python properties and creation signature."
+      },
+      {
+        "title": "DSS C-API XfmrCode engine",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas",
+        "accessed": "2026-11-21",
+        "scope": "Property registration, specification sets, default values, and write effects."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true,
+      "dss_text": true
+    },
+    "notes": [
+      "Scope covers two and three windings. Arrays are in 1-based winding order except XSCArray and Ratings, which are ordered by winding pair and season respectively.",
+      "Default values describe a fresh two-winding object. Null includes generated, context-dependent, derived, absent, or action-only values. See the readback matrix for each case."
+    ]
+  }
+]

@@ -118,5 +118,72 @@
       "date": "2026-11-21"
     },
     "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "transformer-two-winding-altdss",
+    "task_description": "Solve a loaded two-winding transformer and read winding currents, voltages and losses using AltDSS-Python.",
+    "language": "python_altdss",
+    "file": "examples/transformer/two_winding.py",
+    "object_classes": [
+      "Circuit",
+      "Transformer",
+      "Load"
+    ],
+    "dependencies": [
+      "altdss==0.2.4",
+      "dss-python==0.15.7",
+      "dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "altdss-transformer-wrapper",
+      "altdss-transformer-extras",
+      "capi-transformer-engine",
+      "capi-transformer-result-methods"
+    ],
+    "expected_result": "The circuit converges with a 100 kW load, returns 12 complex winding current samples and three primary winding voltages, and reports total, load and no-load losses in VA.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "transformer-three-winding-xfmrcode-dss",
+    "task_description": "Assign a reusable three-winding XfmrCode to a Transformer and solve using DSS text.",
+    "language": "dss",
+    "file": "examples/transformer/three_winding_code.dss",
+    "object_classes": [
+      "Circuit",
+      "XfmrCode",
+      "Transformer",
+      "Load"
+    ],
+    "dependencies": [
+      "DSS C-API 0.14.5",
+      "For the Python runner: altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "epri-dss-scripting",
+      "epri-xfmrcode",
+      "epri-transformer",
+      "capi-xfmrcode-engine",
+      "capi-transformer-engine"
+    ],
+    "expected_result": "The circuit converges with a 100 kW secondary load and three wired winding terminals. The readback verifies XSCArray=[7,35,30] and the copied code fields.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
   }
 ]

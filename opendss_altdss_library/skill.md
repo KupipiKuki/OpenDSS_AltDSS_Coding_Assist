@@ -32,6 +32,8 @@ For construction-based lines, use the geometry and conductor workflow for proper
 
 For circuit initialization, use the context command `New Circuit.<name>` and read the built-in source through `ctx.Vsource["source"]`. The Vsource workflow explains impedance families, frequency, terminal defaults, and the DSS text path for `Z1` and `Z0`. [Workflow](../docs/workflows/circuit_vsource.md) · [Property catalog](references/circuit/vsource_properties.json) · [Runtime matrix](../docs/audits/phase3b_circuit_vsource_readback.json)
 
+For Transformer and XfmrCode, use two or three windings. Set dimensions or assign the code before winding arrays, bus connections, and overrides. Use `wdg` for selected-winding DSS text access. The workflow covers reactance ordering, tap writes, winding results, and pinned engine behavior. [Workflow](../docs/workflows/transformer.md) · [Property catalog](references/transformers/transformer_properties.json) · [Runtime matrix](../docs/audits/phase3b_transformer_readback.json)
+
 ## Validation language
 
 Distinguish schema review, source review, example inspection, and runtime execution. Do not claim compatibility until representative tasks run against the manifest target and record the environment and result. `Observed-working` requires a committed example file, a harness run with the recorded environment, and a date; use `Example-only` until that exists.
@@ -41,6 +43,7 @@ Run the committed harness before any catalog or example change:
 ```powershell
 python opendss_altdss_library/tools/validate_catalogs.py
 python opendss_altdss_library/tools/run_examples.py
+python opendss_altdss_library/tools/readback_transformer.py
 python opendss_altdss_library/tools/build_altdss_api_catalog.py --source-dir <extracted-wheel>/altdss --out opendss_altdss_library/references/altdss_python_api.json
 ```
 

@@ -745,5 +745,238 @@
       "Set"
     ],
     "scope": "Sets the context's default base frequency before creating a circuit."
+  },
+  {
+    "id": "epri-transformer",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS Transformer element",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Transformer1.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "Transformer",
+      "windings"
+    ],
+    "scope": "Transformer element model overview."
+  },
+  {
+    "id": "epri-transformer-properties",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS Transformer properties",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Properties16.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "Transformer",
+      "properties"
+    ],
+    "scope": "Transformer property vocabulary. Pinned numeric behavior is verified from DSS C-API and readbacks."
+  },
+  {
+    "id": "epri-regcontrol-transformer-property",
+    "kind": "documentation",
+    "title": "EPRI RegControl Transformer property",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Transformer.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "RegControl",
+      "Transformer"
+    ],
+    "scope": "Scope note. The Transformer.html link in the coder handoff identifies RegControl's monitored transformer field."
+  },
+  {
+    "id": "epri-xfmrcode",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS XfmrCode",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/XfmrCode.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "XfmrCode",
+      "Transformer"
+    ],
+    "scope": "Shared transformer definition concept."
+  },
+  {
+    "id": "epri-autotrans",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS AutoTrans",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/AutoTrans.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "AutoTrans",
+      "scope"
+    ],
+    "scope": "Scope note only. This separate class is deferred pending owner approval."
+  },
+  {
+    "id": "altdss-transformer-wrapper",
+    "kind": "source",
+    "title": "AltDSS-Python Transformer",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Transformer.py#L889-L939",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Transformer",
+      "creation keywords"
+    ],
+    "scope": "Pinned TransformerProperties TypedDict and accompanying object implementation."
+  },
+  {
+    "id": "altdss-xfmrcode-wrapper",
+    "kind": "source",
+    "title": "AltDSS-Python XfmrCode",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/XfmrCode.py#L605-L640",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "XfmrCode",
+      "creation keywords"
+    ],
+    "scope": "Pinned XfmrCodeProperties TypedDict and accompanying object implementation."
+  },
+  {
+    "id": "altdss-transformer-extras",
+    "kind": "source",
+    "title": "AltDSS-Python TransformerExtras",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TransformerExtras.py#L3-L29",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Transformer",
+      "winding results",
+      "losses"
+    ],
+    "scope": "Result methods and caveats for open terminals."
+  },
+  {
+    "id": "altdss-transformer-enums",
+    "kind": "source",
+    "title": "AltDSS-Python transformer-related enums",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L90-L114",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Connection",
+      "CoreType",
+      "PhaseSequence"
+    ],
+    "scope": "Defines the integer-backed enums accepted and returned by the wrapper."
+  },
+  {
+    "id": "capi-transformer-engine",
+    "kind": "source",
+    "title": "DSS C-API Transformer",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Transformer",
+      "windings",
+      "reactance"
+    ],
+    "scope": "Winding struct, spec sets, properties, constructor defaults, recalculation, code-copy and result implementations."
+  },
+  {
+    "id": "capi-xfmrcode-engine",
+    "kind": "source",
+    "title": "DSS C-API XfmrCode",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/XfmrCode.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "XfmrCode",
+      "windings",
+      "reactance"
+    ],
+    "scope": "Reusable winding model properties, specification sets, edits and constructor defaults."
+  },
+  {
+    "id": "capi-transformer-result-methods",
+    "kind": "source",
+    "title": "DSS C-API transformer result entry points",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/CAPI/CAPI_Alt.pas#L1623-L1655",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Transformer",
+      "winding results",
+      "losses"
+    ],
+    "scope": "Typed API entry points for winding voltages, winding currents and losses by type."
+  },
+  {
+    "id": "capi-transformer-inherited-ckt",
+    "kind": "source",
+    "title": "DSS C-API circuit element inheritance for Transformer",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Transformer",
+      "BaseFreq",
+      "Enabled"
+    ],
+    "scope": "Circuit element constructor and default base frequency and enabled fields."
+  },
+  {
+    "id": "capi-transformer-inherited-ckt-table",
+    "kind": "source",
+    "title": "DSS C-API circuit element property registration",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L99",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Transformer",
+      "BaseFreq",
+      "Enabled"
+    ],
+    "scope": "Registers the inherited circuit element fields."
+  },
+  {
+    "id": "capi-transformer-inherited-pd",
+    "kind": "source",
+    "title": "DSS C-API power delivery element inheritance for Transformer",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L196",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Transformer",
+      "PDElement",
+      "ratings"
+    ],
+    "scope": "Power delivery element constructor and initial inherited state."
+  },
+  {
+    "id": "capi-transformer-inherited-pd-table",
+    "kind": "source",
+    "title": "DSS C-API power delivery property registration",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L95-L116",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Transformer",
+      "ratings",
+      "reliability"
+    ],
+    "scope": "Registers inherited ampere ratings and reliability fields."
   }
 ]

@@ -1,0 +1,9 @@
+! Define an impedance once and assign it before setting transformer bus connections.
+New Circuit.three_winding_demo BasekV=12.47 Bus1=source
+New XfmrCode.three_phase Phases=3 Windings=3
+~ Conns=[wye wye wye] kVs=[12.47 4.16 2.4] kVAs=[1000 1000 1000]
+~ %Rs=[0.2 0.2 0.2] XSCArray=[7 35 30]
+New Transformer.three_winding XfmrCode=three_phase
+~ Buses=[source.1.2.3.0 secondary.1.2.3.0 tertiary.1.2.3.0]
+New Load.demo Bus1=secondary.1.2.3.0 Phases=3 Conn=wye kV=4.16 kW=100 PF=1
+Solve
