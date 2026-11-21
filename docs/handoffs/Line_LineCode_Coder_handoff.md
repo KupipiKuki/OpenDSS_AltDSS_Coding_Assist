@@ -1,47 +1,27 @@
-You are an expert Power Systems Engineer and Data Extraction Specialist. Your task is to extract OpenDSS element properties and map them to the AltDSS-Python 0.2.4 API.
+# Coder Handoff: Line and LineCode Catalog
 
-TARGET ENVIRONMENT:
-- OpenDSS: EPRI Official Documentation
-- AltDSS-Python: 0.2.4 (Stable)
-- DSS C-API Backend: 0.14.5
+## Goal
 
-INPUT DATA:
-=== EPRI DOCS START ===
-[PASTE EPRI 'Line' AND 'LineCode' DOCUMENTATION TEXT HERE]
-=== EPRI DOCS END ===
+Maintain the Phase 1 starter catalog at `opendss_altdss_library/references/lines/opendss_line_linecode_properties.json` for the stable target in the package manifest: AltDSS-Python 0.2.4, DSS-Python 0.15.7, and backend 0.14.5. Complete its source remediation during Phase 2.
 
-=== ALTDSs-PYTHON 0.2.4 SOURCE START ===
-[PASTE ALTDSs-PYTHON 'lines' AND 'linecodes' SOURCE/DOCS HERE]
-=== ALTDSs-PYTHON 0.2.4 SOURCE END ===
+## Required approach
 
-TASK:
-1. Extract all properties for the OpenDSS 'Line' and 'LineCode' elements.
-2. For each property, determine its data_type (string, real, integer, array, boolean, variant).
-3. Assign an evidence_label:
-   - 'Official-current' or 'Official-versioned' if explicitly stated in the EPRI docs.
-   - 'Unverified' if the default value or data type is not explicitly stated in the provided text. DO NOT GUESS DEFAULTS.
-4. Map the element to its AltDSS-Python 0.2.4 equivalent (e.g., 'altdss.lines', 'altdss.linecodes').
-5. Identify the strictly required properties to create a valid element (e.g., bus1, bus2, and either linecode or length for Line).
+- Read the charter, package skill, manifest, current catalog, external audit, and current Line/LineCode audit before editing.
+- Use EPRI pages for OpenDSS behavior and release-tagged DSS-Extensions sources for target API and engine behavior. Keep these source families distinct.
+- Record source URL, tag/revision, access date, and which fields the source supports.
+- Keep `required_properties` limited to unconditional requirements. Put alternatives and conditions in `property_requirements.conditional`.
+- Use `Official-versioned` for official evidence tied to a specific version. For undated documentation, cite the page and verify version-sensitive behavior against a pinned source. Use `Observed-working` only for a recorded run.
+- Mark properties excluded from the target with `supported_in_target: false`; do not emit target API calls for them.
+- Preserve historical artifacts under archive names; do not use them as active data.
 
-OUTPUT FORMAT:
-Output ONLY a valid JSON array conforming to the schema below. Do not include markdown formatting (no ```json), explanations, or conversational text. 
+## Current known gaps
 
-SCHEMA REFERENCE:
-[
-  {
-    "element_class": "Line",
-    "epri_doc_url": "https://opendss.epri.com/Line.html",
-    "properties": [
-      {
-        "name": "bus1",
-        "data_type": "string",
-        "default_value": null,
-        "description": "Name of first bus. Node defaults to 1 if not specified.",
-        "evidence_label": "Official-versioned"
-      }
-    ],
-    "required_properties": ["bus1", "bus2"],
-    "altdss_mapping": "altdss.lines",
-    "evidence_label": "Official-versioned"
-  }
-]
+- Correct the starter's collection mappings to `altdss.Line` and `altdss.LineCode` using the pinned 0.2.4 source. [Catalog audit](../audits/line_linecode_schema_audit.md)
+- Verify property names and support against pinned sources, especially `epsrmedium`, `repair`, and `linetype`.
+- Review defaults and units, especially EPRI C1/C0 text versus Python/engine representation.
+- Validate the catalog against `schemas/catalogs/line_linecode_properties.schema.json`.
+- Runtime behavior remains untested.
+
+## Deliverable
+
+Update the JSON and audit document together. Summarize fields changed, sources used, unresolved evidence, and whether runtime execution occurred. Do not label source-only work as runtime validated.

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "common.schema.json#/$defs/evidenceRecordFields",
+  "title": "OpenDSS Object Property Record",
+  "type": "object",
+  "properties": {
+    "kind": { "const": "object_property" },
+    "namespace_or_type": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "data_type": { "type": ["string", "null"] },
+    "description": { "type": ["string", "null"] },
+    "default_or_constraint": { "type": ["string", "null"] },
+    "units": { "type": ["string", "null"] }
+  },
+  "required": ["kind", "namespace_or_type", "name"],
+  "unevaluatedProperties": false
+}

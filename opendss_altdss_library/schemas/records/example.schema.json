@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Example Record",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "task": { "type": "string", "minLength": 1 },
+    "file": { "type": "string", "minLength": 1 },
+    "language_or_format": { "type": "string", "minLength": 1 },
+    "platform_version": { "type": ["string", "null"] },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidence_level": { "$ref": "common.schema.json#/$defs/evidenceLevel" },
+    "execution_status": {
+      "type": "string",
+      "enum": ["executed-pass", "executed-fail", "inspected-only", "example-only"]
+    },
+    "expected_result": { "type": ["string", "null"] },
+    "known_limits": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source": { "$ref": "common.schema.json#/$defs/source" }
+  },
+  "required": ["id", "task", "file", "language_or_format", "evidence_level", "execution_status", "source"],
+  "additionalProperties": false
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "common.schema.json#/$defs/evidenceRecordFields",
+  "title": "API Record",
+  "type": "object",
+  "properties": {
+    "kind": { "const": "api" },
+    "namespace_or_type": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "signature_or_shape": { "type": ["string", "null"] },
+    "arguments": { "type": ["array", "string", "null"] },
+    "returns_or_effects": { "type": ["string", "null"] },
+    "errors_or_edge_cases": { "type": ["string", "null"] },
+    "tested": { "$ref": "common.schema.json#/$defs/tested" }
+  },
+  "required": ["kind", "namespace_or_type", "name"],
+  "unevaluatedProperties": false
+}

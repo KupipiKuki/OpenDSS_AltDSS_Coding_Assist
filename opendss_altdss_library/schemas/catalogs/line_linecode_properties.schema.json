@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Line and LineCode property catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "element_class",
+      "epri_doc_url",
+      "properties",
+      "required_properties",
+      "property_requirements",
+      "altdss_mapping",
+      "evidence_label",
+      "target_versions",
+      "sources",
+      "target_support"
+    ],
+    "properties": {
+      "element_class": {
+        "enum": [
+          "Line",
+          "LineCode"
+        ]
+      },
+      "epri_doc_url": {
+        "type": "string",
+        "format": "uri"
+      },
+      "properties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "name",
+            "data_type",
+            "default_value",
+            "description",
+            "evidence_label"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "data_type": {
+              "enum": [
+                "string",
+                "real",
+                "integer",
+                "array",
+                "boolean",
+                "variant"
+              ]
+            },
+            "default_value": {},
+            "description": {
+              "type": "string"
+            },
+            "evidence_label": {
+              "$ref": "#/$defs/evidence"
+            },
+            "supported_in_target": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required_properties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "property_requirements": {
+        "type": "object",
+        "required": [
+          "required",
+          "conditional"
+        ],
+        "properties": {
+          "required": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "conditional": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "when": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "requirement": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "requirement_groups": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "when"
+              ],
+              "anyOf": [
+                { "required": ["requirement"] },
+                { "required": ["requirement_groups"] }
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "altdss_mapping": {
+        "type": "string"
+      },
+      "evidence_label": {
+        "$ref": "#/$defs/evidence"
+      },
+      "target_versions": {
+        "type": "object",
+        "required": [
+          "altdss_python",
+          "dss_python",
+          "dss_python_backend",
+          "opendss_documentation"
+        ],
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "sources": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": [
+            "title",
+            "url",
+            "accessed",
+            "scope"
+          ],
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "accessed": {
+              "type": "string",
+              "format": "date"
+            },
+            "scope": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "target_support": {
+        "type": "object",
+        "properties": {
+          "altdss_python": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      },
+      "notes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "additionalProperties": true
+  },
+  "$defs": {
+    "evidence": {
+      "type": "string",
+      "enum": [
+        "Official-current",
+        "Official-versioned",
+        "Observed-working",
+        "Observed-export",
+        "Example-only",
+        "Inferred",
+        "Unverified"
+      ]
+    }
+  }
+}

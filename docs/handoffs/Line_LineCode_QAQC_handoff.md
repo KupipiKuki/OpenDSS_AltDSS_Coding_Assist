@@ -1,26 +1,28 @@
-You are a Strict QA Auditor and Power Systems Domain Expert. You are reviewing an AI-generated JSON extraction of OpenDSS properties. Your goal is to prevent hallucinations and enforce evidence standards.
+# QA/QC Handoff: Line and LineCode Catalog
 
-TARGET ENVIRONMENT:
-- AltDSS-Python: 0.2.4
-- OpenDSS: EPRI Official
+## Review target
 
-INPUT DATA:
-=== EXTRACTED JSON START ===
-[PASTE THE JSON OUTPUT FROM THE 96GB EXTRACTOR HERE]
-=== EXTRACTED JSON END ===
+Review `opendss_altdss_library/references/lines/opendss_line_linecode_properties.json` against the project charter, manifest, package schemas, source inventory, and coder handoff.
 
-TASK:
-1. Verify that every property listed actually exists in OpenDSS for the specified element_class.
-2. Flag any hallucinated properties. (e.g., if the extractor invented a property like 'temperature_coefficient' for a Line, flag it).
-3. Verify that the `evidence_label` is appropriate. If the extractor marked a default value as 'Official-versioned' but it is not a standard OpenDSS default, flag it as 'Unverified'.
-4. Verify that `required_properties` are accurate (e.g., a Line MUST have bus1 and bus2, and either a linecode or length/units).
-5. Check that the `altdss_mapping` is correct for AltDSS-Python 0.2.4 (e.g., 'altdss.lines', not 'dss.Lines' or 'opendssdirect.Lines').
+## Audit checklist
 
-OUTPUT FORMAT:
-Output a structured audit report. Do not rewrite the JSON.
-Format:
-- STATUS: [PASS / FAIL]
-- HALLUCINATIONS: [List any fake properties]
-- EVIDENCE VIOLATIONS: [List any incorrectly labeled evidence]
-- MISSING REQUIRED: [List any missing mandatory properties]
-- CORRECTIONS: [Specific instructions on what to fix before saving to the library]
+- Confirm each property exists in the cited EPRI reference or release-tagged target source.
+- Check types, defaults, units, and descriptions; flag claims that combine sources without showing which source supports each field.
+- Verify collection names against AltDSS-Python 0.2.4. The tagged source declares `altdss.Line` and `altdss.LineCode`. Flag the lower-case mappings in the Phase 1 starter until Phase 2 corrects them. [Tagged collection definitions](https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Obj.py#L170-L184)
+- Check unconditional and conditional creation requirements.
+- Confirm version metadata and evidence labels do not imply an unpinned current EPRI release.
+- Confirm unsupported target properties are marked and excluded from generation.
+- Validate against `schemas/catalogs/line_linecode_properties.schema.json`.
+- Report source review and runtime execution as separate outcomes.
+
+## Report format
+
+- **STATUS:** PASS / PASS WITH FINDINGS / FAIL
+- **PROPERTY FINDINGS:** missing, unsupported, duplicate, or questionable properties
+- **EVIDENCE FINDINGS:** source, version, type, default, or unit problems
+- **REQUIREMENT FINDINGS:** unconditional/conditional requirements and mappings
+- **SCHEMA RESULT:** pass / fail / not run
+- **RUNTIME RESULT:** pass / fail / not run, with environment if run
+- **REQUIRED CORRECTIONS:** specific changes and supporting sources
+
+Do not infer engine behavior from an EPRI page or treat schema validity as runtime validation.

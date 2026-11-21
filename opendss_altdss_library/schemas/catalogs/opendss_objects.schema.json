@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenDSS Object Catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "element_class": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "epri_doc_url": {
+        "type": "string",
+        "format": "uri"
+      },
+      "properties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "data_type": {
+              "type": "string",
+              "enum": [
+                "string",
+                "real",
+                "integer",
+                "array",
+                "boolean",
+                "variant"
+              ]
+            },
+            "default_value": {},
+            "units": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "evidence_label": {
+              "type": "string",
+              "enum": [
+                "Official-current",
+                "Official-versioned",
+                "Observed-working",
+                "Observed-export",
+                "Example-only",
+                "Inferred",
+                "Unverified"
+              ]
+            }
+          },
+          "required": [
+            "name",
+            "data_type",
+            "evidence_label"
+          ]
+        }
+      },
+      "required_properties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "altdss_mapping": {
+        "type": "string"
+      },
+      "evidence_label": {
+        "type": "string",
+        "enum": [
+          "Official-current",
+          "Official-versioned",
+          "Observed-working",
+          "Observed-export",
+          "Example-only",
+          "Inferred",
+          "Unverified"
+        ]
+      }
+    },
+    "required": [
+      "element_class",
+      "epri_doc_url",
+      "properties",
+      "evidence_label"
+    ]
+  }
+}

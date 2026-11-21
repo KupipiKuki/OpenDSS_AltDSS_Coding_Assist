@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "evidenceLevel": {
+      "type": "string",
+      "enum": [
+        "Official-current",
+        "Official-versioned",
+        "Observed-working",
+        "Observed-export",
+        "Example-only",
+        "Inferred",
+        "Unverified"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "url_or_path": { "type": "string", "minLength": 1 },
+        "section_or_record": { "type": ["string", "null"] },
+        "accessed_or_captured": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": ["title", "url_or_path", "accessed_or_captured"],
+      "additionalProperties": false
+    },
+    "tested": {
+      "type": "object",
+      "properties": {
+        "target_version": { "type": ["string", "null"] },
+        "environment": { "type": ["string", "null"] },
+        "result": {
+          "type": "string",
+          "enum": ["pass", "fail", "not-run"]
+        }
+      },
+      "required": ["result"],
+      "additionalProperties": false
+    },
+    "evidenceRecordFields": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "version_range": { "type": ["string", "null"] },
+        "evidence_level": { "$ref": "common.schema.json#/$defs/evidenceLevel" },
+        "source": { "$ref": "common.schema.json#/$defs/source" },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        }
+      },
+      "required": ["id", "version_range", "evidence_level", "source"]
+    }
+  }
+}

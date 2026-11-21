@@ -1,0 +1,28 @@
+{
+  "name": "opendss_altdss_library",
+  "status": "phase-1-scaffold",
+  "schema_version": "0.1.0-draft",
+  "scaffold_date": "2026-11-19",
+  "source_check_date": "2026-11-13",
+  "supported_versions": {
+    "opendss": null,
+    "altdss_python": null,
+    "dss_capi": null,
+    "dss_python": null,
+    "opendssdirect_py": null
+  },
+  "catalogs": {
+    "phase_2": [
+      "references/opendss_line_linecode_properties.json"
+    ]
+  },
+  "validation": {
+    "runtime": "not-performed",
+    "schema_review": "draft"
+  },
+  "known_gaps": [
+    "Initial AltDSS-Python support version has not been selected.",
+    "Documentation and repository release alignment audit findings are pending reconciliation.",
+    "No target-engine examples have been executed."
+  ]
+}

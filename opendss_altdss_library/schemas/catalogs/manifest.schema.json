@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenDSS AltDSS Library Manifest",
+  "type": "object",
+  "required": [
+    "name",
+    "status",
+    "schema_version",
+    "source_check_date",
+    "support_targets",
+    "catalogs",
+    "schemas",
+    "validation",
+    "known_gaps",
+    "phase_2_remediation"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "name": {
+      "const": "opendss_altdss_library"
+    },
+    "status": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "source_check_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "support_targets": {
+      "type": "object",
+      "required": [
+        "altdss_python",
+        "dss_python",
+        "dss_python_backend",
+        "dss_capi"
+      ],
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "catalogs": {
+      "type": "object",
+      "required": ["phase_1"],
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "schemas": {
+      "type": "object",
+      "required": ["records", "catalogs"],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["source_review", "schema_validation", "runtime"],
+      "properties": {
+        "source_review": { "type": "string", "minLength": 1 },
+        "schema_validation": { "type": "string", "minLength": 1 },
+        "runtime": { "type": "string", "minLength": 1 }
+      }
+    },
+    "known_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "phase_2_remediation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

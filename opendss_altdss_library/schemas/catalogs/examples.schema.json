@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "DSS and AltDSS Example Catalog",
   "type": "array",
   "items": {
@@ -26,7 +26,7 @@
           "access_date": {"type": "string", "format": "date"}
         }
       },
-      "evidence_label": {"type": "string", "enum": ["Example-only", "Observed-working", "Unverified"]}
+      "evidence_label": {"type": "string", "enum": ["Official-current", "Official-versioned", "Observed-working", "Observed-export", "Example-only", "Inferred", "Unverified"]}
     },
     "required": ["example_id", "task_description", "language", "code_snippet", "execution_status", "evidence_label"]
   }

@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Python Interface Comparison",
   "type": "array",
   "items": {
@@ -10,13 +10,13 @@
       "interfaces": {
         "type": "object",
         "properties": {
-          "altdss": {"type": "string", "description": "e.g., altdss.lines.new(name='myline', bus1=['x'], bus2=['y'], length=1)"},
+          "altdss": {"type": "string", "description": "AltDSS-Python expression for this task, using the pinned API."},
           "dss_python": {"type": "string", "description": "e.g., dss.Lines.Name = 'myline'; dss.Lines.bus1 = 'x'"},
           "opendssdirect": {"type": "string", "description": "e.g., opendssdirect.Lines.New('myline')"}
         },
         "required": ["altdss", "dss_python", "opendssdirect"]
       },
-      "evidence_label": {"type": "string", "enum": ["Official-versioned", "Observed-working", "Inferred"]}
+      "evidence_label": {"type": "string", "enum": ["Official-current", "Official-versioned", "Observed-working", "Observed-export", "Example-only", "Inferred", "Unverified"]}
     },
     "required": ["opendss_concept", "dss_text_command", "interfaces", "evidence_label"]
   }

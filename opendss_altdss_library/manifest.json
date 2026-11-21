@@ -1,0 +1,46 @@
+{
+  "$schema": "schemas/catalogs/manifest.schema.json",
+  "name": "opendss_altdss_library",
+  "status": "phase-1-complete",
+  "schema_version": "0.2.0-draft",
+  "source_check_date": "2026-11-20",
+  "support_targets": {
+    "opendss": "EPRI OpenDSS; online documentation is mixed-version",
+    "altdss_python": "0.2.4",
+    "dss_python": "0.15.7",
+    "dss_python_backend": "0.14.5",
+    "dss_capi": "0.14.5",
+    "opendssdirect_py": "0.9.4"
+  },
+  "catalogs": {
+    "phase_1": [
+      "references/opendss_objects.json",
+      "references/altdss_python_api.json",
+      "references/dss_capi.json",
+      "references/python_interface_comparison.json",
+      "references/examples.json",
+      "references/troubleshooting.json",
+      "references/lines/opendss_line_linecode_properties.json"
+    ],
+    "phase_2": []
+  },
+  "schemas": {
+    "records": "schemas/records/",
+    "catalogs": "schemas/catalogs/"
+  },
+  "validation": {
+    "source_review": "partial",
+    "schema_validation": "passed (2026-11-20)",
+    "runtime": "not-performed"
+  },
+  "known_gaps": [
+    "Six catalog files are empty pending extraction. Line/LineCode is the populated Phase 1 starter.",
+    "EPRI online pages do not state one OpenDSS version; version-sensitive claims need release-specific confirmation.",
+    "Line/LineCode property claims are partially source reviewed. Confirm version-sensitive claims against pinned primary evidence before generating code.",
+    "The legacy line catalog and builder are retained for provenance and are not active inputs."
+  ],
+  "phase_2_remediation": [
+    "Correct the Line and LineCode collection mappings using the tagged AltDSS-Python source. Review properties, defaults, units, creation requirements, and API support against pinned primary sources. Validate the revised catalog against its schema.",
+    "Index the examples and release notes needed for the selected tasks. Record example execution status for the later runtime validation phase."
+  ]
+}
