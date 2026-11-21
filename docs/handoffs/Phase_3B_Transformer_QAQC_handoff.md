@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase3`
 - **Baseline** `30103e6f85cb7c2f935fe5db3fbf8fe2b8765c46`
-- **Package revision** Pending the package commit.
+- **Package revision** `a7b485de98c1ecf7a68778634e53c30d6e4d7b33`. Review the package artifacts at this commit. The follow-up commit supplies the handoff pin.
 
 Review Transformer and XfmrCode against the coder handoff on the pinned commit. Record the commit and working-tree state. [Coder handoff](Phase_3B_Transformer_Coder_handoff.md) · [Build audit](../audits/phase3b_transformer_audit.md)
 
