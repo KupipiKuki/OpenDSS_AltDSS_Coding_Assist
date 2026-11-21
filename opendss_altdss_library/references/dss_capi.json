@@ -1149,5 +1149,369 @@
     "notes": [
       "Probe changed rho from 100 to 1000 ohm m at 60 Hz and then changed the solution frequency to 50 Hz. See the readback matrix."
     ]
+  },
+  {
+    "id": "capi-circuit-container",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Circuit.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/Circuit.pas",
+      "section_or_record": "TDSSCircuit declaration, L61-L118; constructor, L375-L395",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TDSSCircuit",
+    "name": "Circuit carrier and initial fundamental",
+    "signature_or_shape": "TDSSCircuit = class(TNamedObject)",
+    "arguments": null,
+    "returns_or_effects": "The container holds circuit state. Its fundamental is set from the context default base frequency. There is no circuit element property enum.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The source catalog records Circuit through the command path."
+    ]
+  },
+  {
+    "id": "capi-new-circuit-source-routing",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API DSSGlobals.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/DSSGlobals.pas",
+      "section_or_record": "MakeNewCircuit, L426-L449",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Circuit",
+    "name": "New Circuit parameter routing",
+    "signature_or_shape": "New Circuit.<name> [Vsource properties]",
+    "arguments": null,
+    "returns_or_effects": "Creates the container, then creates Vsource.source with a SourceBus default followed by the rest of the command parameters.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Circuit/Vsource readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Runtime read back one source and the supplied BasekV, Phases, Bus1, pu, and Angle."
+    ]
+  },
+  {
+    "id": "capi-vsource-property-enum",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API VSource.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+      "section_or_record": "TVsourceProp, L57-L90; TVsource inheritance, L92-L94",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TVsourceProp",
+    "name": "Vsource engine property index enum",
+    "signature_or_shape": "31 property rows after INVALID. Z1 = 20, Z0 = 21, Z2 = 22, puZ1 = 23.",
+    "arguments": null,
+    "returns_or_effects": "The enum covers Bus1 through puZIdeal. Spectrum, BaseFreq, Enabled, and Like are inherited entries.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "Pinned wrapper creation metadata covers 33 keywords including the inherited entries. The two complex ohmic rows Z1 and Z0 are available through DSS text only in this wrapper."
+    ]
+  },
+  {
+    "id": "capi-vsource-specification-sets",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API VSource.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+      "section_or_record": "DefineProperties, L228-L246, L284-L315, L323-L352",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Vsource",
+    "name": "Five impedance specification sets and required flags",
+    "signature_or_shape": "MVA, current, per unit, complex ohms, scalar ohms",
+    "arguments": null,
+    "returns_or_effects": "Bus1 and BasekV have Required flags. Full specification sets are separate from Python allocation inputs.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The matrix probes each family. The registry and flags were inspected."
+    ]
+  },
+  {
+    "id": "capi-vsource-specification-precedence",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API VSource.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+      "section_or_record": "PropertySideEffects, L395-L525; EndEdit, L528-L537; RecalcElementData, L710-L804 and L866-L875",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Vsource",
+    "name": "Impedance family selection and prior per-unit input",
+    "signature_or_shape": "MVA writes select family 1. Current writes select family 2. Scalar, complex ohms, and per-unit impedance writes select family 3.",
+    "arguments": null,
+    "returns_or_effects": "Ratio assignments affect branches 1 and 2. If puZ1 was explicitly supplied, family 3 recalculates ohms from it after a subsequent scalar edit. Switching to MVA can leave stored puZ1 readback unchanged.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Circuit/Vsource readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Runtime tested a move through all five input sets, X1R1=10 on the current family, scalar edits after explicit puZ1, and a return to MVA."
+    ]
+  },
+  {
+    "id": "capi-vsource-constructor-ohms",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API VSource.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+      "section_or_record": "TVsourceObj.Create, L607-L669; RecalcElementData, L710-L727 and L866-L875",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Vsource",
+    "name": "Initial family and calculated readback",
+    "signature_or_shape": "Constructor literals R1=1.65, X1=6.6, R0=1.9, X0=5.7. Initial MVA inputs are 2000 and 2100.",
+    "arguments": null,
+    "returns_or_effects": "RecalcElementData runs during construction. On the 115 kV default source, the MVA calculation produces about 1.60377, 6.41507, 1.79604, and 5.38811 ohms.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Circuit/Vsource readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "The matrix keeps the constructor literals separately from the getter values."
+    ]
+  },
+  {
+    "id": "capi-vsource-zbase-scaling",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API VSource.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+      "section_or_record": "PropertySideEffects, L510-L523; constructor, L628-L635; RecalcElementData, L710-L727, L761-L772, L866-L875",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Vsource",
+    "name": "Impedance scaling with voltage and MVA bases",
+    "signature_or_shape": "ZBase = BasekV^2 / BaseMVA.",
+    "arguments": null,
+    "returns_or_effects": "The explicit per-unit path multiplies the components by ZBase. The default MVA example also scales the computed ohms with BasekV squared at fixed short-circuit MVA, leaving the derived per-unit value nearly constant.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Circuit/Vsource readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "The runtime matrix checks the default MVA voltage edit, explicit per-unit conversion, and an edit from BaseMVA 100 to 200 that halves the calculated ohms."
+    ]
+  },
+  {
+    "id": "capi-vsource-complex-ohmic-access",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API VSource.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+      "section_or_record": "TVsourceProp rows, L77-L83; property definitions, L300-L311; PropertySideEffects, L400-L418 and L486-L507",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Vsource",
+    "name": "Complex ohmic properties and DSS text access",
+    "signature_or_shape": "Z1 and Z0 are complex-parts properties in ohms. Z2 also has a Python accessor.",
+    "arguments": null,
+    "returns_or_effects": "Use DSS New, Edit, or ? for Z1 and Z0 with this wrapper. Scalar Python R1/X1 and R0/X0 give their readable components.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Circuit/Vsource readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Runtime wrote and queried Z1/Z0 through DSS text and checked both attributes absent in Python."
+    ]
+  },
+  {
+    "id": "capi-vsource-grounded-bus2",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API VSource.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+      "section_or_record": "PropertySideEffects, L369-L395 and L497-L498; constructor, L613-L615 and L644-L655",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Vsource",
+    "name": "Two terminals and default Bus2",
+    "signature_or_shape": "When Bus2Defined is false, Bus1 sets the second terminal to the base bus name followed by one zero node per phase.",
+    "arguments": null,
+    "returns_or_effects": "Setting Bus2 explicitly keeps it across later Bus1 writes.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Circuit/Vsource readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Runtime read back the default grounding, a propagated Bus1 edit, and a later explicit Bus2 preserved across another edit."
+    ]
+  },
+  {
+    "id": "capi-vsource-frequency-initialization",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API VSource.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+      "section_or_record": "Frequency property, L320-L321; constructor, L637-L647",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Vsource",
+    "name": "Circuit-derived source frequency",
+    "signature_or_shape": "The Vsource constructor sets SrcFrequency from inherited BaseFrequency.",
+    "arguments": null,
+    "returns_or_effects": "A new circuit at 50 Hz initializes both fields to 50. Changing Solution.Frequency later does not mirror into source Frequency. BaseFreq is separately editable.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Circuit/Vsource readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Readback used a 50 Hz circuit, then a 55 Hz solution frequency and 48 Hz element base frequency."
+    ]
+  },
+  {
+    "id": "capi-vsource-inherited-basefreq-enabled",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API CktElement.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas",
+      "section_or_record": "TDSSCktElement constructor, L180-L204",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TDSSCktElement",
+    "name": "Inherited BaseFreq and Enabled defaults",
+    "signature_or_shape": "Enabled = true. BaseFrequency = ActiveCircuit.Fundamental.",
+    "arguments": null,
+    "returns_or_effects": "Vsource inherits the base value separately from its source frequency field.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Circuit/Vsource readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Runtime read back the enabled default and circuit-dependent BaseFreq."
+    ]
+  },
+  {
+    "id": "capi-vsource-inherited-spectrum",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API PCElement.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/PCElement.pas",
+      "section_or_record": "TPCElement constructor, L78-L84",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TPCElement",
+    "name": "Spectrum inheritance and source default",
+    "signature_or_shape": "The base constructor fills SpectrumObj with the general spectrum. Vsource replaces it with DefaultVSource.",
+    "arguments": null,
+    "returns_or_effects": "The Vsource wrapper returns a Spectrum reference named defaultvsource.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Circuit/Vsource readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Class override: VSource.pas L660. Spectrum registry: Spectrum.pas L125-L132. The runtime object and printed form are recorded."
+    ]
+  },
+  {
+    "id": "capi-vsource-enum-defaults",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API VSource.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+      "section_or_record": "Mapped enums, L251-L262; constructor, L644-L658",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Vsource",
+    "name": "ScanType, Sequence, and Model defaults",
+    "signature_or_shape": "ScanType = 1. Sequence = 1. Model = 0.",
+    "arguments": null,
+    "returns_or_effects": "The Python readbacks are integer-backed enums and the wrapper accepts string, integer, or enum inputs.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Circuit/Vsource readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "The matrix records the values and their enum member names."
+    ]
+  },
+  {
+    "id": "capi-vsource-shapes-model",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API VSource.pas source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+      "section_or_record": "Shape fields, L264-L277; Daily side effect, L436-L443; constructor, L656-L665; quasi-ideal path, L903-L932",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Vsource",
+    "name": "Initial shape objects and quasi-ideal impedance",
+    "signature_or_shape": "Yearly, Daily, and Duty start nil. puZIdeal starts at 1e-6 + 0.001j.",
+    "arguments": null,
+    "returns_or_effects": "Assigning Daily fills an unset Yearly reference. The ideal branch can substitute puZIdeal scaled by ZBase.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "Default readbacks are in the matrix. Shape-driven solves and Ideal mode behavior were source reviewed."
+    ]
   }
 ]

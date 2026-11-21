@@ -1,6 +1,6 @@
 # OpenDSS AltDSS Library Package
 
-**Status:** Phase 3B package 1 passed independent QA/QC with no blocking findings and architect/auditor review with one optional citation correction applied. Owner disposition precedes package 2. [Package audit](../docs/audits/phase3b_line_geometry_wires_audit.md) · [QA/QC report](../docs/audits/phase3b_line_geometry_wires_qaqc.md) · [Architect/auditor review](../docs/audits/phase3b_line_geometry_wires_architect_audit.md) · [Implementation plan](../docs/implementation_plan.md)
+**Status:** The owner accepted Phase 3B package 1. Package 2 passed coder validation and awaits independent QA/QC. [Package 2 audit](../docs/audits/phase3b_circuit_vsource_audit.md) · [Implementation plan](../docs/implementation_plan.md)
 **Target:** AltDSS-Python 0.2.4, DSS-Python 0.15.7, backend 0.14.5
 
 ## Contents
@@ -11,11 +11,12 @@
 - `schemas/catalogs/`: manifest and catalog schemas
 - `references/`: source catalogs and reference materials, including the shared [source index](references/sources.json)
 - `references/lines/`: Line and LineCode property catalog (Phase 2 remediated)
-- [AltDSS-Python API catalog](references/altdss_python_api.json) (99 class records) and [DSS C-API engine catalog](references/dss_capi.json) (45 records)
+- [AltDSS-Python API catalog](references/altdss_python_api.json) (99 class records) and [DSS C-API engine catalog](references/dss_capi.json) (59 records)
 - [Source index](references/sources.json) shared by catalogs and examples
-- [Example catalog](references/examples.json) with four `Observed-working` records
+- [Example catalog](references/examples.json) with six `Observed-working` records
 - [Line/LineCode workflow guide](../docs/workflows/line_linecode.md) and [example files](examples/line_linecode/)
 - [Line geometry and conductor catalog](references/lines/line_geometry_wires_properties.json), [workflow](../docs/workflows/line_geometry_wires.md), and [runtime matrix](../docs/audits/phase3b_line_geometry_wires_readback.json)
+- [Circuit and Vsource catalog](references/circuit/vsource_properties.json), [workflow](../docs/workflows/circuit_vsource.md), and [runtime matrix](../docs/audits/phase3b_circuit_vsource_readback.json)
 - `tools/`: validation harness — [requirements-validation.txt](tools/requirements-validation.txt), [validate_catalogs.py](tools/validate_catalogs.py), [run_examples.py](tools/run_examples.py), [build_altdss_api_catalog.py](tools/build_altdss_api_catalog.py)
 - `tools/archive/` and `references/lines/*legacy.json`: retained historical extraction artifacts, not active sources
 

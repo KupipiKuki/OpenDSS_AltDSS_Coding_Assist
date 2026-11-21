@@ -30,6 +30,8 @@ For Line and LineCode creation, start with the workflow guide. Use the example c
 
 For construction-based lines, use the geometry and conductor workflow for property order, units, and the limits of the pinned geometry readbacks. [Workflow](../docs/workflows/line_geometry_wires.md) · [Package audit](../docs/audits/phase3b_line_geometry_wires_audit.md)
 
+For circuit initialization, use the context command `New Circuit.<name>` and read the built-in source through `ctx.Vsource["source"]`. The Vsource workflow explains impedance families, frequency, terminal defaults, and the DSS text path for `Z1` and `Z0`. [Workflow](../docs/workflows/circuit_vsource.md) · [Property catalog](references/circuit/vsource_properties.json) · [Runtime matrix](../docs/audits/phase3b_circuit_vsource_readback.json)
+
 ## Validation language
 
 Distinguish schema review, source review, example inspection, and runtime execution. Do not claim compatibility until representative tasks run against the manifest target and record the environment and result. `Observed-working` requires a committed example file, a harness run with the recorded environment, and a date; use `Example-only` until that exists.

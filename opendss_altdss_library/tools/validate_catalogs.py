@@ -36,6 +36,9 @@ SCHEMA_PAIRS = {
     "references/lines/line_geometry_wires_properties.json": (
         "schemas/catalogs/element_properties.schema.json"
     ),
+    "references/circuit/vsource_properties.json": (
+        "schemas/catalogs/element_properties.schema.json"
+    ),
     "references/sources.json": "schemas/catalogs/sources.schema.json",
     "references/examples.json": "schemas/catalogs/examples.schema.json",
     "references/opendss_objects.json": "schemas/catalogs/opendss_objects.schema.json",

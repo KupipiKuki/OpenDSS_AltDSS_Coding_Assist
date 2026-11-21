@@ -78,5 +78,45 @@
       "date": "2026-11-21"
     },
     "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "circuit-vsource-altdss",
+    "task_description": "Create a circuit with its built-in source, edit the source using AltDSS-Python, solve, and inspect terminal and source-bus values.",
+    "language": "python_altdss",
+    "file": "examples/circuit_source/circuit_and_vsource.py",
+    "object_classes": ["Circuit", "Vsource"],
+    "dependencies": ["altdss==0.2.4", "dss-python==0.15.7", "dss-python-backend==0.14.5"],
+    "source_ids": ["altdss-circuit-command", "altdss-vsource-wrapper", "capi-new-circuit-routing", "capi-vsource-engine"],
+    "expected_result": "One built-in source named source at 12.47 kV, pu 0.98, angle 5 degrees, and MVASC3 250 MVA. The grounded terminal is src.0.0.0 and the solved bus has nodes 1, 2, and 3.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "circuit-vsource-dss-text",
+    "task_description": "Create and solve the same circuit using DSS text. Edit the routed Vsource.source created by New Circuit.",
+    "language": "dss",
+    "file": "examples/circuit_source/circuit_and_vsource.dss",
+    "object_classes": ["Circuit", "Vsource"],
+    "dependencies": ["DSS C-API 0.14.5", "For the Python runner: altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"],
+    "source_ids": ["epri-dss-scripting", "epri-vsource", "capi-new-circuit-command", "capi-new-circuit-routing", "capi-vsource-engine"],
+    "expected_result": "The circuit converges with one source at 12.47 kV, pu 0.98, angle 5 degrees, MVASC3 250 MVA, and a grounded second terminal. The readback tool confirms the source values.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
   }
 ]

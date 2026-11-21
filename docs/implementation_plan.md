@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version:** 0.9 (Phase 3B package 1 accepted; package 2 handed to the coder)
+**Plan version:** 0.10 (Phase 3B package 2 ready for QA/QC)
 **Plan date:** 2026-11-21
-**Current phase:** Phase 3B package 2 (Circuit and Vsource) handed to the coder; package 1 accepted by the owner.
+**Current phase:** Phase 3B package 2 (Circuit and Vsource) passed coder validation and awaits independent QA/QC.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -98,6 +98,8 @@ The Line/LineCode package is now the reference implementation of the element pac
 | 6 | `Generator` | Source element with control coupling |
 
 Each package follows the template and definition of done in 5.4. Package 1 has its catalog, workflow, two executed examples, and five-class readback matrix. Independent QA/QC found no blocking issues and the architect/auditor review applied one optional citation correction. The owner accepted package 1 on 2026-11-21 and directed package 2, whose coder handoff is issued: [Circuit and Vsource coder handoff](handoffs/Phase_3B_Circuit_Vsource_Coder_handoff.md). [Coder handoff](handoffs/Phase_3B_LineGeometry_WireData_Coder_handoff.md) · [Build audit](audits/phase3b_line_geometry_wires_audit.md) · [QA/QC report](audits/phase3b_line_geometry_wires_qaqc.md) · [Architect/auditor review](audits/phase3b_line_geometry_wires_architect_audit.md)
+
+Package 2 has its Circuit command and Vsource catalog, two executed examples, and a matrix of constructor readbacks and focused probes. Independent QA/QC, architect review, and owner disposition precede package 3. [Build audit](audits/phase3b_circuit_vsource_audit.md) · [QA/QC handoff](handoffs/Phase_3B_Circuit_Vsource_QAQC_handoff.md)
 
 ### 5.4 Element package template (definition of done)
 
@@ -237,6 +239,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.7 | 2026-11-21 | Added the generalized element schema and the first Phase 3B element package. Recorded schema and runtime results and prepared independent QA/QC. |
 | 0.8 | 2026-11-21 | Recorded the Phase 3B package-1 dispositions: independent QA/QC passed with no blocking findings, the architect/auditor review re-verified coverage, citations, and runtime on a clean environment, and optional correction A-1 was applied to two enum citation spans. |
 | 0.9 | 2026-11-21 | Recorded the owner's acceptance of Phase 3B package 1 and issued the package-2 (Circuit and Vsource) coder handoff with the verified scope decision, evidence pins, and behavior traps. |
+| 0.10 | 2026-11-21 | Added the Circuit and Vsource package, recorded coder validation, and prepared independent QA/QC. |
 
 ## 11. Owner decisions
 

@@ -503,5 +503,247 @@
       "insulation"
     ],
     "scope": "Inherited insulation properties, constructor defaults, and setter checks."
+  },
+  {
+    "id": "epri-circuit-interface",
+    "kind": "documentation",
+    "title": "EPRI Circuit interface",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Circuit.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "Circuit",
+      "classic interface"
+    ],
+    "scope": "Undated classic interface overview. AltDSS creation and readback are covered by the pinned stack."
+  },
+  {
+    "id": "epri-vsource",
+    "kind": "documentation",
+    "title": "EPRI Vsource model",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Vsource.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "Vsource",
+      "Thevenin source",
+      "grounded terminal"
+    ],
+    "scope": "Undated model description and Circuit-to-Source mapping. Use tagged code for field and runtime behavior."
+  },
+  {
+    "id": "altdss-circuit-command",
+    "kind": "source",
+    "title": "AltDSS New Circuit command and context",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py#L426-L450",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Circuit",
+      "Commands"
+    ],
+    "scope": "Shows New Circuit through the context's text command path."
+  },
+  {
+    "id": "altdss-circuit-element-mixin",
+    "kind": "source",
+    "title": "AltDSS circuit element mixin",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CircuitElement.py",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "CircuitElement",
+      "element readback"
+    ],
+    "scope": "Shared circuit-element methods, including terminal count. Circuit creation is through the context command."
+  },
+  {
+    "id": "altdss-vsource-wrapper",
+    "kind": "source",
+    "title": "Vsource Python wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Vsource",
+      "creation keywords",
+      "complex values"
+    ],
+    "scope": "Typed keywords, property getters, object references, and edit/new behavior."
+  },
+  {
+    "id": "altdss-circuit-collections",
+    "kind": "source",
+    "title": "AltDSS object collection registration",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Obj.py#L170-L195",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Vsource",
+      "object collections"
+    ],
+    "scope": "Registers the Vsource collection. The circuit container is represented by the context."
+  },
+  {
+    "id": "capi-circuit-container",
+    "kind": "source",
+    "title": "DSS C-API circuit container",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/Circuit.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Circuit",
+      "fundamental frequency"
+    ],
+    "scope": "Circuit data container and initialization from the engine default base frequency."
+  },
+  {
+    "id": "capi-new-circuit-command",
+    "kind": "source",
+    "title": "DSS C-API New command dispatch",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Executive/ExecHelper.pas#L227-L262",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "New Circuit",
+      "command dispatch"
+    ],
+    "scope": "Special-cases Circuit and calls MakeNewCircuit."
+  },
+  {
+    "id": "capi-new-circuit-routing",
+    "kind": "source",
+    "title": "DSS C-API Circuit source routing",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/DSSGlobals.pas#L426-L449",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "New Circuit",
+      "Vsource.source"
+    ],
+    "scope": "Creates the circuit, adds source, and forwards the remaining command parameters."
+  },
+  {
+    "id": "capi-vsource-engine",
+    "kind": "source",
+    "title": "DSS C-API Vsource implementation",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Vsource",
+      "specification sets",
+      "impedance",
+      "frequency"
+    ],
+    "scope": "Vsource fields, family selection, initial values, and derived sequence impedance."
+  },
+  {
+    "id": "capi-ckt-element-defaults",
+    "kind": "source",
+    "title": "DSS C-API inherited circuit element defaults",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L180-L204",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "BaseFreq",
+      "Enabled"
+    ],
+    "scope": "Inherits the circuit fundamental and starts enabled."
+  },
+  {
+    "id": "capi-ckt-element-property-table",
+    "kind": "source",
+    "title": "DSS C-API circuit element property table",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L100",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "BaseFreq",
+      "Enabled"
+    ],
+    "scope": "Registers the inherited fields and BaseFreq flags."
+  },
+  {
+    "id": "capi-pc-element-spectrum",
+    "kind": "source",
+    "title": "DSS C-API inherited spectrum field",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/PCElement.pas#L78-L84",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Spectrum",
+      "PCElement"
+    ],
+    "scope": "Base constructor initializes the inherited spectrum field. Vsource supplies its class-specific default."
+  },
+  {
+    "id": "capi-pc-spectrum-property-table",
+    "kind": "source",
+    "title": "DSS C-API inherited spectrum registration",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/PCClass.pas#L89-L100",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Spectrum",
+      "object references"
+    ],
+    "scope": "Registers Spectrum as an inherited object reference."
+  },
+  {
+    "id": "capi-vsource-default-spectrum",
+    "kind": "source",
+    "title": "DSS C-API built-in source spectrum",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/Spectrum.pas#L125-L132",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Spectrum",
+      "defaultvsource"
+    ],
+    "scope": "Resolves the engine's Vsource default spectrum reference."
+  },
+  {
+    "id": "capi-solution-frequency-setter",
+    "kind": "source",
+    "title": "DSS C-API solution frequency setter",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/Solution.pas#L2239-L2250",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Solution",
+      "Frequency"
+    ],
+    "scope": "Updates the solution frequency and invalidates Y. It does not overwrite the source property."
+  },
+  {
+    "id": "capi-default-base-frequency-command",
+    "kind": "source",
+    "title": "DSS C-API DefaultBaseFrequency option",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Executive/ExecOptions.pas#L247-L257",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "DefaultBaseFrequency",
+      "Set"
+    ],
+    "scope": "Sets the context's default base frequency before creating a circuit."
   }
 ]

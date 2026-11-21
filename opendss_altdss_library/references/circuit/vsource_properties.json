@@ -1,0 +1,718 @@
+[
+  {
+    "element_class": "Circuit",
+    "epri_doc_url": "https://opendss.epri.com/Circuit.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Circuit identifier in New Circuit.<name>. Read it back from the AltDSS context Name.",
+        "evidence_label": "Official-versioned",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py#L426-L450",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Executive/ExecHelper.pas#L227-L262",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/DSSGlobals.pas#L426-L440"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name"
+    ],
+    "altdss_mapping": "AltDSS context Commands(\"New Circuit.<name> ...\")",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "opendss_documentation": "EPRI online documentation; page version not stated"
+    },
+    "target_support": {
+      "altdss_python": true
+    },
+    "sources": [
+      {
+        "title": "EPRI Circuit interface",
+        "url": "https://opendss.epri.com/Circuit.html",
+        "accessed": "2026-11-21",
+        "scope": "Classic interface context."
+      },
+      {
+        "title": "AltDSS context commands",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py",
+        "accessed": "2026-11-21",
+        "scope": "Pinned Python command path."
+      },
+      {
+        "title": "DSS C-API circuit container",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/Circuit.pas",
+        "accessed": "2026-11-21",
+        "scope": "TDSSCircuit is a container."
+      },
+      {
+        "title": "DSS C-API New Circuit routing",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/DSSGlobals.pas",
+        "accessed": "2026-11-21",
+        "scope": "Creates source and routes creation properties."
+      }
+    ],
+    "property_requirements": {
+      "required": [
+        "name"
+      ],
+      "conditional": [
+        {
+          "when": "supplying source parameters on New Circuit",
+          "requirement": "Command arguments after the circuit name configure the new Vsource.source. See its rows for fields and units.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/DSSGlobals.pas#L426-L440"
+          ]
+        }
+      ]
+    },
+    "notes": [
+      "Circuit is a context command in the pinned Python interface. The engine stores the circuit in TDSSCircuit without a Circuit property enum.",
+      "Read routed electrical parameters on ctx.Vsource[\"source\"]. Use ctx.Solution for solution settings and ctx.Bus for bus readback after building the bus list or solving."
+    ]
+  },
+  {
+    "element_class": "Vsource",
+    "epri_doc_url": "https://opendss.epri.com/Vsource.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Object identifier passed to altdss.Vsource.new or written after Vsource. in a DSS New command.",
+        "evidence_label": "Official-versioned",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L1498-L1517"
+        ]
+      },
+      {
+        "name": "bus1",
+        "data_type": "string",
+        "default_value": null,
+        "description": "First source terminal. The constructor supplies a generated bus name until an explicit assignment. When Bus2 has not been explicitly set, the Bus1 setter constructs a grounded terminal from the bus name and one zero node per phase.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Bus1",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L695",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L243-L249",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L369-L393",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L350-L376"
+        ]
+      },
+      {
+        "name": "basekv",
+        "data_type": "real",
+        "default_value": 115,
+        "description": "Voltage base in kV. This is line-to-line for the three-phase source and the across-terminal voltage base for a single-phase source. Changing it updates the impedance conversion base and can change derived ohms.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "BasekV",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L696",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L123-L134",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L510-L523",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L628-L635",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L877-L882"
+        ]
+      },
+      {
+        "name": "pu",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Voltage magnitude multiplier in per unit on BasekV. It is separate from the per-unit impedance inputs.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "pu",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L697",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L314-L321",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L630-L644",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L877-L882"
+        ]
+      },
+      {
+        "name": "angle",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "First-phase angle in degrees.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Angle",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L698",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L150-L160",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L644-L647"
+        ]
+      },
+      {
+        "name": "frequency",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Source frequency in Hz. Initialization copies the element BaseFreq from the new circuit's fundamental. Later changes to Solution.Frequency do not update this property.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Frequency",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L699",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L320-L321",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L637-L647",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L192-L204",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/Solution.pas#L2239-L2250"
+        ]
+      },
+      {
+        "name": "phases",
+        "data_type": "integer",
+        "default_value": 3,
+        "description": "Positive phase count. The setter resizes the number of conductors. Set this before Bus1 when you want the automatic Bus2 node list sized for a nondefault phase count.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Phases",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L700",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L279-L282",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L375-L395",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L613-L615"
+        ]
+      },
+      {
+        "name": "mvasc3",
+        "data_type": "real",
+        "default_value": 2000,
+        "description": "Three-phase short-circuit capacity in MVA. Writing it selects the MVA impedance family. The value can be recalculated when a different family is used.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "MVASC3",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L701",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L323-L327",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L446-L466",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L613-L620",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L710-L740",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L781-L800"
+        ]
+      },
+      {
+        "name": "mvasc1",
+        "data_type": "real",
+        "default_value": 2100,
+        "description": "Single-phase short-circuit capacity in MVA. Writing it selects the MVA impedance family. The value can be recalculated when a different family is used.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "MVASC1",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L702",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L323-L327",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L446-L466",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L613-L620",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L710-L751",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L781-L800"
+        ]
+      },
+      {
+        "name": "x1r1",
+        "data_type": "real",
+        "default_value": 4,
+        "description": "Positive-sequence reactance-to-resistance ratio used by the MVA and current families. Editing the ratio recalculates impedance when either of those families is active, and does not select a family itself.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "X1R1",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L703",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L329-L330",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L446-L508",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L628-L632",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L710-L744"
+        ]
+      },
+      {
+        "name": "x0r0",
+        "data_type": "real",
+        "default_value": 3,
+        "description": "Zero-sequence reactance-to-resistance ratio used by the MVA and current families. It does not select a family itself.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "X0R0",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L704",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L329-L330",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L446-L508",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L628-L632",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L721-L751"
+        ]
+      },
+      {
+        "name": "isc3",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Three-phase short-circuit current in amperes. Assigning it selects the current family. A fresh source starts in the MVA family, so readback is computed from BasekV and MVASC3 rather than from the constructor literal.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Isc3",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L705",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L332-L336",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L467-L485",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L618-L635",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L710-L741"
+        ]
+      },
+      {
+        "name": "isc1",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Single-phase short-circuit current in amperes. Assigning it selects the current family. Initial readback is derived from the MVA family and voltage base.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Isc1",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L706",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L332-L336",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L467-L485",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L618-L635",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L710-L751"
+        ]
+      },
+      {
+        "name": "r1",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Positive-sequence resistance in ohms. Initial readback is derived from the MVA specification. An active explicit puZ1 input can overwrite this component during recalculation.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "R1",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L707",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L338-L349",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L396-L399",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L486-L524",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L710-L727",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L761-L772"
+        ]
+      },
+      {
+        "name": "x1",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Positive-sequence reactance in ohms. Initial readback is derived from the MVA specification. An active explicit puZ1 input can overwrite this component during recalculation.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "X1",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L708",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L338-L349",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L396-L399",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L486-L524",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L710-L727",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L761-L772"
+        ]
+      },
+      {
+        "name": "r0",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Zero-sequence resistance in ohms. Initial readback is derived from the MVA specification. An active explicit puZ1 input selects recalculation from the per-unit components.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "R0",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L709",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L338-L349",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L486-L524",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L710-L727",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L761-L772"
+        ]
+      },
+      {
+        "name": "x0",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Zero-sequence reactance in ohms. Initial readback is derived from the MVA specification. An active explicit puZ1 input selects recalculation from the per-unit components.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "X0",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L710",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L338-L349",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L486-L524",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L710-L727",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L761-L772"
+        ]
+      },
+      {
+        "name": "scantype",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Harmonic scan sequence. Python returns an integer-backed ScanType enum and accepts a string, integer, or enum member. The initial value is Positive (1).",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "ScanType",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L711",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L325-L351",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L251-L258",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L644-L647"
+        ]
+      },
+      {
+        "name": "sequence",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Phase sequence for non-harmonic modes. Python returns an integer-backed SequenceType enum and accepts a string, integer, or enum member. The initial value is Positive (1).",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Sequence",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L712",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L354-L380",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L251-L258",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L644-L647"
+        ]
+      },
+      {
+        "name": "bus2",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Second source terminal. A bare allocation reads back a generated bus name. Setting Bus1 creates a grounded node list such as src.0.0.0 when Bus2 has not been explicitly set. An explicit Bus2 survives later Bus1 edits.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Bus2",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L713",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L383-L398",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L375-L393",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L497-L498",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L350-L376"
+        ]
+      },
+      {
+        "name": "z1",
+        "data_type": "array",
+        "default_value": null,
+        "description": "The positive-sequence impedance in ohms, stored as [real, imaginary]. Use the DSS text interface to set or query Z1. The pinned Python wrapper has no Z1 attribute or creation keyword.",
+        "evidence_label": "Official-versioned",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L305-L307",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L400-L416",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L694-L727"
+        ],
+        "supported_in_target": true
+      },
+      {
+        "name": "z0",
+        "data_type": "array",
+        "default_value": null,
+        "description": "The zero-sequence impedance in ohms, stored as [real, imaginary]. Use the DSS text interface to set or query Z0. The pinned Python wrapper has no Z0 attribute or creation keyword.",
+        "evidence_label": "Official-versioned",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L300-L303",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L400-L416",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L694-L727"
+        ],
+        "supported_in_target": true
+      },
+      {
+        "name": "z2",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Negative-sequence impedance in ohms. The catalog represents complex values as [real, imaginary]. The Python property reads and accepts a complex value. Its default is derived, commonly from Z1.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Z2",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L714",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L400-L416",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L300-L311",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L396-L418",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L710-L744"
+        ]
+      },
+      {
+        "name": "puz1",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Positive-sequence impedance in per unit. The Python property reads and accepts a complex value. Setting it enables the per-unit conversion path and can initialize unset puZ0 and puZ2 from puZ1.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "puZ1",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L715",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L284-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L419-L435",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L510-L523",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L761-L772",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L866-L875"
+        ]
+      },
+      {
+        "name": "puz0",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Zero-sequence impedance in per unit. The Python property reads and accepts a complex value. Set positive-sequence puZ1 as part of the same family to activate conversion to ohms.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "puZ0",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L716",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L284-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L419-L435",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L510-L523",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L761-L772",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L866-L875"
+        ]
+      },
+      {
+        "name": "puz2",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Negative-sequence impedance in per unit. The Python property reads and accepts a complex value. Set positive-sequence puZ1 as part of the same family to activate conversion to ohms.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "puZ2",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L717",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L284-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L419-L435",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L510-L523",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L761-L772",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L866-L875"
+        ]
+      },
+      {
+        "name": "basemva",
+        "data_type": "real",
+        "default_value": 100,
+        "description": "MVA base for per-unit impedance. The engine uses BasekV squared divided by BaseMVA as the ohmic base.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "BaseMVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L718",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L510-L523",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L628-L635"
+        ]
+      },
+      {
+        "name": "yearly",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "Optional LoadShape reference for yearly voltage variation. The Python getter returns an object or None. Assigning Daily can fill an unset Yearly reference.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Yearly",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L719",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L471-L507",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L264-L277",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L436-L443",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L660-L665"
+        ]
+      },
+      {
+        "name": "daily",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "Optional LoadShape reference for daily voltage variation. The Python getter returns an object or None. Assigning it can fill an unset Yearly reference.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Daily",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L720",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L510-L545",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L264-L277",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L436-L443",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L660-L665"
+        ]
+      },
+      {
+        "name": "duty",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "Optional LoadShape reference for duty-cycle voltage variation. The Python getter returns an object or None. An unset Duty reference can fall back to Daily during the solution.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Duty",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L721",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L547-L582",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L264-L277",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L660-L665"
+        ]
+      },
+      {
+        "name": "model",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "Integer-backed VSourceModel enum. The wrapper accepts a string, integer, or enum member. Thevenin (0) is the default. In Ideal mode the engine uses puZIdeal when its non-harmonic frequency condition passes. The other branch uses the specified Thevenin impedance.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Model",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L722",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L585-L611",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L260-L262",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L649-L658",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L903-L932"
+        ]
+      },
+      {
+        "name": "puzideal",
+        "data_type": "array",
+        "default_value": [
+          0.000001,
+          0.001
+        ],
+        "description": "Complex impedance in per unit for the quasi-ideal model at base frequency. Python uses a complex value. The catalog pair gives the real and imaginary parts.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "puZIdeal",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L723",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L613-L625",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L656-L660",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L903-L932"
+        ]
+      },
+      {
+        "name": "spectrum",
+        "data_type": "variant",
+        "default_value": "defaultvsource",
+        "description": "Inherited spectrum reference. This source overrides the general spectrum with defaultvsource. Python reads it as a Spectrum object whose Name is defaultvsource.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Spectrum",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L724",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/PCClass.pas#L89-L98",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/PCElement.pas#L78-L84",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/Spectrum.pas#L125-L132",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L656-L665",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L626-L656"
+        ]
+      },
+      {
+        "name": "basefreq",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Inherited element base frequency in Hz. It is initialized from the circuit fundamental and is separate from the operating source Frequency field and Solution.Frequency.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "BaseFreq",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L725",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L95-L97",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L191-L204",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L637-L647"
+        ]
+      },
+      {
+        "name": "enabled",
+        "data_type": "boolean",
+        "default_value": true,
+        "description": "Inherited flag that allows the element to participate in the circuit solution. The circuit-element constructor initializes it to true.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Enabled",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L726",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L93",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L189-L204"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Creation keyword and Python action to copy another Vsource definition. It has no readable property value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Like",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L727",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L682-L691",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L539-L585"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name",
+      "bus1",
+      "basekv"
+    ],
+    "altdss_mapping": "altdss.Vsource",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "opendss_documentation": "EPRI online documentation; page version not stated"
+    },
+    "target_support": {
+      "altdss_python": true
+    },
+    "sources": [
+      {
+        "title": "EPRI Vsource model",
+        "url": "https://opendss.epri.com/Vsource.html",
+        "accessed": "2026-11-21",
+        "scope": "Two-terminal Thevenin source concept and grounded terminal convention."
+      },
+      {
+        "title": "AltDSS-Python Vsource wrapper",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py",
+        "accessed": "2026-11-21",
+        "scope": "Creation keywords, types, object and batch signatures."
+      },
+      {
+        "title": "DSS C-API Vsource",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas",
+        "accessed": "2026-11-21",
+        "scope": "Property enum, constructor, specifications, conversions, and setter behavior."
+      },
+      {
+        "title": "DSS C-API inherited circuit element fields",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas",
+        "accessed": "2026-11-21",
+        "scope": "Initial base frequency and enabled state."
+      },
+      {
+        "title": "DSS C-API inherited power conversion element fields",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/PCElement.pas",
+        "accessed": "2026-11-21",
+        "scope": "Base spectrum initialization and inheritance."
+      },
+      {
+        "title": "DSS C-API Spectrum",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/Spectrum.pas",
+        "accessed": "2026-11-21",
+        "scope": "DefaultVSource spectrum object."
+      }
+    ],
+    "property_requirements": {
+      "required": [
+        "name",
+        "bus1",
+        "basekv"
+      ],
+      "conditional": [
+        {
+          "when": "choosing a complete explicit impedance specification",
+          "requirement_groups": [
+            [
+              "mvasc3",
+              "mvasc1",
+              "x1r1",
+              "x0r0"
+            ],
+            [
+              "isc3",
+              "isc1",
+              "x1r1",
+              "x0r0"
+            ],
+            [
+              "basemva",
+              "puz0",
+              "puz1",
+              "puz2"
+            ],
+            [
+              "z0",
+              "z1",
+              "z2"
+            ],
+            [
+              "r0",
+              "x0",
+              "r1",
+              "x1"
+            ]
+          ],
+          "notes": "These are the engine specification sets. Supply one coherent family. Python new requires only name to allocate an object in an active circuit. The engine flags Bus1 and BasekV as required model inputs.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L228-L246",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/VSource.pas#L313-L315",
+            "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Vsource.py#L1498-L1517"
+          ]
+        }
+      ]
+    },
+    "notes": [
+      "Null catalog defaults include dynamic or derived values. The audit matrix records actual initialization readbacks. Complex values use [real, imaginary] for JSON and complex for Python.",
+      "Use a coherent impedance family. The last family-selecting edit controls the engine branch, and an explicitly specified puZ1 can remain active inside the impedance branch even when R or X is later written.",
+      "Only Z1 and Z0 use DSS text instead of Python property keywords in this catalog. Spectrum and load shapes are object references."
+    ]
+  }
+]

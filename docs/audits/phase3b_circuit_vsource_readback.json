@@ -1,0 +1,349 @@
+{
+  "environment": {
+    "python_version": "3.14.6",
+    "altdss_version": "0.2.4",
+    "dss_python_version": "0.15.7",
+    "backend_version": "0.14.5",
+    "platform": "Windows 11 AMD64",
+    "date": "2026-11-21"
+  },
+  "defaults": {
+    "Circuit": {
+      "name": {
+        "status": "read back",
+        "value": "defaults"
+      }
+    },
+    "Vsource": {
+      "name": {
+        "status": "read back",
+        "value": "readback_default"
+      },
+      "bus1": {
+        "status": "read back",
+        "value": "readback_default_1"
+      },
+      "basekv": {
+        "status": "read back",
+        "value": 115.0
+      },
+      "pu": {
+        "status": "read back",
+        "value": 1.0
+      },
+      "angle": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "frequency": {
+        "status": "read back",
+        "value": 60.0
+      },
+      "phases": {
+        "status": "read back",
+        "value": 3
+      },
+      "mvasc3": {
+        "status": "read back",
+        "value": 2000.0
+      },
+      "mvasc1": {
+        "status": "read back",
+        "value": 2100.0
+      },
+      "x1r1": {
+        "status": "read back",
+        "value": 4.0
+      },
+      "x0r0": {
+        "status": "read back",
+        "value": 3.0
+      },
+      "isc3": {
+        "status": "read back",
+        "value": 10040.8742467761
+      },
+      "isc1": {
+        "status": "read back",
+        "value": 10542.917959114906
+      },
+      "r1": {
+        "status": "read back",
+        "value": 1.6037668205527518
+      },
+      "x1": {
+        "status": "read back",
+        "value": 6.415067282211007
+      },
+      "r0": {
+        "status": "read back",
+        "value": 1.7960358301233548
+      },
+      "x0": {
+        "status": "read back",
+        "value": 5.388107490370064
+      },
+      "scantype": {
+        "status": "read back",
+        "value": 1,
+        "enum_member": "Positive"
+      },
+      "sequence": {
+        "status": "read back",
+        "value": 1,
+        "enum_member": "Positive"
+      },
+      "bus2": {
+        "status": "read back",
+        "value": "readback_default_2"
+      },
+      "z1": {
+        "status": "DSS text readback",
+        "value": [
+          1.60376682055275,
+          6.41506728221101
+        ]
+      },
+      "z0": {
+        "status": "DSS text readback",
+        "value": [
+          1.79603583012335,
+          5.38810749037006
+        ]
+      },
+      "z2": {
+        "status": "read back",
+        "value": [
+          1.6037668205527518,
+          6.415067282211007
+        ]
+      },
+      "puz1": {
+        "status": "read back",
+        "value": [
+          0.012126781251816649,
+          0.048507125007266595
+        ]
+      },
+      "puz0": {
+        "status": "read back",
+        "value": [
+          0.013580611191859016,
+          0.04074183357557704
+        ]
+      },
+      "puz2": {
+        "status": "read back",
+        "value": [
+          0.012126781251816649,
+          0.048507125007266595
+        ]
+      },
+      "basemva": {
+        "status": "read back",
+        "value": 100.0
+      },
+      "yearly": {
+        "status": "read back",
+        "value": null
+      },
+      "daily": {
+        "status": "read back",
+        "value": null
+      },
+      "duty": {
+        "status": "read back",
+        "value": null
+      },
+      "model": {
+        "status": "read back",
+        "value": 0,
+        "enum_member": "Thevenin"
+      },
+      "puzideal": {
+        "status": "read back",
+        "value": [
+          1e-06,
+          0.001
+        ]
+      },
+      "spectrum": {
+        "status": "read back",
+        "value": "defaultvsource",
+        "object_repr": "<Spectrum.defaultvsource>"
+      },
+      "basefreq": {
+        "status": "read back",
+        "value": 60.0
+      },
+      "enabled": {
+        "status": "read back",
+        "value": true
+      },
+      "like": {
+        "status": "action",
+        "note": "Creation keyword and method with no getter."
+      }
+    }
+  },
+  "circuit_routing": {
+    "circuit": "routed",
+    "source_count": 1,
+    "source": {
+      "Name": "source",
+      "Bus1": "src",
+      "Bus2": "src.0.0.0",
+      "Phases": 3,
+      "BasekV": 12.47,
+      "pu": 0.98,
+      "Angle": 5.0
+    },
+    "source_terminals": 2,
+    "solved_bus": {
+      "name": "src",
+      "nodes": [
+        1,
+        2,
+        3
+      ]
+    },
+    "explicit_bus2_after_bus1_edit": "explicit.1.2.3",
+    "circuit_python_member_present": false,
+    "circuit_python_module_present": false
+  },
+  "base_scaling": {
+    "owner": "standalone base_probe, unsolved",
+    "constructor_ohm_literals": [
+      1.65,
+      6.6,
+      1.9,
+      5.7
+    ],
+    "ohms_at_115_kv": [
+      1.6037668205527518,
+      6.415067282211007,
+      1.7960358301233548,
+      5.388107490370064
+    ],
+    "ohms_at_12_47_kv": [
+      0.018857253987606157,
+      0.07542901595042463,
+      0.021117972628841502,
+      0.0633539178865245
+    ],
+    "ZBase_ohms": [
+      132.25,
+      1.5550090000000003
+    ],
+    "puZ1_at_115_kv": [
+      0.012126781251816649,
+      0.048507125007266595
+    ],
+    "puZ1_at_12_47_kv": [
+      0.012126781251816647,
+      0.04850712500726659
+    ]
+  },
+  "specifications": {
+    "mva": {
+      "MVASC3": 600.0,
+      "MVASC1": 500.0,
+      "Isc3": 3012.26227403283
+    },
+    "current": {
+      "Isc3": 3000.0,
+      "Isc1": 2500.0,
+      "MVASC3": 597.5575286112627,
+      "X1_over_R1_after_ratio_edit": 10.0
+    },
+    "scalar_ohms": [
+      0.5,
+      1.5,
+      0.9,
+      1.7
+    ],
+    "complex_ohms": {
+      "Z1": [
+        0.2,
+        0.8
+      ],
+      "Z0": [
+        0.3,
+        0.9
+      ],
+      "Z2": [
+        0.25,
+        0.85
+      ],
+      "python_Z1_Z0_present": false
+    },
+    "explicit_per_unit": {
+      "ZBase_ohms": 132.25,
+      "ohms": [
+        2.645,
+        10.58,
+        3.9675,
+        11.9025
+      ]
+    },
+    "scalar_edit_after_per_unit_ohms": [
+      2.645,
+      10.58,
+      3.9675,
+      11.9025
+    ],
+    "per_unit_after_base_mva_edit": {
+      "BaseMVA": 200.0,
+      "ohms": [
+        1.3225,
+        5.29,
+        1.98375,
+        5.95125
+      ]
+    },
+    "mva_after_per_unit": {
+      "Isc3": 3012.26227403283,
+      "ohms": [
+        6.970187009287803,
+        20.91056102786341,
+        15.86017970950704,
+        31.72035941901408
+      ],
+      "puZ1_readback": [
+        0.02,
+        0.08
+      ]
+    }
+  },
+  "frequency": {
+    "columns": [
+      "Solution.Frequency",
+      "Vsource.Frequency",
+      "Vsource.BaseFreq"
+    ],
+    "after_creation_hz": [
+      50.0,
+      50.0,
+      50.0
+    ],
+    "after_solution_edit_hz": [
+      55.0,
+      50.0,
+      50.0
+    ],
+    "after_element_base_edit_hz": [
+      55.0,
+      50.0,
+      48.0
+    ]
+  },
+  "dss_example": {
+    "circuit": "source_demo",
+    "source": "source",
+    "bus_nodes": [
+      1,
+      2,
+      3
+    ]
+  }
+}

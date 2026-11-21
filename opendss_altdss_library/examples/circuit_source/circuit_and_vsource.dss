@@ -1,0 +1,4 @@
+! Illustrative Thevenin source. Run this in a fresh DSS context.
+New Circuit.source_demo Bus1=src BasekV=12.47 Phases=3 pu=0.98 Angle=5
+Edit Vsource.source MVASC3=250 MVASC1=200 X1R1=4 X0R0=3
+Solve
