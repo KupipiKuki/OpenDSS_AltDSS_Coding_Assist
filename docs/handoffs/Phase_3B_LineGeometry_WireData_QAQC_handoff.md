@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase3`
 - **Baseline** `ab444fd`
-- **Package revision** Coder working tree based on `ab444fd`. Pin the package commit after staging and committing this revision.
+- **Package revision** `2cd9b335e83f7a3d61134a8400ccd6800ddc1f57`. A later commit may update this handoff. Review the catalog and runtime artifacts at the pinned package revision.
 
 Review LineGeometry, LineSpacing, WireData, CNData, and TSData against the Phase 3B coder handoff. Preserve the package revision and record the reviewed commit and clean or dirty state in the report. [Coder handoff](Phase_3B_LineGeometry_WireData_Coder_handoff.md) · [Build audit](../audits/phase3b_line_geometry_wires_audit.md)
 
