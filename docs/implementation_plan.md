@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version:** 0.6 (roles recorded; Phase 3B package 1 prepared)
+**Plan version:** 0.7 (Phase 3B package 1 ready for QA/QC)
 **Plan date:** 2026-11-21
-**Current phase:** Phase 3A reviewed and corrected. Phase 3B is next.
+**Current phase:** Phase 3B package 1 passed coder validation and awaits independent QA/QC.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -97,7 +97,7 @@ The Line/LineCode package is now the reference implementation of the element pac
 | 5 | `Capacitor` | Shunt compensation and control coupling |
 | 6 | `Generator` | Source element with control coupling |
 
-Each package follows the same six-artifact template and definition of done (5.4). Package 1 is prepared for the coder: [Phase 3B coder handoff](handoffs/Phase_3B_LineGeometry_WireData_Coder_handoff.md).
+Each package follows the template and definition of done in 5.4. Package 1 has its catalog, workflow, two executed examples, and five-class readback matrix. Independent QA/QC and owner disposition precede package 2. [Coder handoff](handoffs/Phase_3B_LineGeometry_WireData_Coder_handoff.md) · [Build audit](audits/phase3b_line_geometry_wires_audit.md) · [QA/QC handoff](handoffs/Phase_3B_LineGeometry_WireData_QAQC_handoff.md)
 
 ### 5.4 Element package template (definition of done)
 
@@ -234,6 +234,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.4 | 2026-11-21 | Phase 3A delivered: generated the AltDSS-Python API catalog from the pinned wheel, added 26 DSS C-API engine records, consolidated the source index into `references/sources.json` (18 records), and extended the validation harness for the record schemas. Owner confirmed the Phase 3 element scope and order |
 | 0.5 | 2026-11-21 | Recorded the Phase 3A QA/QC disposition, clarified the source-index migration, and corrected the Line/LineCode citation spans after the follow-up review. |
 | 0.6 | 2026-11-21 | Recorded the owner role assignment (DeepSeek architect/auditor, GPT-6.2 Sol coder, Mistral 4 QA/QC) as a Section 11 decision, and prepared the Phase 3B package-1 coder handoff |
+| 0.7 | 2026-11-21 | Added the generalized element schema and the first Phase 3B element package. Recorded schema and runtime results and prepared independent QA/QC. |
 
 ## 11. Owner decisions
 

@@ -665,5 +665,489 @@
     "notes": [
       "Observed: hasattr(line, 'epsrmedium'/'EpsrMedium'/'EPSRMedium') is False."
     ]
+  },
+  {
+    "id": "capi-line-geometry-enum",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineGeometry engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas",
+      "section_or_record": "TLineGeometryProp enum, L58-L79",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "LineGeometry",
+    "name": "LineGeometry property index enum",
+    "signature_or_shape": "NConds, NPhases, Cond, Wire, X, H, Units, NormAmps, EmergAmps, Reduce, Spacing, Wires, CNCable, TSCable, CNCables, TSCables, Seasons, Ratings, LineType",
+    "arguments": null,
+    "returns_or_effects": "Declares the engine rows. The Python collection exposes Conductors for the Wires row.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-line-geometry-specsets",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineGeometry engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas",
+      "section_or_record": "TLineGeometry.Create, L197-L207; SpecSetNames, SpecSets, and property flags, L254-L273 and L311-L365",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "LineGeometry",
+    "name": "LineGeometry coordinate specification sets",
+    "signature_or_shape": "{Spacing} or {X, H}",
+    "arguments": null,
+    "returns_or_effects": "The engine requires a circuit for this class. These sets select coordinates. A usable geometry also needs dimensions, units, and conductor data.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-line-geometry-conductors",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineGeometry engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas",
+      "section_or_record": "SetWires, L214-L252; conductor rows, L275-L299 and L338-L355; type dispatch, L481-L505",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "LineGeometry",
+    "name": "Geometry conductor storage and aliases",
+    "signature_or_shape": "Wires uses FWireData. The normalized JSON name is Conductors.",
+    "arguments": null,
+    "returns_or_effects": "Wire, CNCable, and TSCable share the per-slot storage. CNCables and TSCables are redundant array alternatives. With AllowAllConductors and a full-length array the setter dispatches each slot by conductor type.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The overhead Python and DSS examples exercised a complete WireData array. Individual legacy alias writes were inspected."
+    ]
+  },
+  {
+    "id": "capi-line-geometry-defaults",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineGeometry engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas",
+      "section_or_record": "TLineGeometryObj.Create, L621-L654",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "LineGeometry",
+    "name": "LineGeometry constructor defaults",
+    "signature_or_shape": "NConds=0, NPhases=0, Reduce=false, NormAmps=0, EmergAmps=0, LineType=OH, Seasons=1, Ratings=[0]",
+    "arguments": null,
+    "returns_or_effects": "No coordinate slots are allocated until NConds is assigned. FLastUnit starts at feet.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Phase 3B readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "The readback matrix omits the unallocated Units accessor. The other listed values were read back."
+    ]
+  },
+  {
+    "id": "capi-line-geometry-spacing-copy",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineGeometry engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas",
+      "section_or_record": "PropertySideEffects, L399-L457 and L459-L478",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "LineGeometry",
+    "name": "Geometry slot allocation and spacing copy",
+    "signature_or_shape": "NConds allocates slots. Spacing.NWires must equal NConds.",
+    "arguments": null,
+    "returns_or_effects": "Reassigning NConds clears conductor references and reinitializes coordinates and units. Assigning Spacing copies both coordinate arrays and the spacing unit into the slots.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The example readback checked the copied coordinate arrays. The allocation/reset source was inspected."
+    ]
+  },
+  {
+    "id": "capi-line-geometry-units",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineGeometry engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas",
+      "section_or_record": "Units property storage, L301-L305; sticky unit handling, L399-L406 and L451-L469",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "LineGeometry",
+    "name": "Geometry coordinate units",
+    "signature_or_shape": "Units stores a per-slot mapped enum. FLastUnit starts at feet.",
+    "arguments": null,
+    "returns_or_effects": "Setting a DSS Cond can fill an unset slot with the last unit. Assigning Spacing fills every slot with the spacing unit.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The pinned Python wrapper uses a scalar Units getter on this array-backed property. A separate allocated-geometry probe raised ValueError. Prefer spacing.Units or explicit per-conductor DSS units."
+    ]
+  },
+  {
+    "id": "capi-line-geometry-ratings",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineGeometry engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas",
+      "section_or_record": "PropertySideEffects first-conductor ratings, L524-L564",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "LineGeometry",
+    "name": "Geometry rating defaults after attaching conductors",
+    "signature_or_shape": "A positive first-conductor rating fills a geometry rating when the corresponding geometry rating is zero.",
+    "arguments": null,
+    "returns_or_effects": "Geometry NormAmps and EmergAmps can come from the first assigned conductor.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Phase 3B readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "The overhead readback observed 300 A and 450 A."
+    ]
+  },
+  {
+    "id": "capi-line-geometry-reduction",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineGeometry engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas",
+      "section_or_record": "UpdateLineGeometryData and LoadSpacingAndWires, L918-L950 and L967-L1018",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "LineGeometry",
+    "name": "Geometry reduction and LineSpacing construction",
+    "signature_or_shape": "Reduce removes conductors beyond NPhases. LoadSpacingAndWires enables Reduce when NConds exceeds NPhases.",
+    "arguments": null,
+    "returns_or_effects": "The direct Line.Spacing path builds temporary geometry using the spacing and the wire array. Use a consistent cable construction for the phase conductors.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Phase 3B readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "The overhead runtime probe observed three phases for four supplied conductors on both paths. Separate CNData and TSData spacing probes solved and read back their conductor types."
+    ]
+  },
+  {
+    "id": "capi-line-spacing-enum",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineSpacing engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas",
+      "section_or_record": "TLineSpacingProp enum, L28-L35; property definitions, L119-L146",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "LineSpacing",
+    "name": "LineSpacing property index enum and flags",
+    "signature_or_shape": "NConds, NPhases, X, H, Units",
+    "arguments": null,
+    "returns_or_effects": "X and H are arrays sized by NConds. Units names the coordinate scale. NConds has SuppressJSON.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-line-spacing-defaults",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LineSpacing engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas",
+      "section_or_record": "PropertySideEffects, L160-L173; constructor, L194-L215",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "LineSpacing",
+    "name": "LineSpacing defaults and allocation order",
+    "signature_or_shape": "NConds=3, NPhases=3, Units=ft, X=[0,0,0], H=[0,0,0]",
+    "arguments": null,
+    "returns_or_effects": "Set NConds before coordinates and units. Updating NConds resizes X/H and resets Units to ft.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Phase 3B readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "The defaults and the reset from m to ft were read back."
+    ]
+  },
+  {
+    "id": "capi-wire-data-inheritance",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API WireData engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/WireData.pas",
+      "section_or_record": "TWireData and TWireDataObj, L19-L32; property registration, L50-L73; constructor, L86-L91",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "WireData",
+    "name": "WireData inherited property enum",
+    "signature_or_shape": "NumPropsThisClass=0. WireData inherits TConductorDataProp.",
+    "arguments": null,
+    "returns_or_effects": "The engine constructor delegates shared defaults to TConductorDataObj. No WireData-specific enum is declared.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-conductor-data-rows",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API ConductorData engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas",
+      "section_or_record": "TConductorDataProp enum, L45-L60; property definitions, L158-L216",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "ConductorData",
+    "name": "Shared conductor rows, units, and aliases",
+    "signature_or_shape": "RDC, RAC, RUnits, GMRAC, GMRUnits, Radius, RadUnits, NormAmps, EmergAmps, Diam, Seasons, Ratings, CapRadius",
+    "arguments": null,
+    "returns_or_effects": "Conductor units are mapped string enums. Diam writes Radius with a scale of 0.5 and is flagged redundant. RDC has the ohms-per-length flag. Seasons is suppressed in engine JSON.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-conductor-data-defaults",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API ConductorData engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas",
+      "section_or_record": "TConductorDataObj.Create, L282-L301",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "ConductorData",
+    "name": "Shared conductor constructor defaults",
+    "signature_or_shape": "Unset resistance, radius, GMR, and ampacities initialize to -1. Unit selectors initialize to none, Seasons to 1, and Ratings to [-1].",
+    "arguments": null,
+    "returns_or_effects": "The sentinel values are not usable conductor data. Diam reads as -2 because it is the scaled view of unset Radius.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Phase 3B readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "The readback matrix records the inherited values on WireData, CNData, and TSData."
+    ]
+  },
+  {
+    "id": "capi-conductor-data-derived",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API ConductorData engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas",
+      "section_or_record": "PropertySideEffects, L220-L262",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "ConductorData",
+    "name": "Derived resistance, radius, and ampacity",
+    "signature_or_shape": "When unset, the counterpart of RDC/RAC uses 1.02, the counterpart of Radius/GMRAC uses 0.7788, and the counterpart of NormAmps/EmergAmps uses 1.5.",
+    "arguments": null,
+    "returns_or_effects": "Setting Radius or Diam can fill GMRAC and CapRadius. Opposite unit selectors can supply an unset radius/GMR selector.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "Runtime covered RDC to RAC, Diam to Radius/GMRAC/CapRadius, and NormAmps to EmergAmps. Reverse and unit-selector paths were source reviewed."
+    ]
+  },
+  {
+    "id": "capi-cable-data-rows",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API CableData engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas",
+      "section_or_record": "TCableDataProp enum, L18-L25; property definitions, L105-L128; validation and constructor, L130-L172",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "CableData",
+    "name": "Shared CNData and TSData insulation rows",
+    "signature_or_shape": "EpsR, InsLayer, DiaIns, DiaCable",
+    "arguments": null,
+    "returns_or_effects": "EpsR initializes to 2.3. The remaining fields have NoDefault flags and -1 sentinels. The dimensional fields must be positive when assigned.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The default readbacks were recorded. Invalid edits were not part of the runtime probe."
+    ]
+  },
+  {
+    "id": "capi-cn-data-rows",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API CNData engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas",
+      "section_or_record": "TCNDataProp enum, L26-L32; properties, L103-L128; setter and constructor, L141-L185",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "CNData",
+    "name": "Concentric neutral rows, defaults, and checks",
+    "signature_or_shape": "k=2, DiaStrand=-1, GMRStrand=-1, RStrand=-1",
+    "arguments": null,
+    "returns_or_effects": "DiaStrand and RStrand have NoDefault flags. GMRStrand has a DynamicDefault flag. Setting DiaStrand derives GMRStrand as 0.7788 times half the diameter while unset.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The default and the DiaStrand to GMRStrand readback passed. Range-error branches were inspected."
+    ]
+  },
+  {
+    "id": "capi-ts-data-rows",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API TSData engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas",
+      "section_or_record": "TTSDataProp enum, L19-L25; properties, L89-L109; setter and constructor, L122-L158",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "TSData",
+    "name": "Tape shield rows, defaults, and checks",
+    "signature_or_shape": "DiaShield=-1, TapeLayer=-1, TapeLap=20",
+    "arguments": null,
+    "returns_or_effects": "The three declared properties have NoDefault flags. The constructor initializes tape overlap to 20 percent. The setter checks 0 through 100 percent.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The default readbacks were recorded. Out-of-range edits were not part of the runtime probe."
+    ]
+  },
+  {
+    "id": "capi-line-geometry-spacing-integration",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "PropertySideEffects, L637-L737; SetWires, L795-L828; FetchLineSpacing/FetchGeometryCode, L1838-L1903",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Line",
+    "name": "Line geometry and spacing impedance selection",
+    "signature_or_shape": "Geometry clears LineCode and prior spacing. Spacing clears LineCode and geometry and allocates conductor slots before Wires.",
+    "arguments": null,
+    "returns_or_effects": "Assign Spacing before Conductors. Direct sequence or matrix edits replace the prior construction-based specification. CNData and TSData can occupy the complete conductor array on the pinned Python path.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "Example readbacks cover creation, ordering, and conductor references. The replacement effects were source reviewed."
+    ]
+  },
+  {
+    "id": "capi-line-geometry-frequency-cache",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Line engine source",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Line.pas",
+      "section_or_record": "PropertySideEffects rho branch, L764-L771; FMakeZFromGeometry, L1905-L1938",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "kind": "api",
+    "namespace_or_type": "Line",
+    "name": "Line geometry frequency cache and rho edit",
+    "signature_or_shape": "A rho edit updates the referenced geometry and can invalidate YPrim. FMakeZFromGeometry returns early when frequency equals FZFrequency.",
+    "arguments": null,
+    "returns_or_effects": "Do not assume the cached resistance matrix is replaced by a same-frequency solve. In the readback probe it changed after the solution frequency was changed.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Phase 3B readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Probe changed rho from 100 to 1000 ohm m at 60 Hz and then changed the solution frequency to 50 Hz. See the readback matrix."
+    ]
   }
 ]

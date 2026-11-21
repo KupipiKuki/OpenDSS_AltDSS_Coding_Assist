@@ -266,5 +266,242 @@
       "capacitance"
     ],
     "scope": "Describes reusable impedance definitions, sequence properties, and capacitance units. Use pinned engine evidence for the circuit-dependent base frequency."
+  },
+  {
+    "id": "epri-line-geometry",
+    "kind": "documentation",
+    "title": "EPRI LineGeometry reference",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/LineGeometry.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "LineGeometry",
+      "OpenDSS modeling"
+    ],
+    "scope": "Undated page for model concepts. Consult tagged source for pinned defaults and API behavior."
+  },
+  {
+    "id": "altdss-line-geometry-wrapper",
+    "kind": "source",
+    "title": "LineGeometry Python wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "LineGeometry",
+      "creation keywords",
+      "property readback"
+    ],
+    "scope": "Tagged wrapper provides exact keyword casing, types, and accessor behavior."
+  },
+  {
+    "id": "capi-line-geometry-engine",
+    "kind": "source",
+    "title": "LineGeometry engine implementation",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "LineGeometry",
+      "engine properties",
+      "constructor and setters"
+    ],
+    "scope": "Pinned engine property definitions, inheritance, and constructor behavior."
+  },
+  {
+    "id": "epri-line-spacing",
+    "kind": "documentation",
+    "title": "EPRI LineSpacing reference",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/LineSpacing.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "LineSpacing",
+      "OpenDSS modeling"
+    ],
+    "scope": "Undated page for model concepts. Consult tagged source for pinned defaults and API behavior."
+  },
+  {
+    "id": "altdss-line-spacing-wrapper",
+    "kind": "source",
+    "title": "LineSpacing Python wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineSpacing.py",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "LineSpacing",
+      "creation keywords",
+      "property readback"
+    ],
+    "scope": "Tagged wrapper provides exact keyword casing, types, and accessor behavior."
+  },
+  {
+    "id": "capi-line-spacing-engine",
+    "kind": "source",
+    "title": "LineSpacing engine implementation",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "LineSpacing",
+      "engine properties",
+      "constructor and setters"
+    ],
+    "scope": "Pinned engine property definitions, inheritance, and constructor behavior."
+  },
+  {
+    "id": "epri-wire-data",
+    "kind": "documentation",
+    "title": "EPRI WireData reference",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/WireData.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "WireData",
+      "OpenDSS modeling"
+    ],
+    "scope": "Undated page for model concepts. Consult tagged source for pinned defaults and API behavior."
+  },
+  {
+    "id": "altdss-wire-data-wrapper",
+    "kind": "source",
+    "title": "WireData Python wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "WireData",
+      "creation keywords",
+      "property readback"
+    ],
+    "scope": "Tagged wrapper provides exact keyword casing, types, and accessor behavior."
+  },
+  {
+    "id": "capi-wire-data-engine",
+    "kind": "source",
+    "title": "WireData engine implementation",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/WireData.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "WireData",
+      "engine properties",
+      "constructor and setters"
+    ],
+    "scope": "Pinned engine property definitions, inheritance, and constructor behavior."
+  },
+  {
+    "id": "epri-cn-data",
+    "kind": "documentation",
+    "title": "EPRI CNData reference",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/CNData.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "CNData",
+      "OpenDSS modeling"
+    ],
+    "scope": "Undated page for model concepts. Consult tagged source for pinned defaults and API behavior."
+  },
+  {
+    "id": "altdss-cn-data-wrapper",
+    "kind": "source",
+    "title": "CNData Python wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "CNData",
+      "creation keywords",
+      "property readback"
+    ],
+    "scope": "Tagged wrapper provides exact keyword casing, types, and accessor behavior."
+  },
+  {
+    "id": "capi-cn-data-engine",
+    "kind": "source",
+    "title": "CNData engine implementation",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "CNData",
+      "engine properties",
+      "constructor and setters"
+    ],
+    "scope": "Pinned engine property definitions, inheritance, and constructor behavior."
+  },
+  {
+    "id": "altdss-ts-data-wrapper",
+    "kind": "source",
+    "title": "TSData Python wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "TSData",
+      "creation keywords",
+      "property readback"
+    ],
+    "scope": "Tagged wrapper provides exact keyword casing, types, and accessor behavior."
+  },
+  {
+    "id": "capi-ts-data-engine",
+    "kind": "source",
+    "title": "TSData engine implementation",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "TSData",
+      "engine properties",
+      "constructor and setters"
+    ],
+    "scope": "Pinned source for tape shield data. The handoff's EPRI TSData URL was unavailable and no standalone EPRI page is cited."
+  },
+  {
+    "id": "capi-conductor-data-engine",
+    "kind": "source",
+    "title": "Shared conductor data engine",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "WireData",
+      "CNData",
+      "TSData",
+      "derived defaults"
+    ],
+    "scope": "Shared property enum, unit selectors, diameter scale, and derived properties."
+  },
+  {
+    "id": "capi-cable-data-engine",
+    "kind": "source",
+    "title": "Shared cable data engine",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "CNData",
+      "TSData",
+      "insulation"
+    ],
+    "scope": "Inherited insulation properties, constructor defaults, and setter checks."
   }
 ]

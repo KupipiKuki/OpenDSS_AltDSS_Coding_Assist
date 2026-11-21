@@ -1,0 +1,405 @@
+{
+  "environment": {
+    "python_version": "3.14.6",
+    "altdss_version": "0.2.4",
+    "dss_python_version": "0.15.7",
+    "backend_version": "0.14.5",
+    "platform": "Windows 11 AMD64",
+    "date": "2026-11-21"
+  },
+  "defaults": {
+    "LineGeometry": {
+      "name": {
+        "status": "read back",
+        "value": "readback_default"
+      },
+      "nconds": {
+        "status": "read back",
+        "value": 0
+      },
+      "nphases": {
+        "status": "read back",
+        "value": 0
+      },
+      "wires": {
+        "status": "read back",
+        "value": []
+      },
+      "x": {
+        "status": "read back",
+        "value": []
+      },
+      "h": {
+        "status": "read back",
+        "value": []
+      },
+      "units": {
+        "status": "unavailable",
+        "note": "The constructor allocates no coordinate slots. The scalar Python accessor can raise ValueError even after allocation."
+      },
+      "normamps": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "emergamps": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "reduce": {
+        "status": "read back",
+        "value": false
+      },
+      "spacing": {
+        "status": "read back",
+        "value": null
+      },
+      "seasons": {
+        "status": "read back",
+        "value": 1
+      },
+      "ratings": {
+        "status": "read back",
+        "value": [
+          0.0
+        ]
+      },
+      "linetype": {
+        "status": "read back",
+        "value": "oh"
+      },
+      "like": {
+        "status": "action",
+        "note": "Creation keyword and method with no getter."
+      }
+    },
+    "LineSpacing": {
+      "name": {
+        "status": "read back",
+        "value": "readback_default"
+      },
+      "nconds": {
+        "status": "read back",
+        "value": 3
+      },
+      "nphases": {
+        "status": "read back",
+        "value": 3
+      },
+      "x": {
+        "status": "read back",
+        "value": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "h": {
+        "status": "read back",
+        "value": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "units": {
+        "status": "read back",
+        "value": "ft"
+      },
+      "like": {
+        "status": "action",
+        "note": "Creation keyword and method with no getter."
+      }
+    },
+    "WireData": {
+      "name": {
+        "status": "read back",
+        "value": "readback_default"
+      },
+      "rdc": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "rac": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "runits": {
+        "status": "read back",
+        "value": "none"
+      },
+      "gmrac": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "gmrunits": {
+        "status": "read back",
+        "value": "none"
+      },
+      "radius": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "radunits": {
+        "status": "read back",
+        "value": "none"
+      },
+      "normamps": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "emergamps": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "diam": {
+        "status": "read back",
+        "value": -2.0
+      },
+      "seasons": {
+        "status": "read back",
+        "value": 1
+      },
+      "ratings": {
+        "status": "read back",
+        "value": [
+          -1.0
+        ]
+      },
+      "capradius": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "like": {
+        "status": "action",
+        "note": "Creation keyword and method with no getter."
+      }
+    },
+    "CNData": {
+      "name": {
+        "status": "read back",
+        "value": "readback_default"
+      },
+      "k": {
+        "status": "read back",
+        "value": 2
+      },
+      "diastrand": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "gmrstrand": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "rstrand": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "epsr": {
+        "status": "read back",
+        "value": 2.3
+      },
+      "inslayer": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "diains": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "diacable": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "rdc": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "rac": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "runits": {
+        "status": "read back",
+        "value": "none"
+      },
+      "gmrac": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "gmrunits": {
+        "status": "read back",
+        "value": "none"
+      },
+      "radius": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "radunits": {
+        "status": "read back",
+        "value": "none"
+      },
+      "normamps": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "emergamps": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "diam": {
+        "status": "read back",
+        "value": -2.0
+      },
+      "seasons": {
+        "status": "read back",
+        "value": 1
+      },
+      "ratings": {
+        "status": "read back",
+        "value": [
+          -1.0
+        ]
+      },
+      "capradius": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "like": {
+        "status": "action",
+        "note": "Creation keyword and method with no getter."
+      }
+    },
+    "TSData": {
+      "name": {
+        "status": "read back",
+        "value": "readback_default"
+      },
+      "diashield": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "tapelayer": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "tapelap": {
+        "status": "read back",
+        "value": 20.0
+      },
+      "epsr": {
+        "status": "read back",
+        "value": 2.3
+      },
+      "inslayer": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "diains": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "diacable": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "rdc": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "rac": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "runits": {
+        "status": "read back",
+        "value": "none"
+      },
+      "gmrac": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "gmrunits": {
+        "status": "read back",
+        "value": "none"
+      },
+      "radius": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "radunits": {
+        "status": "read back",
+        "value": "none"
+      },
+      "normamps": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "emergamps": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "diam": {
+        "status": "read back",
+        "value": -2.0
+      },
+      "seasons": {
+        "status": "read back",
+        "value": 1
+      },
+      "ratings": {
+        "status": "read back",
+        "value": [
+          -1.0
+        ]
+      },
+      "capradius": {
+        "status": "read back",
+        "value": -1.0
+      },
+      "like": {
+        "status": "action",
+        "note": "Creation keyword and method with no getter."
+      }
+    }
+  },
+  "side_effects": {
+    "geometry_and_spacing": {
+      "conductors": 4,
+      "retained_phases": 3,
+      "length_km": 1.0,
+      "reduce": true,
+      "spacing_positions_copied": true,
+      "first_conductor_ampacities": [
+        300.0,
+        450.0
+      ]
+    },
+    "geometry_rho_edit": {
+      "rho_after_edit_ohm_m": 1000.0,
+      "r_matrix_changed_at_60_hz": false,
+      "r_matrix_changed_after_switching_to_50_hz": true
+    },
+    "spacing_units_after_nconds_edit": "ft",
+    "wire_derived_values": {
+      "RAC": 0.306,
+      "Radius": 0.009,
+      "CapRadius": 0.009,
+      "GMRAC": 0.0070092,
+      "EmergAmps": 450.0
+    },
+    "cn_derived_gmrstrand": 0.0007788000000000001
+  },
+  "cable_spacing": {
+    "CNData": {
+      "phases": 3,
+      "conductor_count": 3,
+      "resistance_matrix_size": 9
+    },
+    "TSData": {
+      "phases": 3,
+      "conductor_count": 3,
+      "resistance_matrix_size": 9
+    }
+  }
+}

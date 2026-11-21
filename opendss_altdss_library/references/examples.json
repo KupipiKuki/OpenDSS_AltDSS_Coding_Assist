@@ -38,5 +38,45 @@
       "date": "2026-11-21"
     },
     "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "line-geometry-spacing-altdss",
+    "task_description": "Create a reusable overhead geometry and a direct spacing-based line, then solve and read back the retained phases and lengths.",
+    "language": "python_altdss",
+    "file": "examples/line_geometry/geometry_and_spacing.py",
+    "object_classes": ["Circuit", "WireData", "LineSpacing", "LineGeometry", "Line"],
+    "dependencies": ["altdss==0.2.4", "dss-python==0.15.7", "dss-python-backend==0.14.5"],
+    "source_ids": ["altdss-wire-data-wrapper", "altdss-line-spacing-wrapper", "altdss-line-geometry-wrapper", "altdss-line-new", "capi-line-geometry-engine", "capi-line-engine"],
+    "expected_result": "Both lines solve with three phases and length 1 km. The reusable geometry has four conductors and Reduce=True. The spacing line reads back four conductor references.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "line-geometry-spacing-dss-text",
+    "task_description": "Build and solve the same overhead geometry and spacing paths from a DSS text script.",
+    "language": "dss",
+    "file": "examples/line_geometry/geometry_and_spacing.dss",
+    "object_classes": ["Circuit", "WireData", "LineSpacing", "LineGeometry", "Line"],
+    "dependencies": ["DSS C-API 0.14.5", "For the Python runner: altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"],
+    "source_ids": ["epri-dss-scripting", "epri-wire-data", "epri-line-spacing", "epri-line-geometry", "capi-line-geometry-engine", "capi-line-engine"],
+    "expected_result": "The script solves two lines. Readback gives three phases and length 1 km for each. The reduced geometry uses four positions and three phases.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
   }
 ]

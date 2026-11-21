@@ -1,0 +1,9 @@
+! Illustrative overhead conductor and positions. Run in a fresh context.
+New Circuit.geometry_demo Bus1=source BasekV=12.47 Phases=3
+New WireData.demo_wire RDC=0.30 RAC=0.31 RUnits=km GMRAC=0.007 GMRUnits=m Radius=0.009 RadUnits=m NormAmps=300 EmergAmps=450
+New LineSpacing.demo_spacing NConds=4 NPhases=3 Units=m X=[-1 0 1 0] H=[10 10 10 8]
+New LineGeometry.demo_geometry NConds=4 NPhases=3 Spacing=demo_spacing Wires=[demo_wire demo_wire demo_wire demo_wire] Reduce=Yes
+
+New Line.by_geometry Bus1=source.1.2.3 Bus2=geometry_end.1.2.3 Geometry=demo_geometry Length=1 Units=km
+New Line.by_spacing Bus1=source.1.2.3 Bus2=spacing_end.1.2.3 Spacing=demo_spacing Wires=[demo_wire demo_wire demo_wire demo_wire] Length=1 Units=km
+Solve

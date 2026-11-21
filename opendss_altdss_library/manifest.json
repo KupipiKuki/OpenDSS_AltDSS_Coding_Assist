@@ -26,7 +26,8 @@
     ],
     "phase_3": [
       "references/altdss_python_api.json",
-      "references/dss_capi.json"
+      "references/dss_capi.json",
+      "references/lines/line_geometry_wires_properties.json"
     ]
   },
   "schemas": {
@@ -34,14 +35,14 @@
     "catalogs": "schemas/catalogs/"
   },
   "validation": {
-    "source_review": "Line/LineCode independent QA/QC passed with findings (2026-11-21). E-1 and E-2 are applied and E-3 is deferred. Phase 3A API and engine catalog QA/QC passed with findings (2026-11-21). The catalog citation and documentation corrections are applied.",
-    "schema_validation": "tools/validate_catalogs.py passes 9/9 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0) on 2026-11-21.",
-    "runtime": "tools/run_examples.py executed both Line/LineCode workflow examples successfully on 2026-11-21 (Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5); both records are Observed-working. Engine behaviors recorded as tested in dss_capi.json were observed through the same pinned stack; records marked not-run were not executed."
+    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC with findings. The required corrections are applied. Phase 3B package 1 passed coder source review. Independent QA/QC is pending.",
+    "schema_validation": "tools/validate_catalogs.py passed 10/10 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0) on 2026-11-21.",
+    "runtime": "All four catalogued examples ran successfully on 2026-11-21 on Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, and backend 0.14.5. Phase 3B package 1 has a recorded five-class readback matrix and focused setter and cable checks."
   },
   "known_gaps": [
     "Three catalog files are still empty pending later phases: opendss_objects, python_interface_comparison, troubleshooting.",
     "The generated altdss_python_api catalog covers object and collection classes and the AltDSS context. Non-element context interfaces, context batch proxies, and internal _str proxies are outside the catalog scope.",
-    "dss_capi.json covers Line and LineCode engine behavior; other element classes are added as their Phase 3B packages land.",
+    "dss_capi.json covers Line, LineCode, LineGeometry, LineSpacing, WireData, CNData, and TSData, including shared conductor and cable fields.",
     "Property-level source_refs remain partial for Line/LineCode (E-3 deferred); new element packages require per-row citations.",
     "Fixture-based validation with IEEE 13- and 34-node circuits and golden results is planned for Phase 4; no golden fixtures exist yet.",
     "The beta package line (AltDSS-Python 0.3.0b2 and later) is documented as future compatibility only and not validated.",
@@ -57,7 +58,7 @@
     "phase_5": "planned"
   },
   "next_actions": [
-    "Start Phase 3B package 1 (LineGeometry, LineSpacing, WireData/CNData/TSData) using docs/handoffs/Phase_3B_LineGeometry_WireData_Coder_handoff.md.",
+    "Independently review Phase 3B package 1 using docs/handoffs/Phase_3B_LineGeometry_WireData_QAQC_handoff.md. Owner disposition precedes package 2.",
     "Extend dss_capi.json with each element package's enums, specification sets, scales, and constructor defaults.",
     "Draft the Phase 4 golden fixture layout and harness before the first fixture is added."
   ]

@@ -1,0 +1,1487 @@
+[
+  {
+    "element_class": "LineGeometry",
+    "epri_doc_url": "https://opendss.epri.com/LineGeometry.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Object identifier. Pass it to altdss.LineGeometry.new or use it after LineGeometry. in a DSS New command.",
+        "evidence_label": "Official-versioned",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L693-L706"
+        ]
+      },
+      {
+        "name": "nconds",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "Count of physical conductors. Set a positive count before assigning positions or conductors. Assigning NConds initializes the coordinate slots and clears conductor references.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "NConds",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L342",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L324-L332",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L411-L457",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L621-L654"
+        ]
+      },
+      {
+        "name": "nphases",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "Count of retained phase conductors. Set it explicitly for the model after NConds. List the phase conductors before any additional neutrals.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "NPhases",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L343",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L324-L332",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L391-L398",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L641-L654",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L967-L980"
+        ]
+      },
+      {
+        "name": "wires",
+        "data_type": "array",
+        "default_value": [],
+        "description": "Ordered sequence of WireData, CNData, or TSData references. Supply one reference per slots allocated by NConds when using the Python Conductors keyword. The matching DSS engine row is Wires.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Conductors",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L344",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L214-L251",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L275-L299",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L481-L505",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L627-L643"
+        ]
+      },
+      {
+        "name": "x",
+        "data_type": "array",
+        "default_value": [],
+        "description": "Horizontal positions in conductor order. Positions are initially empty until conductor slots are allocated. Applying Spacing replaces these positions.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "X",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L345",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L357-L365",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L446-L475",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L629-L643"
+        ]
+      },
+      {
+        "name": "h",
+        "data_type": "array",
+        "default_value": [],
+        "description": "Vertical positions in conductor order. Positions are initially empty until conductor slots are allocated. Applying Spacing replaces these positions.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "H",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L346",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L357-L365",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L446-L475",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L629-L643"
+        ]
+      },
+      {
+        "name": "units",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Length unit for X and H. The engine stores units per conductor and has a sticky feet preference for unassigned slots. Assigning Spacing copies its unit to every slot. The pinned Python scalar enum getter can raise ValueError on this array-backed field, so use the configured spacing or DSS conductor entries as the unit record.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Units",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L347",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L301-L305",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L399-L406",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L451-L475",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L629-L645"
+        ]
+      },
+      {
+        "name": "normamps",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Initial normal ampacity in amperes. Assigning conductor data can set the rating from the first conductor.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "NormAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L348",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L367-L368",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L621-L654",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L531-L570"
+        ]
+      },
+      {
+        "name": "emergamps",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Initial emergency ampacity in amperes. Assigning conductor data can set the rating from the first conductor.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "EmergAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L349",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L367-L368",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L621-L654",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L531-L570"
+        ]
+      },
+      {
+        "name": "reduce",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Enable Kron reduction of additional conductors to NPhases when geometry constants are computed. Order phase conductors before neutrals.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Reduce",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L350",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L321-L322",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L641-L654",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L967-L980"
+        ]
+      },
+      {
+        "name": "spacing",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Reference to a previously defined LineSpacing with the same NConds. Assigning it copies X, H, and units into the geometry.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Spacing",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L351",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L311-L315",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L459-L478",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L629-L643"
+        ]
+      },
+      {
+        "name": "seasons",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Initial number of seasonal ratings.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Seasons",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L352",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L334-L336",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L646-L654"
+        ]
+      },
+      {
+        "name": "ratings",
+        "data_type": "array",
+        "default_value": [
+          0
+        ],
+        "description": "Ampacity ratings in amperes. Initially contains the constructor's normal ampacity of 0 A. Supply rated values for a usable design.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Ratings",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L353",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L317-L319",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L646-L654"
+        ]
+      },
+      {
+        "name": "linetype",
+        "data_type": "string",
+        "default_value": "oh",
+        "description": "Line type code. The engine initializes the enum to OH.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "LineType",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L354",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L307-L309",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L641-L654"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "DSS creation keyword and Python action that copies another LineGeometry definition. There is no readable property value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Like",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L355",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py#L330-L339"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name"
+    ],
+    "altdss_mapping": "altdss.LineGeometry",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "opendss_documentation": "EPRI online documentation; page version not stated"
+    },
+    "sources": [
+      {
+        "title": "EPRI LineGeometry reference",
+        "url": "https://opendss.epri.com/LineGeometry.html",
+        "accessed": "2026-11-21",
+        "scope": "Undated OpenDSS documentation for model concepts."
+      },
+      {
+        "title": "LineGeometry Python wrapper",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineGeometry.py",
+        "accessed": "2026-11-21",
+        "scope": "AltDSS-Python 0.2.4 creation keywords and property types."
+      },
+      {
+        "title": "LineGeometry engine source",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas",
+        "accessed": "2026-11-21",
+        "scope": "DSS C-API 0.14.5 implementation."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true
+    },
+    "property_requirements": {
+      "required": [
+        "name"
+      ],
+      "conditional": [
+        {
+          "when": "choosing a complete engine coordinate specification",
+          "requirement_groups": [
+            [
+              "spacing"
+            ],
+            [
+              "x",
+              "h"
+            ]
+          ],
+          "notes": "These are the pinned engine specification sets. A usable model also requires conductor data, sizes, and explicit coordinate units.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L262-L269"
+          ]
+        },
+        {
+          "when": "building a usable geometry",
+          "requirement": "Create a circuit, choose NConds and NPhases, supply one conductor reference per slot, and choose explicit coordinates or a LineSpacing with the same NConds.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L197-L207",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L411-L478",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L918-L938"
+          ]
+        }
+      ]
+    },
+    "notes": [
+      "A null default means the catalog has no usable fixed default. The runtime matrix records engine sentinel readbacks and action-only fields separately.",
+      "Required properties describe the object identifier. Conditional entries describe useful model inputs or a declared engine specification set.",
+      "Cond, Wire, CNCable, TSCable, CNCables, and TSCables are DSS text entries. Use the Conductors creation keyword for a complete Python conductor array."
+    ]
+  },
+  {
+    "element_class": "LineSpacing",
+    "epri_doc_url": "https://opendss.epri.com/LineSpacing.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Object identifier. Pass it to altdss.LineSpacing.new or use it after LineSpacing. in a DSS New command.",
+        "evidence_label": "Official-versioned",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineSpacing.py#L306-L319"
+        ]
+      },
+      {
+        "name": "nconds",
+        "data_type": "integer",
+        "default_value": 3,
+        "description": "Number of conductor positions. Assign it before X and H because it resizes the arrays and resets Units to ft.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "NConds",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineSpacing.py#L144",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L128-L143",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L160-L173",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L194-L215"
+        ]
+      },
+      {
+        "name": "nphases",
+        "data_type": "integer",
+        "default_value": 3,
+        "description": "Number of retained phase conductors. Put phase coordinates first and any additional neutral coordinates afterward.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "NPhases",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineSpacing.py#L145",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L128-L143",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L194-L215",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L984-L1012",
+          "https://opendss.epri.com/LineSpacing.html"
+        ]
+      },
+      {
+        "name": "x",
+        "data_type": "array",
+        "default_value": [
+          0,
+          0,
+          0
+        ],
+        "description": "Horizontal coordinates in Units. Provide one value per conductor position.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "X",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineSpacing.py#L146",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L136-L143",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L194-L215"
+        ]
+      },
+      {
+        "name": "h",
+        "data_type": "array",
+        "default_value": [
+          0,
+          0,
+          0
+        ],
+        "description": "Vertical coordinates in Units. Provide one value per conductor position.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "H",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineSpacing.py#L147",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L136-L143",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L194-L215"
+        ]
+      },
+      {
+        "name": "units",
+        "data_type": "string",
+        "default_value": "ft",
+        "description": "Length unit for both coordinate arrays. Set it after NConds because that assignment resets it to ft.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Units",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineSpacing.py#L148",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L123-L126",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L160-L173",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L194-L215"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "DSS creation keyword and Python action that copies another LineSpacing definition. There is no readable property value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Like",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineSpacing.py#L149",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineSpacing.py#L132-L141"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name"
+    ],
+    "altdss_mapping": "altdss.LineSpacing",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "opendss_documentation": "EPRI online documentation; page version not stated"
+    },
+    "sources": [
+      {
+        "title": "EPRI LineSpacing reference",
+        "url": "https://opendss.epri.com/LineSpacing.html",
+        "accessed": "2026-11-21",
+        "scope": "Undated OpenDSS documentation for model concepts."
+      },
+      {
+        "title": "LineSpacing Python wrapper",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LineSpacing.py",
+        "accessed": "2026-11-21",
+        "scope": "AltDSS-Python 0.2.4 creation keywords and property types."
+      },
+      {
+        "title": "LineSpacing engine source",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas",
+        "accessed": "2026-11-21",
+        "scope": "DSS C-API 0.14.5 implementation."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true
+    },
+    "property_requirements": {
+      "required": [
+        "name"
+      ],
+      "conditional": [
+        {
+          "when": "building a usable spacing",
+          "requirement": "Set NConds before Units, X, and H. Set NPhases and provide NConds coordinates in both arrays.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L123-L143",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineSpacing.pas#L160-L173",
+            "https://opendss.epri.com/LineSpacing.html"
+          ]
+        }
+      ]
+    },
+    "notes": [
+      "A null default means the catalog has no usable fixed default. The runtime matrix records engine sentinel readbacks and action-only fields separately.",
+      "Required properties describe the object identifier. Conditional entries describe useful model inputs or a declared engine specification set."
+    ]
+  },
+  {
+    "element_class": "WireData",
+    "epri_doc_url": "https://opendss.epri.com/WireData.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Object identifier. Pass it to altdss.WireData.new or use it after WireData. in a DSS New command.",
+        "evidence_label": "Official-versioned",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L612-L625"
+        ]
+      },
+      {
+        "name": "rdc",
+        "data_type": "real",
+        "default_value": null,
+        "description": "DC resistance in ohms per RUnits. If RAC is unset, setting RDC initializes RAC to 1.02 times RDC in the pinned engine.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RDC",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L298",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L183-L188",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L220-L231",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L282-L300"
+        ]
+      },
+      {
+        "name": "rac",
+        "data_type": "real",
+        "default_value": null,
+        "description": "AC resistance at 60 Hz in ohms per RUnits. If RDC is unset, setting RAC initializes RDC to RAC divided by 1.02 in the pinned engine.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RAC",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L299",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L183-L188",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L220-L231",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L282-L300"
+        ]
+      },
+      {
+        "name": "runits",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "Length unit in the denominator of conductor resistance. For CNData this unit also applies to RStrand.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RUnits",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L300",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L165-L168",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L934-L950"
+        ]
+      },
+      {
+        "name": "gmrac",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Geometric mean radius at 60 Hz in GMRUnits. A radius or diameter update supplies 0.7788 times radius when GMRAC is unset. Setting GMRAC can derive an unset radius.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "GMRAC",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L301",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L196-L200",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L232-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295"
+        ]
+      },
+      {
+        "name": "gmrunits",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "Length unit for GMRAC and CNData.GMRStrand. Assign it explicitly because setting it can fill an unset RadUnits.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "GMRUnits",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L302",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L170-L172",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L239-L251",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L934-L950"
+        ]
+      },
+      {
+        "name": "radius",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Conductor outside radius in RadUnits. If unset, setting GMRAC derives Radius as GMRAC divided by 0.7788.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Radius",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L303",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L196-L209",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L232-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295"
+        ]
+      },
+      {
+        "name": "radunits",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "Length unit for radius, diameter, and physical cable dimensions. Setting it can fill an unset GMRUnits.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RadUnits",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L304",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L174-L176",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L242-L251",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L934-L963"
+        ]
+      },
+      {
+        "name": "normamps",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Normal ampacity in amperes. If unset when EmergAmps is assigned, the engine derives NormAmps as EmergAmps divided by 1.5.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "NormAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L305",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L190-L194",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L252-L257",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "emergamps",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Emergency ampacity in amperes. If unset when NormAmps is assigned, the engine derives EmergAmps as 1.5 times NormAmps.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "EmergAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L306",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L190-L194",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L252-L257",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "diam",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Alternative input for conductor diameter in RadUnits. The engine stores half the assigned diameter in Radius.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Diam",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L307",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L205-L209",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L242-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295"
+        ]
+      },
+      {
+        "name": "seasons",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Number of seasonal ampacity ratings. Assigning this field resizes the ratings array.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Seasons",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L308",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L211-L214",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L258-L259",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "ratings",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Seasonal ampacity values in amperes. The constructor initializes a one-entry array from the unset normal ampacity sentinel. Supply actual ratings before using seasonal ratings.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Ratings",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L309",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L178-L181",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "capradius",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Effective conductor radius for capacitance in RadUnits. Assigning Radius or Diam initializes CapRadius to Radius when it was unset.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "CapRadius",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L310",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L202-L203",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L242-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L932-L936"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "DSS creation keyword and Python action that copies another WireData definition. There is no readable property value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Like",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L311",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py#L286-L295"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name"
+    ],
+    "altdss_mapping": "altdss.WireData",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "opendss_documentation": "EPRI online documentation; page version not stated"
+    },
+    "sources": [
+      {
+        "title": "EPRI WireData reference",
+        "url": "https://opendss.epri.com/WireData.html",
+        "accessed": "2026-11-21",
+        "scope": "Undated OpenDSS documentation for model concepts."
+      },
+      {
+        "title": "WireData Python wrapper",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/WireData.py",
+        "accessed": "2026-11-21",
+        "scope": "AltDSS-Python 0.2.4 creation keywords and property types."
+      },
+      {
+        "title": "WireData engine source",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/WireData.pas",
+        "accessed": "2026-11-21",
+        "scope": "DSS C-API 0.14.5 implementation."
+      },
+      {
+        "title": "Shared conductor engine source",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas",
+        "accessed": "2026-11-21",
+        "scope": "Inherited conductor fields, units, defaults, and property side effects."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true
+    },
+    "property_requirements": {
+      "required": [
+        "name"
+      ],
+      "conditional": [
+        {
+          "when": "using the object in a line constants calculation",
+          "requirement": "Provide resistance, geometric mean radius, physical radius, and their units. Resolve derived values before using the conductor.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L220-L251",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L918-L938"
+          ]
+        }
+      ]
+    },
+    "notes": [
+      "A null default means the catalog has no usable fixed default. The runtime matrix records engine sentinel readbacks and action-only fields separately.",
+      "Required properties describe the object identifier. Conditional entries describe useful model inputs or a declared engine specification set."
+    ]
+  },
+  {
+    "element_class": "CNData",
+    "epri_doc_url": "https://opendss.epri.com/CNData.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Object identifier. Pass it to altdss.CNData.new or use it after CNData. in a DSS New command.",
+        "evidence_label": "Official-versioned",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L852-L865"
+        ]
+      },
+      {
+        "name": "k",
+        "data_type": "integer",
+        "default_value": 2,
+        "description": "Number of concentric neutral strands. An explicit assignment must be at least 2.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "k",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L418",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L111-L124",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L141-L160",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L176-L185"
+        ]
+      },
+      {
+        "name": "diastrand",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Diameter of each neutral strand in RadUnits. Supply a positive diameter. When GMRStrand is unset, the engine derives it as 0.7788 times half this diameter.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "DiaStrand",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L419",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L116-L124",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L141-L160",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L176-L185",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L943-L950"
+        ]
+      },
+      {
+        "name": "gmrstrand",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Geometric mean radius of a neutral strand in GMRUnits. It can be derived when DiaStrand is set. Supply an explicit GMRStrand if diameter and GMR use different length units.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "GMRStrand",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L420",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L116-L124",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L141-L160",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L176-L185",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L943-L950"
+        ]
+      },
+      {
+        "name": "rstrand",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Resistance of a neutral strand in ohms per RUnits. Supply the strand resistance for the cable definition.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RStrand",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L421",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L116-L124",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L176-L185",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L943-L950"
+        ]
+      },
+      {
+        "name": "epsr",
+        "data_type": "real",
+        "default_value": 2.3,
+        "description": "Relative permittivity of cable insulation. The assignment reports an error below 1.0.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "EpsR",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L422",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L113-L124",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L130-L145",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L162-L172"
+        ]
+      },
+      {
+        "name": "inslayer",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Insulation thickness in RadUnits. Supply a positive value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "InsLayer",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L423",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L117-L118",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L137-L145",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L162-L172",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L939-L963"
+        ]
+      },
+      {
+        "name": "diains",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Diameter over insulation in RadUnits. Supply a positive value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "DiaIns",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L424",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L120-L121",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L137-L145",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L162-L172",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L939-L963"
+        ]
+      },
+      {
+        "name": "diacable",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Diameter over the cable in RadUnits. Supply a positive value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "DiaCable",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L425",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L123-L124",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L137-L145",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L162-L172",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L939-L963"
+        ]
+      },
+      {
+        "name": "rdc",
+        "data_type": "real",
+        "default_value": null,
+        "description": "DC resistance in ohms per RUnits. If RAC is unset, setting RDC initializes RAC to 1.02 times RDC in the pinned engine.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RDC",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L426",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L183-L188",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L220-L231",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L282-L300"
+        ]
+      },
+      {
+        "name": "rac",
+        "data_type": "real",
+        "default_value": null,
+        "description": "AC resistance at 60 Hz in ohms per RUnits. If RDC is unset, setting RAC initializes RDC to RAC divided by 1.02 in the pinned engine.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RAC",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L427",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L183-L188",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L220-L231",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L282-L300"
+        ]
+      },
+      {
+        "name": "runits",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "Length unit in the denominator of conductor resistance. For CNData this unit also applies to RStrand.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RUnits",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L428",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L165-L168",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L934-L950"
+        ]
+      },
+      {
+        "name": "gmrac",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Geometric mean radius at 60 Hz in GMRUnits. A radius or diameter update supplies 0.7788 times radius when GMRAC is unset. Setting GMRAC can derive an unset radius.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "GMRAC",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L429",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L196-L200",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L232-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295"
+        ]
+      },
+      {
+        "name": "gmrunits",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "Length unit for GMRAC and CNData.GMRStrand. Assign it explicitly because setting it can fill an unset RadUnits.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "GMRUnits",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L430",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L170-L172",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L239-L251",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L934-L950"
+        ]
+      },
+      {
+        "name": "radius",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Conductor outside radius in RadUnits. If unset, setting GMRAC derives Radius as GMRAC divided by 0.7788.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Radius",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L431",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L196-L209",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L232-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295"
+        ]
+      },
+      {
+        "name": "radunits",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "Length unit for radius, diameter, and physical cable dimensions. Setting it can fill an unset GMRUnits.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RadUnits",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L432",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L174-L176",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L242-L251",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L934-L963"
+        ]
+      },
+      {
+        "name": "normamps",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Normal ampacity in amperes. If unset when EmergAmps is assigned, the engine derives NormAmps as EmergAmps divided by 1.5.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "NormAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L433",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L190-L194",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L252-L257",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "emergamps",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Emergency ampacity in amperes. If unset when NormAmps is assigned, the engine derives EmergAmps as 1.5 times NormAmps.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "EmergAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L434",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L190-L194",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L252-L257",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "diam",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Alternative input for conductor diameter in RadUnits. The engine stores half the assigned diameter in Radius.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Diam",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L435",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L205-L209",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L242-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295"
+        ]
+      },
+      {
+        "name": "seasons",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Number of seasonal ampacity ratings. Assigning this field resizes the ratings array.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Seasons",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L436",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L211-L214",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L258-L259",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "ratings",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Seasonal ampacity values in amperes. The constructor initializes a one-entry array from the unset normal ampacity sentinel. Supply actual ratings before using seasonal ratings.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Ratings",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L437",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L178-L181",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "capradius",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Effective conductor radius for capacitance in RadUnits. Assigning Radius or Diam initializes CapRadius to Radius when it was unset.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "CapRadius",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L438",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L202-L203",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L242-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L932-L936"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "DSS creation keyword and Python action that copies another CNData definition. There is no readable property value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Like",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L439",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py#L406-L415"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name"
+    ],
+    "altdss_mapping": "altdss.CNData",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "opendss_documentation": "EPRI online documentation; page version not stated"
+    },
+    "sources": [
+      {
+        "title": "EPRI CNData reference",
+        "url": "https://opendss.epri.com/CNData.html",
+        "accessed": "2026-11-21",
+        "scope": "Undated OpenDSS documentation for model concepts."
+      },
+      {
+        "title": "CNData Python wrapper",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CNData.py",
+        "accessed": "2026-11-21",
+        "scope": "AltDSS-Python 0.2.4 creation keywords and property types."
+      },
+      {
+        "title": "CNData engine source",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas",
+        "accessed": "2026-11-21",
+        "scope": "DSS C-API 0.14.5 implementation."
+      },
+      {
+        "title": "Shared conductor engine source",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas",
+        "accessed": "2026-11-21",
+        "scope": "Inherited conductor fields, units, defaults, and property side effects."
+      },
+      {
+        "title": "Shared cable engine source",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas",
+        "accessed": "2026-11-21",
+        "scope": "Inherited cable insulation fields and defaults."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true
+    },
+    "property_requirements": {
+      "required": [
+        "name"
+      ],
+      "conditional": [
+        {
+          "when": "using the object as a concentric neutral phase cable",
+          "requirement": "Provide conductor data, insulation dimensions, strand count, strand diameter, strand GMR or a valid derivation, and strand resistance with explicit units.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L111-L124",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CNData.pas#L141-L160",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L927-L950"
+          ]
+        }
+      ]
+    },
+    "notes": [
+      "A null default means the catalog has no usable fixed default. The runtime matrix records engine sentinel readbacks and action-only fields separately.",
+      "Required properties describe the object identifier. Conditional entries describe useful model inputs or a declared engine specification set."
+    ]
+  },
+  {
+    "element_class": "TSData",
+    "epri_doc_url": null,
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Object identifier. Pass it to altdss.TSData.new or use it after TSData. in a DSS New command.",
+        "evidence_label": "Official-versioned",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L822-L835"
+        ]
+      },
+      {
+        "name": "diashield",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Diameter over the tape shield in RadUnits. Supply a positive value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "DiaShield",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L403",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L97-L105",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L122-L135",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L150-L158",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L953-L963"
+        ]
+      },
+      {
+        "name": "tapelayer",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Tape shield thickness in RadUnits. Supply a positive value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "TapeLayer",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L404",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L97-L105",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L122-L135",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L150-L158",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L953-L963"
+        ]
+      },
+      {
+        "name": "tapelap",
+        "data_type": "real",
+        "default_value": 20,
+        "description": "Tape overlap as a percentage. The constructor initializes 20 percent. The setter checks the range from 0 through 100.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "TapeLap",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L405",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L97-L105",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L122-L135",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L150-L158",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L953-L963"
+        ]
+      },
+      {
+        "name": "epsr",
+        "data_type": "real",
+        "default_value": 2.3,
+        "description": "Relative permittivity of cable insulation. The assignment reports an error below 1.0.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "EpsR",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L406",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L113-L124",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L130-L145",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L162-L172"
+        ]
+      },
+      {
+        "name": "inslayer",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Insulation thickness in RadUnits. Supply a positive value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "InsLayer",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L407",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L117-L118",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L137-L145",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L162-L172",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L939-L963"
+        ]
+      },
+      {
+        "name": "diains",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Diameter over insulation in RadUnits. Supply a positive value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "DiaIns",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L408",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L120-L121",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L137-L145",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L162-L172",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L939-L963"
+        ]
+      },
+      {
+        "name": "diacable",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Diameter over the cable in RadUnits. Supply a positive value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "DiaCable",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L409",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L123-L124",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L137-L145",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas#L162-L172",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L939-L963"
+        ]
+      },
+      {
+        "name": "rdc",
+        "data_type": "real",
+        "default_value": null,
+        "description": "DC resistance in ohms per RUnits. If RAC is unset, setting RDC initializes RAC to 1.02 times RDC in the pinned engine.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RDC",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L410",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L183-L188",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L220-L231",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L282-L300"
+        ]
+      },
+      {
+        "name": "rac",
+        "data_type": "real",
+        "default_value": null,
+        "description": "AC resistance at 60 Hz in ohms per RUnits. If RDC is unset, setting RAC initializes RDC to RAC divided by 1.02 in the pinned engine.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RAC",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L411",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L183-L188",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L220-L231",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L282-L300"
+        ]
+      },
+      {
+        "name": "runits",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "Length unit in the denominator of conductor resistance. For CNData this unit also applies to RStrand.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RUnits",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L412",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L165-L168",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L934-L950"
+        ]
+      },
+      {
+        "name": "gmrac",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Geometric mean radius at 60 Hz in GMRUnits. A radius or diameter update supplies 0.7788 times radius when GMRAC is unset. Setting GMRAC can derive an unset radius.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "GMRAC",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L413",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L196-L200",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L232-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295"
+        ]
+      },
+      {
+        "name": "gmrunits",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "Length unit for GMRAC and CNData.GMRStrand. Assign it explicitly because setting it can fill an unset RadUnits.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "GMRUnits",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L414",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L170-L172",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L239-L251",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L934-L950"
+        ]
+      },
+      {
+        "name": "radius",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Conductor outside radius in RadUnits. If unset, setting GMRAC derives Radius as GMRAC divided by 0.7788.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Radius",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L415",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L196-L209",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L232-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295"
+        ]
+      },
+      {
+        "name": "radunits",
+        "data_type": "string",
+        "default_value": "none",
+        "description": "Length unit for radius, diameter, and physical cable dimensions. Setting it can fill an unset GMRUnits.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "RadUnits",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L416",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L174-L176",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L242-L251",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L934-L963"
+        ]
+      },
+      {
+        "name": "normamps",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Normal ampacity in amperes. If unset when EmergAmps is assigned, the engine derives NormAmps as EmergAmps divided by 1.5.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "NormAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L417",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L190-L194",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L252-L257",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "emergamps",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Emergency ampacity in amperes. If unset when NormAmps is assigned, the engine derives EmergAmps as 1.5 times NormAmps.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "EmergAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L418",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L190-L194",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L252-L257",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "diam",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Alternative input for conductor diameter in RadUnits. The engine stores half the assigned diameter in Radius.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Diam",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L419",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L205-L209",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L242-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295"
+        ]
+      },
+      {
+        "name": "seasons",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Number of seasonal ampacity ratings. Assigning this field resizes the ratings array.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Seasons",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L420",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L211-L214",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L258-L259",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "ratings",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Seasonal ampacity values in amperes. The constructor initializes a one-entry array from the unset normal ampacity sentinel. Supply actual ratings before using seasonal ratings.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Ratings",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L421",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L178-L181",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L296-L300"
+        ]
+      },
+      {
+        "name": "capradius",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Effective conductor radius for capacitance in RadUnits. Assigning Radius or Diam initializes CapRadius to Radius when it was unset.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "CapRadius",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L422",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L202-L203",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L242-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas#L288-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L932-L936"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "DSS creation keyword and Python action that copies another TSData definition. There is no readable property value.",
+        "evidence_label": "Official-versioned",
+        "altdss_keyword": "Like",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L423",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py#L391-L400"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name"
+    ],
+    "altdss_mapping": "altdss.TSData",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "opendss_documentation": "No standalone EPRI page verified; use pinned sources"
+    },
+    "sources": [
+      {
+        "title": "TSData Python wrapper",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/TSData.py",
+        "accessed": "2026-11-21",
+        "scope": "AltDSS-Python 0.2.4 creation keywords and property types."
+      },
+      {
+        "title": "TSData engine source",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas",
+        "accessed": "2026-11-21",
+        "scope": "DSS C-API 0.14.5 implementation."
+      },
+      {
+        "title": "Shared conductor engine source",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/ConductorData.pas",
+        "accessed": "2026-11-21",
+        "scope": "Inherited conductor fields, units, defaults, and property side effects."
+      },
+      {
+        "title": "Shared cable engine source",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas",
+        "accessed": "2026-11-21",
+        "scope": "Inherited cable insulation fields and defaults."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true
+    },
+    "property_requirements": {
+      "required": [
+        "name"
+      ],
+      "conditional": [
+        {
+          "when": "using the object as a tape shield phase cable",
+          "requirement": "Provide conductor data, insulation dimensions, positive shield diameter and tape thickness, and a tape overlap in the allowed range.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L97-L105",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas#L122-L135",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LineGeometry.pas#L927-L963"
+          ]
+        }
+      ]
+    },
+    "notes": [
+      "A null default means the catalog has no usable fixed default. The runtime matrix records engine sentinel readbacks and action-only fields separately.",
+      "Required properties describe the object identifier. Conditional entries describe useful model inputs or a declared engine specification set.",
+      "No standalone EPRI TSData page was verified. The pinned engine and Python wrapper supply the class-specific evidence."
+    ]
+  }
+]
