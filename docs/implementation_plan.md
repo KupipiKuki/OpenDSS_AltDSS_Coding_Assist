@@ -1,0 +1,237 @@
+# Implementation Plan — OpenDSS and AltDSS Reference Library
+
+**Plan version:** 0.3 (Phase 2 closed; Phase 4 golden-fixture design added)
+**Plan date:** 2026-11-21
+**Current phase:** Phase 2 complete (merged); Phase 3 ready to start
+**Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
+**Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
+
+This plan supersedes the phase prose in [Phase 1 README](phase_1/README.md) and the package READMEs where they describe future work. The charter's seven-step build sequence and its stop gate remain in force. Where this plan and the manifest disagree, the manifest carries state and this plan carries intent; both are updated together.
+
+## 1. Where the project stands
+
+| Area | State at this review | Evidence |
+|---|---|---|
+| Phase 1 foundation | Complete, committed at `3263daa` | Charter, source inventory, external audit, schemas |
+| Line/LineCode catalog | Remediated, source-reviewed, independently QA'd, findings resolved | [Audit](audits/line_linecode_schema_audit.md) · [QA/QC report](audits/line_linecode_phase2_qaqc.md) |
+| Source and release index | 15 records, version-scoped, schema-valid | [line_linecode_sources.json](../opendss_altdss_library/references/line_linecode_sources.json) |
+| Examples | Two files and two records, both `Observed-working` with a recorded environment | [Examples](../opendss_altdss_library/references/examples.json) · [Workflow](workflows/line_linecode.md) |
+| Schema validation | `tools/validate_catalogs.py`: 9/9 manifest-and-catalog pairs pass Draft 2020-12 with format checking | [validate_catalogs.py](../opendss_altdss_library/tools/validate_catalogs.py) |
+| Runtime evidence | `tools/run_examples.py` executes both examples successfully on the pinned stack; independent QA/QC creation and readback checks passed separately | [run_examples.py](../opendss_altdss_library/tools/run_examples.py) · [QA/QC runtime section](audits/line_linecode_phase2_qaqc.md#runtime-result-pass) |
+| Remaining catalogs | Five empty: `opendss_objects`, `altdss_python_api`, `dss_capi`, `python_interface_comparison`, `troubleshooting` | [references/](../opendss_altdss_library/references/) |
+| Validation tooling | Committed: `tools/requirements-validation.txt`, `tools/validate_catalogs.py`, `tools/run_examples.py` | [tools/](../opendss_altdss_library/tools/) |
+| Phase 2 commit | Committed as the Phase 2 milestone and merged to `main` on owner approval (2026-11-21) | `git log` |
+
+## 2. Phase map
+
+| Project phase | Charter steps | Objective | State |
+|---|---|---|---|
+| Phase 1 Foundation | 1–2 Inventory, Normalize | Scope, sources, schemas, package structure, starter catalogs | Complete (`3263daa`) |
+| Phase 2 Pilot | 3–4 Extract, Curate | Remediate Line/LineCode; prove the record pattern end to end (catalog, source index, workflow, examples, audit) | Working tree complete; closure actions in Section 4 |
+| Phase 3 Scale-out | 3–4 | API and engine catalogs, then dependency-ordered element packages using the proven pattern | Planned (Section 5) |
+| Phase 4 Validation | 6 Validate | Fixture circuits (IEEE 13 and 34 per charter), solved-model checks, property-readback matrices, example upgrade to `Observed-working` | Planned (Section 6) |
+| Phase 5 Retrieve and Release | 5, 7 | Search and retrieval over the catalogs; skill packaging; release record | Planned (Section 7) |
+
+## 3. Architect verification performed for this plan
+
+These checks were run during this review to ground the plan. They do not replace the project's recorded evidence; Section 4.2 schedules the recorded run.
+
+- **All catalogs and the manifest validate** against their schemas (`jsonschema` Draft 2020-12, format checker): 9/9 pass, 0 errors.
+- **Both workflow examples execute on the pinned stack**: Windows 11 (10.0.26300) AMD64, Python 3.14.6, `altdss==0.2.4`, `dss-python==0.15.7`, `dss-python-backend==0.14.5`.
+  - `examples/line_linecode/altdss_lines.py` → `C1/C0 = 3.4 / 1.6`, main length `1.0`, lateral lengths `[0.25, 0.40]`.
+  - `examples/line_linecode/lines.dss` via `ctx.Commands(...)` → lengths `1.0 / 0.25 / 0.4`, `C1/C0 = 3.4 / 1.6`, `Units` readback `3` (`km`).
+- **QA/QC findings E-1 and E-2 are resolved in the catalog**, E-3 is deferred with a documented fallback. The `epsrmedium` row remains excluded from the target.
+
+## 4. Phase 2 closure (closed 2026-11-21)
+
+**Status:** closed. Owner approved the merge; the milestone commit carries the closure work.
+
+| # | Action | Owner | Result |
+|---|---|---|---|
+| 4.1 | Owner reads the [QA/QC report](audits/line_linecode_phase2_qaqc.md) and [audit disposition](audits/line_linecode_schema_audit.md); decides merge readiness | Owner | Approved 2026-11-21 |
+| 4.2 | Add `tools/requirements-validation.txt` and `tools/run_examples.py`; execute both workflow examples; record `Observed-working` plus the `environment` block in `examples.json` and update the workflow page | Coder | Done: both examples PASS (Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5) |
+| 4.3 | Add `tools/validate_catalogs.py`; replace the manual `Test-Json` step in `skill.md` | Coder | Done: 9/9 schema pairs pass |
+| 4.4 | Reconcile `manifest.json`: status, validation text, gaps, and next actions | Coder | Done: status `phase-2-complete`, schema-valid |
+| 4.5 | Commit Phase 2 as one milestone commit on `Branch_wp/phase2`; owner merges to `main` | Coder / Owner | Done: milestone commit, fast-forward merge to `main` |
+| 4.6 | Mark the Line/LineCode coder and QA/QC handoffs complete; retain them as the pattern reference | Coder | Done |
+
+**Exit criteria — all met**
+
+1. ✅ `tools/validate_catalogs.py` passes for the manifest and all catalogs in one command (9/9).
+2. ✅ Both examples carry `Observed-working` with a recorded environment block.
+3. ✅ Manifest status reflects closure; no catalog claims an unearned validation level.
+4. ✅ Owner approved the merge; the audit trail names the reviewed commit.
+5. ✅ No uncommitted Phase 2 work remains.
+
+The Line/LineCode package is now the reference implementation of the element package template in Section 5.4.
+
+## 5. Phase 3 — Scale-out extraction (planned)
+
+### 5.1 Sequencing decisions
+
+- **Infrastructure before breadth.** The empty `altdss_python_api` and `dss_capi` catalogs are the machine-readable ground truth every element package cites. Filling them once removes repeated per-element wrapper and engine research and reduces QA variance.
+- **Dependencies before convenience.** `Line.wires` already showed cross-element coupling: conductor and geometry objects gate a documented Line path. Element packages land in dependency order.
+- **One shared source index.** Replace the per-workflow source index with a single `references/sources.json` (ids, `version_or_ref`, access date, scope). Migrate the 15 Line/LineCode records into it and keep the old file as a pointer stub. Every catalog and example references ids, never duplicated URLs.
+- **One general element schema.** Add `schemas/catalogs/element_properties.schema.json` (generalized `element_class`, property-level `source_refs` required) for new elements. The Line/LineCode schema stays as published; it is not retrofitted.
+- **Scope cap.** Phase 3 covers the elements named in 5.3 only. Adding elements is an owner decision.
+
+### 5.2 Workstream 3A — API and engine catalogs
+
+| Catalog | Method | Acceptance |
+|---|---|---|
+| `altdss_python_api.json` | Extract from the pinned wrappers: classes and `module_path`, `new`/`batch_new` signatures, property names and type hints from the `TypedDicts` and property blocks, batch behavior, docstring-derived descriptions | Every record `Official-versioned` at 0.2.4; casing matches source exactly (`pctPerm` vs `PctPerm`, `rho`, `Conductors`); schema-valid |
+| `dss_capi.json` | `records/api.schema.json` records for engine identity, property enums, specification sets, scaling functions, constructor defaults, and documented DBS/extension behaviors, each tied to 0.14.5 file and line range | Every record version-scoped; no mutable `master` citations; schema-valid |
+| `references/sources.json` | Single index; migrate existing 15 records | Unique ids; every `version_or_ref` set for DSS-Extensions sources, `null` for undated EPRI pages with scope note |
+
+### 5.3 Workstream 3B — Element packages, in order
+
+| Order | Element package | Why now |
+|---|---|---|
+| 1 | `LineGeometry`, `LineSpacing`, `WireData` (with `CNData`, `TSData` aliases) | Unblocks the Line geometry and `wires`/`Conductors` workflows already documented |
+| 2 | `Circuit`, `Vsource` | Prerequisite for every executable example and fixture |
+| 3 | `Transformer` | Largest and most-used power-delivery element; high modeling risk |
+| 4 | `Load` | Load model and shape interaction |
+| 5 | `Capacitor` | Shunt compensation and control coupling |
+| 6 | `Generator` | Source element with control coupling |
+
+Each package follows the same six-artifact template and definition of done (5.4).
+
+### 5.4 Element package template (definition of done)
+
+1. **Catalog** — `references/<area>/<element>_properties.json` validated against `element_properties.schema.json`; engine specification sets distinguished from minimum constructor inputs; unsupported target properties marked `supported_in_target: false` and excluded from generation; per-row `source_refs`.
+2. **Source index** — `references/sources.json` entries for each cited page, tag, and file range.
+3. **Workflow** — `docs/workflows/<element>.md` with creation order, side effects, unit rules, and expected readback.
+4. **Examples** — runnable file under `opendss_altdss_library/examples/<area>/` and an `examples.json` record with expected result, source ids, and evidence label.
+5. **Audit** — `docs/audits/<element>_schema_audit.md` with findings and disposition.
+6. **Validation record** — property-readback matrix executed on the pinned stack (defaults and side effects), recorded with environment; examples `Observed-working` when run.
+7. **Independent QA/QC** — separate reviewer, same checklist shape as the Line/LineCode handoff; owner dispositions findings before merge.
+
+### 5.5 Workstream 3C — Roll-up and comparison
+
+- `opendss_objects.json` becomes the element index that links each element class to its package, EPRI page, and catalog.
+- `python_interface_comparison.json` records `altdss` / `dss` / `opendssdirect` equivalents per task, comparison-only, never as the primary target.
+- `troubleshooting.json` is seeded from Phase 3 QA findings and populated mainly in Phase 4.
+
+**Phase 3 exit criteria:** the two API catalogs and the single source index are complete and schema-valid; the six element packages pass independent QA/QC; every published record is version-scoped with a resolvable source; the catalog set validates in one command.
+
+## 6. Phase 4 — Validation with golden fixtures (planned)
+
+**Objective:** move from property-level evidence to solved-model evidence and satisfy the charter stop gate.
+
+**Owner decision (2026-11-21):** the Phase 4 stop gate requires recorded golden fixture results. Cross-interface consistency alone is not sufficient.
+
+### 6.1 Fixture set
+
+| Fixture | Source | Notes |
+|---|---|---|
+| IEEE 13-node | DSS-Extensions test repository at a pinned commit, or the EPRI OpenDSS installation test cases | Distribution feeder with regulator, transformer, and capacitor models; single source of record |
+| IEEE 34-node | Same source family as IEEE 13 | Longer feeder with laterals; exercises more element classes |
+
+- Copy fixture files unmodified into `opendss_altdss_library/examples/fixtures/ieee13/` and `.../ieee34/`; do not hand-edit circuits. Any required edit is an overlay file plus a rationale.
+- Each fixture directory carries `PROVENANCE.md`: upstream repository and commit or installer version, file list, license/attribution, retrieval date, and SHA-256 checksums of the circuit files.
+- Add `references/fixtures.json` plus `schemas/catalogs/fixtures.schema.json` with fixture id, file list and checksums, `source_ids`, golden file path, tolerances, engine versions, and `golden_revision`.
+
+### 6.2 Golden result format
+
+`examples/fixtures/<name>/golden.json`, generated by the harness — never hand-typed:
+
+```json
+{
+  "fixture": "ieee13",
+  "golden_revision": 1,
+  "generated": "2026-11-21",
+  "engine": {"altdss": "0.2.4", "dss_python": "0.15.7", "backend": "0.14.5", "python": "3.14.6"},
+  "solve": {"mode": "snapshot", "basefreq": 60.0, "converged": true, "iterations": 3},
+  "buses": [{"name": "650", "vmag_pu": 1.0, "vang_deg": 0.0}],
+  "elements": [{"class": "Line", "name": "650632", "p_kw": 0.0, "q_kvar": 0.0, "losses_kw": 0.0}],
+  "summary": {"total_losses_kw": 0.0, "total_load_kw": 0.0},
+  "tolerances": {"vmag_pu_abs": 1e-6, "vang_deg_abs": 1e-6, "power_kw_rel": 1e-6}
+}
+```
+
+- **Tolerances:** same engine on the same platform should reproduce to 1e-9; compare with 1e-6 (absolute for per-unit voltage and degrees, relative for power). Any wider tolerance requires a documented reason in the fixture record.
+- **Scope:** snapshot solve for both fixtures; add a daily or QSTS run for one fixture once snapshot is stable. Regulator, capacitor, and transformer controls must be exercised, not bypassed.
+- **Stability:** record solver options (mode, tolerance, max iterations) and `basefreq` in the golden file; a change to any of them is a new `golden_revision`.
+
+### 6.3 Harness and comparison tooling
+
+| Tool | Purpose | Contract |
+|---|---|---|
+| `tools/run_fixtures.py` | Compile, solve, export results in the golden format, and diff against `golden.json` | Exit 0 when every fixture matches within tolerance; `--update-golden` writes a new revision and requires owner approval recorded in `references/fixtures.json` |
+| `tools/compare_interfaces.py` | Run the same fixture through `altdss`, `dss`, and `opendssdirect` on the pinned versions | Report per-quantity deltas; exit 0 when deltas are within tolerance or explicitly dispositioned |
+| `tools/validate_catalogs.py` | Existing schema validation, extended to `fixtures.json` | Unchanged contract |
+
+Both new tools read the pinned environment and refuse to run when installed versions differ from the manifest targets unless `--allow-version-drift` is passed, and they record the environment with every result.
+
+### 6.4 Coverage matrix
+
+| Dimension | Phase 4 coverage |
+|---|---|
+| Element classes | Those delivered in Phase 3 plus regulator, transformer, capacitor, and load controls exercised by the fixtures |
+| Operation modes | Snapshot (both fixtures); daily or QSTS (one fixture) |
+| Behavior | Batch creation, edit contexts, property side effects (for example `Switch`), unit conversions, error paths |
+| Interfaces | `altdss` primary; `dss` and `opendssdirect` comparison only |
+| Evidence | Every example `Observed-working` with environment; `troubleshooting.json` populated from observed failures |
+
+### 6.5 Acceptance (stop gate)
+
+1. Both fixtures compile, converge, and match `golden.json` within tolerance from a clean environment built from `tools/requirements-validation.txt`.
+2. Cross-interface deltas are within tolerance or individually dispositioned with a recorded explanation.
+3. Golden metadata records upstream source, checksums, license, engine versions, solver options, date, and `golden_revision`.
+4. `troubleshooting.json` holds the observed failure modes with resolutions.
+5. Independent QA/QC signs off; the manifest's `validation.runtime` states scope, environment, and residual gaps.
+6. Golden regeneration happens only through `--update-golden` with an owner-approved reason and a new revision number.
+
+### 6.6 Risks specific to golden fixtures
+
+| Risk | Mitigation |
+|---|---|
+| Fixture licensing or attribution unclear | Record source, license, and checksums per fixture; prefer the DSS-Extensions test repository with its stated terms |
+| Floating-point or platform drift | Tolerance policy in 6.2; record platform in the golden metadata; CI-style rerun on a clean environment |
+| Golden rot after upstream changes | Fixtures are copied and checksummed; upstream changes do not silently propagate |
+| Solver-option drift | Options are part of the golden metadata and a change is a new revision |
+| Fixtures bypass controls | Coverage matrix requires control elements to operate; compare against documented feeder behavior |
+
+## 7. Phase 5 — Retrieval and release (planned)
+
+- **Retrieve:** a search index over catalogs supporting exact-symbol and concept queries with filters for version and evidence label, returning the source URL, tag, and access date.
+- **Release:** package the skill with the manifest, validation levels, known gaps, and supported tasks per the charter's release step; publish a changelog and a version tag decision.
+
+## 8. Governance
+
+- **Roles:** Codex is the primary coder; Mistral is the independent QA/QC reviewer; the project owner decides which findings block merge and approves scope changes.
+- **Branches:** phase branches (`Branch_wp/phaseN`) with one milestone commit per phase; QA reports name the reviewed branch and commit or working-tree state.
+- **Evidence policy:**
+  - `Observed-working` requires a committed example file, a harness run, an environment block, and a date.
+  - `Example-only` means inspected but not executed by the project harness.
+  - `Official-versioned` requires a tag or page plus access date; undated EPRI pages are cited for what they state, with pinned sources for version-sensitive behavior.
+  - Unresolved items stay `Unverified` or open questions; no inferred defaults, names, or equivalence.
+- **Change control:** plan changes are recorded in Section 10 and mirrored in the manifest.
+
+## 9. Risks and mitigations
+
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Phase 2 work stays uncommitted | Loss, review ambiguity | Close 4.1–4.5 promptly; one milestone commit |
+| Manual validation drifts | Unreproducible evidence | Committed harness (4.2, 4.3); validation required before merge |
+| EPRI pages undated and mixed-version | Over-claimed behavior | Pin engine claims to 0.14.5; page-qualified EPRI claims; source index scope notes |
+| Wrapper keyword casing differences (`pctPerm` / `PctPerm`, `rho`) | Generated code fails | Generate from pinned `TypedDicts`; test every keyword in the readback matrix |
+| Namespace conflation (`altdss` / `dss` / `opendssdirect`) | Wrong API guidance | Separate catalogs; comparison catalog only; skill instructions |
+| Element scope creep | Quality dilution | Phase 3 cap in 5.3; owner approves additions |
+| QA capacity becomes the bottleneck | Schedule slip | Template plus generated API catalogs reduce per-element review surface |
+| Schema/catalog drift | Invalid records | Single validation command; schema changes reviewed with the catalog |
+
+## 10. Plan change log
+
+| Version | Date | Change |
+|---|---|---|
+| 0.1 | 2026-11 (implicit) | Phase 1 plan lived in the charter and Phase 1 README; Phase 2 described as catalog remediation plus example indexing |
+| 0.2 | 2026-11-21 | Architect review. Added Phase 2 closure checklist and exit criteria; adopted the six-artifact element package template; reprioritized Phase 3 to API/engine catalogs first, then dependency-ordered element packages with a scope cap; consolidated the source index and generalized the element schema; added committed validation tooling and the `Observed-working` evidence rule; defined Phase 4 fixtures and Phase 5 retrieval and release; recorded the owner decisions below |
+| 0.3 | 2026-11-21 | Phase 2 closed: validation harness committed, both examples recorded `Observed-working`, manifest reconciled, milestone merged. Owner decided the Phase 4 stop gate requires golden fixture results; added the golden fixture design (6.1–6.6) with source/provenance rules, golden format, tolerances, harness contracts, coverage matrix, acceptance, and risks |
+
+## 11. Owner decisions
+
+1. **Merge approval — resolved 2026-11-21.** Owner approved; Phase 2 milestone committed and merged to `main`.
+2. **Phase 3 scope confirmation — open.** Confirm the six element packages in 5.3 and their order; additional elements are a new owner decision.
+3. **Phase 4 stop gate — resolved 2026-11-21.** Recorded golden fixture results are required; cross-interface consistency alone is not sufficient. Design in Section 6.
+

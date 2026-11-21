@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "example_id": "line-linecode-altdss",
+    "task_description": "Create shared sequence impedance, one Line, and two batched laterals. Read back lengths and capacitance.",
+    "language": "python_altdss",
+    "file": "examples/line_linecode/altdss_lines.py",
+    "object_classes": ["Circuit", "LineCode", "Line"],
+    "dependencies": ["altdss==0.2.4", "dss-python==0.15.7", "dss-python-backend==0.14.5"],
+    "source_ids": ["altdss-context", "altdss-linecode-new", "altdss-line-new", "altdss-line-batch", "altdss-line-batch-types", "capi-line-engine", "capi-linecode-engine", "altdss-release-history", "dss-python-release-0157", "backend-distribution"],
+    "expected_result": "The LineCode reads back C1=3.4 and C0=1.6 nF/km. The main line is 1.0 km and the two laterals are 0.25 and 0.40 km in batch order.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "line-linecode-dss-text",
+    "task_description": "Define the same circuit, shared LineCode, and three lines as DSS text in dependency order.",
+    "language": "dss",
+    "file": "examples/line_linecode/lines.dss",
+    "object_classes": ["Circuit", "LineCode", "Line"],
+    "dependencies": ["DSS C-API 0.14.5", "For the Python runner: altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"],
+    "source_ids": ["epri-dss-scripting", "epri-line", "epri-linecode", "altdss-context", "altdss-object-lookup", "capi-line-engine", "capi-linecode-engine", "capi-release-0145"],
+    "expected_result": "The script defines one LineCode and three lines. Readback gives lengths of 1.0, 0.25, and 0.40 km.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
+  }
+]

@@ -14,13 +14,11 @@ Maintain the Phase 1 starter catalog at `opendss_altdss_library/references/lines
 - Mark properties excluded from the target with `supported_in_target: false`; do not emit target API calls for them.
 - Preserve historical artifacts under archive names; do not use them as active data.
 
-## Current known gaps
+## QA/QC outcome and follow-up
 
-- Correct the starter's collection mappings to `altdss.Line` and `altdss.LineCode` using the pinned 0.2.4 source. [Catalog audit](../audits/line_linecode_schema_audit.md)
-- Verify property names and support against pinned sources, especially `epsrmedium`, `repair`, and `linetype`.
-- Review defaults and units, especially EPRI C1/C0 text versus Python/engine representation.
-- Validate the catalog against `schemas/catalogs/line_linecode_properties.schema.json`.
-- Runtime behavior remains untested.
+- The first remediation pass corrected the collection names and selected defaults, added exact Python creation keywords, and documented the complete engine specification sets. [Catalog audit](../audits/line_linecode_schema_audit.md)
+- Independent QA/QC passed with findings. The catalog now reflects both requested description corrections. Record remaining optional property citations as related records are curated. [Finding disposition](../audits/line_linecode_schema_audit.md#independent-qaqc-disposition)
+- QA/QC observed an initial `LineCode.Repair` readback of `0.0`. Broader fixture and edit coverage remain for later validation. [Runtime evidence](../audits/line_linecode_phase2_qaqc.md#runtime-result-pass)
 
 ## Deliverable
 

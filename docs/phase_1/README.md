@@ -13,3 +13,6 @@ Phase 1 records project boundaries, source/version state, reusable schemas, and 
 ## Package result
 
 The library package includes reusable schemas and the Phase 1 Line/LineCode starter catalog. Phase 2 covers catalog remediation and schema revalidation. The charter assigns engine execution to the later validation phase. [Library package](../../opendss_altdss_library/README.md) · [Line/LineCode QA/QC handoff](../handoffs/Line_LineCode_QAQC_handoff.md)
+
+**Forward pointer:** current sequencing, Phase 2 closure actions, and Phase 3–5 scope are controlled by the [implementation plan](../implementation_plan.md).
+

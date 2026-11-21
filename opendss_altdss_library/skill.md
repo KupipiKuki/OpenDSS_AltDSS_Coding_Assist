@@ -17,8 +17,21 @@ Keep `altdss`, `dss`, `opendssdirect`, and low-level C-API namespaces distinct. 
 
 ## Phase placement
 
-Phase 1 establishes schemas, source inventory, package structure, handoffs, audits, and starter catalogs. Use the Line/LineCode starter catalog as a source index and confirm any version-sensitive claim against pinned primary evidence before generating code. Phase 2 covers source remediation. Run engine examples during the project's runtime validation phase.
+Phase 1 established schemas, source inventory, package structure, handoffs, audits, and starter catalogs. Phase 2 delivered the Line/LineCode pilot and is complete: catalog, source index, workflow, examples (`Observed-working`), validation harness, and independent QA/QC. Phase 3 scales the same pattern to the API and engine catalogs and then to dependency-ordered element packages; Phase 4 runs fixture-based validation against recorded golden results; Phase 5 adds retrieval and release packaging. The [implementation plan](../docs/implementation_plan.md) carries scope, order, and exit criteria. Use the Line/LineCode package as the worked example, and confirm any version-sensitive claim against pinned primary evidence before generating code.
+
+For Line and LineCode creation, start with the workflow guide. Use the example catalog to find the script and its execution status, then resolve its `source_ids` in the source index. [Workflow guide](../docs/workflows/line_linecode.md) · [Example catalog](references/examples.json) · [Source index](references/line_linecode_sources.json)
 
 ## Validation language
 
-Distinguish schema review, source review, example inspection, and runtime execution. Do not claim compatibility until representative tasks run against the manifest target and record the environment and result.
+Distinguish schema review, source review, example inspection, and runtime execution. Do not claim compatibility until representative tasks run against the manifest target and record the environment and result. `Observed-working` requires a committed example file, a harness run with the recorded environment, and a date; use `Example-only` until that exists.
+
+Run the committed harness before any catalog or example change:
+
+```powershell
+python opendss_altdss_library/tools/validate_catalogs.py
+python opendss_altdss_library/tools/run_examples.py
+```
+
+Every catalog declared in `manifest.json` must have a schema pairing in `validate_catalogs.py`; an unpinned catalog fails the run on purpose. When the Phase 4 harness lands, fixture results are compared against `golden.json` within recorded tolerances, and golden files change only through the approved update path.
+
+

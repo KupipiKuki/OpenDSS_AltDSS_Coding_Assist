@@ -1,0 +1,7 @@
+# Validation environment for the OpenDSS/AltDSS library package.
+# Install: python -m pip install -r tools/requirements-validation.txt
+# These pins mirror manifest.json support_targets. Update both together.
+altdss==0.2.4
+dss-python==0.15.7
+dss-python-backend==0.14.5
+jsonschema>=4.20,<5

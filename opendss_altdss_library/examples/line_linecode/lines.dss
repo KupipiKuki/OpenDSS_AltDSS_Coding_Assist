@@ -1,0 +1,8 @@
+! Run in a fresh DSS context. Values are illustrative.
+New Circuit.workflow_lines Bus1=source BasekV=12.47 Phases=3
+
+New LineCode.feeder_code NPhases=3 Units=km R1=0.20 X1=0.40 R0=0.50 X0=1.20 C1=3.4 C0=1.6 BaseFreq=60
+
+New Line.main Bus1=source.1.2.3 Bus2=junction.1.2.3 LineCode=feeder_code Length=1.0 Units=km
+New Line.lateral_a Bus1=junction.1.2.3 Bus2=end_a.1.2.3 LineCode=feeder_code Length=0.25 Units=km
+New Line.lateral_b Bus1=junction.1.2.3 Bus2=end_b.1.2.3 LineCode=feeder_code Length=0.40 Units=km
