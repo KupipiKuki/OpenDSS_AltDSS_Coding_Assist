@@ -57,7 +57,7 @@
     "phase_5": "planned"
   },
   "next_actions": [
-    "Start Phase 3B with the LineGeometry, LineSpacing, and WireData/CNData/TSData package.",
+    "Start Phase 3B package 1 (LineGeometry, LineSpacing, WireData/CNData/TSData) using docs/handoffs/Phase_3B_LineGeometry_WireData_Coder_handoff.md.",
     "Extend dss_capi.json with each element package's enums, specification sets, scales, and constructor defaults.",
     "Draft the Phase 4 golden fixture layout and harness before the first fixture is added."
   ]

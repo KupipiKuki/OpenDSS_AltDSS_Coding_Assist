@@ -1,6 +1,6 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version:** 0.5 (Phase 3A QA/QC corrections applied)
+**Plan version:** 0.6 (roles recorded; Phase 3B package 1 prepared)
 **Plan date:** 2026-11-21
 **Current phase:** Phase 3A reviewed and corrected. Phase 3B is next.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
@@ -97,7 +97,7 @@ The Line/LineCode package is now the reference implementation of the element pac
 | 5 | `Capacitor` | Shunt compensation and control coupling |
 | 6 | `Generator` | Source element with control coupling |
 
-Each package follows the same six-artifact template and definition of done (5.4).
+Each package follows the same six-artifact template and definition of done (5.4). Package 1 is prepared for the coder: [Phase 3B coder handoff](handoffs/Phase_3B_LineGeometry_WireData_Coder_handoff.md).
 
 ### 5.4 Element package template (definition of done)
 
@@ -202,7 +202,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 
 ## 8. Governance
 
-- **Roles.** Codex is the primary coder; Mistral is the independent QA/QC reviewer; the project owner decides which findings block merge and approves scope changes.
+- **Roles.** Architect and auditor: DeepSeek. Coder: GPT-6.2 Sol. Independent QA/QC: Mistral 4. The project owner decides which findings block merge and approves scope changes. The assignment is recorded in Section 11.
 - **Branches:** phase branches (`wp/phaseN`) created from `main`, with one milestone commit per phase; QA reports name the reviewed branch and commit or working-tree state.
 - **Evidence policy:**
   - `Observed-working` requires a committed example file, a harness run, an environment block, and a date.
@@ -233,10 +233,12 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.3 | 2026-11-21 | Phase 2 closed: validation harness committed, both examples recorded `Observed-working`, manifest reconciled, milestone merged. Owner decided the Phase 4 stop gate requires golden fixture results; added the golden fixture design (6.1–6.6) with source/provenance rules, golden format, tolerances, harness contracts, coverage matrix, acceptance, and risks |
 | 0.4 | 2026-11-21 | Phase 3A delivered: generated the AltDSS-Python API catalog from the pinned wheel, added 26 DSS C-API engine records, consolidated the source index into `references/sources.json` (18 records), and extended the validation harness for the record schemas. Owner confirmed the Phase 3 element scope and order |
 | 0.5 | 2026-11-21 | Recorded the Phase 3A QA/QC disposition, clarified the source-index migration, and corrected the Line/LineCode citation spans after the follow-up review. |
+| 0.6 | 2026-11-21 | Recorded the owner role assignment (DeepSeek architect/auditor, GPT-6.2 Sol coder, Mistral 4 QA/QC) as a Section 11 decision, and prepared the Phase 3B package-1 coder handoff |
 
 ## 11. Owner decisions
 
 1. **Merge approval — resolved 2026-11-21.** Owner approved; Phase 2 milestone committed and merged to `main`.
 2. **Phase 3 scope confirmation — resolved 2026-11-21.** Owner confirmed the six element packages in 5.3 and their order; additional elements are a new owner decision.
 3. **Phase 4 stop gate — resolved 2026-11-21.** Recorded golden fixture results are required; cross-interface consistency alone is not sufficient. Design in Section 6.
+4. **Role assignment — resolved 2026-11-21.** Architect/auditor: DeepSeek. Coder: GPT-6.2 Sol. Independent QA/QC: Mistral 4. The owner decides merge and scope. This supersedes the coder name used in earlier phase documents; Phase 1 records DeepSeek only as the owner-selected external auditor, so this decision is the record of the later architect/auditor role.
 
