@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version:** 0.7 (Phase 3B package 1 ready for QA/QC)
+**Plan version:** 0.8 (Phase 3B package 1 reviewed; owner disposition pending)
 **Plan date:** 2026-11-21
-**Current phase:** Phase 3B package 1 passed coder validation and awaits independent QA/QC.
+**Current phase:** Phase 3B package 1 passed coder validation, independent QA/QC, and architect/auditor review. Owner disposition precedes package 2.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -97,7 +97,7 @@ The Line/LineCode package is now the reference implementation of the element pac
 | 5 | `Capacitor` | Shunt compensation and control coupling |
 | 6 | `Generator` | Source element with control coupling |
 
-Each package follows the template and definition of done in 5.4. Package 1 has its catalog, workflow, two executed examples, and five-class readback matrix. Independent QA/QC and owner disposition precede package 2. [Coder handoff](handoffs/Phase_3B_LineGeometry_WireData_Coder_handoff.md) · [Build audit](audits/phase3b_line_geometry_wires_audit.md) · [QA/QC handoff](handoffs/Phase_3B_LineGeometry_WireData_QAQC_handoff.md)
+Each package follows the template and definition of done in 5.4. Package 1 has its catalog, workflow, two executed examples, and five-class readback matrix. Independent QA/QC found no blocking issues and the architect/auditor review applied one optional citation correction; owner disposition precedes package 2. [Coder handoff](handoffs/Phase_3B_LineGeometry_WireData_Coder_handoff.md) · [Build audit](audits/phase3b_line_geometry_wires_audit.md) · [QA/QC report](audits/phase3b_line_geometry_wires_qaqc.md) · [Architect/auditor review](audits/phase3b_line_geometry_wires_architect_audit.md)
 
 ### 5.4 Element package template (definition of done)
 
@@ -235,6 +235,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.5 | 2026-11-21 | Recorded the Phase 3A QA/QC disposition, clarified the source-index migration, and corrected the Line/LineCode citation spans after the follow-up review. |
 | 0.6 | 2026-11-21 | Recorded the owner role assignment (DeepSeek architect/auditor, GPT-6.2 Sol coder, Mistral 4 QA/QC) as a Section 11 decision, and prepared the Phase 3B package-1 coder handoff |
 | 0.7 | 2026-11-21 | Added the generalized element schema and the first Phase 3B element package. Recorded schema and runtime results and prepared independent QA/QC. |
+| 0.8 | 2026-11-21 | Recorded the Phase 3B package-1 dispositions: independent QA/QC passed with no blocking findings, the architect/auditor review re-verified coverage, citations, and runtime on a clean environment, and optional correction A-1 was applied to two enum citation spans. |
 
 ## 11. Owner decisions
 

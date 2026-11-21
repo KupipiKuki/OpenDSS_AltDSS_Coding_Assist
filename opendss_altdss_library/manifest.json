@@ -35,7 +35,7 @@
     "catalogs": "schemas/catalogs/"
   },
   "validation": {
-    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC with findings. The required corrections are applied. Phase 3B package 1 passed coder source review. Independent QA/QC is pending.",
+    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC with findings. The required corrections are applied. Phase 3B package 1 passed coder source review, independent QA/QC with no blocking findings, and architect/auditor review. One optional citation-precision correction was applied (A-1). Owner disposition is pending.",
     "schema_validation": "tools/validate_catalogs.py passed 10/10 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0) on 2026-11-21.",
     "runtime": "All four catalogued examples ran successfully on 2026-11-21 on Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, and backend 0.14.5. Phase 3B package 1 has a recorded five-class readback matrix and focused setter and cable checks."
   },
@@ -58,7 +58,7 @@
     "phase_5": "planned"
   },
   "next_actions": [
-    "Independently review Phase 3B package 1 using docs/handoffs/Phase_3B_LineGeometry_WireData_QAQC_handoff.md. Owner disposition precedes package 2.",
+    "Record the owner's disposition for Phase 3B package 1; independent QA/QC and the architect/auditor review passed, with optional correction A-1 applied. Package 2 (Circuit and Vsource) follows on the same template.",
     "Extend dss_capi.json with each element package's enums, specification sets, scales, and constructor defaults.",
     "Draft the Phase 4 golden fixture layout and harness before the first fixture is added."
   ]

@@ -1027,7 +1027,7 @@
     "source": {
       "title": "DSS C-API CableData engine source",
       "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/CableData.pas",
-      "section_or_record": "TCableDataProp enum, L18-L25; property definitions, L105-L128; validation and constructor, L130-L172",
+      "section_or_record": "TCableDataProp enum, L18-L24; property definitions, L105-L128; validation and constructor, L130-L172",
       "accessed_or_captured": "2026-11-21"
     },
     "kind": "api",
@@ -1079,7 +1079,7 @@
     "source": {
       "title": "DSS C-API TSData engine source",
       "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/TSData.pas",
-      "section_or_record": "TTSDataProp enum, L19-L25; properties, L89-L109; setter and constructor, L122-L158",
+      "section_or_record": "TTSDataProp enum, L19-L24; properties, L89-L109; setter and constructor, L122-L158",
       "accessed_or_captured": "2026-11-21"
     },
     "kind": "api",

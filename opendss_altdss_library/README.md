@@ -1,6 +1,6 @@
 # OpenDSS AltDSS Library Package
 
-**Status:** Phase 3B package 1 passed coder validation and is ready for independent QA/QC. [Package audit](../docs/audits/phase3b_line_geometry_wires_audit.md) · [Implementation plan](../docs/implementation_plan.md)
+**Status:** Phase 3B package 1 passed independent QA/QC with no blocking findings and architect/auditor review with one optional citation correction applied. Owner disposition precedes package 2. [Package audit](../docs/audits/phase3b_line_geometry_wires_audit.md) · [QA/QC report](../docs/audits/phase3b_line_geometry_wires_qaqc.md) · [Architect/auditor review](../docs/audits/phase3b_line_geometry_wires_architect_audit.md) · [Implementation plan](../docs/implementation_plan.md)
 **Target:** AltDSS-Python 0.2.4, DSS-Python 0.15.7, backend 0.14.5
 
 ## Contents
