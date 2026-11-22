@@ -1,6 +1,6 @@
 # OpenDSS AltDSS Library Package
 
-**Status** The owner accepted Phase 3B packages 1 through 5. Package 6 (Generator) completes the element implementation sequence; it passed independent QA/QC and the architect review (PASS WITH FINDINGS, nothing blocking) and awaits the owner's disposition before the Phase 3 exit gate. [Generator audit](../docs/audits/phase3b_generator_audit.md) · [Generator QA/QC report](../docs/audits/phase3b_generator_qaqc.md) · [Generator architect review](../docs/audits/phase3b_generator_architect_audit.md) · [Implementation plan](../docs/implementation_plan.md)
+**Status** The owner accepted Phase 3B packages 1 through 6, closing the Phase 3 exit gate. Package 6 (Generator) was accepted after independent QA/QC and the architect review, with its two non-blocking findings applied. Phase 4 golden fixtures are next; the Capacitor schema declarations (O-1) remain as the outstanding catalog cleanup. [Generator audit](../docs/audits/phase3b_generator_audit.md) · [Generator QA/QC report](../docs/audits/phase3b_generator_qaqc.md) · [Generator architect review](../docs/audits/phase3b_generator_architect_audit.md) · [Implementation plan](../docs/implementation_plan.md)
 **Target:** AltDSS-Python 0.2.4, DSS-Python 0.15.7, backend 0.14.5
 
 ## Contents
