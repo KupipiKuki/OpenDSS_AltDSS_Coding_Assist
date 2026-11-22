@@ -1287,5 +1287,167 @@
       "States"
     ],
     "scope": "Scope note for the controller's AddStep and SubtractStep calls on the controlled bank."
+  },
+  {
+    "id": "epri-generator-element",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS Generator element",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Generator.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "Generator",
+      "power models",
+      "registers"
+    ],
+    "scope": "Generator model and energy register vocabulary. Use pinned source for version-specific implementation behavior."
+  },
+  {
+    "id": "epri-generator-properties",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS Generator properties",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Properties9.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "Generator",
+      "rating",
+      "properties"
+    ],
+    "scope": "Generator vocabulary page. Pinned runtime values take precedence where defaults differ."
+  },
+  {
+    "id": "altdss-generator-wrapper",
+    "kind": "source",
+    "title": "AltDSS-Python Generator wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L896-L943",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Generator",
+      "creation keywords"
+    ],
+    "scope": "The GeneratorProperties TypedDict advertises 47 keywords. The wrapper has no MVA property."
+  },
+  {
+    "id": "altdss-generator-enums",
+    "kind": "source",
+    "title": "AltDSS-Python Generator enums",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L286-L305",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "GeneratorModel",
+      "GeneratorDispatchMode",
+      "GeneratorStatus"
+    ],
+    "scope": "Canonical integer values and exact Python enum spellings."
+  },
+  {
+    "id": "altdss-generator-registers",
+    "kind": "source",
+    "title": "AltDSS-Python element register accessors",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CircuitElement.py#L525-L549",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Generator",
+      "registers"
+    ],
+    "scope": "Methods for register names, values and their mapping."
+  },
+  {
+    "id": "altdss-generator-dispatcher-scope",
+    "kind": "source",
+    "title": "AltDSS-Python GenDispatcher wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/GenDispatcher.py",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "GenDispatcher",
+      "scope"
+    ],
+    "scope": "Separate controller wrapper. Its properties are deferred."
+  },
+  {
+    "id": "capi-generator-engine",
+    "kind": "source",
+    "title": "DSS C-API Generator engine",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Generator",
+      "power models",
+      "machine rating"
+    ],
+    "scope": "Pinned property table, constructor, power scheduling, terminal injection, and register calculations."
+  },
+  {
+    "id": "capi-gendispatcher-scope",
+    "kind": "source",
+    "title": "DSS C-API GenDispatcher setpoint changes",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/GenDispatcher.pas#L302-L345",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "GenDispatcher",
+      "Generator",
+      "scope"
+    ],
+    "scope": "Separate controller adjusts scheduled kW and kvar. Runtime controller operation is deferred."
+  },
+  {
+    "id": "capi-generator-user-model-scope",
+    "kind": "source",
+    "title": "DSS C-API Generator user-model loader",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/GenUserModel.pas#L140-L174",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Generator",
+      "UserModel",
+      "ShaftModel"
+    ],
+    "scope": "Library selection and missing-library guard only. Executing compiled models is deferred."
+  },
+  {
+    "id": "capi-generator-dynamic-exp-scope",
+    "kind": "source",
+    "title": "DSS C-API DynamicExp declarations",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DynamicExp.pas#L57-L79",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Generator",
+      "DynamicExp",
+      "scope"
+    ],
+    "scope": "Dynamic equation reference class. Dynamics and DynamicExp property coverage are deferred."
+  },
+  {
+    "id": "capi-generator-default-spectrum",
+    "kind": "source",
+    "title": "DSS C-API default Generator spectrum",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/Spectrum.pas#L126-L132",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Generator",
+      "Spectrum",
+      "defaultgen"
+    ],
+    "scope": "The spectrum registry binds defaultgen, which the Generator constructor selects."
   }
 ]

@@ -1,0 +1,658 @@
+{
+  "environment": {
+    "python_version": "3.14.6",
+    "altdss_version": "0.2.4",
+    "dss_python_version": "0.15.7",
+    "backend_version": "0.14.5",
+    "platform": "Windows 11 AMD64",
+    "date": "2026-11-21"
+  },
+  "defaults": {
+    "properties": {
+      "name": {
+        "status": "read back",
+        "value": "readback_default"
+      },
+      "phases": {
+        "status": "read back",
+        "value": 3
+      },
+      "bus1": {
+        "status": "read back",
+        "value": "readback_default_1"
+      },
+      "kv": {
+        "status": "read back",
+        "value": 12.47
+      },
+      "kw": {
+        "status": "read back",
+        "value": 1000.0
+      },
+      "pf": {
+        "status": "read back",
+        "value": 0.88
+      },
+      "kvar": {
+        "status": "read back",
+        "value": 60.0
+      },
+      "model": {
+        "status": "read back",
+        "value": 1,
+        "enum_type": "GeneratorModel",
+        "enum_member": "ConstantPQ"
+      },
+      "vminpu": {
+        "status": "read back",
+        "value": 0.9
+      },
+      "vmaxpu": {
+        "status": "read back",
+        "value": 1.1
+      },
+      "yearly": {
+        "status": "read back",
+        "value": null,
+        "object_repr": "None"
+      },
+      "daily": {
+        "status": "read back",
+        "value": null,
+        "object_repr": "None"
+      },
+      "duty": {
+        "status": "read back",
+        "value": null,
+        "object_repr": "None"
+      },
+      "dispmode": {
+        "status": "read back",
+        "value": 0,
+        "enum_type": "GeneratorDispatchMode",
+        "enum_member": "Default"
+      },
+      "dispvalue": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "conn": {
+        "status": "read back",
+        "value": 0,
+        "enum_type": "Connection",
+        "enum_member": "wye"
+      },
+      "status": {
+        "status": "read back",
+        "value": 0,
+        "enum_type": "GeneratorStatus",
+        "enum_member": "Variable"
+      },
+      "class": {
+        "status": "read back",
+        "value": 1
+      },
+      "vpu": {
+        "status": "read back",
+        "value": 1.0
+      },
+      "maxkvar": {
+        "status": "read back",
+        "value": 120.0
+      },
+      "minkvar": {
+        "status": "read back",
+        "value": -120.0
+      },
+      "pvfactor": {
+        "status": "read back",
+        "value": 0.1
+      },
+      "forceon": {
+        "status": "read back",
+        "value": false
+      },
+      "kva": {
+        "status": "read back",
+        "value": 1200.0
+      },
+      "mva": {
+        "status": "DSS text readback",
+        "value": 1.2
+      },
+      "xd": {
+        "status": "read back",
+        "value": 1.0
+      },
+      "xdp": {
+        "status": "read back",
+        "value": 0.28
+      },
+      "xdpp": {
+        "status": "read back",
+        "value": 0.2
+      },
+      "h": {
+        "status": "read back",
+        "value": 1.0
+      },
+      "d": {
+        "status": "read back",
+        "value": 1.0
+      },
+      "usermodel": {
+        "status": "read back",
+        "value": ""
+      },
+      "userdata": {
+        "status": "read back",
+        "value": ""
+      },
+      "shaftmodel": {
+        "status": "read back",
+        "value": ""
+      },
+      "shaftdata": {
+        "status": "read back",
+        "value": ""
+      },
+      "dutystart": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "debugtrace": {
+        "status": "read back",
+        "value": false
+      },
+      "balanced": {
+        "status": "read back",
+        "value": false
+      },
+      "xrdp": {
+        "status": "read back",
+        "value": 20.0
+      },
+      "usefuel": {
+        "status": "read back",
+        "value": false
+      },
+      "fuelkwh": {
+        "status": "read back",
+        "value": 0.0
+      },
+      "pctfuel": {
+        "status": "read back",
+        "value": 100.0
+      },
+      "pctreserve": {
+        "status": "read back",
+        "value": 20.0
+      },
+      "refuel": {
+        "status": "action",
+        "note": "Method without a property getter."
+      },
+      "dynamiceq": {
+        "status": "read back",
+        "value": null,
+        "object_repr": "None"
+      },
+      "dynout": {
+        "status": "read back",
+        "value": []
+      },
+      "spectrum": {
+        "status": "read back",
+        "value": "defaultgen",
+        "object_repr": "<Spectrum.defaultgen>"
+      },
+      "basefreq": {
+        "status": "read back",
+        "value": 60.0
+      },
+      "enabled": {
+        "status": "read back",
+        "value": true
+      },
+      "like": {
+        "status": "action",
+        "note": "Method without a property getter."
+      }
+    },
+    "topology": {
+      "phases": 3,
+      "connection": "wye",
+      "bus": "readback_default_1",
+      "terminals": 1,
+      "conductors": 4
+    },
+    "initial_schedule": {
+      "kW": 1000.0,
+      "kvar": 60.0,
+      "PF": 0.88,
+      "kVA": 1200.0
+    },
+    "pf_implied_by_kw_and_kvar": 0.9982048454657786
+  },
+  "power_specifications": {
+    "kw_pf": {
+      "python": {
+        "kW": 2000.0,
+        "kvar": 968.644209675705,
+        "PF": 0.9,
+        "kVA": 2400.0
+      },
+      "text": {
+        "kW": 2000.0,
+        "kvar": 968.644209675705,
+        "PF": 0.9,
+        "kVA": 2400.0
+      }
+    },
+    "kw_kvar": {
+      "python": {
+        "kW": 2000.0,
+        "kvar": 400.0,
+        "PF": 0.9805806756909201,
+        "kVA": 2400.0
+      },
+      "text": {
+        "kW": 2000.0,
+        "kvar": 400.0,
+        "PF": 0.9805806756909201,
+        "kVA": 2400.0
+      }
+    },
+    "pf_after_kw_kvar": {
+      "kW": 2000.0,
+      "kvar": 968.644209675705,
+      "PF": 0.9,
+      "kVA": 2400.0
+    },
+    "limits_after_kvar_edit": [
+      -400.0,
+      400.0
+    ],
+    "rating_only": {
+      "kW": 1000.0,
+      "kvar": 60.0,
+      "PF": 0.88,
+      "kVA": 3000.0
+    },
+    "auto_rating_after_kw_edit": {
+      "kW": 2000.0,
+      "kvar": 1079.4856442761745,
+      "PF": 0.88,
+      "kVA": 2400.0
+    },
+    "explicit_rating_after_kw_edit": {
+      "kW": 1000.0,
+      "kvar": 539.7428221380873,
+      "PF": 0.88,
+      "kVA": 5000.0
+    }
+  },
+  "mva_alias": {
+    "dss_mva": 3.0,
+    "setpoints": {
+      "kW": 1000.0,
+      "kvar": 60.0,
+      "PF": 0.88,
+      "kVA": 3000.0
+    },
+    "after_kw_edit": {
+      "kW": 700.0,
+      "kvar": 377.8199754966611,
+      "PF": 0.88,
+      "kVA": 3000.0
+    },
+    "python_attribute_error": "'Generator' object has no attribute 'MVA' and no __dict__ for setting new attributes",
+    "python_keyword_error": "'Generator' object has no attribute 'MVA' and no __dict__ for setting new attributes"
+  },
+  "topology": {
+    "cases": [
+      {
+        "phases": 3,
+        "connection": "wye",
+        "bus": "g3_wye_1",
+        "terminals": 1,
+        "conductors": 4
+      },
+      {
+        "phases": 3,
+        "connection": "delta",
+        "bus": "g3_delta_1",
+        "terminals": 1,
+        "conductors": 3
+      },
+      {
+        "phases": 2,
+        "connection": "wye",
+        "bus": "g2_wye_1",
+        "terminals": 1,
+        "conductors": 3
+      },
+      {
+        "phases": 2,
+        "connection": "delta",
+        "bus": "g2_delta_1",
+        "terminals": 1,
+        "conductors": 3
+      },
+      {
+        "phases": 1,
+        "connection": "wye",
+        "bus": "g1_wye_1",
+        "terminals": 1,
+        "conductors": 2
+      },
+      {
+        "phases": 1,
+        "connection": "delta",
+        "bus": "g1_delta_1",
+        "terminals": 1,
+        "conductors": 2
+      }
+    ],
+    "zero_kv_readback": 0.0,
+    "negative_kv_error": "(#2020032) Generator.negative_kv.kV: Value (-12.47) cannot be negative.",
+    "zero_phases_error": "(#2020031) Generator.zero_phases.Phases: Value (0) cannot be zero."
+  },
+  "snapshot_power": {
+    "model_cases": {
+      "1": {
+        "model": "ConstantPQ",
+        "scheduled": {
+          "kW": 1000.0,
+          "kvar": 328.6841051788632,
+          "PF": 0.95,
+          "kVA": 1200.0
+        },
+        "terminal_power_kw_kvar": [
+          -999.9999999941331,
+          -328.684105156626
+        ],
+        "converged": true
+      },
+      "2": {
+        "model": "ConstantZ",
+        "scheduled": {
+          "kW": 1000.0,
+          "kvar": 328.6841051788632,
+          "PF": 0.95,
+          "kVA": 1200.0
+        },
+        "terminal_power_kw_kvar": [
+          -999.7123000602672,
+          -328.58954260129343
+        ],
+        "converged": true
+      },
+      "4": {
+        "model": "ConstantP_fixedQ",
+        "scheduled": {
+          "kW": 1000.0,
+          "kvar": 328.6841051788632,
+          "PF": 0.95,
+          "kVA": 1200.0
+        },
+        "terminal_power_kw_kvar": [
+          -999.9999999941331,
+          -328.684105156626
+        ],
+        "converged": true
+      },
+      "5": {
+        "model": "ConstantP_fixedX",
+        "scheduled": {
+          "kW": 1000.0,
+          "kvar": 328.6841051788632,
+          "PF": 0.95,
+          "kVA": 1200.0
+        },
+        "terminal_power_kw_kvar": [
+          -999.9999999575498,
+          -328.58956568133806
+        ],
+        "converged": true
+      },
+      "7": {
+        "model": "Approximateinvertermodel",
+        "scheduled": {
+          "kW": 1000.0,
+          "kvar": 328.6841051788632,
+          "PF": 0.95,
+          "kVA": 1200.0
+        },
+        "terminal_power_kw_kvar": [
+          -999.9999999941331,
+          -328.684105156626
+        ],
+        "converged": true
+      }
+    },
+    "negative_kw": {
+      "scheduled": {
+        "kW": -500.0,
+        "kvar": -242.16105241892626,
+        "PF": 0.9,
+        "kVA": -600.0
+      },
+      "terminal_power_kw_kvar": [
+        499.99999999524175,
+        242.16105239992746
+      ],
+      "converged": true
+    }
+  },
+  "pv_voltage_target": {
+    "target_1.0_limit_120": {
+      "requested_vpu": 1.0,
+      "achieved_vpu": 0.9947255444120492,
+      "min_kvar": -120.0,
+      "max_kvar": 120.0,
+      "terminal_power_kw_kvar": [
+        -799.9999990820928,
+        -119.99999439813071
+      ],
+      "limiting_property": "Maxkvar",
+      "scheduled": {
+        "kW": 800.0,
+        "kvar": 431.79425771046976,
+        "PF": 0.88,
+        "kVA": 960.0
+      },
+      "converged": true
+    },
+    "target_1.03_limit_120": {
+      "requested_vpu": 1.03,
+      "achieved_vpu": 0.9947255444120533,
+      "min_kvar": -120.0,
+      "max_kvar": 120.0,
+      "terminal_power_kw_kvar": [
+        -799.9999990817739,
+        -119.99999439726105
+      ],
+      "limiting_property": "Maxkvar",
+      "scheduled": {
+        "kW": 800.0,
+        "kvar": 431.79425771046976,
+        "PF": 0.88,
+        "kVA": 960.0
+      },
+      "converged": true
+    },
+    "target_1.0_limit_3000": {
+      "requested_vpu": 1.0,
+      "achieved_vpu": 0.9999996150667052,
+      "min_kvar": -3000.0,
+      "max_kvar": 3000.0,
+      "terminal_power_kw_kvar": [
+        -800.0001245576412,
+        -1677.555141995161
+      ],
+      "limiting_property": null,
+      "scheduled": {
+        "kW": 800.0,
+        "kvar": 431.79425771046976,
+        "PF": 0.88,
+        "kVA": 960.0
+      },
+      "converged": true
+    },
+    "target_1.03_limit_3000": {
+      "requested_vpu": 1.03,
+      "achieved_vpu": 1.0044307024733277,
+      "min_kvar": -3000.0,
+      "max_kvar": 3000.0,
+      "terminal_power_kw_kvar": [
+        -799.9996650537479,
+        -3000.0001399533344
+      ],
+      "limiting_property": "Maxkvar",
+      "scheduled": {
+        "kW": 800.0,
+        "kvar": 431.79425771046976,
+        "PF": 0.88,
+        "kVA": 960.0
+      },
+      "converged": true
+    }
+  },
+  "user_model_guards": {
+    "missing_library_at_construction": "(#570) Generator User Model model.dll Not Loaded",
+    "undefined_user_model_at_solve": "(#567) Generator.no_user_model model designated to use user-written model, but user-written model is not defined.",
+    "missing_dynamic_reference": "(#401) Generator.missing_dynamic.DynamicEq: DynamicExp object \"nonexistent\" not found.",
+    "compiled_model_execution": "not-run",
+    "dynamics_and_shaft_execution": "not-run"
+  },
+  "shapes": {
+    "daily_only": {
+      "Yearly": null,
+      "Daily": "<LoadShape.profile>",
+      "Duty": null
+    },
+    "after_use_actual_assignment": {
+      "Daily": {
+        "kW": 150.0,
+        "kvar": 30.0,
+        "PF": 0.9805806756909201,
+        "kVA": 1200.0
+      },
+      "Yearly": {
+        "kW": 150.0,
+        "kvar": 30.0,
+        "PF": 0.9805806756909201,
+        "kVA": 1200.0
+      },
+      "Duty": {
+        "kW": 150.0,
+        "kvar": 30.0,
+        "PF": 0.9805806756909201,
+        "kVA": 1200.0
+      }
+    },
+    "time_shape_dispatch": "not-run"
+  },
+  "actions_and_fuel": {
+    "like": {
+      "source": {
+        "phases": 3,
+        "connection": "delta",
+        "bus": "original.1.2.3",
+        "terminals": 1,
+        "conductors": 3
+      },
+      "copies": {
+        "text_copy": {
+          "topology": {
+            "phases": 3,
+            "connection": "delta",
+            "bus": "text_copy_1",
+            "terminals": 1,
+            "conductors": 4
+          },
+          "scheduled": {
+            "kW": 200.0,
+            "kvar": 65.73682103577264,
+            "PF": 0.95,
+            "kVA": 240.0
+          },
+          "kV": 4.16
+        },
+        "method_copy": {
+          "topology": {
+            "phases": 3,
+            "connection": "delta",
+            "bus": "own_bus",
+            "terminals": 1,
+            "conductors": 4
+          },
+          "scheduled": {
+            "kW": 200.0,
+            "kvar": 65.73682103577264,
+            "PF": 0.95,
+            "kVA": 240.0
+          },
+          "kV": 4.16
+        }
+      },
+      "python_keyword_error": "'Generator' object attribute 'Like' is read-only"
+    },
+    "fuel": {
+      "before_refuel": {
+        "UseFuel": true,
+        "FuelkWh": 100.0,
+        "pctFuel": 50.0,
+        "pctReserve": 25.0,
+        "DutyStart": 1.5
+      },
+      "after_python_refuel": {
+        "FuelkWh": 100.0,
+        "pctFuel": 100.0,
+        "pctReserve": 25.0
+      },
+      "pct_fuel_after_text_refuel": 100.0,
+      "python_keyword_error": "'Generator' object attribute 'Refuel' is read-only",
+      "consumption_study": "not-run"
+    }
+  },
+  "dispatch_review": {
+    "invalid_python_enum_readback": "3 is not a valid GeneratorDispatchMode",
+    "behavior": {
+      "DispMode": "not-run",
+      "DispValue": "not-run",
+      "Status": "not-run",
+      "ForceOn": "not-run",
+      "PVFactor": "not-run",
+      "GenDispatcher": "not-run"
+    }
+  },
+  "registers": {
+    "names": [
+      "kWh",
+      "kvarh",
+      "Max kW",
+      "Max kVA",
+      "Hours",
+      "$"
+    ],
+    "initial_values": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "after_one_hour": {
+      "kWh": 1000.0,
+      "kvarh": 328.6841051788632,
+      "Max kW": 1000.0,
+      "Max kVA": 1052.6315789473683,
+      "Hours": 1.0,
+      "$": 30.0
+    },
+    "price_signal": 30
+  }
+}

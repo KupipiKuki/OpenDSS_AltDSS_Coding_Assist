@@ -1,0 +1,10 @@
+! Model 3 requests 1.03 pu. With +3000 kvar saturated, this feeder reaches about 1.00443 pu.
+! Terminal powers use the into-element convention: about -800 kW and -3000 kvar.
+New Circuit.generator_pv BasekV=12.47 Bus1=source
+New Line.feed Bus1=source.1.2.3 Bus2=remote.1.2.3 Phases=3 Length=1 Units=km
+~ R1=0.2 X1=0.45 R0=0.35 X0=0.9 C1=0 C0=0
+New Load.fixture Bus1=remote.1.2.3.0 Phases=3 Conn=wye kV=12.47 kW=3000 kvar=750
+New Generator.pv Bus1=remote.1.2.3.0 Phases=3 Conn=wye kV=12.47 kW=800 PF=0.88
+~ Model=3 Vpu=1.03 Maxkvar=3000 Minkvar=-3000
+Set MaxIterations=200 Tolerance=0.0000001
+Solve

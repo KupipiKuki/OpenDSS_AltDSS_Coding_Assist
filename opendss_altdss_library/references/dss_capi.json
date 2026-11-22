@@ -2585,5 +2585,433 @@
       "result": "pass"
     },
     "notes": []
+  },
+  {
+    "id": "capi-generator-property-surface",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Generator property enum and inherited surface",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Property enum L128-L175; registration L500-L651",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "44 own property declarations, including MVA and Refuel.",
+    "arguments": null,
+    "returns_or_effects": "The pinned Python creation TypedDict omits MVA and includes Spectrum, BaseFreq, Enabled and Like, for 47 exact advertised keywords.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Refuel and Like are methods on the object. Python creation keywords for those actions raise AttributeError."
+    ]
+  },
+  {
+    "id": "capi-generator-specification-sets",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Generator scheduled-power specification sets",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Spec sets L510-L517; voltage and power flags L630-L637; edits L732-L765; synchronization L2880-L2897",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Two families: kW, PF; kW, kvar. PF has no Ordering_Last flag.",
+    "arguments": null,
+    "returns_or_effects": "A kW or PF write synchronizes kvar from signed PF. A kvar write derives PF, so enter kvar after kW. Neither rating property participates in the power specification.",
+    "errors_or_edge_cases": "kW, PF and kvar writes can reset the reactive limits. Apply explicit limits afterwards.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-generator-machine-rating",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Dynamic machine rating and MVA alias",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Rating flags L620-L621; alias L639-L643; explicit flag L815-L818; defaults L988-L990; sync L2880-L2897",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Automatic kVA is 1.2 times kW. The DSS MVA alias writes kVA scaled by 1000.",
+    "arguments": null,
+    "returns_or_effects": "Setting either rating keeps the scheduled power. Later kW changes preserve the explicit rating.",
+    "errors_or_edge_cases": "DSS MVA has no Python property or keyword. The automatic rating retains the kW sign in the tested consumption case.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-generator-initialization",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Bare Generator defaults",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Constructor L937-L1049",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Bare schedule: 1000 kW, 60 kvar, nominal PF 0.88, rating 1200 kVA, limits -120/+120 kvar.",
+    "arguments": null,
+    "returns_or_effects": "The scheduled kW and kvar imply PF about 0.9982. The constructor stores PF separately until a power synchronization edit. Spectrum resolves to defaultgen and BaseFreq follows the circuit.",
+    "errors_or_edge_cases": "Specify the intended power pair before solving.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Inherited entries are registered in PCClass.pas L89-L100 and CktElementClass.pas L89-L99."
+    ]
+  },
+  {
+    "id": "capi-generator-connection",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Connection, conductors and input boundaries",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Bus1 L553-L556; flags L577-L579 and L630-L631; topology L664-L677; voltage path L702-L731",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Always one terminal. Wye adds one conductor to phase count. Delta adds one for one or two phases, and uses one per phase otherwise.",
+    "arguments": null,
+    "returns_or_effects": "The matrix confirms the 1-, 2- and 3-phase layouts. kV=0 was accepted by the setter, negative kV raised #2020032 and zero phases raised #2020031.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Zero kV was read only. The examples use a positive rated voltage."
+    ]
+  },
+  {
+    "id": "capi-generator-enums",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Generator model, dispatch and status enumerations",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Enum construction L449-L462; enum property registration L519-L530 and L572-L574",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "GeneratorModel 1–7, GeneratorDispatchMode 0–2, GeneratorStatus 0–1 and Connection 0–1.",
+    "arguments": null,
+    "returns_or_effects": "The pin returns IntEnum members. The Model 6 and 7 members are Usermodel and Approximateinvertermodel. A Python read of stored DispMode=3 raises ValueError.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Validation observed on the Python getter after the write. Dispatch effects were source reviewed only."
+    ]
+  },
+  {
+    "id": "capi-generator-snapshot-models",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Power-flow current implementations and terminal sign",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Model routines L1544-L1634 and L1694-L1922; current dispatch L2110-L2145",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Model 1 uses constant PQ, 2 constant Z, 4 constant P with fixed Q, 5 constant P with fixed reactance, and 7 current-limited PQ.",
+    "arguments": null,
+    "returns_or_effects": "All five solved near rated voltage. TotalPowers reports complex kW and kvar into the terminal. Positive scheduled generation produces negative terminal P, and negative kW can draw positive terminal P.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Model 7 voltage limiting outside nominal conditions was source reviewed only."
+    ]
+  },
+  {
+    "id": "capi-generator-pv-voltage",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Model 3 voltage correction and limits",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Voltage target L1288-L1299; current and reactive limit calculation L1635-L1692",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Vpu is the requested per-unit voltage. The engine iterates Q and clamps it between Minkvar and Maxkvar.",
+    "arguments": null,
+    "returns_or_effects": "On the example feeder a 1.03 pu request achieved about 1.00443 pu at Maxkvar=3000. Narrow +/-120 kvar bounds achieved about 0.99473 pu for either 1.0 or 1.03. Scheduled kvar stayed at 431.79.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Positive generated Q at Maxkvar appears negative at the terminal. The default PVFactor was used."
+    ]
+  },
+  {
+    "id": "capi-generator-dispatch-checks",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Generator's built-in dispatch checks",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Dispatch thresholds L1120-L1133; Fixed and shape selection L1143-L1183",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "DispMode and DispValue evaluate built-in load-level or price thresholds. ForceOn bypasses them. Status=Fixed selects constant scaling when online.",
+    "arguments": null,
+    "returns_or_effects": "These decisions are in Generator.SetNominalGeneration. Their effects were not exercised with alternate dispatch settings.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-generator-pv-factor",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "PVFactor voltage-iteration multiplier",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Field L608; constructor L1031-L1032; Model 3 correction L1658-L1675",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "PVFactor scales dQ/dV times target error before the per-iteration and reactive limits.",
+    "arguments": null,
+    "returns_or_effects": "This is part of the Model 3 generator solver. The snapshot tests used the default 0.1.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "Changing PVFactor was not tested."
+    ]
+  },
+  {
+    "id": "capi-generator-controller-scope",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "External GenDispatcher setpoint updates",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API GenDispatcher.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/GenDispatcher.pas",
+      "section_or_record": "Dispatch decision and setpoint writes L302-L345",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "GenDispatcher can adjust kWBase and kvarBase for controlled generators and request another solve.",
+    "arguments": null,
+    "returns_or_effects": "The separate controller's catalog and dispatch behavior are deferred.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-generator-shape-assignment",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "LoadShape reference assignment",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Shape fields L582-L595; side effects L782-L792; duty fallback L1084-L1106; SetkWkvar L2906-L2911",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Daily, Yearly and Duty reference LoadShape objects. There is no Daily-to-Yearly assignment fill.",
+    "arguments": null,
+    "returns_or_effects": "UseActual assignment set base kW and kvar from peak values in all three cases. The unset Duty fallback at solve time was source reviewed only.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-generator-model-guards",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "User-model and DynamicEq guards",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Model loader side effects L766-L775; dynamic reference L581-L595 and L820-L822; model 6 solve guard L1816-L1836",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Model 6 requires a configured user model for a power-flow solve. DynamicEq resolves a DynamicExp object.",
+    "arguments": null,
+    "returns_or_effects": "With no library specified, Model 6 constructed and Solve raised #567. An explicitly missing DLL produced #570 at construction. An unknown DynamicEq produced #401.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Library lookup failure is from GenUserModel.pas L140-L174. No compiled model or dynamic equation was executed."
+    ]
+  },
+  {
+    "id": "capi-generator-dynamic-model-scope",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Built-in and user-provided dynamic models",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Machine data L623-L628 and L1277-L1286; debug trace L794-L813; dynamic and harmonic paths L1923-L2119",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Dynamics, harmonic behavior, and compiled models are catalogued as source evidence.",
+    "arguments": null,
+    "returns_or_effects": "DynamicEq references DynamicExp. DynOut names speed and angle outputs. UserModel and ShaftModel name libraries.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-generator-fuel-and-refuel",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Fuel state, capacity and manual reset",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Action L483-L487 and L645-L647; fuel fields L616-L618; defaults L1040-L1044; sampling L2248-L2257",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "FuelkWh is capacity in kWh. pctFuel and pctReserve are percentages.",
+    "arguments": null,
+    "returns_or_effects": "Python Refuel() and DSS Refuel=yes reset pctFuel from 50 to 100 and leave the 100 kWh capacity and 25 percent reserve unchanged.",
+    "errors_or_edge_cases": "The advertised Python creation keyword raises AttributeError. Use the action method or DSS text.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Fuel consumption was not run."
+    ]
+  },
+  {
+    "id": "capi-generator-registers",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Generator energy-register surface",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "Register names L467-L475; values accessor L925-L935; sampling L2213-L2258",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Six counters: kWh, kvarh, Max kW, Max kVA, Hours and $.",
+    "arguments": null,
+    "returns_or_effects": "All six read zero initially. A single one-hour daily sample at 1000 kW and PF 0.95 accumulated 1000 kWh, about 328.68 kvarh and one hour. Max kVA was about 1052.63, separate from rated kVA.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Access via RegisterNames(), RegisterValues(), or RegistersDict()."
+    ]
+  },
+  {
+    "id": "capi-generator-copy-action",
+    "kind": "api",
+    "namespace_or_type": "Generator",
+    "name": "Like action and copied topology",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API generator.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+      "section_or_record": "MakeLike L844-L897",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Copy data through DSS Like=source or the Python method Like(name).",
+    "arguments": null,
+    "returns_or_effects": "The delta-copy probe retained the target Bus1 and four conductors although Conn became delta and the source had three.",
+    "errors_or_edge_cases": "Python creation keyword raises AttributeError. Recheck wiring and conductor layout after copying.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Generator readback matrix",
+      "result": "pass"
+    },
+    "notes": []
   }
 ]

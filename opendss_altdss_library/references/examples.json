@@ -310,5 +310,70 @@
       "date": "2026-11-21"
     },
     "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "generator-constant-pq-altdss",
+    "task_description": "Solve a Model 1 generator and compare scheduled values, rating and per-terminal power.",
+    "language": "python_altdss",
+    "file": "examples/generator/constant_pq.py",
+    "object_classes": [
+      "Circuit",
+      "Generator",
+      "Load"
+    ],
+    "dependencies": [
+      "altdss==0.2.4",
+      "dss-python==0.15.7",
+      "dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "epri-generator-element",
+      "altdss-generator-wrapper",
+      "capi-generator-engine",
+      "altdss-load-terminal-results"
+    ],
+    "expected_result": "One terminal shows about -1000 kW and -328.68 kvar, indicating injection. Machine rating remains 1200 kVA.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "generator-pv-voltage-target-dss",
+    "task_description": "Solve a Model 3 generator and compare achieved per-unit voltage against its target with reactive limits.",
+    "language": "dss",
+    "file": "examples/generator/pv_voltage_target.dss",
+    "object_classes": [
+      "Circuit",
+      "Line",
+      "Generator",
+      "Load"
+    ],
+    "dependencies": [
+      "DSS C-API 0.14.5",
+      "For the Python runner: altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "epri-dss-scripting",
+      "epri-generator-properties",
+      "capi-generator-engine"
+    ],
+    "expected_result": "The dedicated readback verifies about 1.00443 pu for a 1.03 pu request. Terminal power is about -800 kW and -3000 kvar, corresponding to the positive Maxkvar injection limit.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
   }
 ]

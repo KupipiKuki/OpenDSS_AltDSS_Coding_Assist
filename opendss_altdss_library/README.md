@@ -1,6 +1,6 @@
 # OpenDSS AltDSS Library Package
 
-**Status** The owner accepted Phase 3B packages 1 through 5. Package 5 (Capacitor) passed coder validation, independent QA/QC, and the architect review, and its two non-blocking findings were applied before acceptance. Package 6 (Generator) has its coder handoff issued and is released to the coder. LoadShape, GrowthShape, CapControl, and GenDispatcher catalogs are deferred. [Capacitor audit](../docs/audits/phase3b_capacitor_audit.md) · [Capacitor QA/QC report](../docs/audits/phase3b_capacitor_qaqc.md) · [Capacitor architect review](../docs/audits/phase3b_capacitor_architect_audit.md) · [Generator coder handoff](../docs/handoffs/Phase_3B_Generator_Coder_handoff.md) · [Implementation plan](../docs/implementation_plan.md)
+**Status** The owner accepted Phase 3B packages 1 through 5. Package 6 (Generator) completes the element implementation sequence and is ready for independent QA/QC. [Generator audit](../docs/audits/phase3b_generator_audit.md) · [QA/QC handoff](../docs/handoffs/Phase_3B_Generator_QAQC_handoff.md) · [Implementation plan](../docs/implementation_plan.md)
 **Target:** AltDSS-Python 0.2.4, DSS-Python 0.15.7, backend 0.14.5
 
 ## Contents
@@ -11,15 +11,16 @@
 - `schemas/catalogs/`: manifest and catalog schemas
 - `references/`: source catalogs and reference materials, including the shared [source index](references/sources.json)
 - `references/lines/`: Line and LineCode property catalog (Phase 2 remediated)
-- [AltDSS-Python API catalog](references/altdss_python_api.json) (99 class records) and [DSS C-API engine catalog](references/dss_capi.json) (102 records)
+- [AltDSS-Python API catalog](references/altdss_python_api.json) (99 class records) and [DSS C-API engine catalog](references/dss_capi.json) (119 records)
 - [Source index](references/sources.json) shared by catalogs and examples
-- [Example catalog](references/examples.json) with 12 `Observed-working` records
+- [Example catalog](references/examples.json) with 14 `Observed-working` records
 - [Line/LineCode workflow guide](../docs/workflows/line_linecode.md) and [example files](examples/line_linecode/)
 - [Line geometry and conductor catalog](references/lines/line_geometry_wires_properties.json), [workflow](../docs/workflows/line_geometry_wires.md), and [runtime matrix](../docs/audits/phase3b_line_geometry_wires_readback.json)
 - [Circuit and Vsource catalog](references/circuit/vsource_properties.json), [workflow](../docs/workflows/circuit_vsource.md), and [runtime matrix](../docs/audits/phase3b_circuit_vsource_readback.json)
 - [Transformer and XfmrCode catalog](references/transformers/transformer_properties.json), [workflow](../docs/workflows/transformer.md), and [runtime matrix](../docs/audits/phase3b_transformer_readback.json)
 - [Load catalog](references/loads/load_properties.json), [workflow](../docs/workflows/load.md), and [runtime matrix](../docs/audits/phase3b_load_readback.json)
 - [Capacitor catalog](references/capacitors/capacitor_properties.json), [workflow](../docs/workflows/capacitor.md), and [runtime matrix](../docs/audits/phase3b_capacitor_readback.json)
+- [Generator catalog](references/generators/generator_properties.json), [workflow](../docs/workflows/generator.md), and [runtime matrix](../docs/audits/phase3b_generator_readback.json)
 - `tools/`: validation harness — [requirements-validation.txt](tools/requirements-validation.txt), [validate_catalogs.py](tools/validate_catalogs.py), [run_examples.py](tools/run_examples.py), [build_altdss_api_catalog.py](tools/build_altdss_api_catalog.py)
 - `tools/archive/` and `references/lines/*legacy.json`: retained historical extraction artifacts, not active sources
 
@@ -32,6 +33,7 @@ python opendss_altdss_library/tools/run_examples.py
 python opendss_altdss_library/tools/readback_transformer.py
 python opendss_altdss_library/tools/readback_load.py
 python opendss_altdss_library/tools/readback_capacitor.py
+python opendss_altdss_library/tools/readback_generator.py
 ```
 
 Three catalogs remain empty pending later phases (`opendss_objects`, `python_interface_comparison`, `troubleshooting`). See the [Phase 3A audit](../docs/audits/phase3a_api_catalogs_audit.md), [Line/LineCode audit](../docs/audits/line_linecode_schema_audit.md), [independent QA/QC report](../docs/audits/line_linecode_phase2_qaqc.md), and [implementation plan](../docs/implementation_plan.md).

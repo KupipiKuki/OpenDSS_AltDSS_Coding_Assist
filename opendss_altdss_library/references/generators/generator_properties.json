@@ -1,0 +1,879 @@
+[
+  {
+    "element_class": "Generator",
+    "epri_doc_url": "https://opendss.epri.com/Generator.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Unique name for this Generator. Pass it as a separate argument to the collection.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L1799-L1818",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L937-L941"
+        ]
+      },
+      {
+        "name": "phases",
+        "data_type": "integer",
+        "default_value": 3,
+        "description": "Phase count. Must be greater than zero. The generator has one terminal. Connection and phases determine its conductor count.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Phases",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L897",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L577-L579",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L664-L677",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L948",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "bus1",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Required terminal bus with optional node suffixes. A bare generator initially has a bus name derived from its name.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Bus1",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L898",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L553-L556",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L937-L948"
+        ]
+      },
+      {
+        "name": "kv",
+        "data_type": "real",
+        "default_value": 12.47,
+        "description": "Rated voltage in kV. Enter line-to-line for two- or three-phase models and voltage across the branch for a one-phase device. The pinned setter accepts zero and rejects negative values. Use a positive rating for a solved model.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kV",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L899",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L630-L631",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L702-L731",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L976-L983",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "kw",
+        "data_type": "real",
+        "default_value": 1000,
+        "description": "Scheduled real power in kW across all phases. A kW write uses the current PF to update kvar and automatic kVA. Positive kW schedules generation, and negative kW can represent consumption.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kW",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L900",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L598-L599",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L754-L764",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L2880-L2897",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "pf",
+        "data_type": "real",
+        "default_value": 0.88,
+        "description": "Signed nominal power factor. A PF write recomputes scheduled kvar. With positive kW, negative PF schedules absorption of reactive power. Writing kvar after kW derives PF from those two setpoints.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "PF",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L901",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L633-L637",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L732-L764",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L2880-L2897",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "kvar",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Scheduled reactive power in kvar across all phases. The engine flags it NoDefault for specification purposes but initializes the bare readback to 60. A write derives PF and resets the reactive limits. Read TotalPowers() for actual terminal Q.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kvar",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L902",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L633-L637",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L732-L750",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L949-L953",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1635-L1692",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "model",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Power-flow model, returned as GeneratorModel. Values 1–7 are constant PQ, constant Z, constant P and voltage target, constant P with fixed Q, constant P with fixed reactance, user model, and current-limited PQ.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Model",
+        "enum_type": "GeneratorModel",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L903",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L457-L462",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L572-L574",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L2125-L2143",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L234-L252",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L286-L294",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "vminpu",
+        "data_type": "real",
+        "default_value": 0.9,
+        "description": "Lower per-unit voltage threshold for the applicable model's fallback or current limitation. The pinned constructor uses 0.90. Model 3 uses its separate voltage and reactive-limit routine.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "VMinpu",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L904",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L610-L611",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L980-L983",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1235-L1259",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1658-L1681",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "vmaxpu",
+        "data_type": "real",
+        "default_value": 1.1,
+        "description": "Upper per-unit voltage threshold for applicable model fallback. The pinned constructor uses 1.10. Model 3 uses its separate voltage and reactive-limit routine.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "VMaxpu",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L905",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L610-L611",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L980-L983",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1235-L1252",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1658-L1681",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "yearly",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "LoadShape reference for yearly dispatch. Assigning a UseActual shape sets base kW and kvar from its peak values.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Yearly",
+        "reference_class": "LoadShape",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L906",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L582-L595",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L782-L792",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1096-L1106",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "daily",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "LoadShape reference for daily dispatch. Assignment leaves Yearly and Duty references independent. Assigning a UseActual shape updates base kW and kvar from the shape's peak data.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Daily",
+        "reference_class": "LoadShape",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L907",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L582-L595",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L782-L792",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1069-L1082",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "duty",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "LoadShape reference for duty-cycle dispatch. When used by the solver, an unset Duty shape falls back to Daily. UseActual assignment updates base kW and kvar.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Duty",
+        "reference_class": "LoadShape",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L908",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L582-L595",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L782-L792",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1084-L1094",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "dispmode",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "Built-in dispatch mode. Python returns GeneratorDispatchMode.Default (0), LoadLevel (1), or Price (2). The Generator engine uses these with DispValue. A separate GenDispatcher can edit scheduled generation.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "DispMode",
+        "enum_type": "GeneratorDispatchMode",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L909",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L449-L452",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L524-L526",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1120-L1133",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L296-L300",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "dispvalue",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Dispatch threshold for the selected load-level or price mode. A positive threshold can disable operation when the corresponding circuit reference is below it.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "DispValue",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L910",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L524-L526",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L608-L611",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1120-L1133",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "conn",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "Connection enum, wye=0 or delta=1. Three-phase wye has four conductors, three-phase delta has three, and one phase has two in either connection. One terminal in all cases.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Conn",
+        "enum_type": "Connection",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L911",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L519-L522",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L664-L677",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L702-L721",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L948",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L90-L96",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "status",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "GeneratorStatus.Variable (0) or Fixed (1). In the Generator engine, Fixed uses a factor of one when the generator is on and bypasses the dispatch-curve branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Status",
+        "enum_type": "GeneratorStatus",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L912",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L453-L455",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L528-L530",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1120-L1168",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L302-L305",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "class",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "User-defined integer class used for grouping generators.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Class",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L913",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L568-L570",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L964-L967",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "vpu",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Model 3 voltage target in per unit of its rated voltage. Use solved phase-to-neutral voltage to measure achievement. Reactive limits can prevent the generator from reaching the target.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Vpu",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L914",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L598-L602",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1288-L1299",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1635-L1681",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "maxkvar",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Upper generated-reactive-power limit in kvar for Model 3. Set explicit limits after the final kW, PF or kvar write, which can reset the limit pair.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Maxkvar",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L915",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L602-L606",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L732-L764",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1667-L1675",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L2880-L2897",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "minkvar",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Lower generated-reactive-power limit in kvar for Model 3. Negative values allow absorption. Set it after the final power-specification edit.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Minkvar",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L916",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L602-L606",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L732-L764",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1667-L1675",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L2880-L2897",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "pvfactor",
+        "data_type": "real",
+        "default_value": 0.1,
+        "description": "Per-iteration reactive correction multiplier in the Model 3 voltage solver. Its default is 0.1. The targeted test used the default. Sensitivity to changing it was source reviewed.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "PVFactor",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L917",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L608",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1031-L1032",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1658-L1675",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "forceon",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Bypasses the Generator engine's load or price dispatch threshold when true. The default is false.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "ForceOn",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L918",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L558-L565",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1120-L1133",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "kva",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Machine rating in kVA. An explicit value changes no scheduled kW or kvar. While the rating is automatic, kW or PF synchronization sets it to 1.2 times signed kW. Writing kVA or DSS MVA stops that automatic update.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L919",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L620-L621",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L639-L643",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L815-L818",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L988-L990",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L2880-L2897",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "mva",
+        "data_type": "real",
+        "default_value": null,
+        "description": "DSS text alias for the machine rating in MVA. It stores 1000 times the specified value in kVA and does not specify power. Generator has no Python MVA attribute or creation keyword. Use kVA in Python or MVA in a DSS text command.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": false,
+        "dss_text_keyword": "MVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L639-L643",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L815-L818",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L896-L943"
+        ]
+      },
+      {
+        "name": "xd",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Per-unit synchronous reactance for the machine model.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Xd",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L920",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L623-L628",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L993-L1000",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1277-L1286",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "xdp",
+        "data_type": "real",
+        "default_value": 0.28,
+        "description": "Per-unit transient reactance used by machine-model calculations. The pinned constructor and readback give 0.28.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Xdp",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L921",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L623-L628",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L993-L1000",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1277-L1286",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "xdpp",
+        "data_type": "real",
+        "default_value": 0.2,
+        "description": "Per-unit subtransient reactance used by the machine model.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Xdpp",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L922",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L623-L628",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L993-L1000",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1277-L1286",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "h",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Machine inertia constant in watt-seconds per VA of rated capacity.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "H",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L923",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L623-L628",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L993-L1008",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "d",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Per-unit machine damping parameter.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "D",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L924",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L623-L628",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L993-L1008",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "usermodel",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Library name or path for a user-written electrical model. The default is an empty string. Package evidence covers the missing-library error and no compiled model execution.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "UserModel",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L925",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L532-L535",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L766-L770",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1015-L1020",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1816-L1836",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "userdata",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Edit string passed to the electrical user model when it exists. The default is empty.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "UserData",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L926",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L542-L545",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L768-L770",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1015-L1020",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "shaftmodel",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Library name or path for a user-written shaft model. The constructor uses an empty string.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "ShaftModel",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L927",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L537-L539",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L771-L772",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1015-L1020",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "shaftdata",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Edit string passed to the shaft model when it exists. The default is empty.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "ShaftData",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L928",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L542-L545",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L773-L775",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1015-L1020",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "dutystart",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Starting hour offset into the duty-cycle shape. The solver evaluates the shape at simulation hour plus this offset.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "DutyStart",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L929",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L613-L614",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1084-L1094",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "debugtrace",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Enables a per-generator CSV trace in the engine output directory. The default is false.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "DebugTrace",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L930",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L558-L563",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L794-L813",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "balanced",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Forces balanced behavior in applicable three-phase Model 7 and dynamic calculations. The default is false.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Balanced",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L931",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L559-L566",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1848-L1864",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1988-L2017",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "xrdp",
+        "data_type": "real",
+        "default_value": 20,
+        "description": "Ratio of reactance to resistance associated with Xdp for dynamic and fault models.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XRdp",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L932",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L623-L628",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1006-L1008",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "usefuel",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Enables fuel-dependent operation. The fresh value is false. Time-integrated fuel consumption is outside the validated snapshots.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "UseFuel",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L933",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L558-L566",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1040-L1044",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L2239-L2257",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "fuelkwh",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Fuel capacity expressed as equivalent electrical energy in kWh. Refueling resets the percentage while keeping capacity unchanged.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "FuelkWh",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L934",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L483-L487",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L616-L618",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1040-L1044",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "pctfuel",
+        "data_type": "real",
+        "default_value": 100,
+        "description": "Available fuel as a percentage of FuelkWh. The initial value is 100. Refuel resets it to 100.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctFuel",
+        "dss_text_keyword": "%Fuel",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L935",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L483-L487",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L616-L618",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1040-L1044",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "pctreserve",
+        "data_type": "real",
+        "default_value": 20,
+        "description": "Reserve level as a percentage of FuelkWh. The initial value is 20.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctReserve",
+        "dss_text_keyword": "%Reserve",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L936",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L616-L618",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1040-L1044",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L2253-L2257",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "refuel",
+        "data_type": "boolean",
+        "default_value": null,
+        "description": "Boolean action. Call generator.Refuel() or use DSS Refuel=yes. It restores pctFuel to 100 and sets the engine active flag while retaining FuelkWh and pctReserve. The advertised Python constructor keyword raises AttributeError and there is no getter.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Refuel",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L937",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L483-L487",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L645-L647",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L771-L777",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L425"
+        ]
+      },
+      {
+        "name": "dynamiceq",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "Reference to an existing DynamicExp object for custom dynamic equations. Defaults to unset. Only lookup and default readback are covered here.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "DynamicEq",
+        "reference_class": "DynamicExp",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L938",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L581-L595",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L820-L822",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1046",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "dynout",
+        "data_type": "array",
+        "default_value": [],
+        "description": "List of dynamic equation output names. Use shaft speed relative to synchronous speed and then shaft angle in that order. The fresh readback is an empty list.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "DynOut",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L939",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L489-L499",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L547-L551",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1046-L1051",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L809-L826",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "spectrum",
+        "data_type": "variant",
+        "default_value": "defaultgen",
+        "description": "Inherited Spectrum object reference. The pinned Generator constructor chooses Spectrum.defaultgen.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Spectrum",
+        "reference_class": "Spectrum",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L940",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L1036-L1039",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/PCClass.pas#L89-L100",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/PCElement.pas#L78-L84",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/Spectrum.pas#L126-L132",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L945-L1051"
+        ]
+      },
+      {
+        "name": "basefreq",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Inherited base frequency in hertz, initialized from the circuit's fundamental frequency.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "BaseFreq",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L941",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L99",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205"
+        ]
+      },
+      {
+        "name": "enabled",
+        "data_type": "boolean",
+        "default_value": true,
+        "description": "Inherited flag controlling participation in the circuit solution.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Enabled",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L942",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L99",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Copy action. The advertised Python creation keyword raises AttributeError. Use generator.Like(name) or DSS Like=source. Verify topology afterwards because the copied connection can leave the old conductor count.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Like",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L943",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L845-L902",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py#L885-L893",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L425"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name",
+      "bus1",
+      "kv"
+    ],
+    "property_requirements": {
+      "required": [
+        "name",
+        "bus1",
+        "kv"
+      ],
+      "conditional": [
+        {
+          "when": "choosing a complete scheduled-power specification",
+          "requirement_groups": [
+            [
+              "kw",
+              "pf"
+            ],
+            [
+              "kw",
+              "kvar"
+            ]
+          ],
+          "notes": "The two sets are in engine declaration order. Write kvar after kW to select the second family. PF carries no Ordering_Last flag. kVA and DSS MVA are machine ratings outside these families. Set the Model 3 reactive limits after the final scheduled-power edit.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L510-L517",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L553-L556",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L620-L643",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L732-L764",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas#L2880-L2897",
+            "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L425"
+          ]
+        }
+      ]
+    },
+    "altdss_mapping": "ctx.Generator.new(name, **properties) creates the element. Use the typed Python keywords for properties, generator.Refuel() and generator.Like(name) for actions, and DSS text for the MVA alias.",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "dss_capi": "0.14.5",
+      "opendss_documentation": "EPRI online documentation is mixed-version"
+    },
+    "sources": [
+      {
+        "title": "EPRI Generator element",
+        "url": "https://opendss.epri.com/Generator.html",
+        "accessed": "2026-11-21",
+        "scope": "Model and register vocabulary."
+      },
+      {
+        "title": "EPRI Generator properties",
+        "url": "https://opendss.epri.com/Properties9.html",
+        "accessed": "2026-11-21",
+        "scope": "Property vocabulary. Version-sensitive values follow the pinned engine."
+      },
+      {
+        "title": "AltDSS-Python Generator",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Generator.py",
+        "accessed": "2026-11-21",
+        "scope": "Wrapper types, creation keywords, and action methods."
+      },
+      {
+        "title": "DSS C-API Generator",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/generator.pas",
+        "accessed": "2026-11-21",
+        "scope": "Pinned property registration, defaults and calculations."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true,
+      "dss_text": true
+    },
+    "notes": [
+      "Null includes generated, derived, context-dependent, unset, NoDefault, or action fields. Exact bare readbacks are in the runtime matrix.",
+      "Scheduled kW, kvar and PF are property readbacks. kVA is a machine rating. Read complex TotalPowers() for the solved terminal result, where negative power indicates injection.",
+      "Generator's built-in dispatch checks and Model 3 voltage correction have separate engine paths. Dispatch behavior under load level, price, or a GenDispatcher was source reviewed."
+    ]
+  }
+]

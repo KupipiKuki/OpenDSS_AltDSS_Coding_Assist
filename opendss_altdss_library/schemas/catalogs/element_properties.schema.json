@@ -69,6 +69,21 @@
               "type": "string",
               "minLength": 1
             },
+            "enum_type": {
+              "description": "Enum class returned by the pinned AltDSS-Python accessor.",
+              "type": "string",
+              "minLength": 1
+            },
+            "reference_class": {
+              "description": "DSS object class accepted as a reference.",
+              "type": "string",
+              "minLength": 1
+            },
+            "dss_text_keyword": {
+              "description": "Property name used with the DSS text interface.",
+              "type": "string",
+              "minLength": 1
+            },
             "source_refs": {
               "$ref": "#/$defs/sourceRefs"
             }
