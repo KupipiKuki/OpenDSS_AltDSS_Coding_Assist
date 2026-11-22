@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase3`
 - **Baseline** `f0d487ec9e93fce200e6f30f431ffe0ff77217c8`
-- **Package revision** Pending the package commit.
+- **Package revision** `0a88ad3bb2b1199eeb06fbd30f58baa0477b9a61`. Review the package artifacts at this commit. The follow-up commit supplies the handoff pin.
 
 Review the Generator artifacts at the pinned commit. Record the revision and working-tree state. [Coder handoff](Phase_3B_Generator_Coder_handoff.md) · [Build audit](../audits/phase3b_generator_audit.md)
 
