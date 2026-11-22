@@ -1,6 +1,6 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version** 0.17 (Phase 3B package 4 ready for independent QA/QC)
+**Plan version** 0.18 (package 4 awaiting review; package 5 handoff prepared)
 **Plan date:** 2026-11-21
 **Current phase** Phase 3B package 4 (Load). The owner accepted package 3. Package 4 passed coder validation and awaits independent QA/QC and architect review.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
@@ -104,6 +104,8 @@ Package 2 has its Circuit command and Vsource catalog, two executed examples, an
 Package 3 adds Transformer and XfmrCode for two- and three-winding models, two executed examples, and a runtime matrix. Independent QA/QC and the architect review passed; the review found and corrected one citation that ran past the end of `PDClass.pas` (E-1) and recorded one harness attribution issue (E-2). The owner accepted package 3 on 2026-11-21 and directed package 4, whose coder handoff is issued: [Load coder handoff](handoffs/Phase_3B_Load_Coder_handoff.md). Package 4 covers the `Load` element with the five engine load-specification families as its centerpiece; the `LoadShape` and `GrowthShape` property catalogs are recorded as deferred class catalogs. [Build audit](audits/phase3b_transformer_audit.md) · [QA/QC report](audits/phase3b_transformer_qaqc.md) · [Architect/auditor review](audits/phase3b_transformer_architect_audit.md)
 
 Package 4 adds the 43-row Load catalog, Python and DSS examples, and a readback matrix covering all five load-specification families and assignment effects. Independent QA/QC and architect review precede owner disposition and the start of package 5. [Build audit](audits/phase3b_load_audit.md) · [QA/QC handoff](handoffs/Phase_3B_Load_QAQC_handoff.md)
+
+Package 5 covers the Capacitor element, whose defining difficulties are the three capacitance specification families, the array-over-`NumSteps` shape of six properties, and the removal of the entire v6-era property set in the pinned engine. At owner direction the coder handoff was prepared before package 4 was accepted, from an independent read of the pinned sources; coding remains gated on that acceptance. `CapControl` is recorded as a deferred controller catalog. [Capacitor coder handoff](handoffs/Phase_3B_Capacitor_Coder_handoff.md)
 
 ### 5.4 Element package template (definition of done)
 
@@ -251,6 +253,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.15 | 2026-11-21 | Recorded the owner's acceptance of Phase 3B package 3 and issued the package-4 (Load) coder handoff with the five load-specification families as the centerpiece, the pinned default and precedence facts, and the deferral of the LoadShape and GrowthShape class catalogs. |
 | 0.16 | 2026-11-21 | Re-verified the issued package-4 handoff against the pinned sources before coding started and corrected three statements: the enum readback types (`Model`, `Conn`, and `Status` all return altdss enum members, not integers), the `SpecSetNames` display order versus the `TSpecSets` member order for the kWh family, and the trap-2 provenance. Added trap 15, which records that successive attribute writes leave the derived `kvar` and `kVA` stale where a single `new(...)` call or text command recomputes them. |
 | 0.17 | 2026-11-21 | Added the Load catalog, workflow, examples, and pinned readback matrix. Recorded coder validation and prepared independent QA/QC. |
+| 0.18 | 2026-11-21 | Prepared the package-5 (Capacitor) coder handoff at owner direction, ahead of package 4 acceptance, from an independent read of `src/PDElements/Capacitor.pas` and `altdss/Capacitor.py`. Records the 21-key wrapper surface against the 13-member engine enum, the three capacitance families, the array-over-`NumSteps` properties, and the verified traps (deleted v6 property set, `Cuf`-family rating anomaly, `States` write path, `Like` read-only, `NormAmps` stickiness). |
 
 ## 11. Owner decisions
 
@@ -261,4 +264,5 @@ Both new tools read the pinned environment and refuse to run when installed vers
 5. **Phase 3B package 1 acceptance — resolved 2026-11-21.** Owner accepted package 1 after independent QA/QC (PASS, no blocking findings) and the architect/auditor review (PASS, optional correction A-1 applied), and directed package 2 (Circuit and Vsource).
 6. **Phase 3B package 2 acceptance — resolved 2026-11-21.** Owner accepted package 2 after independent QA/QC (PASS, no blocking findings) and the architect/auditor review (PASS, no required corrections), and directed package 3 (Transformer and XfmrCode, including the shared XfmrCode object; `AutoTrans` remains deferred to a later owner decision).
 7. **Phase 3B package 3 acceptance — resolved 2026-11-21.** Owner accepted package 3 after independent QA/QC (PASS, no blocking findings) and the architect/auditor review (PASS, correction E-1 applied, observation E-2 recorded), and directed package 4 (Load). `LoadShape` and `GrowthShape` property catalogs are deferred; the package-4 catalog covers the `Load` element and its shape-assignment behavior only.
+8. **Phase 3B package 5 preparation — resolved 2026-11-21.** Owner directed the Capacitor package to be prepared while package 4 awaited review. The coder handoff is issued, but coding remains gated on the owner's disposition of package 4; `CapControl` remains a deferred controller catalog.
 

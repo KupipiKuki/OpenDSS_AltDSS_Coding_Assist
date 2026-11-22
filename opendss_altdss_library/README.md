@@ -1,6 +1,6 @@
 # OpenDSS AltDSS Library Package
 
-**Status** The owner accepted Phase 3B packages 1 through 3. Package 4 (Load) passed coder validation and is ready for independent QA/QC. LoadShape and GrowthShape property catalogs are deferred. [Load build audit](../docs/audits/phase3b_load_audit.md) · [QA/QC handoff](../docs/handoffs/Phase_3B_Load_QAQC_handoff.md) · [Implementation plan](../docs/implementation_plan.md)
+**Status** The owner accepted Phase 3B packages 1 through 3. Package 4 (Load) passed coder validation and is ready for independent QA/QC. Package 5 (Capacitor) has its coder handoff prepared, gated on package 4 acceptance. LoadShape and GrowthShape property catalogs are deferred, as is CapControl. [Load build audit](../docs/audits/phase3b_load_audit.md) · [QA/QC handoff](../docs/handoffs/Phase_3B_Load_QAQC_handoff.md) · [Capacitor coder handoff](../docs/handoffs/Phase_3B_Capacitor_Coder_handoff.md) · [Implementation plan](../docs/implementation_plan.md)
 **Target:** AltDSS-Python 0.2.4, DSS-Python 0.15.7, backend 0.14.5
 
 ## Contents
