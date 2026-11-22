@@ -1,6 +1,6 @@
 # Phase 4 — Validation with golden fixtures
 
-**Status** Package 4.1 passed coder validation. Both revision 1 snapshot goldens are recorded and ready for independent QA/QC. [Build audit](../audits/phase4_fixture_harness_audit.md) · [QA/QC handoff](../handoffs/Phase_4_Fixture_Harness_QAQC_handoff.md)
+**Status** Package 4.1 is accepted by the owner (plan decision 16), so the fixture pin and both revision 1 snapshot goldens are fixed reference data: later packages may add goldens but must not move revision 1. Package 4.2 (RegControl catalog) is issued to the coder. [Build audit](../audits/phase4_fixture_harness_audit.md) · [QA/QC handoff](../handoffs/Phase_4_Fixture_Harness_QAQC_handoff.md) · [Architect review](../audits/phase4_fixture_harness_architect_audit.md) · [Package 4.2 handoff](../handoffs/Phase_4_RegControl_Catalog_Coder_handoff.md)
 **Governs** [Implementation plan §6](../implementation_plan.md) (intent) · [manifest](../../opendss_altdss_library/manifest.json) (state)
 **Pinned stack** AltDSS-Python `0.2.4` · DSS-Python `0.15.7` · DSS C-API backend `0.14.5`; cross-interface checks add `opendssdirect.py` `0.9.4`.
 
