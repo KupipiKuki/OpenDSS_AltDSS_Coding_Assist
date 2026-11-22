@@ -1,6 +1,6 @@
 # Phase 4 — Validation with golden fixtures
 
-**Status** Package 4.1 is accepted by the owner (plan decision 16), so the fixture pin and both revision 1 snapshot goldens are fixed reference data: later packages may add goldens but must not move revision 1. Package 4.2 (RegControl catalog) is accepted by the owner (plan decision 18). Package 4.3 (LoadShape catalog and daily profile) is issued. [Build audit](../audits/phase4_fixture_harness_audit.md) · [QA/QC handoff](../handoffs/Phase_4_Fixture_Harness_QAQC_handoff.md) · [Architect review](../audits/phase4_fixture_harness_architect_audit.md) · [Package 4.2 handoff](../handoffs/Phase_4_RegControl_Catalog_Coder_handoff.md)
+**Status** Package 4.1 is accepted by the owner (plan decision 16), so the fixture pin and both revision 1 snapshot goldens are fixed reference data: later packages may add goldens but must not move revision 1. Package 4.2 (RegControl catalog) is accepted by the owner (plan decision 18). Package 4.3 (LoadShape catalog and daily profile) passed QA/QC and the architect review and awaits the owner's disposition. [Build audit](../audits/phase4_fixture_harness_audit.md) · [QA/QC handoff](../handoffs/Phase_4_Fixture_Harness_QAQC_handoff.md) · [Architect review](../audits/phase4_fixture_harness_architect_audit.md) · [Package 4.2 handoff](../handoffs/Phase_4_RegControl_Catalog_Coder_handoff.md)
 **Governs** [Implementation plan §6](../implementation_plan.md) (intent) · [manifest](../../opendss_altdss_library/manifest.json) (state)
 **Pinned stack** AltDSS-Python `0.2.4` · DSS-Python `0.15.7` · DSS C-API backend `0.14.5`; cross-interface checks add `opendssdirect.py` `0.9.4`.
 
@@ -154,7 +154,7 @@ The shape that drives the profile is recorded **inside** the golden, so the prof
   {"hour": 1, "converged": true, "iterations": 2, "control_iterations": 1,
    "totals": {"load_kw": 0.0, "load_kvar": 0.0, "losses_kw": 0.0, "losses_kvar": 0.0,
               "source_kw": 0.0, "source_kvar": 0.0},
-   "controls": {"RegControl.reg1": {"tap": 9}, "Capacitor.C1": {"states": [1, 1, 1]}},
+   "controls": {"RegControl.reg1": {"tap": 9}, "Capacitor.cap1": {"states": [1]}},
    "lowest_bus": {"name": "611", "pu_vmag": 0.960843}}
 ]
 ```
@@ -162,7 +162,7 @@ The shape that drives the profile is recorded **inside** the golden, so the prof
 - **`hour` is 1-based** and matches the engine's `Solution.Hour` at that step, so the mapping to `pmult` index is `hour - 1` and an off-by-one is visible in the file rather than hidden in the harness.
 - **`peak_step`** repeats the full snapshot `buses` and `elements` blocks for the step with the highest `totals.load_kw`. The step is **derived from the data**, not hand-picked, so a circuit change cannot leave the reference step pointing at the wrong hour.
 - **`energy_kwh`** records the day's load energy as the sum of each step's `load_kw` times the step length in hours, together with the same integral recomputed from the recorded `steps` array. The two must agree within tolerance, which turns the file into a check on itself rather than only on the engine.
-- Per-step `controls` must include every regulator tap and every capacitor state, because those are the discrete outcomes a time series can silently desynchronise.
+- Per-step `controls` must include every regulator tap and every capacitor state, because those are the discrete outcomes a time series can silently desynchronise. The `states` array follows the element's own node count — the ieee13 banks are single-phase, so each records one state.
 - Tolerances are exactly [section 6](#6-tolerances); discrete quantities (hour, taps, states, iteration counts) compare exactly.
 - Full bus voltages are recorded at the peak step only. Recording all buses at all 24 steps would multiply the file size without adding a discriminating check, since `lowest_bus` already tracks the binding constraint at every step.
 
