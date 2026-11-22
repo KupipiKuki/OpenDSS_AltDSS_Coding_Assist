@@ -505,5 +505,44 @@
       "date": "2026-11-22"
     },
     "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "ieee13-snapshot-cross-interface",
+    "task_description": "Run the IEEE 13 snapshot through AltDSS-Python, DSS-Python and OpenDSSDirect.py, and assert wrapper agreement.",
+    "language": "python_altdss",
+    "file": "examples/interfaces/compare_ieee13.py",
+    "object_classes": [
+      "Vsource",
+      "Line",
+      "Transformer",
+      "Load",
+      "RegControl",
+      "Capacitor"
+    ],
+    "dependencies": [
+      "altdss==0.2.4",
+      "dss-python==0.15.7",
+      "dss-python-backend==0.14.5",
+      "opendssdirect.py==0.9.4",
+      "Pinned IEEE 13 snapshot fixture"
+    ],
+    "source_ids": [
+      "electricdss-tst-ieee-fixtures-3b20839",
+      "opendssdirect-dss-python-dependency",
+      "dss-python-backend-dependency",
+      "altdss-python-shared-backend"
+    ],
+    "expected_result": "All wrapper pairs agree on 16 buses, 38 elements, solver counters, powers, voltages and named regulator taps 9/6/9 on their shared DSS C-API 0.14.5 backend.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "opendssdirect_version": "0.9.4",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-22"
+    },
+    "evidence_label": "Observed-working"
   }
 ]

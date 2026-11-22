@@ -1,0 +1,461 @@
+{
+  "environment": {
+    "altdss_version": "0.2.4",
+    "backend_version": "0.14.5",
+    "dss_python_version": "0.15.7",
+    "opendssdirect_version": "0.9.4",
+    "platform": "Windows 11 AMD64",
+    "python_version": "3.14.6"
+  },
+  "fixtures": [
+    {
+      "fixture": "ieee13",
+      "interfaces": {
+        "altdss": {
+          "controls": {
+            "capacitor.cap1": {
+              "states": [
+                1
+              ]
+            },
+            "capacitor.cap2": {
+              "states": [
+                1
+              ]
+            },
+            "regcontrol.reg1": {
+              "tap": 9
+            },
+            "regcontrol.reg2": {
+              "tap": 6
+            },
+            "regcontrol.reg3": {
+              "tap": 9
+            }
+          },
+          "solver": {
+            "base_freq": 60.0,
+            "control_mode": "Static",
+            "max_control_iterations": 10,
+            "max_iterations": 15,
+            "mode": "SnapShot",
+            "tolerance": 0.0001
+          },
+          "summary": {
+            "buses": 16,
+            "control_iterations": 1,
+            "converged": true,
+            "elements": 38,
+            "iterations": 2,
+            "lowest_pu_bus": "611",
+            "lowest_pu_voltage": 0.9608427430890604,
+            "total_iterations": 2
+          },
+          "totals": {
+            "load_kvar": 2094.531954315811,
+            "load_kw": 3454.6592873700497,
+            "losses_kvar": 327.860856431114,
+            "losses_kw": 112.3917090551033,
+            "source_kvar": -1736.4395103613474,
+            "source_kw": -3567.0537784187272
+          },
+          "version": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033747; License Status: Open \nAltDSS-Python version: 0.2.4"
+        },
+        "dss_python": {
+          "controls": {
+            "capacitor.cap1": {
+              "states": [
+                1
+              ]
+            },
+            "capacitor.cap2": {
+              "states": [
+                1
+              ]
+            },
+            "regcontrol.reg1": {
+              "tap": 9
+            },
+            "regcontrol.reg2": {
+              "tap": 6
+            },
+            "regcontrol.reg3": {
+              "tap": 9
+            }
+          },
+          "solver": {
+            "base_freq": 60.0,
+            "control_mode": "Static",
+            "max_control_iterations": 10,
+            "max_iterations": 15,
+            "mode": "SnapShot",
+            "tolerance": 0.0001
+          },
+          "summary": {
+            "buses": 16,
+            "control_iterations": 1,
+            "converged": true,
+            "elements": 38,
+            "iterations": 2,
+            "lowest_pu_bus": "611",
+            "lowest_pu_voltage": 0.9608427430890604,
+            "total_iterations": 2
+          },
+          "totals": {
+            "load_kvar": 2094.531954315811,
+            "load_kw": 3454.6592873700497,
+            "losses_kvar": 327.860856431114,
+            "losses_kw": 112.3917090551033,
+            "source_kvar": -1736.4395103613474,
+            "source_kw": -3567.0537784187272
+          },
+          "version": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033747; License Status: Open \nDSS-Python version: 0.15.7"
+        },
+        "opendssdirect": {
+          "controls": {
+            "capacitor.cap1": {
+              "states": [
+                1
+              ]
+            },
+            "capacitor.cap2": {
+              "states": [
+                1
+              ]
+            },
+            "regcontrol.reg1": {
+              "tap": 9
+            },
+            "regcontrol.reg2": {
+              "tap": 6
+            },
+            "regcontrol.reg3": {
+              "tap": 9
+            }
+          },
+          "solver": {
+            "base_freq": 60.0,
+            "control_mode": "Static",
+            "max_control_iterations": 10,
+            "max_iterations": 15,
+            "mode": "SnapShot",
+            "tolerance": 0.0001
+          },
+          "summary": {
+            "buses": 16,
+            "control_iterations": 1,
+            "converged": true,
+            "elements": 38,
+            "iterations": 2,
+            "lowest_pu_bus": "611",
+            "lowest_pu_voltage": 0.9608427430890604,
+            "total_iterations": 2
+          },
+          "totals": {
+            "load_kvar": 2094.531954315811,
+            "load_kw": 3454.6592873700497,
+            "losses_kvar": 327.860856431114,
+            "losses_kw": 112.3917090551033,
+            "source_kvar": -1736.4395103613474,
+            "source_kw": -3567.0537784187272
+          },
+          "version": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033747; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4"
+        }
+      },
+      "pairs": [
+        {
+          "candidate": "dss_python",
+          "diffs": [],
+          "nonzero_deltas": [],
+          "reference": "altdss",
+          "status": "pass",
+          "total_deltas": {
+            "load_kvar": 0.0,
+            "load_kw": 0.0,
+            "losses_kvar": 0.0,
+            "losses_kw": 0.0,
+            "source_kvar": 0.0,
+            "source_kw": 0.0
+          }
+        },
+        {
+          "candidate": "opendssdirect",
+          "diffs": [],
+          "nonzero_deltas": [],
+          "reference": "altdss",
+          "status": "pass",
+          "total_deltas": {
+            "load_kvar": 0.0,
+            "load_kw": 0.0,
+            "losses_kvar": 0.0,
+            "losses_kw": 0.0,
+            "source_kvar": 0.0,
+            "source_kw": 0.0
+          }
+        },
+        {
+          "candidate": "opendssdirect",
+          "diffs": [],
+          "nonzero_deltas": [],
+          "reference": "dss_python",
+          "status": "pass",
+          "total_deltas": {
+            "load_kvar": 0.0,
+            "load_kw": 0.0,
+            "losses_kvar": 0.0,
+            "losses_kw": 0.0,
+            "source_kvar": 0.0,
+            "source_kw": 0.0
+          }
+        }
+      ],
+      "scenario": "snapshot",
+      "status": "pass",
+      "tolerances": {
+        "angle_deg_abs": 1e-06,
+        "power_kw_kvar_abs": 1e-06,
+        "power_rel": 1e-06,
+        "voltage_pu_abs": 1e-06
+      }
+    },
+    {
+      "fixture": "ieee34",
+      "interfaces": {
+        "altdss": {
+          "controls": {
+            "capacitor.c844": {
+              "states": [
+                1
+              ]
+            },
+            "capacitor.c848": {
+              "states": [
+                1
+              ]
+            },
+            "regcontrol.creg1a": {
+              "tap": 14
+            },
+            "regcontrol.creg1b": {
+              "tap": 4
+            },
+            "regcontrol.creg1c": {
+              "tap": 5
+            },
+            "regcontrol.creg2a": {
+              "tap": 13
+            },
+            "regcontrol.creg2b": {
+              "tap": 13
+            },
+            "regcontrol.creg2c": {
+              "tap": 13
+            }
+          },
+          "solver": {
+            "base_freq": 60.0,
+            "control_mode": "Static",
+            "max_control_iterations": 10,
+            "max_iterations": 15,
+            "mode": "SnapShot",
+            "tolerance": 0.0001
+          },
+          "summary": {
+            "buses": 37,
+            "control_iterations": 6,
+            "converged": true,
+            "elements": 117,
+            "iterations": 25,
+            "lowest_pu_bus": "890",
+            "lowest_pu_voltage": 0.9230989327603909,
+            "total_iterations": 25
+          },
+          "totals": {
+            "load_kvar": 1055.9041802785814,
+            "load_kw": 1773.5508549421022,
+            "losses_kvar": 36.07165333226044,
+            "losses_kw": 273.5070571972641,
+            "source_kvar": -283.2799288351178,
+            "source_kw": -2047.0393213514653
+          },
+          "version": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033747; License Status: Open \nAltDSS-Python version: 0.2.4"
+        },
+        "dss_python": {
+          "controls": {
+            "capacitor.c844": {
+              "states": [
+                1
+              ]
+            },
+            "capacitor.c848": {
+              "states": [
+                1
+              ]
+            },
+            "regcontrol.creg1a": {
+              "tap": 14
+            },
+            "regcontrol.creg1b": {
+              "tap": 4
+            },
+            "regcontrol.creg1c": {
+              "tap": 5
+            },
+            "regcontrol.creg2a": {
+              "tap": 13
+            },
+            "regcontrol.creg2b": {
+              "tap": 13
+            },
+            "regcontrol.creg2c": {
+              "tap": 13
+            }
+          },
+          "solver": {
+            "base_freq": 60.0,
+            "control_mode": "Static",
+            "max_control_iterations": 10,
+            "max_iterations": 15,
+            "mode": "SnapShot",
+            "tolerance": 0.0001
+          },
+          "summary": {
+            "buses": 37,
+            "control_iterations": 6,
+            "converged": true,
+            "elements": 117,
+            "iterations": 25,
+            "lowest_pu_bus": "890",
+            "lowest_pu_voltage": 0.9230989327603909,
+            "total_iterations": 25
+          },
+          "totals": {
+            "load_kvar": 1055.9041802785814,
+            "load_kw": 1773.5508549421022,
+            "losses_kvar": 36.07165333226044,
+            "losses_kw": 273.5070571972641,
+            "source_kvar": -283.2799288351178,
+            "source_kw": -2047.0393213514653
+          },
+          "version": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033747; License Status: Open \nDSS-Python version: 0.15.7"
+        },
+        "opendssdirect": {
+          "controls": {
+            "capacitor.c844": {
+              "states": [
+                1
+              ]
+            },
+            "capacitor.c848": {
+              "states": [
+                1
+              ]
+            },
+            "regcontrol.creg1a": {
+              "tap": 14
+            },
+            "regcontrol.creg1b": {
+              "tap": 4
+            },
+            "regcontrol.creg1c": {
+              "tap": 5
+            },
+            "regcontrol.creg2a": {
+              "tap": 13
+            },
+            "regcontrol.creg2b": {
+              "tap": 13
+            },
+            "regcontrol.creg2c": {
+              "tap": 13
+            }
+          },
+          "solver": {
+            "base_freq": 60.0,
+            "control_mode": "Static",
+            "max_control_iterations": 10,
+            "max_iterations": 15,
+            "mode": "SnapShot",
+            "tolerance": 0.0001
+          },
+          "summary": {
+            "buses": 37,
+            "control_iterations": 6,
+            "converged": true,
+            "elements": 117,
+            "iterations": 25,
+            "lowest_pu_bus": "890",
+            "lowest_pu_voltage": 0.9230989327603909,
+            "total_iterations": 25
+          },
+          "totals": {
+            "load_kvar": 1055.9041802785814,
+            "load_kw": 1773.5508549421022,
+            "losses_kvar": 36.07165333226044,
+            "losses_kw": 273.5070571972641,
+            "source_kvar": -283.2799288351178,
+            "source_kw": -2047.0393213514653
+          },
+          "version": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033747; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4"
+        }
+      },
+      "pairs": [
+        {
+          "candidate": "dss_python",
+          "diffs": [],
+          "nonzero_deltas": [],
+          "reference": "altdss",
+          "status": "pass",
+          "total_deltas": {
+            "load_kvar": 0.0,
+            "load_kw": 0.0,
+            "losses_kvar": 0.0,
+            "losses_kw": 0.0,
+            "source_kvar": 0.0,
+            "source_kw": 0.0
+          }
+        },
+        {
+          "candidate": "opendssdirect",
+          "diffs": [],
+          "nonzero_deltas": [],
+          "reference": "altdss",
+          "status": "pass",
+          "total_deltas": {
+            "load_kvar": 0.0,
+            "load_kw": 0.0,
+            "losses_kvar": 0.0,
+            "losses_kw": 0.0,
+            "source_kvar": 0.0,
+            "source_kw": 0.0
+          }
+        },
+        {
+          "candidate": "opendssdirect",
+          "diffs": [],
+          "nonzero_deltas": [],
+          "reference": "dss_python",
+          "status": "pass",
+          "total_deltas": {
+            "load_kvar": 0.0,
+            "load_kw": 0.0,
+            "losses_kvar": 0.0,
+            "losses_kw": 0.0,
+            "source_kvar": 0.0,
+            "source_kw": 0.0
+          }
+        }
+      ],
+      "scenario": "snapshot",
+      "status": "pass",
+      "tolerances": {
+        "angle_deg_abs": 1e-06,
+        "power_kw_kvar_abs": 1e-06,
+        "power_rel": 1e-06,
+        "voltage_pu_abs": 1e-06
+      }
+    }
+  ],
+  "scope": "AltDSS-Python, DSS-Python and OpenDSSDirect.py share DSS C-API 0.14.5. A pass demonstrates wrapper agreement only. Independent numerical validation is outside this comparison.",
+  "status": "pass"
+}

@@ -1744,5 +1744,124 @@
       "load power"
     ],
     "scope": "The load applies either actual kW/kvar samples or per-unit scaling depending on UseActual."
+  },
+  {
+    "id": "opendssdirect-release-094",
+    "kind": "release-notes",
+    "title": "OpenDSSDirect.py 0.9.4 release",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/OpenDSSDirect.py/releases/tag/v0.9.4",
+    "version_or_ref": "OpenDSSDirect.py 0.9.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "OpenDSSDirect.py",
+      "release notes"
+    ],
+    "scope": "Pinned 0.9.4 release and change summary. The package release and documentation site banner are tracked separately."
+  },
+  {
+    "id": "opendssdirect-wheel-094",
+    "kind": "package-metadata",
+    "title": "OpenDSSDirect.py 0.9.4 distribution",
+    "publisher": "DSS-Extensions",
+    "url": "https://pypi.org/project/opendssdirect.py/0.9.4/",
+    "version_or_ref": "OpenDSSDirect.py 0.9.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "OpenDSSDirect.py",
+      "wheel",
+      "package metadata"
+    ],
+    "scope": "Pinned PyPI package with a universal Python wheel. Installed wheel metadata declares dss-python==0.15.7."
+  },
+  {
+    "id": "opendssdirect-dss-python-dependency",
+    "kind": "source",
+    "title": "OpenDSSDirect.py dependency pin",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/pyproject.toml#L23-L34",
+    "version_or_ref": "OpenDSSDirect.py 0.9.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "OpenDSSDirect.py",
+      "DSS-Python",
+      "shared engine"
+    ],
+    "scope": "Distribution configuration pins DSS-Python 0.15.7."
+  },
+  {
+    "id": "dss-python-backend-dependency",
+    "kind": "source",
+    "title": "DSS-Python backend dependency pin",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/pyproject.toml#L24-L32",
+    "version_or_ref": "DSS-Python 0.15.7",
+    "accessed": "2026-11-22",
+    "topics": [
+      "DSS-Python",
+      "DSS C-API",
+      "shared engine"
+    ],
+    "scope": "Distribution configuration pins dss-python-backend 0.14.5."
+  },
+  {
+    "id": "altdss-python-shared-backend",
+    "kind": "source",
+    "title": "AltDSS-Python dependencies",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/pyproject.toml#L20-L30",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "AltDSS-Python",
+      "DSS-Python",
+      "shared engine"
+    ],
+    "scope": "Distributed with dependencies on DSS-Python and the DSS C-API 0.14.5 backend."
+  },
+  {
+    "id": "dss-python-text-properties",
+    "kind": "source",
+    "title": "DSS-Python text accessors",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IText.py#L10-L50",
+    "version_or_ref": "DSS-Python 0.15.7",
+    "accessed": "2026-11-22",
+    "topics": [
+      "DSS-Python",
+      "Text.Command",
+      "Text.Result"
+    ],
+    "scope": "Command and Result are properties. Commands is a block execution method."
+  },
+  {
+    "id": "opendssdirect-text-methods",
+    "kind": "source",
+    "title": "OpenDSSDirect.py text accessors",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Text.py#L12-L40",
+    "version_or_ref": "OpenDSSDirect.py 0.9.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "OpenDSSDirect.py",
+      "Text.Command",
+      "Text.Result"
+    ],
+    "scope": "Method-style command setting and result reads used for named property queries."
+  },
+  {
+    "id": "opendssdirect-active-regulator-tap",
+    "kind": "source",
+    "title": "OpenDSSDirect.py active regulator tap accessor",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/RegControls.py#L267-L279",
+    "version_or_ref": "OpenDSSDirect.py 0.9.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "RegControls",
+      "TapNumber",
+      "active object"
+    ],
+    "scope": "Zero arguments get the active regulator's tap, and one argument sets it. The comparison uses a text query with the full element name."
   }
 ]

@@ -1,1 +1,335 @@
-[]
+[
+  {
+    "opendss_concept": "Check the shared DSS C-API backend",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "ctx.Version()",
+      "dss_python": "dss.Version",
+      "opendssdirect": "odd.Version()"
+    },
+    "evidence_label": "Observed-working",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py#L421-L432",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IDSS.py#L294-L309",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/OpenDSSDirect.py#L324-L335",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Basic.py#L122-L136",
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/pyproject.toml#L21-L26",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/pyproject.toml#L25-L29",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/pyproject.toml#L24-L30"
+    ],
+    "notes": [
+      "AltDSS-Python 0.2.4, DSS-Python 0.15.7 and OpenDSSDirect.py 0.9.4 share DSS C-API 0.14.5. OpenDSSDirect.py declares dss-python==0.15.7.",
+      "A pass demonstrates wrapper agreement only. Independent numerical validation is outside this comparison."
+    ],
+    "readback": {
+      "report": "docs/audits/phase4_cross_interface_report.json",
+      "environment": {
+        "altdss_version": "0.2.4",
+        "backend_version": "0.14.5",
+        "dss_python_version": "0.15.7",
+        "opendssdirect_version": "0.9.4",
+        "platform": "Windows 11 AMD64",
+        "python_version": "3.14.6"
+      },
+      "dss_capi_revision": "87d85c2622c8281b92255335bc7c09b11191b21d",
+      "fixtures": {
+        "ieee13": {
+          "buses": 16,
+          "control_iterations": 1,
+          "converged": true,
+          "elements": 38,
+          "iterations": 2,
+          "lowest_pu_bus": "611",
+          "lowest_pu_voltage": 0.9608427430890604,
+          "total_iterations": 2,
+          "source_kw_kvar": [
+            -3567.0537784187272,
+            -1736.4395103613474
+          ],
+          "losses_kw_kvar": [
+            112.3917090551033,
+            327.860856431114
+          ],
+          "taps": {
+            "regcontrol.reg1": 9,
+            "regcontrol.reg2": 6,
+            "regcontrol.reg3": 9
+          },
+          "nonzero_numeric_deltas": 0,
+          "out_of_tolerance_differences": 0
+        },
+        "ieee34": {
+          "buses": 37,
+          "control_iterations": 6,
+          "converged": true,
+          "elements": 117,
+          "iterations": 25,
+          "lowest_pu_bus": "890",
+          "lowest_pu_voltage": 0.9230989327603909,
+          "total_iterations": 25,
+          "source_kw_kvar": [
+            -2047.0393213514653,
+            -283.2799288351178
+          ],
+          "losses_kw_kvar": [
+            273.5070571972641,
+            36.07165333226044
+          ],
+          "taps": {
+            "regcontrol.creg1a": 14,
+            "regcontrol.creg1b": 4,
+            "regcontrol.creg1c": 5,
+            "regcontrol.creg2a": 13,
+            "regcontrol.creg2b": 13,
+            "regcontrol.creg2c": 13
+          },
+          "nonzero_numeric_deltas": 0,
+          "out_of_tolerance_differences": 0
+        }
+      }
+    }
+  },
+  {
+    "opendss_concept": "Select the snapshot context",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "from altdss import altdss; ctx = altdss.NewContext()",
+      "dss_python": "from dss import dss; ac = dss.ActiveCircuit",
+      "opendssdirect": "from opendssdirect import dss as odd; ac = odd.Circuit"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py#L367-L382",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IDSS.py#L110-L132",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/OpenDSSDirect.py#L279-L286",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/OpenDSSDirect.py#L308-L335",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/OpenDSSDirect.py#L462-L477"
+    ],
+    "notes": [
+      "The comparison starts a new process and verified input tree for each fixture and interface. DSS-Python and OpenDSSDirect.py can share active state in the default process context."
+    ]
+  },
+  {
+    "opendss_concept": "Run DSS text and read its result",
+    "interfaces": {
+      "altdss": "ctx.Commands(command); ctx.TextResult",
+      "dss_python": "dss.Text.Command = command; dss.Text.Result",
+      "opendssdirect": "odd.Text.Command(command); odd.Text.Result()"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py#L400-L419",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IText.py#L10-L50",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Text.py#L12-L40"
+    ],
+    "notes": [
+      "DSS-Python Text.Command is a string property. Text.Commands(...) is its method form for command blocks. Both OpenDSSDirect.py accessors shown here are methods."
+    ],
+    "dss_text_command": "Redirect \"path/to/fixture.dss\""
+  },
+  {
+    "opendss_concept": "Apply snapshot solver options and solve",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "ctx.Solution.Tolerance = value; ctx.Solution.Solve()",
+      "dss_python": "dss.ActiveCircuit.Solution.Tolerance = value; dss.ActiveCircuit.Solution.Solve()",
+      "opendssdirect": "odd.Solution.Convergence(value); odd.Solution.Solve()"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Solution.py#L83-L90",
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Solution.py#L382-L388",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ISolution.py#L81-L87",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ISolution.py#L508-L519",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Solution.py#L80-L87",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Solution.py#L534-L546"
+    ],
+    "notes": [
+      "OpenDSSDirect.py calls the solver tolerance Convergence. Converged is the status accessor. The tool also applies and verifies mode, iteration limits, control mode and solve frequency."
+    ]
+  },
+  {
+    "opendss_concept": "Read source terminal power",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "ctx.TotalPower()",
+      "dss_python": "dss.ActiveCircuit.TotalPower",
+      "opendssdirect": "odd.Circuit.TotalPower()"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py#L292-L303",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ICircuit.py#L594-L606",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Circuit.py#L386-L397"
+    ],
+    "notes": [
+      "Normalize the AltDSS complex value and the classic array or list to [kW, kvar]. The source convention in these snapshots is negative for delivery."
+    ]
+  },
+  {
+    "opendss_concept": "Read circuit losses in kW and kvar",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "ctx.Losses() returns complex W/var",
+      "dss_python": "dss.ActiveCircuit.Losses returns a W/var pair",
+      "opendssdirect": "odd.Circuit.Losses() returns a W/var pair"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py#L211-L217",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ICircuit.py#L521-L529",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Circuit.py#L321-L328"
+    ],
+    "notes": [
+      "Multiply each component by 0.001. On the pinned feeders real circuit losses after conversion are below the absolute source kW. The tool asserts this scale check separately for every worker."
+    ]
+  },
+  {
+    "opendss_concept": "Read convergence and iteration counts",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "ctx.Solution.Converged; ctx.Solution.Iterations; ctx.Solution.TotalIterations; ctx.Solution.ControlIterations",
+      "dss_python": "dss.ActiveCircuit.Solution.Converged; .Iterations; .Totaliterations; .ControlIterations",
+      "opendssdirect": "odd.Solution.Converged(); .Iterations(); .TotalIterations(); .ControlIterations()"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Solution.py#L138-L160",
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Solution.py#L250-L255",
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Solution.py#L402-L407",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ISolution.py#L151-L189",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ISolution.py#L307-L316",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ISolution.py#L535-L542",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Solution.py#L156-L194",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Solution.py#L328-L336",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Solution.py#L564-L572"
+    ],
+    "notes": [
+      "All four values compare exactly. The DSS-Python total counter has a lowercase i in Totaliterations."
+    ]
+  },
+  {
+    "opendss_concept": "Count and enumerate named circuit elements",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "ctx.NumCircuitElements; [element.FullName() for element in ctx.Element]",
+      "dss_python": "dss.ActiveCircuit.NumCktElements; dss.ActiveCircuit.AllElementNames",
+      "opendssdirect": "odd.Circuit.NumCktElements(); odd.Circuit.AllElementNames()"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py#L102-L114",
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py#L224-L235",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ICircuit.py#L483-L491",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ICircuit.py#L545-L554",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Circuit.py#L283-L291",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Circuit.py#L342-L350"
+    ],
+    "notes": [
+      "Both classic surfaces spell the count NumCktElements on these versions. The comparison uses case-insensitive full element names as dictionary keys."
+    ]
+  },
+  {
+    "opendss_concept": "Read a named element's terminal powers and losses",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "for element in ctx.Element: element.TotalPowers(); element.Losses()",
+      "dss_python": "ac = dss.ActiveCircuit; ac.SetActiveElement(name); ac.ActiveCktElement.TotalPowers; ac.ActiveCktElement.Losses",
+      "opendssdirect": "odd.Circuit.SetActiveElement(name); odd.CktElement.TotalPowers(); odd.CktElement.Losses()"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CircuitElement.py#L224-L230",
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CircuitElement.py#L296-L304",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ICircuit.py#L400-L415",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ICktElement.py#L315-L334",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ICktElement.py#L523-L533",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Circuit.py#L206-L217",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/CktElement.py#L295-L313",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/CktElement.py#L482-L492"
+    ],
+    "notes": [
+      "Keep terminal ordering within each named element. Convert element Losses from W/var. The loss accessor on loads and sources reflects element power. Use the circuit loss total for feeder dissipation."
+    ]
+  },
+  {
+    "opendss_concept": "Read named bus node voltages",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "for bus in ctx.Bus: bus.Name; bus.Nodes; bus.puVMagAngle",
+      "dss_python": "ac = dss.ActiveCircuit; ac.SetActiveBus(name); ac.ActiveBus.Nodes; ac.ActiveBus.puVmagAngle",
+      "opendssdirect": "odd.Circuit.SetActiveBus(name); odd.Bus.Nodes(); odd.Bus.puVmagAngle()"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Bus.py#L166-L181",
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Bus.py#L336-L345",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ICircuit.py#L364-L375",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IBus.py#L182-L191",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IBus.py#L342-L352",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Circuit.py#L171-L182",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Bus.py#L153-L161",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Bus.py#L284-L294"
+    ],
+    "notes": [
+      "Nodes holds node numbers. Voltages contain alternating per-unit magnitude and degree angle. Each vector is associated with the case-insensitive bus name and the node sequence."
+    ]
+  },
+  {
+    "opendss_concept": "Read each regulator's current tap by name",
+    "interfaces": {
+      "altdss": "for reg in ctx.RegControl: reg.FullName(); reg.TapNum",
+      "dss_python": "dss.Text.Command = f'? {name}.TapNum'; int(dss.Text.Result)",
+      "opendssdirect": "odd.Text.Command(f'? {name}.TapNum'); int(odd.Text.Result())"
+    },
+    "evidence_label": "Observed-working",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L510-L521",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IText.py#L10-L33",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IRegControls.py#L251-L265",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Text.py#L12-L34",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/RegControls.py#L267-L279"
+    ],
+    "notes": [
+      "Both classic facades query the full RegControl name. An ActiveClass walk returned 9/9/9 through OpenDSSDirect.py RegControls.TapNumber() and the named queries returned the correct 9/6/9. TapNumber reads or writes the active control. Supplying an argument to the OpenDSSDirect.py method writes a tap."
+    ],
+    "dss_text_command": "? RegControl.reg2.TapNum"
+  },
+  {
+    "opendss_concept": "Read each capacitor bank's step states",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "for cap in ctx.Capacitor: cap.FullName(); cap.States",
+      "dss_python": "ac = dss.ActiveCircuit; ac.Capacitors.Name = basename; ac.Capacitors.States",
+      "opendssdirect": "odd.Capacitors.Name(basename); odd.Capacitors.States()"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L263-L274",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ICapacitors.py#L69-L85",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/Capacitors.py#L68-L88"
+    ],
+    "notes": [
+      "Use the bank's own name before reading its state list. Compare each integer state exactly."
+    ]
+  },
+  {
+    "opendss_concept": "Recognize active-class cursor syntax",
+    "dss_text_command": "",
+    "interfaces": {
+      "altdss": "Use the AltDSS object collection to enumerate names.",
+      "dss_python": "dss.ActiveCircuit.ActiveClass.First",
+      "opendssdirect": "odd.ActiveClass.First()"
+    },
+    "evidence_label": "Official-versioned",
+    "source_refs": [
+      "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/AltDSS.py#L102-L112",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ICircuit.py#L176-L191",
+      "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IActiveClass.py#L55-L65",
+      "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/ActiveClass.py#L39-L48"
+    ],
+    "notes": [
+      "First is a property on DSS-Python and a method on OpenDSSDirect.py. The comparison uses enumerated names and explicit activation for classic bus and element readbacks."
+    ]
+  }
+]
