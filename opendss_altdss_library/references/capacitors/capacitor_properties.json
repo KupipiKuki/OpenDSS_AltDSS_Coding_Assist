@@ -67,7 +67,7 @@
         "default_value": [
           1200
         ],
-        "description": "Rated bank kvar per step, totaled across phases. This input selects the kvar/kV family. On the pinned recalculation path every step's capacitance is derived from the first kvar entry, while the amp rating uses the sum of the entries.",
+        "description": "Rated bank kvar per step, totaled across phases. This input selects the kvar/kV family. On the pinned recalculation path every step's capacitance is derived from the first kvar entry, while the amp rating uses the sum of the entries. EPRI's vocabulary page states a 600 kvar default; the pinned constructor and this readback use 1200.",
         "evidence_label": "Official-versioned",
         "supported_in_target": true,
         "altdss_keyword": "kvar",
@@ -243,7 +243,7 @@
         "default_value": [
           1
         ],
-        "description": "One integer per step, with 1 on and 0 off. Python reads the array. The pinned keyword, attribute, and edit writes tested silently kept the prior states. Write States using an explicit DSS text command and read it back.",
+        "description": "One integer per step, with 1 on and 0 off. Python reads the array. The pinned Python creation keyword, attribute assignment, and bank.edit(States=...) call tested silently kept the prior states; DSS text writes do change them. Write States using an explicit DSS text command and read it back.",
         "evidence_label": "Official-versioned",
         "supported_in_target": true,
         "altdss_keyword": "States",
@@ -284,7 +284,7 @@
         "name": "emergamps",
         "data_type": "real",
         "default_value": null,
-        "description": "Inherited emergency current rating in amperes. Under the kvar family the engine derives 180% of rated current when unset. The default reads about 100.0061 A. An explicit value persists and normal rating overrides do not set the emergency rating.",
+        "description": "Inherited emergency current rating in amperes. Under the kvar family the engine derives 180% of rated current when unset. The default reads about 100.0061 A. An explicit value persists and normal rating overrides do not set the emergency rating. EPRI describes the emergency default as 135% of Normamps; the pinned engine derives it at 180% of rated current.",
         "evidence_label": "Official-versioned",
         "supported_in_target": true,
         "altdss_keyword": "EmergAmps",

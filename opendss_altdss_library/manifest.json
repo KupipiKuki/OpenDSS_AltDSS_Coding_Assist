@@ -39,7 +39,7 @@
     "catalogs": "schemas/catalogs/"
   },
   "validation": {
-    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC and required corrections are applied. The owner accepted Phase 3B packages 1 through 4 after independent QA/QC and architect review. Package 5 (Capacitor) passed coder validation, independent QA/QC (PASS, no required corrections), and the architect review (PASS WITH FINDINGS: E-1 states-row wording, E-2 undisclosed EPRI default divergence, A-1 and A-2 architect handoff corrections, O-1 eight unvalidated row fields), and awaits the owner's disposition. Package 6 (Generator) is delivered and gated on that disposition.",
+    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC and required corrections are applied. The owner accepted Phase 3B packages 1 through 5 after independent QA/QC and architect review. Package 5 (Capacitor) was accepted after its two non-blocking architect findings were applied (E-1 states-row wording, E-2 EPRI default divergence disclosure); the two architect handoff corrections (A-1 Like method, A-2 State abbreviation) were applied to the handoff, and O-1 remains an open schema follow-up. Package 6 (Generator) has its coder handoff issued and is released to the coder.",
     "schema_validation": "tools/validate_catalogs.py passed 14/14 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0) when last run on 2026-11-22.",
     "runtime": "All 12 catalogued examples ran successfully on the pinned stack on Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, and backend 0.14.5; the harness was last re-run on 2026-11-22. Phase 3B packages 1 through 5 have readback matrices covering their catalogued fields and focused behavior probes; the package-5 matrix reproduced byte-identically apart from the environment block during the architect audit."
   },
@@ -69,9 +69,9 @@
     "phase_5": "planned"
   },
   "next_actions": [
-    "Disposition Phase 3B package 5 (Capacitor). Independent QA/QC and the architect review both report pass; the owner decides whether findings E-1 (states-row wording) and E-2 (undisclosed EPRI default divergence) are applied first.",
-    "Deliver Phase 3B package 6 (Generator) per docs/handoffs/Phase_3B_Generator_Coder_handoff.md once the owner dispositions package 5.",
+    "Code Phase 3B package 6 (Generator) per docs/handoffs/Phase_3B_Generator_Coder_handoff.md, then prepare its independent QA/QC.",
     "Declare the eight element row fields that packages 4 and 5 use (enum_type, array_element_type, array_length, readback_type, python_write_status, python_creation_status, python_method, dss_text_write) in the shared element schema, or drop them, so the row fields stop being unvalidated (load O-1, capacitor O-1).",
+    "Review Phase 3B package 6 (Generator) once delivered; independent QA/QC and architect review precede owner disposition.",
     "Draft the Phase 4 golden fixture layout and harness before the first fixture is added."
   ]
 }
