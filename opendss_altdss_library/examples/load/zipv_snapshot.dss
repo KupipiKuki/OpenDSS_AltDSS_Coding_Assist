@@ -1,0 +1,5 @@
+! Constant-power ZIP weights within the normal voltage range.
+New Circuit.load_zipv_demo BasekV=12.47 Bus1=source
+New Load.zip_snapshot Bus1=source.1.2.3.0 Phases=3 Conn=wye kV=12.47
+~ kW=60 kvar=15 Model=8 ZIPV=[0 0 1 0 0 1 0.8]
+Solve

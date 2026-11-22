@@ -1905,5 +1905,335 @@
     "notes": [
       "Python wrappers are in TransformerExtras.py L16-L29."
     ]
+  },
+  {
+    "id": "capi-load-specification-sets",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "Five base-power specification sets",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "Set declaration L368-L381; required flags L402-L405 and L448-L457",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "TSpecSets order: (kW, PF), (kW, kvar), (kVA, PF), (xfkVA, AllocationFactor, PF), (kWh, PF, kWhDays, CFactor).",
+    "arguments": null,
+    "returns_or_effects": "Supply one coherent family. The engine's displayed billing name lists PF last.",
+    "errors_or_edge_cases": "Bus1 and kV are Required. The power selectors are RequiredInSpecSet.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Load readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "All five combinations were exercised via Python kwargs and DSS text. Formal schema enforcement of Required flags was source reviewed."
+    ]
+  },
+  {
+    "id": "capi-load-family-switching",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "LoadSpecType and PF authority",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "kW/PF branch L562-L584; selector branches L586-L618 and L644-L717; recalculation L1158-L1198",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "kW, kvar, kVA, connected-kVA and energy setters select the relevant family. PF does not select a family.",
+    "arguments": null,
+    "returns_or_effects": "A kvar edit derives PF. A later PF-only edit in kW/kvar returns the derived PF. Setting kVA then uses that PF to derive kW and kvar.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Load readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Competing property-tracking entries are cleared with property tracking enabled."
+    ]
+  },
+  {
+    "id": "capi-load-kw-pf-edit-finalization",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "Derived power and edit finalization",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "kW/PF side effects L562-L584; EndEdit L725-L737; derived fields L1152-L1198",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Load.EndEdit calls RecalcElementData.",
+    "arguments": null,
+    "returns_or_effects": "Separate kW/PF attributes on a bare load can leave kvar and kVA stale. A completed kwargs constructor, checked edit, explicit finalization or DSS command refreshed both in the probes.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Load readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "AltDSS-Python 0.2.4 source applies kwargs in order and defaults to an open edit on bare creation (DSSObj.py L414-L432). A load initialized with kwargs also refreshed on later individual assignments in the pinned probe."
+    ]
+  },
+  {
+    "id": "capi-load-connected-kva",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "Connected capacity allocation and edit order",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "PF registration L450-L454; allocation writes L586-L601 and L676-L690; finalization L1189-L1198; allocation math L2167-L2180",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "kW = XfkVA × AllocationFactor × abs(PF) at the allocation write.",
+    "arguments": null,
+    "returns_or_effects": "With XfkVA=100 and AllocationFactor=0.5, PF=.9 applied first produces 45 kW. PF applied last leaves 44 kW from the old PF=.88. Reapplying the allocation factor uses the updated PF.",
+    "errors_or_edge_cases": "PF carries Ordering_Last in property metadata. The tested DSS text commands still exhibited the same input-order effect as Python.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Load readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-load-kwh-allocation",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "Billing-energy calculation and apparent power readback",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "Selector branches L603-L618, L644-L658 and L691-L704; EndEdit calculations L1189-L1198; allocation math L2182-L2191",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "kW = kWh / (24 × kWhDays) × CFactor; kvar follows PF.",
+    "arguments": null,
+    "returns_or_effects": "For a fresh load with the explicit billing example and PF, kVA read back zero. A prior kW/kvar specification can leave a nonzero reference-based kVA after an energy-family edit.",
+    "errors_or_edge_cases": "Calculate apparent power from the resulting kW and kvar when the allocation-family kVA readback differs.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Load readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-load-topology",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "Connection, rated voltage, and topology",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "Conductor counts L479-L492; voltage-base setters L516-L560; default topology L809-L812",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "One terminal. Wye uses Phases + 1 conductors. One- and two-phase delta use Phases + 1; three-phase delta uses Phases.",
+    "arguments": null,
+    "returns_or_effects": "The kV base is kV times 1000 for delta and one-phase wye. Two- and three-phase wye divide the line-to-line kV by sqrt(3) before converting to volts.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Load readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Runtime confirmed conductor counts for 1, 2 and 3 phases and kV edit preserving specified power. Internal voltage base arithmetic was source reviewed."
+    ]
+  },
+  {
+    "id": "capi-load-percent-scaling",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "Percentage property scale",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "Percentage properties L407-L413; constructor L873-L884",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "%Mean, %StdDev, %SeriesRL use PropertyScale=0.01.",
+    "arguments": null,
+    "returns_or_effects": "Constructor fractions 0.5, 0.1 and 0.5 read back as 50, 10 and 50. The matrix also tests edited values through DSS text.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Load readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-load-shape-assignment",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "Shape object references and UseActual assignment",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "Object registration L425-L433; assignment L620-L643; SetkWkvar L989-L1014; recalculation L1158-L1179",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Daily, Yearly, Duty and CVRCurve refer to LoadShape. Growth refers to GrowthShape.",
+    "arguments": null,
+    "returns_or_effects": "Daily fills Yearly if empty. Assigning Daily, Yearly or Duty with UseActual sets base kW/kvar from peak values. If PF was specified, the selected kW/PF family derives kvar from that PF.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Load readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Tests cover both PF and kvar inputs, assignment of all five references and preservation of explicitly assigned Yearly. Shape dispatch in time-series solves was source reviewed only."
+    ]
+  },
+  {
+    "id": "capi-load-shape-runtime",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "Shape dispatch by solution mode",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "Duty/Yearly helper L934-L952; nominal load L1021-L1120",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "The active solution mode selects the shape multiplier and may apply growth or the global load multiplier.",
+    "arguments": null,
+    "returns_or_effects": "Unset Duty falls back to Daily when the duty result is used. The yearly CVR branch consults the CVR curve. Fixed still applies growth.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "Scope is limited to Load's behavior with shape objects."
+    ]
+  },
+  {
+    "id": "capi-load-zipv-input",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "ZIPV coefficient guard and dispatch",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "ZIPV registration L396-L400; set flag L719-L720; DoZIPVModel L1525-L1541; model dispatch L1901-L1912",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Model=8 uses seven coefficients: Z/I/P weights for P, Z/I/P weights for Q, and a per-unit cutoff.",
+    "arguments": null,
+    "returns_or_effects": "Fresh loads read seven zeros although the array is registered NoDefault. A valid explicit write sets the flag and the pure-constant-power ZIP example served 60 kW and 15 kvar.",
+    "errors_or_edge_cases": "The six-value array write raised #20200423. The missing-array runtime guard is documented from source.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Load readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-load-zipv-low-voltage",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "ZIPV voltage-dependent branches",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "ZIPV evaluation L1581-L1652",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "The engine processes the low-voltage fallback and then, above VLowpu, applies the optional cutoff factor to ZIP current.",
+    "arguments": null,
+    "returns_or_effects": "The cutoff branch implements a smooth drop-out. The very-low-voltage region first takes the linear admittance fallback.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "The runtime proof covers one normal-voltage point. The cutoff sweep was not run."
+    ]
+  },
+  {
+    "id": "capi-load-constructor-defaults",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "Default Load power, topology and inherited state",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "Constructor L801-L888; power recalculation L1158-L1179",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Initial kWBase=10, kvarBase=5, PF=.88, kVA=10/.88; one terminal, four conductors.",
+    "arguments": null,
+    "returns_or_effects": "Constructor recalculation yields about 5.397428 kvar. Spectrum resolves to Spectrum.defaultload. BaseFreq inherits the circuit's fundamental.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Load readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Spectrum override L877; PCClass.pas L89-L100 and PCElement.pas L78-L84 for inheritance. CktElement.pas L180-L204 and CktElementClass.pas L89-L100 for circuit fields."
+    ]
+  },
+  {
+    "id": "capi-load-voltage-limits",
+    "kind": "api",
+    "namespace_or_type": "Load",
+    "name": "Normal and emergency circuit voltage fallbacks",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "Constructor L855-L861; voltage service evaluation L2030-L2048",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "VMinNorm=0 and VMinEmerg=0 select the circuit thresholds.",
+    "arguments": null,
+    "returns_or_effects": "Nonzero load-specific limits take priority for the service evaluation.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "Defaults were read back. Reliability and service-evaluation scenarios were not run."
+    ]
   }
 ]

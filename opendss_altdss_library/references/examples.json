@@ -185,5 +185,68 @@
       "date": "2026-11-21"
     },
     "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "load-power-family-comparison-altdss",
+    "task_description": "Compare kW/PF and kW/kvar load definitions and inspect their served power.",
+    "language": "python_altdss",
+    "file": "examples/load/compare_power_families.py",
+    "object_classes": [
+      "Circuit",
+      "Load"
+    ],
+    "dependencies": [
+      "altdss==0.2.4",
+      "dss-python==0.15.7",
+      "dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "epri-load-element",
+      "altdss-load-wrapper",
+      "altdss-load-terminal-results",
+      "capi-load-engine"
+    ],
+    "expected_result": "The solved loads each serve 60 kW and about 19.721 kvar at the common bus. Their nominal PF and kVA match.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "load-zipv-snapshot-dss",
+    "task_description": "Solve a DSS-text load using Model=8 and explicit ZIPV coefficients.",
+    "language": "dss",
+    "file": "examples/load/zipv_snapshot.dss",
+    "object_classes": [
+      "Circuit",
+      "Load"
+    ],
+    "dependencies": [
+      "DSS C-API 0.14.5",
+      "For the Python runner: altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "epri-dss-scripting",
+      "epri-load-properties",
+      "capi-load-engine",
+      "altdss-load-terminal-results"
+    ],
+    "expected_result": "The circuit converges, and the dedicated readback verifies seven ZIPV coefficients, 60 kW and 15 kvar served, and four complex terminal currents.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
   }
 ]

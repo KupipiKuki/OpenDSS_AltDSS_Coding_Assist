@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version** 0.16 (Phase 3B package 3 accepted; package 4 handoff verified and corrected)
+**Plan version** 0.17 (Phase 3B package 4 ready for independent QA/QC)
 **Plan date:** 2026-11-21
-**Current phase:** Phase 3B package 4 (Load). Package 3 (Transformer and XfmrCode) passed coder validation, independent QA/QC, and architect/auditor review, and the owner accepted it; the package-4 coder handoff is issued.
+**Current phase** Phase 3B package 4 (Load). The owner accepted package 3. Package 4 passed coder validation and awaits independent QA/QC and architect review.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -14,11 +14,11 @@ This plan supersedes the phase prose in [Phase 1 README](phase_1/README.md) and 
 |---|---|---|
 | Phase 1 foundation | Complete, committed at `3263daa` | Charter, source inventory, external audit, schemas |
 | Line/LineCode catalog | Remediated, source-reviewed, independently QA'd, findings resolved | [Audit](audits/line_linecode_schema_audit.md) · [QA/QC report](audits/line_linecode_phase2_qaqc.md) |
-| Source index | 18 records, version-scoped, schema-valid; consolidated from the Line/LineCode index | [sources.json](../opendss_altdss_library/references/sources.json) |
-| Examples | Eight files and eight records, all `Observed-working` with a recorded environment | [Examples](../opendss_altdss_library/references/examples.json) · [Workflow](workflows/line_linecode.md) |
-| Schema validation | `tools/validate_catalogs.py`: 12/12 manifest-and-catalog pairs pass Draft 2020-12 with format checking at this revision | [validate_catalogs.py](../opendss_altdss_library/tools/validate_catalogs.py) |
-| Runtime evidence | `tools/run_examples.py` executes all eight catalogued examples successfully on the pinned stack; independent QA/QC creation and readback checks passed separately, and packages 1–3 have readback matrices | [run_examples.py](../opendss_altdss_library/tools/run_examples.py) · [QA/QC runtime section](audits/line_linecode_phase2_qaqc.md#runtime-result-pass) |
-| API and engine catalogs | Phase 3A delivered 99 generated AltDSS-Python class records; the curated DSS C-API engine records now number 75 after the element packages. QA/QC findings are resolved. | [altdss_python_api.json](../opendss_altdss_library/references/altdss_python_api.json) · [dss_capi.json](../opendss_altdss_library/references/dss_capi.json) · [3A audit](audits/phase3a_api_catalogs_audit.md) |
+| Source index | 77 schema-valid records with versioned source pins where available | [sources.json](../opendss_altdss_library/references/sources.json) |
+| Examples | Ten files and ten records, all `Observed-working` with a recorded environment | [Examples](../opendss_altdss_library/references/examples.json) |
+| Schema validation | `tools/validate_catalogs.py` passed 13 of 13 manifest and catalog pairs with Draft 2020-12 format checking | [validate_catalogs.py](../opendss_altdss_library/tools/validate_catalogs.py) |
+| Runtime evidence | Ten catalogued examples passed on the pinned stack. Packages 1–4 have readback matrices. | [run_examples.py](../opendss_altdss_library/tools/run_examples.py) · [Load readback](audits/phase3b_load_readback.json) |
+| API and engine catalogs | 99 generated AltDSS-Python class records and 88 curated DSS C-API engine records | [altdss_python_api.json](../opendss_altdss_library/references/altdss_python_api.json) · [dss_capi.json](../opendss_altdss_library/references/dss_capi.json) · [3A audit](audits/phase3a_api_catalogs_audit.md) |
 | Remaining catalogs | Three empty: `opendss_objects`, `python_interface_comparison`, `troubleshooting` | [references/](../opendss_altdss_library/references/) |
 | Validation tooling | Committed: `tools/requirements-validation.txt`, `tools/validate_catalogs.py`, `tools/run_examples.py`, `tools/build_altdss_api_catalog.py` | [tools/](../opendss_altdss_library/tools/) |
 | Phase 2 commit | Committed as the Phase 2 milestone and merged to `main` on owner approval (2026-11-21) | `git log` |
@@ -102,6 +102,8 @@ Each package follows the template and definition of done in 5.4. Package 1 has i
 Package 2 has its Circuit command and Vsource catalog, two executed examples, and a matrix of constructor readbacks and focused probes. Independent QA/QC found no blocking issues and the architect/auditor review required no corrections; two non-blocking observations are recorded. The owner accepted package 2 on 2026-11-21 and directed package 3, whose coder handoff is issued: [Transformer and XfmrCode coder handoff](handoffs/Phase_3B_Transformer_Coder_handoff.md). [Build audit](audits/phase3b_circuit_vsource_audit.md) · [QA/QC report](audits/phase3b_circuit_vsource_qaqc.md) · [Architect/auditor review](audits/phase3b_circuit_vsource_architect_audit.md)
 
 Package 3 adds Transformer and XfmrCode for two- and three-winding models, two executed examples, and a runtime matrix. Independent QA/QC and the architect review passed; the review found and corrected one citation that ran past the end of `PDClass.pas` (E-1) and recorded one harness attribution issue (E-2). The owner accepted package 3 on 2026-11-21 and directed package 4, whose coder handoff is issued: [Load coder handoff](handoffs/Phase_3B_Load_Coder_handoff.md). Package 4 covers the `Load` element with the five engine load-specification families as its centerpiece; the `LoadShape` and `GrowthShape` property catalogs are recorded as deferred class catalogs. [Build audit](audits/phase3b_transformer_audit.md) · [QA/QC report](audits/phase3b_transformer_qaqc.md) · [Architect/auditor review](audits/phase3b_transformer_architect_audit.md)
+
+Package 4 adds the 43-row Load catalog, Python and DSS examples, and a readback matrix covering all five load-specification families and assignment effects. Independent QA/QC and architect review precede owner disposition and the start of package 5. [Build audit](audits/phase3b_load_audit.md) · [QA/QC handoff](handoffs/Phase_3B_Load_QAQC_handoff.md)
 
 ### 5.4 Element package template (definition of done)
 
@@ -248,6 +250,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.14 | 2026-11-21 | Recorded the Phase 3B package-3 dispositions: independent QA/QC passed with no blocking findings, and the architect/auditor review re-derived the winding model, defaults, and runtime on a clean environment, found and corrected one out-of-range citation (E-1), and recorded one non-blocking harness observation (E-2). |
 | 0.15 | 2026-11-21 | Recorded the owner's acceptance of Phase 3B package 3 and issued the package-4 (Load) coder handoff with the five load-specification families as the centerpiece, the pinned default and precedence facts, and the deferral of the LoadShape and GrowthShape class catalogs. |
 | 0.16 | 2026-11-21 | Re-verified the issued package-4 handoff against the pinned sources before coding started and corrected three statements: the enum readback types (`Model`, `Conn`, and `Status` all return altdss enum members, not integers), the `SpecSetNames` display order versus the `TSpecSets` member order for the kWh family, and the trap-2 provenance. Added trap 15, which records that successive attribute writes leave the derived `kvar` and `kVA` stale where a single `new(...)` call or text command recomputes them. |
+| 0.17 | 2026-11-21 | Added the Load catalog, workflow, examples, and pinned readback matrix. Recorded coder validation and prepared independent QA/QC. |
 
 ## 11. Owner decisions
 

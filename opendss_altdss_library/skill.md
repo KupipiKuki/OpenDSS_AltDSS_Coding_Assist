@@ -34,6 +34,8 @@ For circuit initialization, use the context command `New Circuit.<name>` and rea
 
 For Transformer and XfmrCode, use two or three windings. Set dimensions or assign the code before winding arrays, bus connections, and overrides. Use `wdg` for selected-winding DSS text access. The workflow covers reactance ordering, tap writes, winding results, and pinned engine behavior. [Workflow](../docs/workflows/transformer.md) · [Property catalog](references/transformers/transformer_properties.json) · [Runtime matrix](../docs/audits/phase3b_transformer_readback.json)
 
+For Load, choose one base-power family and complete the edit before reading derived fields. Set PF before connected-kVA allocation inputs. Provide seven ZIPV coefficients when using Model 8. The workflow covers topology, shape assignment, and actual served power. [Workflow](../docs/workflows/load.md) · [Property catalog](references/loads/load_properties.json) · [Runtime matrix](../docs/audits/phase3b_load_readback.json)
+
 ## Validation language
 
 Distinguish schema review, source review, example inspection, and runtime execution. Do not claim compatibility until representative tasks run against the manifest target and record the environment and result. `Observed-working` requires a committed example file, a harness run with the recorded environment, and a date; use `Example-only` until that exists.
@@ -44,6 +46,7 @@ Run the committed harness before any catalog or example change:
 python opendss_altdss_library/tools/validate_catalogs.py
 python opendss_altdss_library/tools/run_examples.py
 python opendss_altdss_library/tools/readback_transformer.py
+python opendss_altdss_library/tools/readback_load.py
 python opendss_altdss_library/tools/build_altdss_api_catalog.py --source-dir <extracted-wheel>/altdss --out opendss_altdss_library/references/altdss_python_api.json
 ```
 

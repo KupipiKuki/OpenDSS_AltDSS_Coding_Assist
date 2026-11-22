@@ -1,0 +1,663 @@
+{
+  "environment": {
+    "python_version": "3.14.6",
+    "altdss_version": "0.2.4",
+    "dss_python_version": "0.15.7",
+    "backend_version": "0.14.5",
+    "platform": "Windows 11 AMD64",
+    "date": "2026-11-21"
+  },
+  "defaults": {
+    "name": {
+      "status": "read back",
+      "value": "readback_default"
+    },
+    "phases": {
+      "status": "read back",
+      "value": 3
+    },
+    "bus1": {
+      "status": "read back",
+      "value": "readback_default_1"
+    },
+    "kv": {
+      "status": "read back",
+      "value": 12.47
+    },
+    "kw": {
+      "status": "read back",
+      "value": 10.0
+    },
+    "pf": {
+      "status": "read back",
+      "value": 0.88
+    },
+    "model": {
+      "status": "read back",
+      "enum_type": "LoadModel",
+      "enum_member": "ConstantPQ",
+      "value": 1
+    },
+    "yearly": {
+      "status": "read back",
+      "object_repr": "None",
+      "value": null
+    },
+    "daily": {
+      "status": "read back",
+      "object_repr": "None",
+      "value": null
+    },
+    "duty": {
+      "status": "read back",
+      "object_repr": "None",
+      "value": null
+    },
+    "growth": {
+      "status": "read back",
+      "object_repr": "None",
+      "value": null
+    },
+    "conn": {
+      "status": "read back",
+      "enum_type": "Connection",
+      "enum_member": "wye",
+      "value": 0
+    },
+    "kvar": {
+      "status": "read back",
+      "value": 5.397428221380872
+    },
+    "rneut": {
+      "status": "read back",
+      "value": -1.0
+    },
+    "xneut": {
+      "status": "read back",
+      "value": 0.0
+    },
+    "status": {
+      "status": "read back",
+      "enum_type": "LoadStatus",
+      "enum_member": "Variable",
+      "value": 0
+    },
+    "class": {
+      "status": "read back",
+      "value": 1
+    },
+    "vminpu": {
+      "status": "read back",
+      "value": 0.95
+    },
+    "vmaxpu": {
+      "status": "read back",
+      "value": 1.05
+    },
+    "vminnorm": {
+      "status": "read back",
+      "value": 0.0
+    },
+    "vminemerg": {
+      "status": "read back",
+      "value": 0.0
+    },
+    "xfkva": {
+      "status": "read back",
+      "value": 0.0
+    },
+    "allocationfactor": {
+      "status": "read back",
+      "value": 0.5
+    },
+    "kva": {
+      "status": "read back",
+      "value": 11.363636363636365
+    },
+    "pctmean": {
+      "status": "read back",
+      "value": 50.0
+    },
+    "pctstddev": {
+      "status": "read back",
+      "value": 10.0
+    },
+    "cvrwatts": {
+      "status": "read back",
+      "value": 1.0
+    },
+    "cvrvars": {
+      "status": "read back",
+      "value": 2.0
+    },
+    "kwh": {
+      "status": "read back",
+      "value": 0.0
+    },
+    "kwhdays": {
+      "status": "read back",
+      "value": 30.0
+    },
+    "cfactor": {
+      "status": "read back",
+      "value": 4.0
+    },
+    "cvrcurve": {
+      "status": "read back",
+      "object_repr": "None",
+      "value": null
+    },
+    "numcust": {
+      "status": "read back",
+      "value": 1
+    },
+    "zipv": {
+      "status": "read back",
+      "value": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "pctseriesrl": {
+      "status": "read back",
+      "value": 50.0
+    },
+    "relweight": {
+      "status": "read back",
+      "value": 1.0
+    },
+    "vlowpu": {
+      "status": "read back",
+      "value": 0.5
+    },
+    "puxharm": {
+      "status": "read back",
+      "value": 0.0
+    },
+    "xrharm": {
+      "status": "read back",
+      "value": 6.0
+    },
+    "spectrum": {
+      "status": "read back",
+      "object_repr": "<Spectrum.defaultload>",
+      "value": "defaultload"
+    },
+    "basefreq": {
+      "status": "read back",
+      "value": 60.0
+    },
+    "enabled": {
+      "status": "read back",
+      "value": true
+    },
+    "like": {
+      "status": "action",
+      "note": "Creation keyword and action method with no getter."
+    }
+  },
+  "specification_families": {
+    "kw_pf": {
+      "input_order": [
+        "kW",
+        "PF"
+      ],
+      "inputs": {
+        "kW": 100,
+        "PF": 0.95
+      },
+      "python": {
+        "kW": 100.0,
+        "kvar": 32.86841051788632,
+        "PF": 0.95,
+        "kVA": 105.26315789473685
+      },
+      "dss_text": {
+        "kW": 100.0,
+        "kvar": 32.86841051788632,
+        "PF": 0.95,
+        "kVA": 105.26315789473685
+      }
+    },
+    "kw_kvar": {
+      "input_order": [
+        "kW",
+        "kvar"
+      ],
+      "inputs": {
+        "kW": 100,
+        "kvar": 30
+      },
+      "python": {
+        "kW": 100.0,
+        "kvar": 30.0,
+        "PF": 0.9578262852211514,
+        "kVA": 104.4030650891055
+      },
+      "dss_text": {
+        "kW": 100.0,
+        "kvar": 30.0,
+        "PF": 0.9578262852211514,
+        "kVA": 104.4030650891055
+      }
+    },
+    "kva_pf": {
+      "input_order": [
+        "kVA",
+        "PF"
+      ],
+      "inputs": {
+        "kVA": 200,
+        "PF": 0.9
+      },
+      "python": {
+        "kW": 180.0,
+        "kvar": 87.17797887081346,
+        "PF": 0.9,
+        "kVA": 200.0
+      },
+      "dss_text": {
+        "kW": 180.0,
+        "kvar": 87.17797887081346,
+        "PF": 0.9,
+        "kVA": 200.0
+      }
+    },
+    "connected_kva": {
+      "input_order": [
+        "PF",
+        "XfkVA",
+        "AllocationFactor"
+      ],
+      "inputs": {
+        "PF": 0.9,
+        "XfkVA": 100,
+        "AllocationFactor": 0.5
+      },
+      "python": {
+        "kW": 45.0,
+        "kvar": 21.794494717703365,
+        "PF": 0.9,
+        "kVA": 0.0
+      },
+      "dss_text": {
+        "kW": 45.0,
+        "kvar": 21.794494717703365,
+        "PF": 0.9,
+        "kVA": 0.0
+      }
+    },
+    "billed_energy": {
+      "input_order": [
+        "kWh",
+        "kWhDays",
+        "CFactor",
+        "PF"
+      ],
+      "inputs": {
+        "kWh": 30000,
+        "kWhDays": 30,
+        "CFactor": 4,
+        "PF": 0.9
+      },
+      "python": {
+        "kW": 166.66666666666666,
+        "kvar": 80.72035080630876,
+        "PF": 0.9,
+        "kVA": 0.0
+      },
+      "dss_text": {
+        "kW": 166.66666666666666,
+        "kvar": 80.72035080630876,
+        "PF": 0.9,
+        "kVA": 0.0
+      }
+    }
+  },
+  "family_switch": {
+    "attribute": {
+      "initial": {
+        "kW": 50.0,
+        "kvar": 24.216105241892627,
+        "PF": 0.9,
+        "kVA": 55.55555555555555
+      },
+      "after_each_write": {
+        "kvar": {
+          "kW": 50.0,
+          "kvar": 20.0,
+          "PF": 0.9284766908852593,
+          "kVA": 53.85164807134504
+        },
+        "PF": {
+          "kW": 50.0,
+          "kvar": 20.0,
+          "PF": 0.9284766908852593,
+          "kVA": 53.85164807134504
+        },
+        "kVA": {
+          "kW": 92.84766908852593,
+          "kvar": 37.13906763541039,
+          "PF": 0.9284766908852593,
+          "kVA": 100.0
+        }
+      }
+    },
+    "edit": {
+      "initial": {
+        "kW": 50.0,
+        "kvar": 24.216105241892627,
+        "PF": 0.9,
+        "kVA": 55.55555555555555
+      },
+      "after_each_write": {
+        "kvar": {
+          "kW": 50.0,
+          "kvar": 20.0,
+          "PF": 0.9284766908852593,
+          "kVA": 53.85164807134504
+        },
+        "PF": {
+          "kW": 50.0,
+          "kvar": 20.0,
+          "PF": 0.9284766908852593,
+          "kVA": 53.85164807134504
+        },
+        "kVA": {
+          "kW": 92.84766908852593,
+          "kvar": 37.13906763541039,
+          "PF": 0.9284766908852593,
+          "kVA": 100.0
+        }
+      }
+    },
+    "dss_text": {
+      "initial": {
+        "kW": 50.0,
+        "kvar": 24.216105241892627,
+        "PF": 0.9,
+        "kVA": 55.55555555555555
+      },
+      "after_each_write": {
+        "kvar": {
+          "kW": 50.0,
+          "kvar": 20.0,
+          "PF": 0.9284766908852593,
+          "kVA": 53.85164807134504
+        },
+        "PF": {
+          "kW": 50.0,
+          "kvar": 20.0,
+          "PF": 0.9284766908852593,
+          "kVA": 53.85164807134504
+        },
+        "kVA": {
+          "kW": 92.84766908852593,
+          "kvar": 37.13906763541039,
+          "PF": 0.9284766908852593,
+          "kVA": 100.0
+        }
+      }
+    },
+    "energy_after_kw_kvar": {
+      "kW": 166.66666666666666,
+      "kvar": 80.72035080630876,
+      "PF": 0.9,
+      "kVA": 53.85164807134504
+    },
+    "kva_after_energy": {
+      "kW": 180.0,
+      "kvar": 87.17797887081346,
+      "PF": 0.9,
+      "kVA": 200.0
+    },
+    "kw_after_kva": {
+      "kW": 100.0,
+      "kvar": 32.86841051788632,
+      "PF": 0.95,
+      "kVA": 105.26315789473685
+    }
+  },
+  "allocation_order": {
+    "pf_last": {
+      "keyword_order": [
+        "XfkVA",
+        "AllocationFactor",
+        "PF"
+      ],
+      "python": {
+        "kW": 44.0,
+        "kvar": 21.31017261286551,
+        "PF": 0.9,
+        "kVA": 0.0
+      },
+      "dss_text": {
+        "kW": 44.0,
+        "kvar": 21.31017261286551,
+        "PF": 0.9,
+        "kVA": 0.0
+      }
+    },
+    "pf_first": {
+      "keyword_order": [
+        "PF",
+        "XfkVA",
+        "AllocationFactor"
+      ],
+      "python": {
+        "kW": 45.0,
+        "kvar": 21.794494717703365,
+        "PF": 0.9,
+        "kVA": 0.0
+      },
+      "dss_text": {
+        "kW": 45.0,
+        "kvar": 21.794494717703365,
+        "PF": 0.9,
+        "kVA": 0.0
+      }
+    },
+    "repeat_allocation_at_new_pf": {
+      "kW": 45.0,
+      "kvar": 21.794494717703365,
+      "PF": 0.9,
+      "kVA": 0.0
+    }
+  },
+  "edit_finalization": {
+    "kw_first": {
+      "open_edit": {
+        "kW": 50.0,
+        "kvar": 5.397428221380872,
+        "PF": 0.9,
+        "kVA": 11.363636363636365
+      },
+      "after_end_edit": {
+        "kW": 50.0,
+        "kvar": 24.216105241892627,
+        "PF": 0.9,
+        "kVA": 55.55555555555555
+      }
+    },
+    "pf_first": {
+      "open_edit": {
+        "kW": 50.0,
+        "kvar": 5.397428221380872,
+        "PF": 0.9,
+        "kVA": 11.363636363636365
+      },
+      "after_end_edit": {
+        "kW": 50.0,
+        "kvar": 24.216105241892627,
+        "PF": 0.9,
+        "kVA": 55.55555555555555
+      }
+    },
+    "kwargs": {
+      "kW": 50.0,
+      "kvar": 24.216105241892627,
+      "PF": 0.9,
+      "kVA": 55.55555555555555
+    },
+    "text": {
+      "kW": 50.0,
+      "kvar": 24.216105241892627,
+      "PF": 0.9,
+      "kVA": 55.55555555555555
+    },
+    "bare_begin_edit_false": {
+      "kW": 50.0,
+      "kvar": 5.397428221380872,
+      "PF": 0.9,
+      "kVA": 11.363636363636365
+    },
+    "completed_edit": {
+      "kW": 50.0,
+      "kvar": 24.216105241892627,
+      "PF": 0.9,
+      "kVA": 55.55555555555555
+    },
+    "attributes_after_completed_kwargs": {
+      "kW": 50.0,
+      "kvar": 24.216105241892627,
+      "PF": 0.9,
+      "kVA": 55.55555555555555
+    }
+  },
+  "connections": {
+    "topology": [
+      {
+        "phases": 3,
+        "connection": "wye",
+        "conductors": 4,
+        "terminals": 1
+      },
+      {
+        "phases": 3,
+        "connection": "delta",
+        "conductors": 3,
+        "terminals": 1
+      },
+      {
+        "phases": 2,
+        "connection": "wye",
+        "conductors": 3,
+        "terminals": 1
+      },
+      {
+        "phases": 2,
+        "connection": "delta",
+        "conductors": 3,
+        "terminals": 1
+      },
+      {
+        "phases": 1,
+        "connection": "wye",
+        "conductors": 2,
+        "terminals": 1
+      },
+      {
+        "phases": 1,
+        "connection": "delta",
+        "conductors": 2,
+        "terminals": 1
+      }
+    ],
+    "rated_kv_after_edit": 4.16,
+    "power_after_kv_edit": {
+      "kW": 60.0,
+      "kvar": 15.0,
+      "PF": 0.9701425001453319,
+      "kVA": 61.84658438426491
+    }
+  },
+  "shape_assignment": {
+    "daily_only": {
+      "Daily": "<LoadShape.profile>",
+      "Yearly": "<LoadShape.profile>"
+    },
+    "yearly_only": {
+      "Daily": null,
+      "Yearly": "<LoadShape.profile>"
+    },
+    "use_actual_with_pf": {
+      "kW": 1.5,
+      "kvar": 0.7264831572567788,
+      "PF": 0.9,
+      "kVA": 1.6666666666666667
+    },
+    "use_actual_with_kvar": {
+      "Daily": {
+        "kW": 1.5,
+        "kvar": 0.6,
+        "PF": 0.9284766908852594,
+        "kVA": 1.6155494421403511
+      },
+      "Yearly": {
+        "kW": 1.5,
+        "kvar": 0.6,
+        "PF": 0.9284766908852594,
+        "kVA": 1.6155494421403511
+      },
+      "Duty": {
+        "kW": 1.5,
+        "kvar": 0.6,
+        "PF": 0.9284766908852594,
+        "kVA": 1.6155494421403511
+      }
+    },
+    "references": {
+      "Daily": "<LoadShape.actual>",
+      "Yearly": "<LoadShape.profile>",
+      "Duty": "<LoadShape.profile>",
+      "Growth": "<GrowthShape.grow>",
+      "CVRCurve": "<LoadShape.profile>"
+    }
+  },
+  "scaled_percent_fields": {
+    "pctMean": 75.0,
+    "pctStdDev": 12.0,
+    "pctSeriesRL": 30.0
+  },
+  "zipv_solve": {
+    "converged": true,
+    "model": "ZIPV",
+    "coefficients": [
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      1.0,
+      0.8
+    ],
+    "total_power_kw_kvar": [
+      59.99999999999961,
+      14.99999999999843
+    ],
+    "currents_a": [
+      [
+        2.7779698448809746,
+        -0.6945729969187948
+      ],
+      [
+        -1.9905027827867885,
+        -2.0585059579303695
+      ],
+      [
+        -0.787467061705734,
+        2.7530789552508854
+      ],
+      [
+        -3.884521593278123e-10,
+        -4.017208787843174e-10
+      ]
+    ],
+    "wrong_length_error": "(#20200423) Load.bad_zip_length.ZIPV: Invalid number of elements. Expected 7 elements, got 6."
+  }
+}

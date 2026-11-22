@@ -29,7 +29,8 @@
       "references/dss_capi.json",
       "references/lines/line_geometry_wires_properties.json",
       "references/circuit/vsource_properties.json",
-      "references/transformers/transformer_properties.json"
+      "references/transformers/transformer_properties.json",
+      "references/loads/load_properties.json"
     ]
   },
   "schemas": {
@@ -37,14 +38,14 @@
     "catalogs": "schemas/catalogs/"
   },
   "validation": {
-    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC with findings and the required corrections are applied. The owner accepted Phase 3B packages 1, 2, and 3 after independent QA/QC and architect review. Package 3 (Transformer and XfmrCode) passed both reviews; one broken citation was found and corrected in that review (E-1), and one harness attribution issue is recorded as a non-blocking observation (E-2). Package 4 (Load) is issued to the coder.",
-    "schema_validation": "tools/validate_catalogs.py passed 12/12 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0) on 2026-11-21.",
-    "runtime": "All eight catalogued examples ran successfully on 2026-11-21 on Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, and backend 0.14.5. Phase 3B packages 1 through 3 have readback matrices covering their catalogued fields and focused behavior probes."
+    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC and required corrections are applied. The owner accepted Phase 3B packages 1 through 3 after independent QA/QC and architect review. Package 4 (Load) passed coder validation and awaits independent QA/QC and architect review.",
+    "schema_validation": "tools/validate_catalogs.py passed 13/13 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0) on 2026-11-21.",
+    "runtime": "All ten catalogued examples ran successfully on 2026-11-21 on Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, and backend 0.14.5. Phase 3B packages 1 through 4 have readback matrices covering their catalogued fields and focused behavior probes."
   },
   "known_gaps": [
     "Three catalog files are still empty pending later phases: opendss_objects, python_interface_comparison, troubleshooting.",
     "The generated altdss_python_api catalog covers object and collection classes and the AltDSS context. Non-element context interfaces, context batch proxies, and internal _str proxies are outside the catalog scope.",
-    "dss_capi.json covers Line, LineCode, LineGeometry, LineSpacing, WireData, CNData, TSData, Circuit creation, Vsource, Transformer, and XfmrCode, including inherited fields used in these packages.",
+    "dss_capi.json covers Line, LineCode, LineGeometry, LineSpacing, WireData, CNData, TSData, Circuit creation, Vsource, Transformer, XfmrCode, and Load, including inherited fields used in these packages.",
     "Transformer and XfmrCode coverage is limited to two and three windings. AutoTrans is deferred pending an owner scope decision.",
     "LoadShape and GrowthShape property catalogs are deferred. The Load package covers the Load element and its shape-assignment behavior only.",
     "Property-level source_refs remain partial for Line/LineCode (E-3 deferred); new element packages require per-row citations.",
@@ -62,7 +63,7 @@
     "phase_5": "planned"
   },
   "next_actions": [
-    "Deliver Phase 3B package 4 (Load) per docs/handoffs/Phase_3B_Load_Coder_handoff.md, then independent QA/QC and architect/auditor review.",
+    "Review Phase 3B package 4 (Load) per docs/handoffs/Phase_3B_Load_QAQC_handoff.md. Independent QA/QC and architect review precede owner disposition and package 5.",
     "Extend dss_capi.json with each element package's enums, specification sets, scales, and constructor defaults.",
     "Draft the Phase 4 golden fixture layout and harness before the first fixture is added."
   ]

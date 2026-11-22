@@ -978,5 +978,150 @@
       "reliability"
     ],
     "scope": "Registers inherited ampere ratings and reliability fields."
+  },
+  {
+    "id": "epri-load-element",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS Load element",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Load1.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "Load",
+      "base power"
+    ],
+    "scope": "Describes the balanced Load element and the three direct power families."
+  },
+  {
+    "id": "epri-load-properties",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS Load properties",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Properties7.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "Load",
+      "power families",
+      "properties"
+    ],
+    "scope": "Load property vocabulary and five base power families. Pinned sources govern the implementation details."
+  },
+  {
+    "id": "epri-load-shape",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS LoadShape",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/LoadShape.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "LoadShape",
+      "UseActual"
+    ],
+    "scope": "Source for Load shape assignment vocabulary. The LoadShape property catalog is deferred."
+  },
+  {
+    "id": "epri-growth-shape",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS GrowthShape",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/GrowthShape.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "GrowthShape",
+      "growth"
+    ],
+    "scope": "Source for annual growth reference vocabulary. The GrowthShape property catalog is deferred."
+  },
+  {
+    "id": "altdss-load-wrapper",
+    "kind": "source",
+    "title": "AltDSS-Python Load wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L848-L890",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Load",
+      "creation keywords"
+    ],
+    "scope": "The LoadProperties TypedDict defines 42 creation keywords including inherited and action fields."
+  },
+  {
+    "id": "altdss-load-enums",
+    "kind": "source",
+    "title": "AltDSS-Python Load model and status enums",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L252-L267",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "LoadModel",
+      "LoadStatus"
+    ],
+    "scope": "Defines the integer-backed Python member names used by Load."
+  },
+  {
+    "id": "altdss-load-edit-context",
+    "kind": "source",
+    "title": "AltDSS-Python object keyword application",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L432",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Load",
+      "edit context",
+      "creation keywords"
+    ],
+    "scope": "Kwargs are applied in supplied order. Bare creation uses an open edit by default."
+  },
+  {
+    "id": "altdss-load-terminal-results",
+    "kind": "source",
+    "title": "AltDSS-Python circuit element result methods",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/CircuitElement.py#L296-L303",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Load",
+      "TotalPowers"
+    ],
+    "scope": "Terminal result method used by the solved example. The return value is complex kW and kvar per terminal."
+  },
+  {
+    "id": "capi-load-engine",
+    "kind": "source",
+    "title": "DSS C-API Load engine",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Load",
+      "power families",
+      "shape assignment",
+      "ZIPV"
+    ],
+    "scope": "Pinned property registration, specification sets, side effects, load-model equations and constructor defaults."
+  },
+  {
+    "id": "capi-load-default-spectrum",
+    "kind": "source",
+    "title": "DSS C-API built-in load spectrum",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/Spectrum.pas#L126-L132",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Load",
+      "Spectrum",
+      "defaultload"
+    ],
+    "scope": "Binds the engine's defaultload spectrum object. Load overrides the inherited general spectrum."
   }
 ]

@@ -1,0 +1,790 @@
+[
+  {
+    "element_class": "Load",
+    "epri_doc_url": "https://opendss.epri.com/Load1.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Unique identifier for this Load. Pass it as the collection's separate name argument.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L1689-L1708",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L801-L807"
+        ]
+      },
+      {
+        "name": "phases",
+        "data_type": "integer",
+        "default_value": 3,
+        "description": "Number of phases. A load has one terminal. Its connection and phase count determine the conductor count.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Phases",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L849",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L421-L423",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L479-L492",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L541-L560",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "bus1",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Bus name with optional dot-separated node numbers. Engine-required model input. A bare load initially receives a bus name generated from the load name.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Bus1",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L850",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L402-L405"
+        ]
+      },
+      {
+        "name": "kv",
+        "data_type": "real",
+        "default_value": 12.47,
+        "description": "Rated load voltage in kV. For two- and three-phase loads supply line-to-line kV. For a one-phase load supply the voltage across its two conductors. Changes the voltage base used by the model.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kV",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L851",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L448",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L516-L560",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "kw",
+        "data_type": "real",
+        "default_value": 10,
+        "description": "Total base real power in kW across all phases. Writing kW selects the kW/PF family. Supply kvar after kW to select the kW/kvar family. Finish the edit before trusting derived power readbacks.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kW",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L852",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L449-L455",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L562-L585",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L725-L737",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1158-L1179",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "pf",
+        "data_type": "real",
+        "default_value": 0.88,
+        "description": "Signed power factor. Use a negative value for leading power factor with positive kW. PF updates the active family's calculation. Under kW/kvar, the engine derives PF from kW and kvar, so a PF edit alone can leave the readback unchanged.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "PF",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L853",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L450-L457",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L576-L584",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1158-L1196",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "model",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Voltage dependence model. Python returns a LoadModel enum. ConstantPQ=1, ConstantZ=2, Motor=3, CVR=4, ConstantI=5, ConstantP_fixedQ=6, ConstantP_fixedX=7, ZIPV=8. Model 8 needs seven explicit ZIPV values.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Model",
+        "enum_type": "LoadModel",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L854",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L4-L8",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L252-L261",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L202-L208",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L339-L345",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L388-L390",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1894-L1912",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "yearly",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "Yearly LoadShape reference. A UseActual assignment updates base power from the shape peak data. Assign independently to keep a distinct yearly profile.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Yearly",
+        "reference_class": "LoadShape",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L855",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L425-L433",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L620-L629",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L989-L1014",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "daily",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "Daily LoadShape reference. Fills Yearly if Yearly is unset. A UseActual assignment updates base power from the shape peak, with reactive power governed by whether PF was specified.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Daily",
+        "reference_class": "LoadShape",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L856",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L425-L433",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L631-L638",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L989-L1014",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "duty",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "Duty-cycle LoadShape reference. The duty solution can fall back to Daily when Duty is unset. A UseActual assignment updates base power from peak data.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Duty",
+        "reference_class": "LoadShape",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L857",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L425-L433",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L639-L643",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L934-L951",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L989-L1014",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "growth",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "GrowthShape reference for year-to-year growth. An unset reference uses the circuit growth settings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Growth",
+        "reference_class": "GrowthShape",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L858",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L425-L430",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L966-L987",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "conn",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "Load terminal connection. Python returns Connection.wye (0) or Connection.delta (1). A three-phase wye has four conductors; three-phase delta has three. Both one-phase connections have two.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Conn",
+        "enum_type": "Connection",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L859",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L4-L8",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L90-L96",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L346-L358",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L383-L386",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L479-L492",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L516-L560",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "kvar",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Total base reactive power in kvar. Constructor initializes 5 then recalculates about 5.397428 from 10 kW and PF 0.88. Writing kvar selects kW/kvar and derives PF and kVA.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kvar",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L860",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L450-L454",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L659-L674",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L813-L817",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1160-L1179",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "rneut",
+        "data_type": "real",
+        "default_value": -1,
+        "description": "Wye neutral resistance in ohms. Negative leaves the internal neutral open. Explicitly wiring the neutral bus node can still ground it.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RNeut",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L861",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L446",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L461-L462",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1203-L1209",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "xneut",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Wye neutral reactance in ohms in series with RNeut.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XNeut",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L862",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L446",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L461-L462",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1203-L1209",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "status",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "LoadStatus enum for multiplier behavior. Variable=0, Fixed=1, Exempt=2. Fixed applies growth to base load and bypasses load shape and global load multipliers. Exempt bypasses the global multiplier in the modes that check it.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Status",
+        "enum_type": "LoadStatus",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L863",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L4-L8",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L263-L267",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L414-L427",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L345-L350",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L392-L394",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1021-L1076",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "class",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Integer load class identifier. NumCust separately counts customers.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Class",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L864",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L415-L419",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L830-L833",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "vminpu",
+        "data_type": "real",
+        "default_value": 0.95,
+        "description": "Lower per-unit voltage threshold for normal load-model equations. The low-voltage treatment depends on Model and VLowpu.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "VMinpu",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L865",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L446",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1152-L1156",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1581-L1608",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "vmaxpu",
+        "data_type": "real",
+        "default_value": 1.05,
+        "description": "Upper per-unit voltage threshold for normal load-model equations. Above it the engine uses the model's high-voltage fallback.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "VMaxpu",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L866",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L446",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1152-L1156",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1608-L1621",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "vminnorm",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Normal minimum per-unit voltage for load service evaluation. Zero uses the circuit normal limit.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "VMinNorm",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L867",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L446",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L2038-L2048",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "vminemerg",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Emergency minimum per-unit voltage for load service evaluation. Zero uses the circuit emergency limit.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "VMinEmerg",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L868",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L446",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L2038-L2048",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "xfkva",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Connected transformer capacity in kVA used by the allocation family. The engine computes kW as XfkVA × AllocationFactor × abs(PF) at the allocation write. Put PF first.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XfkVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L869",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L450-L457",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L676-L690",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L2167-L2180",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "allocationfactor",
+        "data_type": "real",
+        "default_value": 0.5,
+        "description": "Fraction of connected kVA assigned to the load. Writing it selects the connected-kVA family and immediately computes allocated power with the current PF.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "AllocationFactor",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L870",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L445",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L586-L601",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L2167-L2180",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "kva",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Total apparent power in kVA. An explicit write selects kVA/PF. The kW families derive this field. In the two allocation families the readback can be zero on fresh objects or retain a previously computed reference value.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kVA",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L871",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L450-L457",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L705-L717",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L813-L817",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1160-L1198",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L2167-L2191",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "pctmean",
+        "data_type": "real",
+        "default_value": 50,
+        "description": "Mean load percentage for randomization when an applicable load shape is absent. 50 means 0.5 internally.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctMean",
+        "dss_text_keyword": "%Mean",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L872",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L407-L413",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L873-L874",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "pctstddev",
+        "data_type": "real",
+        "default_value": 10,
+        "description": "Standard deviation as a percentage of nominal load used for randomization. 10 means 0.1 internally.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctStdDev",
+        "dss_text_keyword": "%StdDev",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L873",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L407-L413",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L873-L874",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "cvrwatts",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Active-power voltage exponent for the CVR load model.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "CVRWatts",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L874",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L445",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L835-L836",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "cvrvars",
+        "data_type": "real",
+        "default_value": 2,
+        "description": "Reactive-power voltage exponent for the CVR load model.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "CVRVars",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L875",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L445",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L835-L836",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "kwh",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Billed energy in kWh. The energy family computes kW as kWh divided by (24 × kWhDays), multiplied by CFactor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kWh",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L876",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L450-L457",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L644-L658",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L2182-L2189",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "kwhdays",
+        "data_type": "real",
+        "default_value": 30,
+        "description": "Billing period in days for the kWh family. Use a positive duration.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kWhDays",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L877",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L445",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L691-L704",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L2182-L2189",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "cfactor",
+        "data_type": "real",
+        "default_value": 4,
+        "description": "Dimensionless multiplier from average billed kW to base kW. Writing it selects the energy family and recomputes power.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "CFactor",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L878",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L445",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L603-L618",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L2182-L2189",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "cvrcurve",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "LoadShape reference for time-varying CVR factors. The engine consults it for the CVR model in yearly mode.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "CVRCurve",
+        "reference_class": "LoadShape",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L879",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L425-L430",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1046-L1052",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "numcust",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Number of customers represented by the load. Class is a separate categorical value.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "NumCust",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L880",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L415-L419",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L830-L833",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "zipv",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Seven coefficients for Model=8 in Z, I, P order for active power, then Z, I, P for reactive power, then a per-unit voltage cutoff. Each triplet should sum to 1. Fresh readback is seven zeros. The engine marks the field NoDefault and requires an explicit write for a ZIPV solve.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "ZIPV",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L881",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L396-L400",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L719-L720",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1525-L1540",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1595-L1652",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "pctseriesrl",
+        "data_type": "real",
+        "default_value": 50,
+        "description": "Percentage of load represented by a series RL branch in harmonic analysis. The engine stores 50% as a fraction of 0.5.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctSeriesRL",
+        "dss_text_keyword": "%SeriesRL",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L882",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L407-L413",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L873-L884",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "relweight",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Relative load weight for reliability calculations.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RelWeight",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L883",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L446",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L835-L837",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "vlowpu",
+        "data_type": "real",
+        "default_value": 0.5,
+        "description": "Very-low-voltage threshold in per unit for linear admittance treatment by the load model.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "VLowpu",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L884",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L446",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1152-L1156",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1581-L1588",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "puxharm",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Per-unit series-branch reactance for harmonic calculations. Zero leaves the special reactance unspecified.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "puXHarm",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L885",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L446",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L459",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L868-L870",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "xrharm",
+        "data_type": "real",
+        "default_value": 6,
+        "description": "X/R ratio of the special harmonic series reactance.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XRHarm",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L886",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L437-L446",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L868-L870",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L809-L888"
+        ]
+      },
+      {
+        "name": "spectrum",
+        "data_type": "variant",
+        "default_value": "defaultload",
+        "description": "Inherited Spectrum object reference. Load uses the built-in Spectrum.defaultload. The catalog default is the object name.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Spectrum",
+        "reference_class": "Spectrum",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L887",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L873-L880",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/PCClass.pas#L89-L101",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/PCElement.pas#L78-L83",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/Spectrum.pas#L126-L132"
+        ]
+      },
+      {
+        "name": "basefreq",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Inherited element base frequency in hertz. The initial value follows the circuit fundamental.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "BaseFreq",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L888",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L99",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205"
+        ]
+      },
+      {
+        "name": "enabled",
+        "data_type": "boolean",
+        "default_value": true,
+        "description": "Inherited flag controlling load participation in the circuit solution.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Enabled",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L889",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L99",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Creation keyword and action method that copies settings from another Load. The action has no property getter.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Like",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L890",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L740-L780"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name",
+      "bus1",
+      "kv"
+    ],
+    "property_requirements": {
+      "required": [
+        "name",
+        "bus1",
+        "kv"
+      ],
+      "conditional": [
+        {
+          "when": "choosing an explicit engine base-power specification",
+          "requirement_groups": [
+            [
+              "kw",
+              "pf"
+            ],
+            [
+              "kw",
+              "kvar"
+            ],
+            [
+              "kva",
+              "pf"
+            ],
+            [
+              "xfkva",
+              "allocationfactor",
+              "pf"
+            ],
+            [
+              "kwh",
+              "pf",
+              "kwhdays",
+              "cfactor"
+            ]
+          ],
+          "notes": "Members are in TSpecSets order. The engine displays the billing set as kWh, kWhDays, CFactor, PF. Use one coherent family in a completed edit. AltDSS-Python new applies kwargs in supplied order. Set PF before XfkVA and AllocationFactor to allocate kW at that PF. kW/kvar derives PF. The engine requires Bus1 and kV for a model. The Python constructor can create an object with only its name.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L368-L381",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L402-L405",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L448-L457",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L2167-L2191",
+            "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L1689-L1708",
+            "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L432"
+          ]
+        }
+      ]
+    },
+    "altdss_mapping": "ctx.Load.new(name, **properties) creates the element. LoadProperties defines the exact case-sensitive Python creation keywords.",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "dss_capi": "0.14.5",
+      "opendss_documentation": "EPRI online documentation is mixed-version"
+    },
+    "sources": [
+      {
+        "title": "EPRI OpenDSS Load",
+        "url": "https://opendss.epri.com/Load1.html",
+        "accessed": "2026-11-21",
+        "scope": "Load model overview."
+      },
+      {
+        "title": "EPRI OpenDSS Load properties",
+        "url": "https://opendss.epri.com/Properties7.html",
+        "accessed": "2026-11-21",
+        "scope": "Load property vocabulary."
+      },
+      {
+        "title": "AltDSS-Python Load",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py",
+        "accessed": "2026-11-21",
+        "scope": "Wrapper members and construction signature."
+      },
+      {
+        "title": "DSS C-API Load",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+        "accessed": "2026-11-21",
+        "scope": "Engine registration, defaults and edit results."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true,
+      "dss_text": true
+    },
+    "notes": [
+      "Numeric enum defaults represent the member value. Shape and Spectrum getters return typed objects; reference defaults use names where applicable.",
+      "Null includes generated, context-dependent, derived, unset, action-only, and NoDefault properties. Exact constructor readbacks are in the matrix.",
+      "Shape coverage is limited to references and assignment effects on Load. LoadShape and GrowthShape property catalogs are deferred."
+    ]
+  }
+]
