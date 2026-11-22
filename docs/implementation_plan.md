@@ -1,6 +1,6 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version** 0.15 (Phase 3B package 3 accepted; package 4 issued)
+**Plan version** 0.16 (Phase 3B package 3 accepted; package 4 handoff verified and corrected)
 **Plan date:** 2026-11-21
 **Current phase:** Phase 3B package 4 (Load). Package 3 (Transformer and XfmrCode) passed coder validation, independent QA/QC, and architect/auditor review, and the owner accepted it; the package-4 coder handoff is issued.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
@@ -247,6 +247,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.13 | 2026-11-21 | Added Transformer and XfmrCode for two- and three-winding models, recorded pinned runtime validation, and prepared independent QA/QC. |
 | 0.14 | 2026-11-21 | Recorded the Phase 3B package-3 dispositions: independent QA/QC passed with no blocking findings, and the architect/auditor review re-derived the winding model, defaults, and runtime on a clean environment, found and corrected one out-of-range citation (E-1), and recorded one non-blocking harness observation (E-2). |
 | 0.15 | 2026-11-21 | Recorded the owner's acceptance of Phase 3B package 3 and issued the package-4 (Load) coder handoff with the five load-specification families as the centerpiece, the pinned default and precedence facts, and the deferral of the LoadShape and GrowthShape class catalogs. |
+| 0.16 | 2026-11-21 | Re-verified the issued package-4 handoff against the pinned sources before coding started and corrected three statements: the enum readback types (`Model`, `Conn`, and `Status` all return altdss enum members, not integers), the `SpecSetNames` display order versus the `TSpecSets` member order for the kWh family, and the trap-2 provenance. Added trap 15, which records that successive attribute writes leave the derived `kvar` and `kVA` stale where a single `new(...)` call or text command recomputes them. |
 
 ## 11. Owner decisions
 

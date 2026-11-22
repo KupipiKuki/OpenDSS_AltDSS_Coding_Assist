@@ -68,18 +68,18 @@ Line pins for this package: `TLoadProp` enum `Load.pas` L111-L150; `DefineProper
 
 ## Established facts to reuse and re-verify
 
-Reproduce each in your environment and record it; do not copy these numbers without a run.
+Reproduce each in your environment and record it; do not copy these numbers without a run. Unless a trap says otherwise, these were reproduced through `Load.new(name, **kwargs)` and through `New Load...` text commands, which agree with each other. **Attribute assignment is not equivalent — see trap 15.**
 
 **Defaults, `Load.new("l1")` with no arguments:** `Phases` 3, `Bus1` generated as `l1_1`, `kV` 12.47, `kW` 10.0, `PF` 0.88, `kvar` **5.3974** (derived from kW and PF, not the engine's `kvarBase` of 5.0), `kVA` 11.3636, `Model` 1, `Conn` 0 (wye), `RNeut` −1.0 (open), `XNeut` 0.0, `Status` 0, `Class` 1, `VMinpu` 0.95, `VMaxpu` 1.05, `VMinNorm` 0.0, `VMinEmerg` 0.0, `XfkVA` 0.0, `AllocationFactor` 0.5, `pctMean` 50.0, `pctStdDev` 10.0, `CVRWatts` 1.0, `CVRVars` 2.0, `kWh` 0.0, `kWhDays` 30.0, `CFactor` 4.0, `CVRCurve` None, `NumCust` 1, `ZIPV` [0×7], `pctSeriesRL` 50.0, `RelWeight` 1.0, `VLowpu` 0.5, `puXHarm` 0.0, `XRHarm` 6.0, `Spectrum` `<Spectrum.defaultload>`, `BaseFreq` 60.0, `Enabled` True, four conductors, one terminal. The constructor values behind them are `kWBase` 10, `kvarBase` 5, `PFNominal` 0.88, `kVLoadBase` 12.47, `VminPu` 0.95, `VmaxPu` 1.05, `VLowpu` 0.50, `CVRwattFactor` 1.0, `CVRvarFactor` 2.0, `kWhDays` 30, `FCfactor` 4.0, `puMean` 0.5, `puStdDev` 0.1, `puSeriesRL` 0.50, `XRHarmRatio` 6.0, `LoadClass` 1, `NumCustomers` 1, status Variable, model ConstPQ (L801-L893).
 
 **Enums:** `LoadModel` ConstantPQ 1, ConstantZ 2, Motor 3, CVR 4, ConstantI 5, ConstantP_fixedQ 6, ConstantP_fixedX 7, ZIPV 8. `LoadStatus` Variable 0, Fixed 1, Exempt 2. `Connection` wye 0, delta 1.
 
-**Specification families (engine declaration, `Load.pas` L368-L385):** `kW, PF`; `kW, kvar`; `kVA, PF`; `xfkVA, AllocationFactor, PF`; `kWh, kWhDays, CFactor, PF`. The engine tracks a `LoadSpecType` state and clears the competing property-tracking entries when a family is selected (L563-L731).
+**Specification families (engine declaration, `Load.pas` L368-L385):** `kW, PF`; `kW, kvar`; `kVA, PF`; `xfkVA, AllocationFactor, PF`; `kWh, kWhDays, CFactor, PF`. The engine tracks a `LoadSpecType` state and clears the competing property-tracking entries when a family is selected (L563-L731). Note that the display strings in `SpecSetNames` (L368-L374) and the member arrays in `TSpecSets` (L375-L381) use different orders for the kWh family: the name is `kWh, kWhDays, CFactor, PF`, while the set is built as `Create(ord(kWh), ord(PF), ord(kWhdays), ord(Cfactor))`. Record the member order the engine actually builds, and do not present the display string as the storage order.
 
 **Behavior that must be documented and probed:**
 
 1. **The last family write wins, and the readbacks follow it.** `kW=100, PF=0.95` gives kvar 32.8684 and kVA 105.2632; `kW=100, kvar=30` gives PF 0.9578 and kVA 104.4031; `kVA=200, PF=0.9` gives kW 180 and kvar 87.178; `kWh=30000, kWhDays=30, CFactor=4, PF=0.9` gives kW 166.6667 (= 30000/720 × 4) and kvar 80.7204.
-2. **`PF` is not authoritative in every family.** On one object: `kW=50, PF=0.9` → kvar 24.2161; `kvar=20` → PF 0.9285; a following `PF=0.8` changed **nothing** (kvar stayed 20, PF stayed 0.9285); a following `kVA=100` produced kW 92.8477 and kvar 37.1391 using the *existing* PF. Describe `PF` as the value used when the active family needs it, and warn that a PF write can be a no-op.
+2. **`PF` is not authoritative in every family.** On one object built as `Load.new("e", kW=50, PF=0.9)` → kvar 24.2161, kVA 55.5556; then `e.kvar = 20.0` → kvar 20, kVA 53.8516, PF read back 0.9285; then `e.PF = 0.8` changed **nothing** (kvar stayed 20, PF stayed 0.9285, kVA stayed 53.8516); then `e.kVA = 100.0` produced kW 92.8477 and kvar 37.1391 using the *existing* PF 0.9285. The same sequence through `Edit Load... kvar=20` / `PF=0.8` text commands behaves identically. Describe `PF` as the value used when the active family needs it, and warn that a PF write can be a no-op.
 3. **Argument order matters for the allocation families.** `Load.new("e", XfkVA=100, AllocationFactor=0.5, PF=0.9)` produced **kW 44.0**, not 45.0, because the allocation ran with the previous PF (0.88) before `PF` was applied. Set `PF` before `XfkVA`/`AllocationFactor` (or issue a second edit). Python kwargs are applied in order; this is not the text-command ordering rule, where `PF` carries `Ordering_Last` (L452).
 4. **`kVA` reads 0 in the kWh family** while `kW` and `kvar` are populated. Record the observed value and explain that the derived kVA base is not set on that path (L1183-L1190).
 5. **Connection changes the conductor count.** Probes: wye 3φ → 4 conductors, delta 3φ → 3, one phase → 2 in either connection, one terminal in all cases. `kV` and `conn` recompute `VBase` (delta line-to-line, wye line-to-neutral for 2–3 phases).
@@ -92,11 +92,12 @@ Reproduce each in your environment and record it; do not copy these numbers with
 12. **`VMinNorm`/`VMinEmerg` default to 0**, which means the circuit's values apply.
 13. **The load uses `Spectrum.defaultload`**, which is a different default object from Vsource's `defaultvsource`.
 14. **`kV` and `Bus1` are `Required` in the engine; the power inputs are `RequiredInSpecSet`.** Use the Line/Vsource convention: `required_properties` records identity plus required model inputs, and the conditional entries record the five families.
+15. **Attribute assignment does not recompute the derived fields the way a single construction does.** Setting `kW` and `PF` as separate attribute writes on an existing load left the *derived* values stale: `b.kW = 50.0; b.PF = 0.9` gave kW 50, **kvar 5.3974, kVA 11.3636** (the constructor's values), while `Load.new("a", kW=50, PF=0.9)` and `New Load... kW=50 PF=0.9` both give kvar 24.2161 and kVA 55.5556. The reverse order (`PF` then `kW`) behaved the same way. Later writes to `kvar` or `kVA` did recompute. Treat this as a probe requirement: demonstrate the divergence and tell users to specify a family in one `new(...)` call or one text command, then read back to confirm. Do not claim a recompute on the attribute path.
 
 ## Required approach
 
 - Every row carries `source_refs` citing the pinned wrapper TypedDict or the engine property block; inherited rows cite `CktElement.pas`/`PCElement.pas`.
-- Keep `data_type` consistent with the observed readback. Enums (`Model`, `Status`, `Conn`) must match what the wrapper returns (`Model` and `Status` read as integers, `Conn` as a `Connection` member).
+- Keep `data_type` consistent with the observed readback. All three enum properties read back as altdss enum members, not raw integers: `Model` → `LoadModel.ConstantPQ`, `Conn` → `Connection.wye`, `Status` → `LoadStatus.Variable` (use `.value` for the engine integer). Cite the wrapper's enum import path for each.
 - Do not state a default you cannot defend. Where the constructor literal and the readback differ (`kvar`, `kVA`, `pctSeriesRL`), state both and say which one a user sees.
 - Represent the five families in `property_requirements.conditionals` exactly as the engine declares them, including the `PF` member of each, and state that the Python constructor applies arguments in order.
 - Do not modify prior catalogs, packages 1–3, or existing audits and QA reports. Additions to `dss_capi.json` and `sources.json` only.
@@ -113,7 +114,7 @@ python opendss_altdss_library/tools/run_examples.py
 python opendss_altdss_library/tools/readback_load.py
 ```
 
-The matrix must cover, at minimum: default readbacks for every catalogued row; each of the five families and the derived readbacks; the family-switching probe that shows a `PF` write becoming a no-op; the allocation ordering probe; the `kVA`-reads-zero case; connection/phases conductor counts; shape assignment including the `Daily`→`Yearly` fill and the `UseActual` kW/kvar rewrite; the ZIPV probe with `Model=8`; and a solve that reads back served power or currents. Label anything not executed as `not-run`.
+The matrix must cover, at minimum: default readbacks for every catalogued row, including the enum member types of `Model`, `Conn`, and `Status`; each of the five families and the derived readbacks; the family-switching probe that shows a `PF` write becoming a no-op; the allocation ordering probe; the `kVA`-reads-zero case; the attribute-versus-kwargs divergence (trap 15) in both paths; connection/phases conductor counts; shape assignment including the `Daily`→`Yearly` fill and the `UseActual` kW/kvar rewrite; the ZIPV probe with `Model=8`; and a solve that reads back served power or currents. Label anything not executed as `not-run`.
 
 ## Definition of done
 
