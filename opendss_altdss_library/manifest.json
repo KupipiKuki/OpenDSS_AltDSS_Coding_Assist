@@ -40,9 +40,9 @@
     "catalogs": "schemas/catalogs/"
   },
   "validation": {
-    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC and required corrections are applied. The owner accepted Phase 3B packages 1 through 5. Package 6 (Generator) passed coder validation and awaits independent QA/QC and architect review. It completes the six-package Phase 3B implementation sequence.",
-    "schema_validation": "The Generator validation run passed 15/15 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0). See the Generator readback matrix for the local validation date.",
-    "runtime": "All 14 catalogued examples passed on Windows 11 AMD64 with Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, and backend 0.14.5. Phase 3B packages 1 through 6 have readback matrices."
+    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC and required corrections are applied. The owner accepted Phase 3B packages 1 through 5. Package 6 (Generator) passed coder validation, independent QA/QC (PASS, no required corrections), and the architect review (PASS WITH FINDINGS: E-1 numeric enum text writes silently discarded, E-2 EPRI default divergences not disclosed, A-1 to A-5 architect handoff corrections, O-1 narrowed to Capacitor), and awaits the owner's disposition. It completes the six-package Phase 3B implementation sequence.",
+    "schema_validation": "The Generator validation run passed 15/15 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0); the architect review re-ran it at the same result on 2026-11-21 local.",
+    "runtime": "All 14 catalogued examples passed on Windows 11 AMD64 with Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, and backend 0.14.5; the architect review re-ran the harness and reproduced the package-6 matrix identically, including the environment block. Phase 3B packages 1 through 6 have readback matrices."
   },
   "known_gaps": [
     "Three catalog files are still empty pending later phases: opendss_objects, python_interface_comparison, troubleshooting.",
@@ -70,8 +70,8 @@
     "phase_5": "planned"
   },
   "next_actions": [
-    "Review Phase 3B package 6 (Generator) per docs/handoffs/Phase_3B_Generator_QAQC_handoff.md. Independent QA/QC and architect review precede owner disposition and Phase 4.",
-    "Resolve the remaining shared schema declarations for Capacitor array and write-path metadata (Capacitor architect review O-1).",
-    "Plan the Phase 4 golden fixture set and harness after the Phase 3 exit gate."
+    "Disposition Phase 3B package 6 (Generator) and the Phase 3 exit gate. Independent QA/QC and the architect review both report pass; the owner decides whether findings E-1 (silent enum text writes) and E-2 (undisclosed EPRI default divergences) are applied first.",
+    "Resolve the remaining shared schema declarations for Capacitor array and write-path metadata: array_element_type, array_length, readback_type, dss_text_write, python_write_status, python_creation_status, python_method (Capacitor architect review O-1; Load and Generator are now fully declared).",
+    "Plan the Phase 4 golden fixture set and harness after the Phase 3 exit gate, ahead of the first fixture."
   ]
 }
