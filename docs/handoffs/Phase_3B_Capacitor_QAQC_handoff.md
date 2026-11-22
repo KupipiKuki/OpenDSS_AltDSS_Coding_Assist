@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase3`
 - **Baseline** `6663beaa2578748bd39749f42905341733bdfe5c`
-- **Package revision** Pending the package commit.
+- **Package revision** `d7fc55c5de6ae6533af69aa17ce16bdf22e90026`. Review the package artifacts at this commit. The follow-up commit supplies the handoff pin.
 
 Review the Capacitor package on the pinned commit. Record the revision and working-tree state. [Coder handoff](Phase_3B_Capacitor_Coder_handoff.md) · [Build audit](../audits/phase3b_capacitor_audit.md)
 
