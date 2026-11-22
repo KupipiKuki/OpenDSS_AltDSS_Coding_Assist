@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase4`
 - **Inputs revision** `5efeaf1a97f4a63b5f4ec828cc63df71ded4ee2e`
-- **Package revision** Pending commit. Review the package artifacts at the pinned revision.
+- **Package revision** `2e4d92b40b799280ed23429314b2ddddae75de7a`. Review the package artifacts at this commit. The follow-up commit supplies the handoff pin.
 
 Review the LoadShape catalog, daily fixture, and RegControl F-1 rider. Record the reviewed revision and working-tree state. [Coder handoff](Phase_4_LoadShape_DailySeries_Coder_handoff.md) · [Build audit and commands](../audits/phase4_loadshape_daily_audit.md) · [Readback matrix](../audits/phase4_loadshape_readback.json)
 
