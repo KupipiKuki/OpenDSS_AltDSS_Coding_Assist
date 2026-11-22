@@ -1123,5 +1123,169 @@
       "defaultload"
     ],
     "scope": "Binds the engine's defaultload spectrum object. Load overrides the inherited general spectrum."
+  },
+  {
+    "id": "epri-capacitor-element",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS Capacitor element",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Capacitor1.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "Capacitor",
+      "topology",
+      "steps"
+    ],
+    "scope": "Explains the bank model, grounded and series terminals, and step-based switching."
+  },
+  {
+    "id": "epri-capacitor-properties",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS Capacitor properties",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Properties12.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "Capacitor",
+      "CMatrix",
+      "NumSteps"
+    ],
+    "scope": "Property vocabulary and DSS matrix notation. Verify numeric defaults and engine behavior against the pinned backend."
+  },
+  {
+    "id": "epri-capcontrol-capacitor-reference",
+    "kind": "documentation",
+    "title": "EPRI CapControl Capacitor reference",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Capacitor.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "CapControl",
+      "Capacitor"
+    ],
+    "scope": "Legacy interface page for the controlled-bank reference. CapControl is a separate class with its own deferred catalog."
+  },
+  {
+    "id": "epri-capcontrol-element",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS CapControl",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/CapControl1.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-21",
+    "topics": [
+      "CapControl",
+      "step control"
+    ],
+    "scope": "Scope note for the control that switches capacitor steps."
+  },
+  {
+    "id": "altdss-capacitor-wrapper",
+    "kind": "source",
+    "title": "AltDSS-Python Capacitor wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L378-L399",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Capacitor",
+      "creation keywords",
+      "arrays"
+    ],
+    "scope": "Pinned creation TypedDict: 21 advertised keywords, including States and Like."
+  },
+  {
+    "id": "altdss-capacitor-control-actions",
+    "kind": "source",
+    "title": "AltDSS-Python Capacitor state and copy accessors",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Capacitor",
+      "States",
+      "Like"
+    ],
+    "scope": "Object API advertises step states and a copy action; runtime probe distinguishes the available write paths."
+  },
+  {
+    "id": "capi-capacitor-engine",
+    "kind": "source",
+    "title": "DSS C-API Capacitor engine",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Capacitor",
+      "specification families",
+      "step arrays"
+    ],
+    "scope": "Pinned property enum, capacitance representations, step initialization, topology, ratings, and solver primitives."
+  },
+  {
+    "id": "capi-capacitor-obj-array-entry-points",
+    "kind": "source",
+    "title": "DSS C-API object array setters and getters",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/CAPI/CAPI_Obj.pas#L586-L614",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Capacitor",
+      "array setters",
+      "States"
+    ],
+    "scope": "Object API entry points used by Capacitor floating-point and integer arrays."
+  },
+  {
+    "id": "capi-capacitor-pd-base",
+    "kind": "source",
+    "title": "DSS C-API power-delivery base constructor",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L198",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Capacitor",
+      "PDElement",
+      "amp ratings"
+    ],
+    "scope": "Initializes inherited normal and emergency rating specification flags."
+  },
+  {
+    "id": "capi-capacitor-pd-properties",
+    "kind": "source",
+    "title": "DSS C-API inherited power-delivery properties",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "Capacitor",
+      "PDElement",
+      "reliability",
+      "amp ratings"
+    ],
+    "scope": "Registers the five inherited power-delivery properties used by Capacitor."
+  },
+  {
+    "id": "capi-capcontrol-step-coupling",
+    "kind": "source",
+    "title": "DSS C-API CapControl step changes",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/CapControl.pas#L725-L788",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-21",
+    "topics": [
+      "CapControl",
+      "Capacitor",
+      "States"
+    ],
+    "scope": "Scope note for the controller's AddStep and SubtractStep calls on the controlled bank."
   }
 ]

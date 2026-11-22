@@ -1,0 +1,8 @@
+! Define the full step arrays after sizing the bank.
+New Circuit.capacitor_steps_demo BasekV=12.47 Bus1=source
+New Capacitor.steps Phases=3 Conn=wye Bus1=source.1.2.3 kV=12.47 NumSteps=4
+~ kvar=[300 300 300 300]
+Edit Capacitor.steps States=[1 1 1 1]
+Solve
+Edit Capacitor.steps States=[1 0 0 0]
+Solve

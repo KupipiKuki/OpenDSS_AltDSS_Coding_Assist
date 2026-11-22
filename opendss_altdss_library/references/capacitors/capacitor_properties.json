@@ -1,0 +1,475 @@
+[
+  {
+    "element_class": "Capacitor",
+    "epri_doc_url": "https://opendss.epri.com/Capacitor1.html",
+    "properties": [
+      {
+        "name": "name",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Unique identifier of this Capacitor. Pass it as the separate name argument to the collection.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L798-L817",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L551"
+        ]
+      },
+      {
+        "name": "bus1",
+        "data_type": "string",
+        "default_value": null,
+        "description": "First terminal bus, with optional node suffixes. The engine requires this for a model. Changing it on a wye bank without a distinct explicitly defined Bus2 regenerates a grounded second terminal.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Bus1",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L379",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L260-L263",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L303-L322",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "bus2",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Second terminal bus for wye. Defaults to the first bus stem plus one ground node per phase. A different bus stem makes the bank series. Set it after Bus1. Delta has no second terminal.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Bus2",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L380",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L265-L266",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L303-L351",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "phases",
+        "data_type": "integer",
+        "default_value": 3,
+        "description": "Number of phases, greater than zero. It sets the symmetric matrix order and participates in conductor allocation.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Phases",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L381",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L219-L224",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L272-L275",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L352-L374",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "kvar",
+        "data_type": "array",
+        "default_value": [
+          1200
+        ],
+        "description": "Rated bank kvar per step, totaled across phases. This input selects the kvar/kV family. On the pinned recalculation path every step's capacitance is derived from the first kvar entry, while the amp rating uses the sum of the entries.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kvar",
+        "array_element_type": "float64",
+        "readback_type": "numpy.ndarray",
+        "array_length": "NumSteps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L382",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L226-L230",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L375-L378",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L614-L645",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L684-L692",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "kv",
+        "data_type": "real",
+        "default_value": 12.47,
+        "description": "Rated voltage in kV for the kvar and Cuf families. For two or three phases, give line-to-line kV. For a one-phase capacitor give the voltage across the capacitor branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "kV",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L383",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L268-L270",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L625-L661",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "conn",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "Connection enum. Python returns Connection.wye (0) or Connection.delta (1). Wye uses two terminals with one conductor per phase. Delta uses one terminal with an extra conductor for one and two phases.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Conn",
+        "enum_type": "Connection",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L384",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L255-L258",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L323-L342",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L352-L374",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L151-L164",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L90-L96",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "cmatrix",
+        "data_type": "array",
+        "default_value": [],
+        "description": "Nodal capacitance in microfarads for the matrix family. For three phases pass six lower-triangle values or a flattened nine-value full symmetric matrix. The getter returns a flat full matrix. DSS text supports [c11 | -c21 c22 | -c31 -c32 c33]. All steps use the same matrix. The engine scales values by 1e-6.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "CMatrix",
+        "array_element_type": "float64",
+        "readback_type": "numpy.ndarray",
+        "array_length": "Phases × Phases when set; empty by default",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L385",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L208-L224",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L379-L382",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L963-L978",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "cuf",
+        "data_type": "array",
+        "default_value": null,
+        "description": "Capacitance in microfarads per phase for each step. Writing it selects the Cuf/kV family. In the default kvar family it reads about 20.46997 µF, derived from 1200 kvar. The Cuf family's derived amp ratings are near zero in the pinned probe despite nonzero solved output.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Cuf",
+        "array_element_type": "float64",
+        "readback_type": "numpy.ndarray",
+        "array_length": "NumSteps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L386",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L240-L244",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L383-L386",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L573-L584",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L614-L665",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L684-L692",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "r",
+        "data_type": "array",
+        "default_value": [
+          0
+        ],
+        "description": "Per-step series resistance in ohms per phase. Nonzero XL or Harm can populate a zero resistance for the filter branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "R",
+        "array_element_type": "float64",
+        "readback_type": "numpy.ndarray",
+        "array_length": "NumSteps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L387",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L232-L234",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L462-L471",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L673-L682",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L919-L921",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "xl",
+        "data_type": "array",
+        "default_value": [
+          0
+        ],
+        "description": "Per-step series filter reactance in ohms at base frequency. An XL edit disables harmonic-derived reactance. A subsequent Harm edit can recalculate XL.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "XL",
+        "array_element_type": "float64",
+        "readback_type": "numpy.ndarray",
+        "array_length": "NumSteps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L388",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L236-L238",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L462-L471",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L673-L682",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L919-L921",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "harm",
+        "data_type": "array",
+        "default_value": [
+          0
+        ],
+        "description": "Per-step harmonic tuning order. Writing it enables harmonic-derived XL. A zero harmonic in that calculation gives zero filter reactance.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Harm",
+        "array_element_type": "float64",
+        "readback_type": "numpy.ndarray",
+        "array_length": "NumSteps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L389",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L246-L248",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L470-L471",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L673-L682",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "numsteps",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Number of steps, greater than zero. Set it before step arrays. A one-to-many resize divides the first kvar rating in kvar mode, replicates capacitance in Cuf mode, and switches all steps on. The engine marks the property SuppressJSON.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "NumSteps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L390",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L277-L279",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L387-L459",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "states",
+        "data_type": "array",
+        "default_value": [
+          1
+        ],
+        "description": "One integer per step, with 1 on and 0 off. Python reads the array. The pinned keyword, attribute, and edit writes tested silently kept the prior states. Write States using an explicit DSS text command and read it back.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "States",
+        "array_element_type": "int32",
+        "readback_type": "numpy.ndarray",
+        "array_length": "NumSteps",
+        "python_write_status": "Silent no-op in the pinned probes",
+        "dss_text_write": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L391",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L250-L253",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L472-L498",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L721-L732",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L1021-L1055",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L263-L274",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/CAPI/CAPI_Obj.pas#L591-L614",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "normamps",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Inherited normal current rating in amperes. Under the kvar family the engine derives 135% of rated current when unset. The default reads about 75.0046 A. An explicit value persists across power-rating edits.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "NormAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L392",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L586-L591",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L684-L692",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L198",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "emergamps",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Inherited emergency current rating in amperes. Under the kvar family the engine derives 180% of rated current when unset. The default reads about 100.0061 A. An explicit value persists and normal rating overrides do not set the emergency rating.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "EmergAmps",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L393",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L586-L591",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L684-L692",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L198",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "faultrate",
+        "data_type": "real",
+        "default_value": 0.0005,
+        "description": "Inherited annual failure rate in events per year.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "FaultRate",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L394",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L588-L590",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L198",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "pctperm",
+        "data_type": "real",
+        "default_value": 100,
+        "description": "Inherited percentage of failures that become permanent. Use percent values directly, with 100 as the constructor value.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "pctPerm",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L395",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L588-L590",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L198",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "repair",
+        "data_type": "real",
+        "default_value": 3,
+        "description": "Inherited repair time in hours for a permanent fault.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Repair",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L396",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L588-L590",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDClass.pas#L92-L108",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/PDElement.pas#L178-L198",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L546-L598"
+        ]
+      },
+      {
+        "name": "basefreq",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Inherited element base frequency in hertz. The constructor reads the circuit fundamental.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "BaseFreq",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L397",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L99",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205"
+        ]
+      },
+      {
+        "name": "enabled",
+        "data_type": "boolean",
+        "default_value": true,
+        "description": "Inherited element participation flag for circuit solutions.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Enabled",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L398",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L99",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Copy action advertised by the TypedDict. Passing Like to Python new raises AttributeError. Use the Python Like(name) method or DSS text Like=source. In the delta copy probe the target kept its buses and two-terminal allocation, so explicitly set or verify the resulting topology.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Like",
+        "python_creation_status": "Raises AttributeError on the pinned wrapper",
+        "python_method": "Like",
+        "dss_text_write": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L399",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L503-L544",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py#L367-L375",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L425"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name",
+      "bus1"
+    ],
+    "property_requirements": {
+      "required": [
+        "name",
+        "bus1"
+      ],
+      "conditional": [
+        {
+          "when": "choosing a complete capacitance specification",
+          "requirement_groups": [
+            [
+              "kvar",
+              "kv"
+            ],
+            [
+              "cmatrix"
+            ],
+            [
+              "cuf",
+              "kv"
+            ]
+          ],
+          "notes": "Engine specification sets in declared order. The last kvar, CMatrix or Cuf write selects the family. Python applies kwargs in supplied order. Set dimensions before writing the arrays or matrix. kV is part of the kvar and Cuf sets. Supply Bus2 after Bus1 for series or ungrounded-wye wiring.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L208-L224",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L260-L279",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L303-L386",
+            "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L425"
+          ]
+        }
+      ]
+    },
+    "altdss_mapping": "ctx.Capacitor.new(name, **properties) creates the element. The TypedDict lists advertised keywords. See the States and Like rows for working write paths on 0.2.4.",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "dss_capi": "0.14.5",
+      "opendss_documentation": "EPRI online documentation is mixed-version"
+    },
+    "sources": [
+      {
+        "title": "EPRI Capacitor element",
+        "url": "https://opendss.epri.com/Capacitor1.html",
+        "accessed": "2026-11-21",
+        "scope": "Model topology and multistep bank concepts."
+      },
+      {
+        "title": "EPRI Capacitor properties",
+        "url": "https://opendss.epri.com/Properties12.html",
+        "accessed": "2026-11-21",
+        "scope": "Property vocabulary. Use pinned sources for values and behavior."
+      },
+      {
+        "title": "AltDSS-Python Capacitor",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Capacitor.py",
+        "accessed": "2026-11-21",
+        "scope": "Creation keywords and wrapper accessors."
+      },
+      {
+        "title": "DSS C-API Capacitor",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+        "accessed": "2026-11-21",
+        "scope": "Registration, step arrays, defaults, and solver behavior."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true,
+      "dss_text": true
+    },
+    "notes": [
+      "Null defaults include generated names, context-dependent or derived readbacks, and copy actions. See the runtime matrix for exact readbacks.",
+      "Use States as the full DSS property name. State is accepted as a text abbreviation in the pinned parser, with array semantics. The wrapper has no singular State property.",
+      "CapControl is a separate class. This package covers the bank's step states and the controller coupling only."
+    ]
+  }
+]

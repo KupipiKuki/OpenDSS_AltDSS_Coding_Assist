@@ -36,6 +36,8 @@ For Transformer and XfmrCode, use two or three windings. Set dimensions or assig
 
 For Load, choose one base-power family and complete the edit before reading derived fields. Set PF before connected-kVA allocation inputs. Provide seven ZIPV coefficients when using Model 8. The workflow covers topology, shape assignment, and actual served power. [Workflow](../docs/workflows/load.md) · [Property catalog](references/loads/load_properties.json) · [Runtime matrix](../docs/audits/phase3b_load_readback.json)
 
+For Capacitor, set connection and step count before wiring the bank and writing the step arrays. Choose one capacitance family. Write `States` through DSS text on the pinned backend, then solve and inspect complex per-terminal power. Check the pinned caveats for unequal kvar inputs, derived amp ratings, and copy actions. [Workflow](../docs/workflows/capacitor.md) · [Property catalog](references/capacitors/capacitor_properties.json) · [Runtime matrix](../docs/audits/phase3b_capacitor_readback.json)
+
 ## Validation language
 
 Distinguish schema review, source review, example inspection, and runtime execution. Do not claim compatibility until representative tasks run against the manifest target and record the environment and result. `Observed-working` requires a committed example file, a harness run with the recorded environment, and a date; use `Example-only` until that exists.
@@ -47,6 +49,7 @@ python opendss_altdss_library/tools/validate_catalogs.py
 python opendss_altdss_library/tools/run_examples.py
 python opendss_altdss_library/tools/readback_transformer.py
 python opendss_altdss_library/tools/readback_load.py
+python opendss_altdss_library/tools/readback_capacitor.py
 python opendss_altdss_library/tools/build_altdss_api_catalog.py --source-dir <extracted-wheel>/altdss --out opendss_altdss_library/references/altdss_python_api.json
 ```
 

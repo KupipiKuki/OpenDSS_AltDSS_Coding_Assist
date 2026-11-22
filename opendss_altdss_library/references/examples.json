@@ -248,5 +248,67 @@
       "date": "2026-11-21"
     },
     "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "capacitor-wye-shunt-altdss",
+    "task_description": "Solve a grounded-wye shunt bank and read per-terminal P and Q.",
+    "language": "python_altdss",
+    "file": "examples/capacitor/wye_shunt.py",
+    "object_classes": [
+      "Circuit",
+      "Capacitor"
+    ],
+    "dependencies": [
+      "altdss==0.2.4",
+      "dss-python==0.15.7",
+      "dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "epri-capacitor-element",
+      "altdss-capacitor-wrapper",
+      "altdss-load-terminal-results",
+      "capi-capacitor-engine"
+    ],
+    "expected_result": "Terminal 1 supplies about 600 kvar and terminal 2 is grounded with zero terminal power.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "capacitor-stepped-shunt-dss",
+    "task_description": "Switch a four-step grounded-wye bank through DSS States and solve.",
+    "language": "dss",
+    "file": "examples/capacitor/stepped_shunt.dss",
+    "object_classes": [
+      "Circuit",
+      "Capacitor"
+    ],
+    "dependencies": [
+      "DSS C-API 0.14.5",
+      "For the Python runner: altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "epri-dss-scripting",
+      "epri-capacitor-properties",
+      "capi-capacitor-engine"
+    ],
+    "expected_result": "The circuit converges with States=[1,0,0,0] after the final command. The dedicated readback verifies output near 300 kvar versus 1200 kvar with all steps on.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-21"
+    },
+    "evidence_label": "Observed-working"
   }
 ]

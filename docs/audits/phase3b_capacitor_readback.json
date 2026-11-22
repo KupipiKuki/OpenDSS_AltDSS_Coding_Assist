@@ -1,0 +1,802 @@
+{
+  "environment": {
+    "python_version": "3.14.6",
+    "altdss_version": "0.2.4",
+    "dss_python_version": "0.15.7",
+    "backend_version": "0.14.5",
+    "platform": "Windows 11 AMD64",
+    "date": "2026-11-21"
+  },
+  "defaults": {
+    "properties": {
+      "name": {
+        "status": "read back",
+        "value": "readback_default"
+      },
+      "bus1": {
+        "status": "read back",
+        "value": "readback_default_1"
+      },
+      "bus2": {
+        "status": "read back",
+        "value": "readback_default_1.0.0.0"
+      },
+      "phases": {
+        "status": "read back",
+        "value": 3
+      },
+      "kvar": {
+        "status": "read back",
+        "dtype": "float64",
+        "shape": [
+          1
+        ],
+        "value": [
+          1200.0
+        ]
+      },
+      "kv": {
+        "status": "read back",
+        "value": 12.47
+      },
+      "conn": {
+        "status": "read back",
+        "enum_type": "Connection",
+        "enum_member": "wye",
+        "value": 0
+      },
+      "cmatrix": {
+        "status": "read back",
+        "dtype": "float64",
+        "shape": [
+          0
+        ],
+        "value": []
+      },
+      "cuf": {
+        "status": "read back",
+        "dtype": "float64",
+        "shape": [
+          1
+        ],
+        "value": [
+          20.46997066793766
+        ]
+      },
+      "r": {
+        "status": "read back",
+        "dtype": "float64",
+        "shape": [
+          1
+        ],
+        "value": [
+          0.0
+        ]
+      },
+      "xl": {
+        "status": "read back",
+        "dtype": "float64",
+        "shape": [
+          1
+        ],
+        "value": [
+          0.0
+        ]
+      },
+      "harm": {
+        "status": "read back",
+        "dtype": "float64",
+        "shape": [
+          1
+        ],
+        "value": [
+          0.0
+        ]
+      },
+      "numsteps": {
+        "status": "read back",
+        "value": 1
+      },
+      "states": {
+        "status": "read back",
+        "dtype": "int32",
+        "shape": [
+          1
+        ],
+        "value": [
+          1
+        ]
+      },
+      "normamps": {
+        "status": "read back",
+        "value": 75.00460594123446
+      },
+      "emergamps": {
+        "status": "read back",
+        "value": 100.00614125497927
+      },
+      "faultrate": {
+        "status": "read back",
+        "value": 0.0005
+      },
+      "pctperm": {
+        "status": "read back",
+        "value": 100.0
+      },
+      "repair": {
+        "status": "read back",
+        "value": 3.0
+      },
+      "basefreq": {
+        "status": "read back",
+        "value": 60.0
+      },
+      "enabled": {
+        "status": "read back",
+        "value": true
+      },
+      "like": {
+        "status": "action",
+        "note": "Copy action. See the separate Like probe."
+      }
+    },
+    "topology": {
+      "phases": 3,
+      "connection": "wye",
+      "bus1": "readback_default_1",
+      "bus2": "readback_default_1.0.0.0",
+      "terminals": 2,
+      "conductors": 3,
+      "shunt": true
+    }
+  },
+  "specification_families": {
+    "kvar": {
+      "kV": 12.47,
+      "kvar": [
+        600.0
+      ],
+      "Cuf": [
+        10.23498533396883
+      ],
+      "CMatrix": [],
+      "ratings_a": [
+        37.50230297061723,
+        50.003070627489635
+      ]
+    },
+    "cuf": {
+      "kV": 12.47,
+      "kvar": [
+        600.0
+      ],
+      "Cuf": [
+        10.0
+      ],
+      "CMatrix": [],
+      "ratings_a": [
+        1.2213762158880378e-05,
+        1.6285016211840502e-05
+      ],
+      "terminal_powers_kw_kvar": [
+        [
+          0.0,
+          -586.5581198302494
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "rating_kvar_accumulator_from_formula": 0.00019540819402664045
+    },
+    "cmatrix": {
+      "kV": 12.47,
+      "kvar": [
+        600.0
+      ],
+      "Cuf": [
+        10.23498533396883
+      ],
+      "CMatrix": [
+        20.0,
+        -2.0,
+        -1.0,
+        -2.0,
+        19.0,
+        -3.0,
+        -1.0,
+        -3.0,
+        18.0
+      ],
+      "ratings_a": [
+        0.0,
+        0.0
+      ]
+    },
+    "matrix_input_lengths": [
+      6,
+      9
+    ],
+    "matrix_terminal_powers_kw_kvar": [
+      [
+        2.9103830456733704e-14,
+        -1232.5493493432714
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "after_restore_kvar": {
+      "kV": 12.47,
+      "kvar": [
+        600.0
+      ],
+      "Cuf": [
+        10.23498533396883
+      ],
+      "CMatrix": [
+        20.0,
+        -2.0,
+        -1.0,
+        -2.0,
+        19.0,
+        -3.0,
+        -1.0,
+        -3.0,
+        18.0
+      ],
+      "ratings_a": [
+        37.50230297061723,
+        50.003070627489635
+      ]
+    },
+    "wrong_matrix_length_error": "(#2020036) Capacitor.bad_matrix.CMatrix: Invalid number of elements. Provide either the full matrix or the lower triangle."
+  },
+  "resize": {
+    "four_step_bank": {
+      "kvar": [
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "Cuf": [
+        5.117492666984415,
+        5.117492666984415,
+        5.117492666984415,
+        5.117492666984415
+      ],
+      "R": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "XL": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Harm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "States": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "json_property_keys": [
+      "Name",
+      "kvar",
+      "States"
+    ],
+    "wrong_kvar_length_error": "(#20200425) Capacitor.bad_kvar_length.kvar: Invalid number of elements. Expected 4 elements, got 2.",
+    "cuf_before_resize": {
+      "kvar": [
+        1200.0,
+        0.0
+      ],
+      "Cuf": [
+        10.0,
+        10.0
+      ],
+      "R": [
+        0.0,
+        0.0
+      ],
+      "XL": [
+        0.0,
+        0.0
+      ],
+      "Harm": [
+        0.0,
+        0.0
+      ],
+      "States": [
+        1,
+        1
+      ]
+    },
+    "short_cuf_after_resize_error": "(#20200425) Capacitor.steps_then_short_cuf.Cuf: Invalid number of elements. Expected 2 elements, got 1.",
+    "full_cuf_after_resize": {
+      "kvar": [
+        600.0,
+        600.0
+      ],
+      "Cuf": [
+        10.0,
+        20.0
+      ],
+      "R": [
+        0.0,
+        0.0
+      ],
+      "XL": [
+        0.0,
+        0.0
+      ],
+      "Harm": [
+        0.0,
+        0.0
+      ],
+      "States": [
+        1,
+        1
+      ]
+    }
+  },
+  "filter_edits": {
+    "kvar_family_resized": {
+      "kvar": [
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "Cuf": [
+        5.117492666984415,
+        5.117492666984415,
+        5.117492666984415,
+        5.117492666984415
+      ],
+      "R": [
+        0.08,
+        0.08,
+        0.08,
+        0.08
+      ],
+      "XL": [
+        1.6,
+        1.6,
+        1.6,
+        1.6
+      ],
+      "Harm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "States": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "after_harm_edit": {
+      "kvar": [
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "Cuf": [
+        5.117492666984415,
+        5.117492666984415,
+        5.117492666984415,
+        5.117492666984415
+      ],
+      "R": [
+        0.08,
+        0.08,
+        0.08,
+        0.08
+      ],
+      "XL": [
+        20.733453333333337,
+        20.733453333333337,
+        20.733453333333337,
+        20.733453333333337
+      ],
+      "Harm": [
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "States": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "cuf_family_resized": {
+      "kvar": [
+        1200.0,
+        0.0
+      ],
+      "Cuf": [
+        10.0,
+        10.0
+      ],
+      "R": [
+        0.02,
+        0.02
+      ],
+      "XL": [
+        10.61032953945969,
+        10.61032953945969
+      ],
+      "Harm": [
+        5.0,
+        5.0
+      ],
+      "States": [
+        1,
+        1
+      ]
+    }
+  },
+  "topology": {
+    "ph3_wye": {
+      "phases": 3,
+      "connection": "wye",
+      "bus1": "primary.1",
+      "bus2": "primary.0.0.0",
+      "terminals": 2,
+      "conductors": 3,
+      "shunt": true
+    },
+    "ph3_delta": {
+      "phases": 3,
+      "connection": "delta",
+      "bus1": "primary.1",
+      "bus2": "",
+      "terminals": 1,
+      "conductors": 3,
+      "shunt": true
+    },
+    "ph2_wye": {
+      "phases": 2,
+      "connection": "wye",
+      "bus1": "primary.1",
+      "bus2": "primary.0.0",
+      "terminals": 2,
+      "conductors": 2,
+      "shunt": true
+    },
+    "ph2_delta": {
+      "phases": 2,
+      "connection": "delta",
+      "bus1": "primary.1",
+      "bus2": "",
+      "terminals": 1,
+      "conductors": 3,
+      "shunt": true
+    },
+    "ph1_wye": {
+      "phases": 1,
+      "connection": "wye",
+      "bus1": "primary.1",
+      "bus2": "primary.0",
+      "terminals": 2,
+      "conductors": 1,
+      "shunt": true
+    },
+    "ph1_delta": {
+      "phases": 1,
+      "connection": "delta",
+      "bus1": "primary.1",
+      "bus2": "",
+      "terminals": 1,
+      "conductors": 2,
+      "shunt": true
+    },
+    "zero_phases_error": "(#2020031) Capacitor.zero_phase.Phases: Value (0) cannot be zero.",
+    "topology_transition": {
+      "initial": {
+        "phases": 3,
+        "connection": "wye",
+        "bus1": "a.1.2.3",
+        "bus2": "b.1.2.3",
+        "terminals": 2,
+        "conductors": 3,
+        "shunt": false
+      },
+      "delta": {
+        "phases": 3,
+        "connection": "delta",
+        "bus1": "a.1.2.3",
+        "bus2": "",
+        "terminals": 1,
+        "conductors": 3,
+        "shunt": false
+      },
+      "return_to_wye": {
+        "phases": 3,
+        "connection": "wye",
+        "bus1": "a.1.2.3",
+        "bus2": "wiring_2",
+        "terminals": 2,
+        "conductors": 3,
+        "shunt": false
+      }
+    }
+  },
+  "series_and_delta_power": {
+    "series": {
+      "topology": {
+        "phases": 3,
+        "connection": "wye",
+        "bus1": "source.1.2.3",
+        "bus2": "loadbus.1.2.3",
+        "terminals": 2,
+        "conductors": 3,
+        "shunt": false
+      },
+      "terminal_powers_kw_kvar": [
+        [
+          1000.0010678593924,
+          165.7373010583145
+        ],
+        [
+          -1000.0010678593924,
+          -200.00016187645934
+        ]
+      ]
+    },
+    "delta": {
+      "topology": {
+        "phases": 3,
+        "connection": "delta",
+        "bus1": "source.1.2.3",
+        "bus2": "",
+        "terminals": 1,
+        "conductors": 3,
+        "shunt": true
+      },
+      "terminal_powers_kw_kvar": [
+        [
+          2.076738780942833e-14,
+          -600.349400649658
+        ]
+      ]
+    }
+  },
+  "step_switching": {
+    "text_single_step": [
+      [
+        -7.275957614183426e-15,
+        -300.08733149024533
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "states_after_python_attribute": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "states_after_python_edit": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "states_from_python_kwargs": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "text_all_steps": [
+      [
+        0.0,
+        -1201.3982004412635
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "one_to_all_kvar_ratio": 0.24978173879403662,
+    "states_after_text_abbreviation": [
+      0,
+      0,
+      1,
+      1
+    ]
+  },
+  "unequal_steps": {
+    "kvar": {
+      "step_arrays": {
+        "kvar": [
+          100.0,
+          200.0
+        ],
+        "Cuf": [
+          1.7058308889948048,
+          1.7058308889948048
+        ],
+        "R": [
+          0.0,
+          0.0
+        ],
+        "XL": [
+          0.0,
+          0.0
+        ],
+        "Harm": [
+          0.0,
+          0.0
+        ],
+        "States": [
+          0,
+          1
+        ]
+      },
+      "single_step_output_kvar": [
+        100.00970211622075,
+        100.00970211622075
+      ]
+    },
+    "Cuf": {
+      "step_arrays": {
+        "kvar": [
+          600.0,
+          600.0
+        ],
+        "Cuf": [
+          7.0,
+          14.0
+        ],
+        "R": [
+          0.0,
+          0.0
+        ],
+        "XL": [
+          0.0,
+          0.0
+        ],
+        "Harm": [
+          0.0,
+          0.0
+        ],
+        "States": [
+          0,
+          1
+        ]
+      },
+      "single_step_output_kvar": [
+        410.52062047188684,
+        821.3682581661366
+      ]
+    }
+  },
+  "ratings": {
+    "automatic": {
+      "at_1200_kvar_a": [
+        75.00460594123446,
+        100.00614125497927
+      ],
+      "at_2400_kvar_a": [
+        150.00921188246892,
+        200.01228250995854
+      ]
+    },
+    "explicit_normal": {
+      "at_1200_kvar_a": [
+        50.0,
+        100.00614125497927
+      ],
+      "at_2400_kvar_a": [
+        50.0,
+        200.01228250995854
+      ]
+    },
+    "both_explicit": {
+      "at_1200_kvar_a": [
+        50.0,
+        90.0
+      ],
+      "at_2400_kvar_a": [
+        50.0,
+        90.0
+      ]
+    },
+    "pct_perm": 50.0,
+    "repair_hours": 3.0
+  },
+  "like_and_legacy_names": {
+    "kwargs_error": "'Capacitor' object attribute 'Like' is read-only",
+    "source": {
+      "phases": 3,
+      "connection": "delta",
+      "bus1": "origin_bus",
+      "bus2": "",
+      "terminals": 1,
+      "conductors": 3,
+      "shunt": true
+    },
+    "copied": {
+      "copy_method": {
+        "topology": {
+          "phases": 3,
+          "connection": "delta",
+          "bus1": "target_bus",
+          "bus2": "target_bus.0.0.0",
+          "terminals": 2,
+          "conductors": 3,
+          "shunt": true
+        },
+        "kV": 4.16,
+        "kvar": [
+          250.0
+        ]
+      },
+      "copy_text": {
+        "topology": {
+          "phases": 3,
+          "connection": "delta",
+          "bus1": "copy_text_1",
+          "bus2": "copy_text_1.0.0.0",
+          "terminals": 2,
+          "conductors": 3,
+          "shunt": true
+        },
+        "kV": 4.16,
+        "kvar": [
+          250.0
+        ]
+      }
+    },
+    "absent_python_properties": [
+      "Model",
+      "Vmin",
+      "Vmax",
+      "StepSize",
+      "Vharmonics",
+      "PctLead",
+      "PctLag",
+      "PtPhase",
+      "Userated",
+      "Spectrum",
+      "State"
+    ],
+    "unknown_dss_parameters": {
+      "Model": "(#110) Unknown parameter \"Model\" (value \"1\") for object \"Capacitor.origin\"",
+      "Vmin": "(#110) Unknown parameter \"Vmin\" (value \"1\") for object \"Capacitor.origin\"",
+      "Vmax": "(#110) Unknown parameter \"Vmax\" (value \"1\") for object \"Capacitor.origin\"",
+      "StepSize": "(#110) Unknown parameter \"StepSize\" (value \"1\") for object \"Capacitor.origin\"",
+      "Vharmonics": "(#110) Unknown parameter \"Vharmonics\" (value \"1\") for object \"Capacitor.origin\"",
+      "PctLead": "(#110) Unknown parameter \"PctLead\" (value \"1\") for object \"Capacitor.origin\"",
+      "PctLag": "(#110) Unknown parameter \"PctLag\" (value \"1\") for object \"Capacitor.origin\"",
+      "PtPhase": "(#110) Unknown parameter \"PtPhase\" (value \"1\") for object \"Capacitor.origin\"",
+      "Userated": "(#110) Unknown parameter \"Userated\" (value \"1\") for object \"Capacitor.origin\"",
+      "Spectrum": "(#110) Unknown parameter \"Spectrum\" (value \"1\") for object \"Capacitor.origin\""
+    }
+  }
+}

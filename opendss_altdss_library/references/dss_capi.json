@@ -2235,5 +2235,355 @@
     "notes": [
       "Defaults were read back. Reliability and service-evaluation scenarios were not run."
     ]
+  },
+  {
+    "id": "capi-capacitor-property-surface",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Capacitor property enum and legacy names",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "Property enums L52-L86; registration L200-L282",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Thirteen own fields: Bus1, Bus2, Phases, kvar, kV, Conn, CMatrix, Cuf, R, XL, Harm, NumSteps, States.",
+    "arguments": null,
+    "returns_or_effects": "Inherited fields and Like bring the wrapper TypedDict to 21 entries. The ten legacy names in the matrix fail with #110 in DSS and have no Python properties.",
+    "errors_or_edge_cases": "State has no independent property or Python attribute. It was accepted in DSS as an abbreviation for States with array semantics.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-capacitor-specification-families",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Capacitance specification sets and state",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "Spec sets L208-L224; required flags L260-L279; family-selection writes L375-L386; recalculation L614-L692",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "kvar/kV, CMatrix, Cuf/kV. SpecType values are 1, 3 and 2 respectively.",
+    "arguments": null,
+    "returns_or_effects": "Writing the family selector activates that branch. Inactive data can remain in the readbacks. The CMatrix probe left kvar and Cuf unchanged. Returning to kvar recalculated Cuf and ratings.",
+    "errors_or_edge_cases": "Formal spec-set enforcement was source reviewed.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "SpecType is engine state. It is absent from the public Python property keywords."
+    ]
+  },
+  {
+    "id": "capi-capacitor-numeric-arrays",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Step arrays and keyword ordering",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "Step array registration L226-L253; reallocations L387-L459; NumSteps flags L277-L279",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "kvar, Cuf, R, XL, Harm, States are sized by NumSteps.",
+    "arguments": null,
+    "returns_or_effects": "Set NumSteps first. The Python floating-point step-array setters use the engine array path. The probes verified #20200425 for short kvar and Cuf arrays.",
+    "errors_or_edge_cases": "Cuf followed by a resize replicates Cuf and can leave stale kvar entries. Use DSS text for States.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Default JSON omitted NumSteps and retained the arrays."
+    ]
+  },
+  {
+    "id": "capi-capacitor-step-resize",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Resizing from one step to multiple steps",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "Resize L387-L459; harmonic recalculation L673-L682",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "kvar mode divides the original rating by the new count. Cuf mode replicates the original capacitance.",
+    "arguments": null,
+    "returns_or_effects": "The probe split 1200 into four 300 kvar steps and energized all four. In kvar mode R and XL scale with the new count; Cuf mode copies them. The first harmonic value is replicated.",
+    "errors_or_edge_cases": "When resizing from multiple steps the one-step initialization block is bypassed. Refill step arrays after resizing.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-capacitor-unequal-kvar-steps",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Rated kvar and derived capacitance per step",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "kvar recalculation L625-L645; active steps L721-L732; primitive L926-L960",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "The pinned kvar branch uses FkvarRating[1] for every FC[i], while summing the individual kvar ratings for ratings.",
+    "arguments": null,
+    "returns_or_effects": "With kvar=[100,200], the two individually energized steps each supplied about 100 kvar. With Cuf=[7,14], the second step supplied about twice the first.",
+    "errors_or_edge_cases": "Use explicit Cuf for unequal steps on this backend and verify electrical output independently of derived ratings.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-capacitor-cuf-units-and-ratings",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Cuf scaling and rating accumulator",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "Cuf scale L240-L244; Cuf formula L646-L665; derived ratings L684-L692; primitive L926-L960",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Cuf is per-phase µF scaled by 1e-6 to farads. The rating accumulator uses angular frequency × capacitance in farads × phase kV squared / 1000.",
+    "arguments": null,
+    "returns_or_effects": "The 10 µF probe read about 0.0000122 A normal and 0.0000163 A emergency while supplying about 586.56 kvar. Solved Q matched the capacitance and measured terminal voltage.",
+    "errors_or_edge_cases": "A unit inconsistency in the rating accumulator makes the automatic ratings unreliable in Cuf mode.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-capacitor-cmatrix-shape",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Symmetric capacitance matrix",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "Matrix registration L219-L224; CMatrix recalculation L666-L670; primitive L963-L978",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Phases sets matrix order. CMatrix is in µF and scaled by 1e-6.",
+    "arguments": null,
+    "returns_or_effects": "The three-phase probe accepted six lower-triangle or nine full values and read back nine. Text uses one lower-triangle row per bar. The same matrix is used per step.",
+    "errors_or_edge_cases": "An eight-value array raised #2020036. Unset automatic ratings read zero in matrix mode.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-capacitor-connection-and-bus-defaults",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Connection, terminal allocation and shunt default",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "Bus1 and Conn side effects L303-L342; Bus2 and phase changes L343-L374",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Wye: two terminals with Phases conductors. Delta: one terminal with Phases conductors, except one and two phases use Phases+1.",
+    "arguments": null,
+    "returns_or_effects": "A wye bank with no distinct explicit Bus2 defaults to ground at Bus1. Delta removes Bus2. Switching back to wye can allocate a generated Bus2 instead of restoring the old bus.",
+    "errors_or_edge_cases": "Phases=0 raised #2020031. Set connection and buses explicitly before solving.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-capacitor-series-and-terminal-power",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Shunt and series primitive selection",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "Bus2 L343-L351; primitive selection L698-L748; wye primitive L947-L960",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "A different Bus2 stem selects series treatment. Energized steps contribute to the primitive.",
+    "arguments": null,
+    "returns_or_effects": "The series probe had opposite active powers of about ±1000 kW and negative net Q. The grounded wye example returned two complex terminal powers; delta returned one.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Complex terminal results are recorded as [kW,kvar] pairs."
+    ]
+  },
+  {
+    "id": "capi-capacitor-states-write-path",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Step states and the working text write path",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "States registration L250-L253; state side effects L472-L498; active-step loop L721-L732; state search L861-L875",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Integer step array over NumSteps with 1 on and 0 off.",
+    "arguments": null,
+    "returns_or_effects": "DSS text States changed the solved reactive output from about 1201.40 kvar with all four steps to about 300.09 kvar with one. The observed difference from one quarter is consistent with solved voltages changing.",
+    "errors_or_edge_cases": "Python keyword, attribute, and edit writes in the probe kept the existing states.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "AltDSS Capacitor.py L263-L274 routes the property through the integer-array API. The no-op is a runtime observation."
+    ]
+  },
+  {
+    "id": "capi-capacitor-capcontrol-hook",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "CapControl switching hook",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API CapControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/CapControl.pas",
+      "section_or_record": "Action handling L725-L788",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "The separate controller calls the controlled capacitor's AddStep and SubtractStep methods.",
+    "arguments": null,
+    "returns_or_effects": "Capacitor.pas L1021-L1052 updates FStates and FLastStepInService. The manual state solve tests bank behavior without a controller run.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": [
+      "Controller configuration and operation are deferred."
+    ]
+  },
+  {
+    "id": "capi-capacitor-filter-step-properties",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "XL, R and Harm editing",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "Filter registrations L232-L248; XL and Harm writes L462-L473; recalc L673-L682",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "XL specifies reactance; Harm selects a tuning order. R is series resistance.",
+    "arguments": null,
+    "returns_or_effects": "The probe verified that changing Harm set XL from capacitance and tuning order. One-to-many kvar resize scaled nonzero R and XL as the branch specifies.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "Harmonic-analysis solves were outside the package."
+    ]
+  },
+  {
+    "id": "capi-capacitor-defaults-and-ratings",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Constructor defaults and current-rating overrides",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "Defaults L546-L598; rating recalculation L684-L692",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "1200 kvar, 12.47 kV, 3 phases, wye, one energized step; fault rate .0005, permanent-fault percentage 100, repair 3 h.",
+    "arguments": null,
+    "returns_or_effects": "The pinned defaults read about 20.47 µF, 75.0046 A normal and 100.0061 A emergency. Automatic factors are 1.35 and 1.8. Explicit normal and emergency values persist independently.",
+    "errors_or_edge_cases": "The wrapper's NormAmps docstring says 180%. The engine and readback give 135%.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": [
+      "PDElement.pas L178-L198 initializes the rating flags; PDClass.pas L92-L108 registers the inherited fields."
+    ]
+  },
+  {
+    "id": "capi-capacitor-copy-action",
+    "kind": "api",
+    "namespace_or_type": "Capacitor",
+    "name": "Like action and copied topology",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Capacitor.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas",
+      "section_or_record": "MakeLike L503-L544",
+      "accessed_or_captured": "2026-11-21"
+    },
+    "signature_or_shape": "Like copies arrays, kV, connection and family data.",
+    "arguments": null,
+    "returns_or_effects": "DSS Like=origin and the Python Like(name) method copied a delta source's parameters while leaving the target bus and existing two-terminal allocation. The source itself had one terminal.",
+    "errors_or_edge_cases": "Python new(..., Like=...) raised AttributeError. Verify wiring and topology after a copy.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-21), Capacitor readback matrix",
+      "result": "pass"
+    },
+    "notes": []
   }
 ]
