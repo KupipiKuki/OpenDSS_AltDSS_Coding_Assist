@@ -1,0 +1,325 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IEEE Fixture Catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "fixture_id",
+      "name",
+      "upstream_repository",
+      "upstream_commit",
+      "retrieved",
+      "license",
+      "files",
+      "entry_script",
+      "source_ids",
+      "golden_path",
+      "golden_revision",
+      "golden_updates",
+      "tolerances",
+      "engine_versions",
+      "solver",
+      "notes"
+    ],
+    "properties": {
+      "fixture_id": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "upstream_repository": {
+        "type": "string",
+        "format": "uri"
+      },
+      "upstream_commit": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{40}$"
+      },
+      "retrieved": {
+        "type": "string",
+        "format": "date"
+      },
+      "license": {
+        "type": "object",
+        "required": [
+          "identifier",
+          "path",
+          "bytes",
+          "sha256"
+        ],
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "$ref": "#/$defs/relativePath"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "files": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/file"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "entry_script": {
+        "$ref": "#/$defs/relativePath"
+      },
+      "source_ids": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "golden_path": {
+        "$ref": "#/$defs/relativePath"
+      },
+      "golden_revision": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Zero before initial generation. Published revisions begin at one."
+      },
+      "golden_updates": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "revision",
+            "date",
+            "reason",
+            "approver"
+          ],
+          "properties": {
+            "revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "date": {
+              "type": "string",
+              "format": "date"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "approver": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          },
+          "additionalProperties": false
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      },
+      "tolerances": {
+        "type": "object",
+        "required": [
+          "voltage_pu_abs",
+          "angle_deg_abs",
+          "power_rel",
+          "power_kw_kvar_abs"
+        ],
+        "properties": {
+          "voltage_pu_abs": {
+            "type": "number",
+            "minimum": 0
+          },
+          "angle_deg_abs": {
+            "type": "number",
+            "minimum": 0
+          },
+          "power_rel": {
+            "type": "number",
+            "minimum": 0
+          },
+          "power_kw_kvar_abs": {
+            "type": "number",
+            "minimum": 0
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "additionalProperties": false,
+        "if": {
+          "anyOf": [
+            {
+              "required": [
+                "voltage_pu_abs"
+              ],
+              "properties": {
+                "voltage_pu_abs": {
+                  "exclusiveMinimum": 0.000001
+                }
+              }
+            },
+            {
+              "required": [
+                "angle_deg_abs"
+              ],
+              "properties": {
+                "angle_deg_abs": {
+                  "exclusiveMinimum": 0.000001
+                }
+              }
+            },
+            {
+              "required": [
+                "power_rel"
+              ],
+              "properties": {
+                "power_rel": {
+                  "exclusiveMinimum": 0.000001
+                }
+              }
+            },
+            {
+              "required": [
+                "power_kw_kvar_abs"
+              ],
+              "properties": {
+                "power_kw_kvar_abs": {
+                  "exclusiveMinimum": 0.000001
+                }
+              }
+            }
+          ]
+        },
+        "then": {
+          "required": [
+            "reason"
+          ]
+        }
+      },
+      "engine_versions": {
+        "type": "object",
+        "required": [
+          "altdss_python",
+          "dss_python",
+          "dss_python_backend",
+          "dss_capi"
+        ],
+        "properties": {
+          "altdss_python": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dss_python": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dss_python_backend": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dss_capi": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "solver": {
+        "type": "object",
+        "required": [
+          "mode",
+          "max_iterations",
+          "tolerance",
+          "control_mode",
+          "max_control_iterations",
+          "base_freq"
+        ],
+        "properties": {
+          "mode": {
+            "const": "SnapShot"
+          },
+          "max_iterations": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "tolerance": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "control_mode": {
+            "type": "string",
+            "minLength": 1
+          },
+          "max_control_iterations": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "base_freq": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "notes": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "minItems": 1,
+  "uniqueItems": true,
+  "$defs": {
+    "relativePath": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]*(?:/[a-zA-Z0-9][a-zA-Z0-9_.-]*)*$"
+    },
+    "file": {
+      "type": "object",
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

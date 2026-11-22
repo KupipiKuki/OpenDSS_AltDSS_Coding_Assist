@@ -53,6 +53,7 @@ SCHEMA_PAIRS = {
     ),
     "references/sources.json": "schemas/catalogs/sources.schema.json",
     "references/examples.json": "schemas/catalogs/examples.schema.json",
+    "references/fixtures.json": "schemas/catalogs/fixtures.schema.json",
     "references/opendss_objects.json": "schemas/catalogs/opendss_objects.schema.json",
     "references/altdss_python_api.json": "schemas/catalogs/altdss_python_api.schema.json",
     "references/dss_capi.json": "schemas/catalogs/dss_capi.schema.json",

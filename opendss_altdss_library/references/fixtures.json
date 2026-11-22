@@ -1,0 +1,152 @@
+[
+  {
+    "fixture_id": "ieee13",
+    "name": "IEEE 13-node feeder",
+    "upstream_repository": "https://github.com/dss-extensions/electricdss-tst",
+    "upstream_commit": "3b208397160213cae4a9e2d0a7d1aa3528ce26e1",
+    "retrieved": "2026-11-22",
+    "license": {
+      "identifier": "BSD-3-Clause",
+      "path": "examples/fixtures/License.txt",
+      "bytes": 1816,
+      "sha256": "f13543277f32a6437d4f583200858f0988d3acc9598a6a1a292d710009ec21ef"
+    },
+    "files": [
+      {
+        "path": "IEEETestCases/IEEELineCodes.DSS",
+        "bytes": 12032,
+        "sha256": "71bc16ef9c6084b9e3bab74fbdf967080b79624683465e1483b787ff160f58b3"
+      },
+      {
+        "path": "IEEETestCases/13Bus/IEEE13Nodeckt.dss",
+        "bytes": 8354,
+        "sha256": "033ccd4005c6538e9de5b2218e83001802ce14fbc5b6c312896ae8cbc5d4a504"
+      },
+      {
+        "path": "IEEETestCases/13Bus/IEEELineCodes.DSS",
+        "bytes": 30,
+        "sha256": "40ef533dfcb22738edb1125b1e15e4a1a5d41b2cca4a2f969f5d955c9784daeb"
+      },
+      {
+        "path": "IEEETestCases/13Bus/IEEE13Node_BusXY.csv",
+        "bytes": 243,
+        "sha256": "f8dd1528c72f339ebf41bf1355ed64ef12fbe30864fcc839ed5e5e9dc527846e"
+      }
+    ],
+    "entry_script": "IEEETestCases/13Bus/IEEE13Nodeckt.dss",
+    "source_ids": [
+      "electricdss-tst-ieee-fixtures-3b20839",
+      "capi-release-0145",
+      "dss-python-release-0157"
+    ],
+    "golden_path": "examples/fixtures/ieee13/golden.json",
+    "golden_revision": 1,
+    "golden_updates": [
+      {
+        "revision": 1,
+        "date": "2026-11-22",
+        "reason": "Initial snapshot goldens for Phase 4 package 4.1",
+        "approver": "Project owner (Phase 4.1 coding release)"
+      }
+    ],
+    "tolerances": {
+      "voltage_pu_abs": 1e-06,
+      "angle_deg_abs": 1e-06,
+      "power_rel": 1e-06,
+      "power_kw_kvar_abs": 1e-06
+    },
+    "engine_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "dss_capi": "0.14.5"
+    },
+    "solver": {
+      "mode": "SnapShot",
+      "max_iterations": 15,
+      "tolerance": 0.0001,
+      "control_mode": "Static",
+      "max_control_iterations": 10,
+      "base_freq": 60
+    },
+    "notes": [
+      "The upstream entry script solves before loading bus coordinates. The harness re-solves with the recorded options.",
+      "The LoadShape named default comes from the engine. Neither fixture defines a LoadShape."
+    ]
+  },
+  {
+    "fixture_id": "ieee34",
+    "name": "IEEE 34-node feeder, Mod 1",
+    "upstream_repository": "https://github.com/dss-extensions/electricdss-tst",
+    "upstream_commit": "3b208397160213cae4a9e2d0a7d1aa3528ce26e1",
+    "retrieved": "2026-11-22",
+    "license": {
+      "identifier": "BSD-3-Clause",
+      "path": "examples/fixtures/License.txt",
+      "bytes": 1816,
+      "sha256": "f13543277f32a6437d4f583200858f0988d3acc9598a6a1a292d710009ec21ef"
+    },
+    "files": [
+      {
+        "path": "IEEETestCases/IEEELineCodes.DSS",
+        "bytes": 12032,
+        "sha256": "71bc16ef9c6084b9e3bab74fbdf967080b79624683465e1483b787ff160f58b3"
+      },
+      {
+        "path": "IEEETestCases/34Bus/ieee34Mod1.dss",
+        "bytes": 14341,
+        "sha256": "648f12f7f611ccf89bce68aea2142f0225ddcba78e81d16bd02e52e3a4b058f8"
+      },
+      {
+        "path": "IEEETestCases/34Bus/IEEELineCodes.DSS",
+        "bytes": 30,
+        "sha256": "40ef533dfcb22738edb1125b1e15e4a1a5d41b2cca4a2f969f5d955c9784daeb"
+      },
+      {
+        "path": "IEEETestCases/34Bus/IEEE34_BusXY.csv",
+        "bytes": 506,
+        "sha256": "6e022bbb3adb3c7f29ccb7bbdee2013517ae55e19ad25cda815616c5d4a37958"
+      }
+    ],
+    "entry_script": "IEEETestCases/34Bus/ieee34Mod1.dss",
+    "source_ids": [
+      "electricdss-tst-ieee-fixtures-3b20839",
+      "capi-release-0145",
+      "dss-python-release-0157"
+    ],
+    "golden_path": "examples/fixtures/ieee34/golden.json",
+    "golden_revision": 1,
+    "golden_updates": [
+      {
+        "revision": 1,
+        "date": "2026-11-22",
+        "reason": "Initial snapshot goldens for Phase 4 package 4.1",
+        "approver": "Project owner (Phase 4.1 coding release)"
+      }
+    ],
+    "tolerances": {
+      "voltage_pu_abs": 1e-06,
+      "angle_deg_abs": 1e-06,
+      "power_rel": 1e-06,
+      "power_kw_kvar_abs": 1e-06
+    },
+    "engine_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "dss_capi": "0.14.5"
+    },
+    "solver": {
+      "mode": "SnapShot",
+      "max_iterations": 15,
+      "tolerance": 0.0001,
+      "control_mode": "Static",
+      "max_control_iterations": 10,
+      "base_freq": 60
+    },
+    "notes": [
+      "The upstream entry script stops after voltage-base calculation. Bus coordinates are retained as auxiliary input.",
+      "The LoadShape named default comes from the engine. Neither fixture defines a LoadShape."
+    ]
+  }
+]

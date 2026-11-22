@@ -1,6 +1,6 @@
 # Phase 4 — Validation with golden fixtures
 
-**Status** Phase 4 preparation. Design agreed and fixture source pinned; package 4.1 is issued to the coder.
+**Status** Package 4.1 passed coder validation. Both revision 1 snapshot goldens are recorded and ready for independent QA/QC. [Build audit](../audits/phase4_fixture_harness_audit.md) · [QA/QC handoff](../handoffs/Phase_4_Fixture_Harness_QAQC_handoff.md)
 **Governs** [Implementation plan §6](../implementation_plan.md) (intent) · [manifest](../../opendss_altdss_library/manifest.json) (state)
 **Pinned stack** AltDSS-Python `0.2.4` · DSS-Python `0.15.7` · DSS C-API backend `0.14.5`; cross-interface checks add `opendssdirect.py` `0.9.4`.
 
@@ -98,11 +98,14 @@ Notes that shaped the design:
 {
   "fixture": "ieee13",
   "golden_revision": 1,
+  "revision_date": "2026-11-22",
   "scenario": "snapshot",
   "source": {
     "repository": "https://github.com/dss-extensions/electricdss-tst",
     "commit": "3b208397160213cae4a9e2d0a7d1aa3528ce26e1",
-    "retrieved": "2026-11-21",
+    "retrieved": "2026-11-22",
+    "license": {"identifier": "BSD-3-Clause", "path": "examples/fixtures/License.txt",
+                "bytes": 1816, "sha256": "f1354327…c21ef"},
     "files": [{"path": "IEEETestCases/13Bus/IEEE13Nodeckt.dss", "bytes": 8354,
                "sha256": "033ccd40…d4a504"}]
   },
@@ -115,7 +118,7 @@ Notes that shaped the design:
                "control_iterations": 1},
   "totals": {"load_kw": 0.0, "load_kvar": 0.0, "losses_kw": 0.0, "losses_kvar": 0.0,
              "source_kw": 0.0, "source_kvar": 0.0},
-  "buses": {"611": {"pu_vmag": [0.0, 0.0, 0.0], "pu_vangle_deg": [0.0, 0.0, 0.0]}},
+  "buses": {"611": {"nodes": [3], "pu_vmag": [0.0], "pu_vangle_deg": [0.0]}},
   "elements": {"Line.L1": {"powers_kw_kvar": [[0.0, 0.0]], "losses_kw_kvar": [0.0, 0.0]}},
   "controls": {"RegControl.reg1": {"tap": 0.0}, "Capacitor.C1": {"states": [1, 1, 1]}},
   "generated_by": "tools/run_fixtures.py --update-golden",
@@ -154,11 +157,22 @@ Same engine on the same platform should reproduce to about `1e-9`; `1e-6` leaves
 
 Checksum verification happens before compilation: a fixture whose bytes do not match the record is a failure even if it still solves.
 
+Run from the repository root or invoke the tool by absolute path from another directory. The runner stages the verified redirect closure in a temporary directory and uses a fresh AltDSS context each time.
+
+```powershell
+python opendss_altdss_library/tools/run_fixtures.py
+python opendss_altdss_library/tools/run_fixtures.py --fixture ieee13 --report ieee13-diff.json
+```
+
+For a new revision, record the owner's approval as the next entry in `golden_updates` for each selected fixture. Keep the approved reason identical to `--reason`. The runner advances `golden_revision` and records the approval date and reason in the golden. Commit the updated catalog and generated goldens together.
+
 ## 8. Catalog additions
 
 `references/fixtures.json` + `schemas/catalogs/fixtures.schema.json`, one record per fixture:
 
-`fixture_id`, `name`, `upstream_repository`, `upstream_commit`, `retrieved`, `license` (identifier plus notice location), `files` (path, bytes, sha256), `entry_script`, `source_ids`, `golden_path`, `golden_revision`, `golden_updates` (revision, date, reason, approver), `tolerances`, `engine_versions`, `notes`.
+`fixture_id`, `name`, `upstream_repository`, `upstream_commit`, `retrieved`, `license` (identifier and notice path, bytes and SHA-256), `files` (path, bytes, sha256), `entry_script`, `source_ids`, `golden_path`, `golden_revision`, `golden_updates` (revision, date, reason, approver), `tolerances`, `engine_versions`, `solver`, `notes`.
+
+The input `files` and `entry_script` paths are relative to each fixture directory. The license and golden paths are relative to the library root. Solver settings come from the catalog. The golden records the applied values. The report records both golden and run environments so platform and Python version differences are visible while engine and wrapper versions remain pinned.
 
 `source_ids` resolve against `sources.json`, so the pinned fixture commit and the pinned engine tags are cited in the same index as every other claim in the library.
 

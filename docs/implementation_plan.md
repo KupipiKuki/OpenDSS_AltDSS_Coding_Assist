@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version** 0.29 (Phase 3 complete; Phase 4 prepared and package 4.1 issued)
+**Plan version** 0.30 (Phase 4.1 snapshot goldens ready for independent QA/QC)
 **Plan date:** 2026-11-22
-**Current phase** Phase 4 preparation complete; package 4.1 (fixture harness and snapshot goldens) is issued to the coder. Phase 3 is closed: all six element packages are accepted. The Phase 4 design is fixed in [docs/phase_4/README.md](phase_4/README.md), the fixture source is pinned, and the Capacitor schema follow-up (O-1) is closed.
+**Current phase** Phase 4 package 4.1 passed coder validation with revision 1 goldens for both IEEE snapshots. Independent QA/QC and architect review are pending. [Phase 4 design](phase_4/README.md) · [Package 4.1 audit](audits/phase4_fixture_harness_audit.md)
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -127,7 +127,7 @@ Package 6 adds the 49-row Generator catalog, two executed examples, and a readba
 
 **Phase 3 exit criteria:** the two API catalogs and the single source index are complete and schema-valid; the six element packages pass independent QA/QC; every published record is version-scoped with a resolvable source; the catalog set validates in one command.
 
-## 6. Phase 4 — Validation with golden fixtures (prepared, package 4.1 issued)
+## 6. Phase 4 — Validation with golden fixtures
 
 **Objective:** move from property-level evidence to solved-model evidence and satisfy the charter stop gate.
 
@@ -214,6 +214,8 @@ Both new tools read the pinned environment and refuse to run when installed vers
 
 The 4.1 handoff is [Phase_4_Fixture_Harness_Coder_handoff.md](handoffs/Phase_4_Fixture_Harness_Coder_handoff.md).
 
+Package 4.1 adds the verified IEEE redirect closures, fixture catalog, snapshot harness, and both revision 1 goldens. Both snapshots matched on the pinned stack. The lab validated 16 schema pairs and reproduced all 14 example runs. [Build audit](audits/phase4_fixture_harness_audit.md) · [QA/QC handoff](handoffs/Phase_4_Fixture_Harness_QAQC_handoff.md)
+
 ## 6.6 Risks specific to golden fixtures
 
 | Risk | Mitigation |
@@ -286,6 +288,7 @@ The 4.1 handoff is [Phase_4_Fixture_Harness_Coder_handoff.md](handoffs/Phase_4_F
 | 0.27 | 2026-11-21 (local) | Recorded the Phase 3B package-6 (Generator) review outcomes: independent QA/QC reproduced the matrix and reported PASS with no required corrections, and the architect review reported PASS WITH FINDINGS after re-deriving the wrapper and engine surfaces, all 252 citations against real file lengths, the constructor defaults, and independent probes of the guards, the `MVA` alias, the `Like` copy, `Refuel`, and an eight-cell `DispMode`/`Status` path matrix. Findings: E-1 (numeric enum text writes silently discarded for `DispMode` and `Status`, documented nowhere), E-2 (EPRI's 0.95/1.05/0.27 not disclosed in the rows), A-1 to A-5 (architect handoff traps corrected, including the same `Like` error previously corrected for Capacitor), and O-1 narrowed to Capacitor (Load and Generator now fully declared). |
 | 0.28 | 2026-11-21 (local) | Recorded the owner's acceptance of Phase 3B package 6 (Generator) and the closing of the Phase 3 exit gate, and applied its two non-blocking findings: E-1 documented that numeric enum text writes are silently discarded for `DispMode` and `Status` (names work, numbers do not, and no error is raised) while a Python attribute write stores an out-of-range integer and makes the next read raise, in both the catalog rows and the workflow; E-2 appended the EPRI divergences to `vminpu` (0.95 vs pinned 0.90), `vmaxpu` (1.05 vs 1.10) and `xdp` (0.27 vs 0.28). No value, type, default, or citation changed; schema validation re-passed 15/15. Phase 4 planning is next. |
 | 0.29 | 2026-11-21 (local) | Prepared Phase 4. Pinned the fixture source to `electricdss-tst` @ `3b20839` with the BSD-3-Clause EPRI notice copied verbatim, resolved the redirect closure (each bus folder's `IEEELineCodes.DSS` is a 30-byte stub), recorded per-file SHA-256 values, and measured both fixtures on the pinned stack (ieee13: 16 buses, 38 elements, 2 iterations; ieee34: 37 buses, 117 elements, 6 control iterations). Fixed the golden format, tolerance table, harness contract, measured coverage and the package sequence 4.1-4.5 in [docs/phase_4/README.md](phase_4/README.md); added the 4.1 coder handoff with the CRLF `gitattributes` trap, the no-solve 34-node file, and the plot-bearing upstream drivers; catalogued RegControl and the cross-interface tool into Phase 4 (decisions 13-15); closed the Capacitor schema follow-up O-1 by declaring the seven remaining row fields, leaving zero undeclared row fields across Load, Capacitor and Generator (15/15 pairs still pass). |
+| 0.30 | 2026-11-22 | Delivered both verified IEEE fixture trees, the fixture catalog, the snapshot harness, and both revision 1 goldens. Recorded coder validation and prepared independent QA/QC. |
 
 ## 11. Owner decisions
 

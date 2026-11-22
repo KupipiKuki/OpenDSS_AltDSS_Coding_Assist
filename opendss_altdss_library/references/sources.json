@@ -1449,5 +1449,21 @@
       "defaultgen"
     ],
     "scope": "The spectrum registry binds defaultgen, which the Generator constructor selects."
+  },
+  {
+    "id": "electricdss-tst-ieee-fixtures-3b20839",
+    "kind": "source",
+    "title": "Pinned IEEE 13-node and 34-node fixture circuits",
+    "publisher": "DSS-Extensions / EPRI",
+    "url": "https://github.com/dss-extensions/electricdss-tst/tree/3b208397160213cae4a9e2d0a7d1aa3528ce26e1/Version8/Distrib/IEEETestCases",
+    "version_or_ref": "3b208397160213cae4a9e2d0a7d1aa3528ce26e1",
+    "accessed": "2026-11-22",
+    "topics": [
+      "IEEE 13-node",
+      "IEEE 34-node",
+      "snapshot fixtures",
+      "BSD-3-Clause"
+    ],
+    "scope": "Byte-preserved IEEE 13-node and IEEE 34-node Mod 1 redirect closures. The upstream root license is retained in the fixture tree."
   }
 ]
