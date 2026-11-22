@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase4`
 - **Inputs revision** `9736d46a3b30b7c3f7c10322bd3886f61fe78991`
-- **Package revision** Pending the package commit.
+- **Package revision** `d1acffc6d064418bf9f232ff2e779860ed395c2e`. Review the package artifacts at this commit. The follow-up commit supplies the handoff pin.
 
 Review the fixture harness and revision 1 snapshot results at the pinned package commit. Record the revision and working-tree state. [Coder handoff](Phase_4_Fixture_Harness_Coder_handoff.md) · [Build audit](../audits/phase4_fixture_harness_audit.md)
 
