@@ -58,11 +58,13 @@ Register the catalog in `tools/validate_catalogs.py` (`SCHEMA_PAIRS`); expect 13
 | Surface | EPRI page | Wrapper (0.2.4) | Engine (0.14.5) |
 |---|---|---|---|
 | Load | `https://opendss.epri.com/Load1.html` (200; element page) | `altdss/Load.py` | `src/PCElements/Load.pas` |
-| Load property vocabulary | `https://opendss.epri.com/Properties17.html` (200) | `altdss/Load.py` | `src/PCElements/Load.pas` |
+| Load property vocabulary | `https://opendss.epri.com/Properties7.html` (200) | `altdss/Load.py` | `src/PCElements/Load.pas` |
 | Inherited element data | — | TypedDict | `src/Common/CktElement.pas`, `src/PCElements/PCElement.pas`, `src/PCElements/PCClass.pas` |
 | Shapes (scope note only) | `LoadShape.html`, `GrowthShape.html` (both 200) | `altdss/LoadShape.py`, `altdss/GrowthShape.py` | `src/General/LoadShape.pas`, `src/General/GrowthShape.pas` |
 
-**Do not use `https://opendss.epri.com/Load.html`: it returns 404 at check time.** The element page is `Load1.html` and the property page is `Properties17.html`. Record whichever pages you cite with an access date and a scope note; the JS-rendered tables do not expose the field list to a plain GET, so field-level claims rest on the pinned wrapper and engine.
+**Correction (2026-11-21):** this handoff first named `Properties17.html` as the Load property vocabulary page. That is wrong — `Properties17.html` returns 200 but is the **Fault** page (11 mentions of `Fault`, none of `Load` or `ZIPV`). The correct page is **`Properties7.html`**, whose raw HTML contains `ZIPV` and `kWhDays` and 13 mentions of `Load`. Both pages were re-checked live on 2026-11-21 after the independent reviewer flagged the mismatch.
+
+**Do not use `https://opendss.epri.com/Load.html`: it returns 404 at check time.** The element page is `Load1.html` and the property page is `Properties7.html`. Record whichever pages you cite with an access date and a scope note; the JS-rendered tables do not expose the field list to a plain GET, so field-level claims rest on the pinned wrapper and engine.
 
 Line pins for this package: `TLoadProp` enum `Load.pas` L111-L150; `DefineProperties` L358-L494; spec sets L368-L385; required flags L405, L448-L457; percent scales L408-L410; `conn`/`phases`/`kV` side effects L519-L575; `kW`/`PF`/`allocationfactor`/`Cfactor` L563-L620; shape side effects L620-L660; `kWh`/`kvar`/`xfkVA`/`kWhDays`/`kVA`/`ZIPV` L660-L731; constructor L801-L893; `RecalcElementData` L1152-L1190. Wrapper: `Load` class L18, `LoadProperties` L848-L889, `new` L1689.
 

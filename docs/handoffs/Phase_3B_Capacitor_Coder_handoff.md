@@ -59,10 +59,13 @@ Register the catalog in `tools/validate_catalogs.py` (`SCHEMA_PAIRS`); expect 14
 |---|---|---|---|
 | Capacitor | `https://opendss.epri.com/Capacitor1.html` (200; element page) | `altdss/Capacitor.py` | `src/PDElements/Capacitor.pas` |
 | Capacitor (second page) | `https://opendss.epri.com/Capacitor.html` (200 at check time; also titled "Capacitor" — cite only after reading it, and say what it is) | `altdss/Capacitor.py` | `src/PDElements/Capacitor.pas` |
+| Capacitor property vocabulary | `https://opendss.epri.com/Properties12.html` (200; the only `Properties<N>` page carrying `Cuf` and `CMatrix`) | `altdss/Capacitor.py` | `src/PDElements/Capacitor.pas` |
 | Inherited element and class data | — | `PDElementMixin`, TypedDict | `src/PDElements/PDElement.pas`, `src/PDElements/PDClass.pas`, `src/Common/CktElement.pas` |
 | Control coupling (scope note only) | — | `altdss/CapControl.py` | `src/Controls/CapControl.pas` |
 
-**Do not cite `Capacitor2.html` (404) and do not guess a `Properties<N>.html` number.** `Properties23.html` and `Properties24.html` both return 200 with no capacitor text in a plain GET because the tables are JS-rendered, so the property-vocabulary page cannot be identified that way. Field-level claims rest on the pinned wrapper and engine; record access dates on whatever pages you do cite.
+**The property-vocabulary page is `https://opendss.epri.com/Properties12.html` (200).** Identified on 2026-11-21 by a token scan of `Properties1..40.html`: only `Properties12.html` contains `Cuf` and `CMatrix`, and it mentions `Capacitor` 16 times along with `States`, `Harm`, `NumSteps`, `wye`, `delta`, and `kvar`. Its prose covers the `NumSteps` step rules, which corroborates the array semantics in this handoff. The pages are JS-rendered, so a URL is citable but a field list is not extractable from a plain GET.
+
+**Do not cite `Capacitor2.html` (404).** `Properties23.html` and `Properties24.html` happen to return 200 but are unrelated pages; do not use them. Field-level claims rest on the pinned wrapper and engine; record access dates on whatever pages you do cite.
 
 Line pins for this package: legacy enum `Capacitor.pas` L53-L66; modern enum L68-L86; `DefineProperties` L200-L283; `SpecSetNames` L208-L212; `SpecSets` L213-L217; `CMatrix` L219-L224; `kvar` L226-L230; `R` L232-L234; `XL` L236-L238; `Cuf` L240-L244; `Harm` L246-L248; `States` L250-L253; `Conn` L255-L258; `Bus1` L260-L263; `Bus2` L265-L266; `kV` L268-L270; `Phases` L272-L275; `NumSteps` L277-L279; `PropertySideEffects` L296-L501; `Bus1` side effect L303-L321; `Conn` L322-L341; `Bus2` L342-L350; `Phases` L351-L371; `kvar`/`CMatrix`/`Cuf` spec-type writes L372-L386; `NumSteps` L387-L455; `XL` L459-L468; `Harm` L470-L471; `States` L472-L473; Y-prim invalidation L476-L498; constructor L546-L600; `RecalcElementData` L614-L694. Wrapper: `Capacitor` class L15, `_cls_idx` 22 (L18), `CapacitorProperties` L378-L399, `new` L798, `States` docstring L270-L274.
 

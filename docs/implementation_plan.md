@@ -1,6 +1,6 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version** 0.18 (package 4 awaiting review; package 5 handoff prepared)
+**Plan version** 0.19 (package 4 QA passed; package 5 handoff prepared)
 **Plan date:** 2026-11-21
 **Current phase** Phase 3B package 4 (Load). The owner accepted package 3. Package 4 passed coder validation and awaits independent QA/QC and architect review.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
@@ -254,6 +254,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.16 | 2026-11-21 | Re-verified the issued package-4 handoff against the pinned sources before coding started and corrected three statements: the enum readback types (`Model`, `Conn`, and `Status` all return altdss enum members, not integers), the `SpecSetNames` display order versus the `TSpecSets` member order for the kWh family, and the trap-2 provenance. Added trap 15, which records that successive attribute writes leave the derived `kvar` and `kVA` stale where a single `new(...)` call or text command recomputes them. |
 | 0.17 | 2026-11-21 | Added the Load catalog, workflow, examples, and pinned readback matrix. Recorded coder validation and prepared independent QA/QC. |
 | 0.18 | 2026-11-21 | Prepared the package-5 (Capacitor) coder handoff at owner direction, ahead of package 4 acceptance, from an independent read of `src/PDElements/Capacitor.pas` and `altdss/Capacitor.py`. Records the 21-key wrapper surface against the 13-member engine enum, the three capacitance families, the array-over-`NumSteps` properties, and the verified traps (deleted v6 property set, `Cuf`-family rating anomaly, `States` write path, `Like` read-only, `NormAmps` stickiness). |
+| 0.19 | 2026-11-21 | Corrected the Load handoff's property-vocabulary citation: `Properties17.html` is the Fault page, and the Load vocabulary page is `Properties7.html` (`ZIPV`, `kWhDays`, 13 `Load` mentions in the raw HTML), as the package-4 reviewer flagged. Identified `Properties12.html` as the Capacitor vocabulary page by a token scan of `Properties1..40.html` and added it to the Capacitor handoff. |
 
 ## 11. Owner decisions
 
