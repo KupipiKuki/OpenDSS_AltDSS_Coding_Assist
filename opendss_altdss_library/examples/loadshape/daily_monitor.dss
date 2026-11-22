@@ -1,0 +1,10 @@
+! Use the DSS text Mult alias and set the load's daily shape by name.
+! The readback tool asserts the monitor's hours 1, 2, 3 and 50, 100, 150 kW.
+New Circuit.loadshape_dss BasekV=12.47 Bus1=source
+New LoadShape.daily_demo npts=3 interval=1 useactual=no mult=(0.5 1.0 1.5)
+New Load.demo Bus1=source.1.2.3.0 Phases=3 Conn=wye kV=12.47 kW=100 PF=0.95 daily=daily_demo
+New Monitor.load_power Element=Load.demo Terminal=1 Mode=1 PPolar=no
+Set Mode=Daily ControlMode=Static Number=1 StepSize=1h Hour=0 Sec=0
+Solve
+Solve
+Solve

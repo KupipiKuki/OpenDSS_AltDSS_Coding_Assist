@@ -343,7 +343,7 @@
         "name": "ptphase",
         "data_type": "integer",
         "default_value": 1,
-        "description": "Hybrid selector for the voltage buffer. A positive integer indexes VBuffer and reads back as int. The named selections min and max read back as RegControlPhaseSelection members (-3 and -2). Use an index that exists for the monitored winding. Use index 1 for the single-phase remote sensing path.",
+        "description": "Hybrid selector for the voltage buffer. A positive integer indexes VBuffer and reads back as int, with an out-of-range positive index reading back as 1 in local sensing. The named selections min and max read back as RegControlPhaseSelection members (-3 and -2). Use an index that exists for the monitored winding. Use index 1 for the single-phase remote sensing path.",
         "evidence_label": "Official-versioned",
         "supported_in_target": true,
         "altdss_keyword": "PTPhase",

@@ -1,0 +1,487 @@
+[
+  {
+    "element_class": "LoadShape",
+    "epri_doc_url": "https://opendss.epri.com/LoadShape.html",
+    "properties": [
+      {
+        "name": "npts",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "Number of samples. In normal Python creation set NPts before PMult, QMult, or Hour. An NPts edit changes the count without resizing already allocated arrays. To grow a populated shape, build a replacement at the new size and reassign it before reading or solving.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "NPts",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L415",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L338-L347",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L502-L506",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L349-L390",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L813-L821",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3679-L3682",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3699-L3741"
+        ]
+      },
+      {
+        "name": "interval",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Sample interval in hours. Zero selects explicit Hour times. Positive intervals use fixed-step sampling and ignore explicit time values. Interval, SInterval and MInterval write the same field.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Interval",
+        "units": "hour",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L416",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L434-L447",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1259-L1265",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1467-L1515"
+        ]
+      },
+      {
+        "name": "hour",
+        "data_type": "array",
+        "default_value": [],
+        "description": "Explicit sample times in hours for Interval=0, in ascending order. Set NPts first and supply one time per point. Typed Python Hour assignment leaves Interval as written. DSS text Hour= selects variable intervals in the engine. Avoid pairing a positive interval with an explicit Hour array.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Hour",
+        "units": "hour",
+        "array_element_type": "float64",
+        "array_length": "NPts when supplied",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L417",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L472-L500",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3489-L3518",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3679-L3682",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3734-L3741",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L772-L783",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1467-L1515",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1517-L1586"
+        ]
+      },
+      {
+        "name": "mean",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Mean of active shape samples. Computed on demand for ordinary populated shapes unless explicitly set. An empty shape returns 0.0 and can leave error #61107 pending for the next checked wrapper call.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Mean",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L418",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L461-L465",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1607-L1618",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1694-L1722",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1742-L1747",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L2082-L2086"
+        ]
+      },
+      {
+        "name": "stddev",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Standard deviation of active shape samples. Computed on demand for ordinary populated shapes unless explicitly set. An empty shape returns 0.0 and can leave error #61107 pending for the next checked wrapper call.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "StdDev",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L419",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L467-L470",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1607-L1618",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1694-L1722",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1749-L1754",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L2088-L2092"
+        ]
+      },
+      {
+        "name": "csvfile",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Input file for active samples. Fixed-interval rows contain one sample and variable-interval rows contain time and sample. File reads can reduce NPts to the number loaded. Empty filename reads as an empty string. A checked string read can surface a prior empty-shape statistics error.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "CSVFile",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L420",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L521-L523",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L706-L716",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1011-L1074",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1292-L1295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1607-L1618",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1694-L1700"
+        ]
+      },
+      {
+        "name": "sngfile",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Packed single-precision active samples, with an hour preceding each value at zero interval. A file load can reduce NPts.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "SngFile",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L421",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L528-L535",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L706-L716",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1082-L1181",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1292-L1295"
+        ]
+      },
+      {
+        "name": "dblfile",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Packed double-precision active samples, with an hour preceding each value at zero interval. A file load can reduce NPts.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "DblFile",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L422",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L524-L526",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L706-L716",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1186-L1249",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1292-L1295"
+        ]
+      },
+      {
+        "name": "action",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Callable Action(value). Normalize rescales the sample arrays in place using PBase and QBase, or their respective absolute maxima when the bases are zero. DblSave and SngSave write packed files. The Python constructor keyword raises AttributeError.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Action",
+        "enum_type": "LoadShapeAction",
+        "python_method": "Action",
+        "python_creation_status": "Raises AttributeError in the pinned constructor path",
+        "dss_text_write": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L423",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L326-L336",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1620-L1692",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L193-L216",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L222-L226",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L425"
+        ]
+      },
+      {
+        "name": "qmult",
+        "data_type": "array",
+        "default_value": [],
+        "description": "Reactive samples. Supply NPts values when assigning this array through AltDSS. With UseActual=False, an omitted QMult follows the active multiplier. With UseActual=True, the shape supplies zero reactive power when omitted and a Load can derive kvar from its specified power factor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "QMult",
+        "array_element_type": "float64",
+        "array_length": "NPts when supplied",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L424",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L472-L500",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3489-L3518",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3679-L3682",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3734-L3741",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1435-L1442",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1494-L1500",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1267-L1272",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1108-L1126"
+        ]
+      },
+      {
+        "name": "useactual",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Interpret shape samples as actual kW and kvar. Assigning an actual shape to Load.Daily can also set the load's nominal kW and kvar from the shape peak fields. False applies dimensionless multipliers to the nominal load.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "UseActual",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L425",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L431-L432",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1273-L1278",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1435-L1442",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L632-L639",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L923-L933",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1108-L1126"
+        ]
+      },
+      {
+        "name": "pmax",
+        "data_type": "real",
+        "default_value": 1,
+        "description": "Peak active sample. The engine refreshes it from the sample with greatest absolute active value when data is finalized. In an actual shape its unit is kW. Set PBase to choose an explicit normalization divisor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "PMax",
+        "units": "kW",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L426",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L449-L450",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L813-L821",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1273-L1276",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1672-L1679",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L2044-L2079"
+        ]
+      },
+      {
+        "name": "qmax",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Reactive sample at the active peak unless explicitly specified. It is zero when no Q samples exist. In an actual shape its unit is kvar. Set QBase to choose an explicit normalization divisor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "QMax",
+        "units": "kvar",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L427",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L452-L453",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L735-L738",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1273-L1279",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1672-L1679",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L2044-L2079"
+        ]
+      },
+      {
+        "name": "sinterval",
+        "data_type": "real",
+        "default_value": 3600,
+        "description": "The Interval field expressed in seconds. Writing it changes the hour and minute readbacks together.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "SInterval",
+        "units": "s",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L428",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L434-L447",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1259-L1265",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1467-L1515"
+        ]
+      },
+      {
+        "name": "minterval",
+        "data_type": "real",
+        "default_value": 60,
+        "description": "The Interval field expressed in minutes. Writing it changes the hour and second readbacks together.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "MInterval",
+        "units": "min",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L429",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L434-L447",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1259-L1265",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1467-L1515"
+        ]
+      },
+      {
+        "name": "pbase",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Active-power reference in kW used by Action(Normalize) as the divisor when positive. Zero delegates to the largest absolute P sample. The UseActual solve reads the samples as kW directly.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "PBase",
+        "units": "kW",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L430",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L455-L456",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1273-L1277",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1620-L1692",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1108-L1126"
+        ]
+      },
+      {
+        "name": "qbase",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Reactive-power reference in kvar used by Action(Normalize) as the divisor when positive. Zero delegates to the largest absolute Q sample. The UseActual solve reads the samples as kvar directly.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "QBase",
+        "units": "kvar",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L431",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L458-L459",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1273-L1277",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1620-L1692",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1108-L1126"
+        ]
+      },
+      {
+        "name": "pmult",
+        "data_type": "array",
+        "default_value": [],
+        "description": "Active samples as multipliers or actual kW according to UseActual. The typed AltDSS setter requires exactly NPts values. DSS text accepts the Mult alias and the PMult=(file=...) syntax. Provide a new shape when increasing the allocated sample count.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "PMult",
+        "array_element_type": "float64",
+        "array_length": "NPts when supplied",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L432",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L472-L500",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3489-L3518",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3679-L3682",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3734-L3741",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L338-L347",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L746-L771",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1267-L1272",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1467-L1502",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1108-L1126"
+        ]
+      },
+      {
+        "name": "pqcsvfile",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Joint P and Q input. Fixed-interval rows contain P and Q samples. At zero interval each row begins with the hour. File load can reduce NPts.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "PQCSVFile",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L433",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L533-L535",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L706-L716",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L923-L995",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1292-L1295"
+        ]
+      },
+      {
+        "name": "memorymapping",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Enable file-backed sample loading. Apply it before setting the corresponding file properties. The engine refuses in-place normalization for memory-mapped data.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "MemoryMapping",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L434",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L426-L429",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L739-L741",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L749-L769",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1277-L1278",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1663-L1668"
+        ]
+      },
+      {
+        "name": "interpolation",
+        "data_type": "integer",
+        "default_value": 0,
+        "description": "Avg (0) rounds to the nearest fixed sample or linearly interpolates between variable sample times. Edge (1) floors the fixed sample index or uses the preceding variable sample between times.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Interpolation",
+        "enum_type": "LoadShapeInterpolation",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L435",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L292-L295",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L515-L517",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1297-L1299",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1467-L1502",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1546-L1568",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L228-L231"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Callable Like(name) copies a source shape's point count and sample arrays. DSS text accepts Like=source. The Python constructor keyword raises AttributeError.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Like",
+        "python_method": "Like",
+        "python_creation_status": "Raises AttributeError in the pinned constructor path",
+        "dss_text_write": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L436",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L830-L884",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L911-L921",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L403-L411",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L425"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name"
+    ],
+    "property_requirements": {
+      "required": [
+        "name"
+      ],
+      "conditional": [
+        {
+          "when": "constructing a usable in-memory shape through the typed Python API",
+          "requirement_groups": [
+            [
+              "npts",
+              "pmult"
+            ]
+          ],
+          "notes": "Apply NPts before writing exact-length arrays. Supply QMult of the same size if needed.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L472-L500",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3489-L3518",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3679-L3682",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3734-L3741"
+          ]
+        },
+        {
+          "when": "using variable intervals with in-memory samples",
+          "requirement_groups": [
+            [
+              "interval",
+              "npts",
+              "hour",
+              "pmult"
+            ]
+          ],
+          "notes": "Set Interval=0 and supply an ascending Hour value for every active sample.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L434-L447",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L472-L478",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1505-L1586",
+            "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L95-L118"
+          ]
+        }
+      ]
+    },
+    "altdss_mapping": "ctx.LoadShape.new(name, NPts=..., Interval=..., PMult=...) builds a data object. Assign the shape or its name to Load.Daily and run a Daily solution to use the samples.",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "dss_capi": "0.14.5",
+      "opendss_documentation": "EPRI online documentation is mixed-version"
+    },
+    "sources": [
+      {
+        "title": "EPRI OpenDSS LoadShape",
+        "url": "https://opendss.epri.com/LoadShape.html",
+        "accessed": "2026-11-22",
+        "scope": "Shape concepts, file forms, and interval conventions."
+      },
+      {
+        "title": "AltDSS-Python LoadShape wrapper",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py",
+        "accessed": "2026-11-22",
+        "scope": "Python keyword spelling, actions, and property accessors."
+      },
+      {
+        "title": "DSS C-API LoadShape engine",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas",
+        "accessed": "2026-11-22",
+        "scope": "Property table, time lookup, normalization and data storage."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true,
+      "dss_text": true
+    },
+    "notes": [
+      "LoadShape is data and does not contribute to NumCircuitElements. The engine includes a LoadShape.default object.",
+      "Runtime probes cover typed array writes, shape assignment, sample stepping, and the tested actions. File-loading modes and nondefault interpolation behavior are covered by pinned source.",
+      "PMax and QMax describe the peak samples. PBase and QBase are normalization divisors."
+    ]
+  }
+]

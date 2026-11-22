@@ -99,39 +99,7 @@
         "description": "Zero before initial generation. Published revisions begin at one."
       },
       "golden_updates": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "required": [
-            "revision",
-            "date",
-            "reason",
-            "approver"
-          ],
-          "properties": {
-            "revision": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "date": {
-              "type": "string",
-              "format": "date"
-            },
-            "reason": {
-              "type": "string",
-              "minLength": 1,
-              "pattern": "\\S"
-            },
-            "approver": {
-              "type": "string",
-              "minLength": 1,
-              "pattern": "\\S"
-            }
-          },
-          "additionalProperties": false
-        },
-        "minItems": 0,
-        "uniqueItems": true
+        "$ref": "#/$defs/goldenUpdates"
       },
       "tolerances": {
         "type": "object",
@@ -280,6 +248,9 @@
         },
         "additionalProperties": false
       },
+      "daily": {
+        "$ref": "#/$defs/dailyScenario"
+      },
       "notes": {
         "type": "array",
         "items": {
@@ -295,6 +266,124 @@
   "minItems": 1,
   "uniqueItems": true,
   "$defs": {
+    "goldenUpdates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "revision",
+          "date",
+          "reason",
+          "approver"
+        ],
+        "properties": {
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "approver": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "dailyScenario": {
+      "type": "object",
+      "required": [
+        "golden_path",
+        "golden_revision",
+        "golden_updates",
+        "solver",
+        "shape"
+      ],
+      "properties": {
+        "golden_path": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "golden_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Zero before initial generation. Published revisions begin at one."
+        },
+        "golden_updates": {
+          "$ref": "#/$defs/goldenUpdates"
+        },
+        "solver": {
+          "type": "object",
+          "required": [
+            "mode",
+            "step_size_s"
+          ],
+          "properties": {
+            "mode": {
+              "const": "Daily"
+            },
+            "step_size_s": {
+              "const": 3600
+            }
+          },
+          "additionalProperties": false
+        },
+        "shape": {
+          "type": "object",
+          "required": [
+            "name",
+            "npts",
+            "interval_h",
+            "use_actual",
+            "pmult",
+            "qmult",
+            "assignment"
+          ],
+          "properties": {
+            "name": {
+              "const": "daily24"
+            },
+            "npts": {
+              "const": 24
+            },
+            "interval_h": {
+              "const": 1
+            },
+            "use_actual": {
+              "const": false
+            },
+            "pmult": {
+              "type": "array",
+              "minItems": 24,
+              "maxItems": 24,
+              "items": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "qmult": {
+              "type": "array",
+              "maxItems": 0
+            },
+            "assignment": {
+              "const": "Load.daily"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
     "relativePath": {
       "type": "string",
       "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]*(?:/[a-zA-Z0-9][a-zA-Z0-9_.-]*)*$"

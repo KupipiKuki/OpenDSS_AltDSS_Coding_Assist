@@ -3373,5 +3373,245 @@
       "result": "not-run"
     },
     "notes": []
+  },
+  {
+    "id": "capi-loadshape-property-surface",
+    "kind": "api",
+    "namespace_or_type": "LoadShape",
+    "name": "Shape property surface",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LoadShape.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas",
+      "section_or_record": "Property definitions L398-L537; constructor L1251-L1299",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "A data object exposed through ctx.LoadShape has 22 advertised Python keys.",
+    "arguments": null,
+    "returns_or_effects": "Fresh NPts is 0, Interval is 1 hour, multiplier arrays are empty and Interpolation is Avg.",
+    "errors_or_edge_cases": "LoadShape.default is included in the collection. Adding a shape does not increase NumCircuitElements.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), LoadShape readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-loadshape-array-size",
+    "kind": "api",
+    "namespace_or_type": "LoadShape",
+    "name": "Typed array length contract",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API DSSObjectHelper.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas",
+      "section_or_record": "SetObjDoubles size guard L3489-L3518",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "Set NPts first, then assign PMult, with exactly NPts values.",
+    "arguments": null,
+    "returns_or_effects": "The ordinary typed setter preserves existing samples when a write has the wrong length.",
+    "errors_or_edge_cases": "PMult before NPts, or with too few or many values, raises #20200425.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), LoadShape readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-loadshape-count-storage",
+    "kind": "api",
+    "namespace_or_type": "LoadShape",
+    "name": "Populated shape resizing",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LoadShape.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas",
+      "section_or_record": "SetNumPoints L338-L347 and GetLSArray L349-L379",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "NPts edits change the count. Array reads use that count.",
+    "arguments": null,
+    "returns_or_effects": "Use a separately allocated shape with the new NPts and bind the load to it.",
+    "errors_or_edge_cases": "Growing NPts alone does not enlarge a populated array. Reading, finalizing, or overwriting that old buffer at the new size can access beyond its allocation.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-loadshape-interval-sampling",
+    "kind": "api",
+    "namespace_or_type": "LoadShape",
+    "name": "Interval units and sample time selection",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LoadShape.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas",
+      "section_or_record": "Interval properties L434-L447; Hour raw setter L772-L783; sample selection L1467-L1586",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "One interval field is writable in hours, seconds and minutes. Zero uses the explicit Hour array.",
+    "arguments": null,
+    "returns_or_effects": "SInterval=1800 gives 0.5 hours and 30 minutes. Explicit Hour can be written with Interval=0. DSS text's Hour setter selects zero while the typed Python write preserves Interval.",
+    "errors_or_edge_cases": "Use an ascending hour for each point on a variable-interval shape.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), LoadShape readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-loadshape-empty-statistics",
+    "kind": "api",
+    "namespace_or_type": "LoadShape",
+    "name": "Deferred empty-shape statistics error",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LoadShape.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas",
+      "section_or_record": "HasData L1607-L1618; statistics L1694-L1700 and L1742-L1754",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "Mean and StdDev lazily compute statistics on active data.",
+    "arguments": null,
+    "returns_or_effects": "In the pinned Python path, the empty statistic returns 0.0 and leaves #61107 pending. CSVFile by itself returns an empty filename.",
+    "errors_or_edge_cases": "A following checked call such as CSVFile surfaces #61107. After it is consumed CSVFile returns normally.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), LoadShape readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-loadshape-normalize",
+    "kind": "api",
+    "namespace_or_type": "LoadShape",
+    "name": "In-place normalization",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LoadShape.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas",
+      "section_or_record": "Normalize L1620-L1692 and peak readbacks L2044-L2079",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "Action(Normalize) normalizes P and Q against positive PBase and QBase or the respective largest absolute samples.",
+    "arguments": null,
+    "returns_or_effects": "Default bases normalized [1, 2, 4] to [0.25, 0.5, 1]. With PBase 4 and peak 8, the peak became 2. The action clears UseActual.",
+    "errors_or_edge_cases": "PMax and QMax describe the active peak and paired reactive sample.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), LoadShape readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-loadshape-text-alias-copy",
+    "kind": "api",
+    "namespace_or_type": "LoadShape",
+    "name": "DSS Mult alias and Like action",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LoadShape.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas",
+      "section_or_record": "Alias L480-L493; copy L830-L921",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "DSS text accepts Mult for PMult. Use Like(name) in Python or Like=name in DSS text.",
+    "arguments": null,
+    "returns_or_effects": "Both copy paths preserved NPts and the P and Q arrays.",
+    "errors_or_edge_cases": "Passing Action or Like as a Python creation keyword raises AttributeError.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), LoadShape readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-loadshape-use-actual",
+    "kind": "api",
+    "namespace_or_type": "Load.Daily",
+    "name": "Actual versus multiplier samples",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Load.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas",
+      "section_or_record": "Daily property effects L632-L639; shape sampling L923-L933; nominal powers L1108-L1126",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "UseActual selects actual kW/kvar. With False the values scale nominal P and Q.",
+    "arguments": null,
+    "returns_or_effects": "An actual shape with separate normalization bases still supplied 50 kW and 10 kvar at its first sample. Assignment can refresh the load's nominal power at the active peak.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), LoadShape readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-loadshape-daily-stepping",
+    "kind": "api",
+    "namespace_or_type": "Solution",
+    "name": "Daily number of steps and clock",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API SolutionAlgs.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/SolutionAlgs.pas",
+      "section_or_record": "SolveDaily L160-L204; fixed sample lookup in LoadShape.pas L1467-L1502",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "Daily mode advances the simulation clock, then selects the sample and solves, up to Number times per Solve.",
+    "arguments": null,
+    "returns_or_effects": "With Number=1 and StepSize=3600, read the first result at Hour=1 from PMult[0]. Number=24 advanced the clock from 0 to 24 in one solve.",
+    "errors_or_edge_cases": "Use exact StepSize spelling. Record the hour along with load kW.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), LoadShape readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-loadshape-file-input",
+    "kind": "api",
+    "namespace_or_type": "LoadShape",
+    "name": "File and memory-mapped input",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API LoadShape.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas",
+      "section_or_record": "File effects L706-L716; readers L923-L1249; external-data normalization guard L1663-L1668",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "CSVFile, SngFile, DblFile and PQCSVFile load samples. Select MemoryMapping before using file-backed input.",
+    "arguments": null,
+    "returns_or_effects": "Variable-interval readers expect time fields, and file input can reduce NPts.",
+    "errors_or_edge_cases": "File loading, binary save actions and nondefault interpolation are source-covered in this package.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
   }
 ]

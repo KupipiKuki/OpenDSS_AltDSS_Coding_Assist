@@ -441,5 +441,69 @@
       "date": "2026-11-22"
     },
     "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "loadshape-daily-steps-altdss",
+    "task_description": "Create a daily shape and bind it to a standalone load by name, then check each hourly load kW.",
+    "language": "python_altdss",
+    "file": "examples/loadshape/daily_steps.py",
+    "object_classes": [
+      "Circuit",
+      "LoadShape",
+      "Load"
+    ],
+    "dependencies": [
+      "DSS C-API 0.14.5",
+      "altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "altdss-loadshape-wrapper",
+      "altdss-load-daily-binding",
+      "altdss-solution-daily-stepping",
+      "capi-solve-daily-loop"
+    ],
+    "expected_result": "With Number=1, three separate solves report hours 1, 2, 3 at 50, 100, 150 kW.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-22"
+    },
+    "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "loadshape-daily-monitor-dss",
+    "task_description": "Assign a standalone daily shape by DSS text and record each one-hour solution in a load power monitor.",
+    "language": "dss",
+    "file": "examples/loadshape/daily_monitor.dss",
+    "object_classes": [
+      "Circuit",
+      "LoadShape",
+      "Load",
+      "Monitor"
+    ],
+    "dependencies": [
+      "DSS C-API 0.14.5",
+      "For the Python runner: altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "epri-loadshape",
+      "capi-loadshape-engine",
+      "capi-solve-daily-loop"
+    ],
+    "expected_result": "The monitor records hours 1, 2, 3 with combined active powers of 50, 100, and 150 kW. The dedicated readback asserts the paired monitor results.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-22"
+    },
+    "evidence_label": "Observed-working"
   }
 ]

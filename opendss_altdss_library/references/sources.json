@@ -1610,5 +1610,139 @@
       "SolveNoControl"
     ],
     "scope": "The AltDSS Solution wrapper calls the corresponding DSS C-API entry points."
+  },
+  {
+    "id": "epri-loadshape",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS LoadShape",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/LoadShape.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-22",
+    "topics": [
+      "LoadShape",
+      "shape data",
+      "intervals"
+    ],
+    "scope": "Concepts, array and file notation, and fixed versus variable interval descriptions."
+  },
+  {
+    "id": "altdss-loadshape-wrapper",
+    "kind": "source",
+    "title": "AltDSS-Python LoadShape wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L414-L436",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "LoadShape",
+      "creation keywords"
+    ],
+    "scope": "Exact 22-key TypedDict surface. NPts is the Python spelling."
+  },
+  {
+    "id": "altdss-loadshape-enums",
+    "kind": "source",
+    "title": "AltDSS-Python LoadShape enums",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L194-L231",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "LoadShapeClass",
+      "LoadShapeAction",
+      "LoadShapeInterpolation"
+    ],
+    "scope": "Separate solver load-shape family selection, shape actions and sample interpolation types."
+  },
+  {
+    "id": "altdss-load-daily-binding",
+    "kind": "source",
+    "title": "AltDSS-Python Load.Daily",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Load.py#L256-L280",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "Load.Daily",
+      "LoadShape"
+    ],
+    "scope": "The object setter accepts a name or a LoadShape object. The typed getter returns the object."
+  },
+  {
+    "id": "altdss-solution-daily-stepping",
+    "kind": "source",
+    "title": "AltDSS-Python sequential solution settings",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Solution.py#L312-L370",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "Solution.Number",
+      "Solution.StepSize",
+      "Daily"
+    ],
+    "scope": "Exact Python setting names and how the wrapper passes the number of solves and step in seconds."
+  },
+  {
+    "id": "capi-loadshape-engine",
+    "kind": "source",
+    "title": "DSS C-API LoadShape engine",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-22",
+    "topics": [
+      "LoadShape",
+      "allocation",
+      "sample lookup",
+      "normalization"
+    ],
+    "scope": "Engine storage, property definitions, file inputs, time lookup, statistics and action implementations."
+  },
+  {
+    "id": "capi-loadshape-exact-array-size",
+    "kind": "source",
+    "title": "DSS C-API exact-size array setter",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3489-L3518",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-22",
+    "topics": [
+      "NPts",
+      "PMult",
+      "array sizing"
+    ],
+    "scope": "Normal typed writes raise #20200425 when the given length differs from the shape size."
+  },
+  {
+    "id": "capi-solve-daily-loop",
+    "kind": "source",
+    "title": "DSS C-API Daily solve loop",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/SolutionAlgs.pas#L160-L204",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-22",
+    "topics": [
+      "Daily",
+      "hourly solves",
+      "monitor samples"
+    ],
+    "scope": "Daily mode increments time, samples the shape and solves once for each Number iteration."
+  },
+  {
+    "id": "capi-load-shape-application",
+    "kind": "source",
+    "title": "DSS C-API Load shape consumption",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PCElements/Load.pas#L1108-L1126",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-22",
+    "topics": [
+      "Load",
+      "UseActual",
+      "load power"
+    ],
+    "scope": "The load applies either actual kW/kvar samples or per-unit scaling depending on UseActual."
   }
 ]

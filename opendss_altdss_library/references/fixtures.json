@@ -72,7 +72,57 @@
     "notes": [
       "The upstream entry script solves before loading bus coordinates. The harness re-solves with the recorded options.",
       "The LoadShape named default comes from the engine. Neither fixture defines a LoadShape."
-    ]
+    ],
+    "daily": {
+      "golden_path": "examples/fixtures/ieee13/golden_daily.json",
+      "golden_revision": 1,
+      "golden_updates": [
+        {
+          "revision": 1,
+          "date": "2026-11-22",
+          "reason": "Initial IEEE 13 daily golden for Phase 4 package 4.3",
+          "approver": "Project owner (Phase 4.3 coding release)"
+        }
+      ],
+      "solver": {
+        "mode": "Daily",
+        "step_size_s": 3600
+      },
+      "shape": {
+        "name": "daily24",
+        "npts": 24,
+        "interval_h": 1,
+        "use_actual": false,
+        "pmult": [
+          0.69,
+          0.64,
+          0.61,
+          0.6,
+          0.62,
+          0.68,
+          0.79,
+          0.9,
+          0.98,
+          1.02,
+          0.99,
+          0.96,
+          0.94,
+          0.95,
+          0.98,
+          1.04,
+          1.11,
+          1.16,
+          1.12,
+          1.05,
+          0.96,
+          0.87,
+          0.8,
+          0.74
+        ],
+        "qmult": [],
+        "assignment": "Load.daily"
+      }
+    }
   },
   {
     "fixture_id": "ieee34",

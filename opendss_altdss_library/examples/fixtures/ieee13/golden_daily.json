@@ -1,0 +1,1827 @@
+{
+  "energy_kwh": {
+    "from_steps": 73416.54014883189,
+    "integrated": 73416.54014883187
+  },
+  "environment": {
+    "altdss_version": "0.2.4",
+    "backend_version": "0.14.5",
+    "dss_python_version": "0.15.7",
+    "platform": "Windows 11 AMD64",
+    "python_version": "3.14.6"
+  },
+  "fixture": "ieee13",
+  "generated_by": "tools/run_fixtures.py --update-golden",
+  "golden_revision": 1,
+  "peak_step": {
+    "buses": {
+      "611": {
+        "nodes": [
+          3
+        ],
+        "pu_vangle_deg": [
+          115.20903076773139
+        ],
+        "pu_vmag": [
+          0.9520444393688189
+        ]
+      },
+      "632": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -2.8880387202968407,
+          -122.00656638090211,
+          117.4935054692136
+        ],
+        "pu_vmag": [
+          1.0184475401280935,
+          1.0328010524472813,
+          1.0054392978997644
+        ]
+      },
+      "633": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -2.96309783715191,
+          -122.05989330452164,
+          117.48811869061258
+        ],
+        "pu_vmag": [
+          1.0149156703979867,
+          1.0305651449666833,
+          1.0023624419332233
+        ]
+      },
+      "634": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -3.755447054715507,
+          -122.60062016604634,
+          116.91576460085854
+        ],
+        "pu_vmag": [
+          0.9868897647665179,
+          1.0089983520069894,
+          0.9801561916967418
+        ]
+      },
+      "645": {
+        "nodes": [
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -122.21572008989723,
+          117.52394925240874
+        ],
+        "pu_vmag": [
+          1.0221224647891758,
+          1.003210646116235
+        ]
+      },
+      "646": {
+        "nodes": [
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -122.30332355174433,
+          117.57659149032098
+        ],
+        "pu_vmag": [
+          1.0201290906101044,
+          1.0008486533840626
+        ]
+      },
+      "650": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -0.012762800239674105,
+          -120.01223398265041,
+          119.984214136839
+        ],
+        "pu_vmag": [
+          0.9998681249736754,
+          0.9999403128710943,
+          0.9998897717207353
+        ]
+      },
+      "652": {
+        "nodes": [
+          1
+        ],
+        "pu_vangle_deg": [
+          -6.126369104873571
+        ],
+        "pu_vmag": [
+          0.9719832488334931
+        ]
+      },
+      "670": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -3.9562954810098216,
+          -122.24629027744398,
+          116.74308723524472
+        ],
+        "pu_vmag": [
+          1.0060120450897303,
+          1.035883591427279,
+          0.9877741681546888
+        ]
+      },
+      "671": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -6.181551944801725,
+          -122.71570722687188,
+          115.47478098374715
+        ],
+        "pu_vmag": [
+          0.9805984981661732,
+          1.0450023608876418,
+          0.9571655368045574
+        ]
+      },
+      "675": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -6.45606897085889,
+          -122.90802319679658,
+          115.50853272736441
+        ],
+        "pu_vmag": [
+          0.9727898891795371,
+          1.0475425984728266,
+          0.9546381850677024
+        ]
+      },
+      "680": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -6.181552306076964,
+          -122.71570734026079,
+          115.47478070507158
+        ],
+        "pu_vmag": [
+          0.9805985106747387,
+          1.045002375847033,
+          0.9571655504592255
+        ]
+      },
+      "684": {
+        "nodes": [
+          1,
+          3
+        ],
+        "pu_vangle_deg": [
+          -6.212903957278993,
+          115.36819094921887
+        ],
+        "pu_vmag": [
+          0.9783873332819542,
+          0.9545991008610214
+        ]
+      },
+      "692": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -6.181551764332536,
+          -122.71570736269352,
+          115.47478108566887
+        ],
+        "pu_vmag": [
+          0.9805984872571147,
+          1.0450023595740139,
+          0.9571655281129009
+        ]
+      },
+      "rg60": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          -0.014834641258799915,
+          -120.01445422715045,
+          119.98176832279177
+        ],
+        "pu_vmag": [
+          1.06846067729551,
+          1.0435867561419725,
+          1.0684766658102738
+        ]
+      },
+      "sourcebus": {
+        "nodes": [
+          1,
+          2,
+          3
+        ],
+        "pu_vangle_deg": [
+          29.991697862904562,
+          -90.01102251424011,
+          149.989227444014
+        ],
+        "pu_vmag": [
+          0.9999454163265247,
+          0.9999677885728042,
+          0.9999154856541415
+        ]
+      }
+    },
+    "elements": {
+      "Capacitor.cap1": {
+        "losses_kw_kvar": [
+          1.4551915228366852e-14,
+          -590.999945698899
+        ],
+        "powers_kw_kvar": [
+          [
+            1.4551915228366852e-14,
+            -590.999945698899
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "Capacitor.cap2": {
+        "losses_kw_kvar": [
+          7.275957614183426e-15,
+          -90.77314124805453
+        ],
+        "powers_kw_kvar": [
+          [
+            7.275957614183426e-15,
+            -90.77314124805453
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "Line.632633": {
+        "losses_kw_kvar": [
+          1.1107307865438052,
+          1.4233186227377592
+        ],
+        "powers_kw_kvar": [
+          [
+            472.6031833446365,
+            351.4337939770257
+          ],
+          [
+            -471.4924525580927,
+            -350.0104753542879
+          ]
+        ]
+      },
+      "Line.632645": {
+        "losses_kw_kvar": [
+          3.719572714558046,
+          3.2263179890733444
+        ],
+        "powers_kw_kvar": [
+          [
+            474.3900420650514,
+            305.3319853140394
+          ],
+          [
+            -470.67046935049336,
+            -302.1056673249661
+          ]
+        ]
+      },
+      "Line.632670": {
+        "losses_kw_kvar": [
+          17.9710542699229,
+          57.303612093827105
+        ],
+        "powers_kw_kvar": [
+          [
+            3128.1814030439905,
+            1270.300803392315
+          ],
+          [
+            -3110.210348774068,
+            -1212.9971912984877
+          ]
+        ]
+      },
+      "Line.645646": {
+        "losses_kw_kvar": [
+          0.7114900941190426,
+          0.5664383519574622
+        ],
+        "powers_kw_kvar": [
+          [
+            273.4753906664931,
+            157.10919868046062
+          ],
+          [
+            -272.76390057237404,
+            -156.54276032850316
+          ]
+        ]
+      },
+      "Line.650632": {
+        "losses_kw_kvar": [
+          83.82589520817552,
+          270.4802909675669
+        ],
+        "powers_kw_kvar": [
+          [
+            4159.0005236618035,
+            2197.546873651003
+          ],
+          [
+            -4075.174628453628,
+            -1927.066582683436
+          ]
+        ]
+      },
+      "Line.670671": {
+        "losses_kw_kvar": [
+          31.45864614275354,
+          99.89638949352329
+        ],
+        "powers_kw_kvar": [
+          [
+            2878.2037998262745,
+            1078.4332870411017
+          ],
+          [
+            -2846.745153683521,
+            -978.5368975475784
+          ]
+        ]
+      },
+      "Line.671680": {
+        "losses_kw_kvar": [
+          7.568522253910433e-13,
+          -0.004155161985649353
+        ],
+        "powers_kw_kvar": [
+          [
+            3.6240274114973658e-12,
+            -0.004155161996023258
+          ],
+          [
+            -2.867175186106323e-12,
+            1.0373905849171435e-11
+          ]
+        ]
+      },
+      "Line.671684": {
+        "losses_kw_kvar": [
+          0.7775559495383059,
+          0.6374641043401352
+        ],
+        "powers_kw_kvar": [
+          [
+            330.73100989685753,
+            93.52208178684562
+          ],
+          [
+            -329.95345394731925,
+            -92.88461768250549
+          ]
+        ]
+      },
+      "Line.671692": {
+        "losses_kw_kvar": [
+          1.2393903743941338e-05,
+          -2.9103830456733704e-14
+        ],
+        "powers_kw_kvar": [
+          [
+            1176.1753463906991,
+            119.39653591223158
+          ],
+          [
+            -1176.1753339967954,
+            -119.39653591223161
+          ]
+        ]
+      },
+      "Line.684611": {
+        "losses_kw_kvar": [
+          0.5100039989810903,
+          0.5167111423896277
+        ],
+        "powers_kw_kvar": [
+          [
+            188.40005820483952,
+            -1.8374297256980499
+          ],
+          [
+            -187.89005420585843,
+            2.3541408680876774
+          ]
+        ]
+      },
+      "Line.684652": {
+        "losses_kw_kvar": [
+          1.0688851999967592,
+          0.33401688746841685
+        ],
+        "powers_kw_kvar": [
+          [
+            141.55339574248765,
+            94.72204740820098
+          ],
+          [
+            -140.4845105424909,
+            -94.38803052073256
+          ]
+        ]
+      },
+      "Line.692675": {
+        "losses_kw_kvar": [
+          5.59790170706762,
+          3.3306707218846276
+        ],
+        "powers_kw_kvar": [
+          [
+            983.5283664349893,
+            -51.71946473120788
+          ],
+          [
+            -977.9304647279216,
+            55.0501354530925
+          ]
+        ]
+      },
+      "Load.611": {
+        "losses_kw_kvar": [
+          187.88094806525976,
+          88.41776389885162
+        ],
+        "powers_kw_kvar": [
+          [
+            187.88094806525976,
+            88.41776389885162
+          ]
+        ]
+      },
+      "Load.634a": {
+        "losses_kw_kvar": [
+          185.60069124330096,
+          127.60693393971673
+        ],
+        "powers_kw_kvar": [
+          [
+            185.60069124330096,
+            127.60693393971673
+          ]
+        ]
+      },
+      "Load.634b": {
+        "losses_kw_kvar": [
+          139.19869643507207,
+          104.39737464516975
+        ],
+        "powers_kw_kvar": [
+          [
+            139.19869643507207,
+            104.39737464516975
+          ]
+        ]
+      },
+      "Load.634c": {
+        "losses_kw_kvar": [
+          139.2035197222558,
+          104.40457287887746
+        ],
+        "powers_kw_kvar": [
+          [
+            139.2035197222558,
+            104.40457287887746
+          ]
+        ]
+      },
+      "Load.645": {
+        "losses_kw_kvar": [
+          197.19851468261737,
+          144.99702350707813
+        ],
+        "powers_kw_kvar": [
+          [
+            197.19851468261737,
+            144.99702350707813
+          ]
+        ]
+      },
+      "Load.646": {
+        "losses_kw_kvar": [
+          272.7617503153486,
+          156.545154714734
+        ],
+        "powers_kw_kvar": [
+          [
+            272.7617503153486,
+            156.545154714734
+          ]
+        ]
+      },
+      "Load.652": {
+        "losses_kw_kvar": [
+          140.4783424911735,
+          94.39119321919758
+        ],
+        "powers_kw_kvar": [
+          [
+            140.4783424911735,
+            94.39119321919758
+          ]
+        ]
+      },
+      "Load.670a": {
+        "losses_kw_kvar": [
+          19.719993330692184,
+          11.600651525138533
+        ],
+        "powers_kw_kvar": [
+          [
+            19.719993330692184,
+            11.600651525138533
+          ]
+        ]
+      },
+      "Load.670b": {
+        "losses_kw_kvar": [
+          76.55929705336747,
+          44.078855347486446
+        ],
+        "powers_kw_kvar": [
+          [
+            76.55929705336747,
+            44.078855347486446
+          ]
+        ]
+      },
+      "Load.670c": {
+        "losses_kw_kvar": [
+          135.72343667306527,
+          78.88356757123272
+        ],
+        "powers_kw_kvar": [
+          [
+            135.72343667306527,
+            78.88356757123272
+          ]
+        ]
+      },
+      "Load.671": {
+        "losses_kw_kvar": [
+          1339.8100974492547,
+          765.6281114466773
+        ],
+        "powers_kw_kvar": [
+          [
+            1339.8100974492547,
+            765.6281114466773
+          ]
+        ]
+      },
+      "Load.675a": {
+        "losses_kw_kvar": [
+          562.6049961227066,
+          220.42594427798025
+        ],
+        "powers_kw_kvar": [
+          [
+            562.6049961227066,
+            220.42594427798025
+          ]
+        ]
+      },
+      "Load.675b": {
+        "losses_kw_kvar": [
+          78.87912780237909,
+          69.59809894697835
+        ],
+        "powers_kw_kvar": [
+          [
+            78.87912780237909,
+            69.59809894697835
+          ]
+        ]
+      },
+      "Load.675c": {
+        "losses_kw_kvar": [
+          336.4119328862739,
+          245.93508618453504
+        ],
+        "powers_kw_kvar": [
+          [
+            336.4119328862739,
+            245.93508618453504
+          ]
+        ]
+      },
+      "Load.692": {
+        "losses_kw_kvar": [
+          192.63920568567863,
+          171.11529788681577
+        ],
+        "powers_kw_kvar": [
+          [
+            192.63920568567863,
+            171.11529788681577
+          ]
+        ]
+      },
+      "RegControl.reg1": {
+        "losses_kw_kvar": [
+          0.0,
+          0.0
+        ],
+        "powers_kw_kvar": [
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "RegControl.reg2": {
+        "losses_kw_kvar": [
+          0.0,
+          0.0
+        ],
+        "powers_kw_kvar": [
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "RegControl.reg3": {
+        "losses_kw_kvar": [
+          0.0,
+          0.0
+        ],
+        "powers_kw_kvar": [
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "Transformer.reg1": {
+        "losses_kw_kvar": [
+          0.17170675537222996,
+          0.17349313770432492
+        ],
+        "powers_kw_kvar": [
+          [
+            1459.613572933049,
+            856.5317296664351
+          ],
+          [
+            -1459.4418661776767,
+            -856.3582365287308
+          ]
+        ]
+      },
+      "Transformer.reg2": {
+        "losses_kw_kvar": [
+          0.09055539073469117,
+          0.09229806712217396
+        ],
+        "powers_kw_kvar": [
+          [
+            1129.9813470020135,
+            483.5808553799821
+          ],
+          [
+            -1129.890791611279,
+            -483.48855731285994
+          ]
+        ]
+      },
+      "Transformer.reg3": {
+        "losses_kw_kvar": [
+          0.19186134814377875,
+          0.19364779350731987
+        ],
+        "powers_kw_kvar": [
+          [
+            1569.8597272193008,
+            857.8937275930805
+          ],
+          [
+            -1569.6678658711571,
+            -857.7000797995731
+          ]
+        ]
+      },
+      "Transformer.sub": {
+        "losses_kw_kvar": [
+          0.045461485086474566,
+          0.36785781784600113
+        ],
+        "powers_kw_kvar": [
+          [
+            4159.500108635481,
+            2198.374170458069
+          ],
+          [
+            -4159.4546471503945,
+            -2198.006312640223
+          ]
+        ]
+      },
+      "Transformer.xfm1": {
+        "losses_kw_kvar": [
+          7.480764028452628,
+          13.601893274637725
+        ],
+        "powers_kw_kvar": [
+          [
+            471.4924525580809,
+            350.0104753543366
+          ],
+          [
+            -464.01168852962826,
+            -336.40858207969893
+          ]
+        ]
+      },
+      "Vsource.source": {
+        "losses_kw_kvar": [
+          -4159.500108631889,
+          -2198.3741704563786
+        ],
+        "powers_kw_kvar": [
+          [
+            -4159.500108631889,
+            -2198.3741704563786
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      }
+    },
+    "hour": 18
+  },
+  "revision_date": "2026-11-22",
+  "scenario": "daily",
+  "shape": {
+    "assignment": "Load.daily",
+    "interval_h": 1.0,
+    "name": "daily24",
+    "npts": 24,
+    "pmult": [
+      0.69,
+      0.64,
+      0.61,
+      0.6,
+      0.62,
+      0.68,
+      0.79,
+      0.9,
+      0.98,
+      1.02,
+      0.99,
+      0.96,
+      0.94,
+      0.95,
+      0.98,
+      1.04,
+      1.11,
+      1.16,
+      1.12,
+      1.05,
+      0.96,
+      0.87,
+      0.8,
+      0.74
+    ],
+    "qmult": [],
+    "use_actual": false
+  },
+  "solver": {
+    "base_freq": 60.0,
+    "control_mode": "Static",
+    "max_control_iterations": 10,
+    "max_iterations": 15,
+    "mode": "Daily",
+    "step_size_s": 3600.0,
+    "tolerance": 0.0001
+  },
+  "source": {
+    "commit": "3b208397160213cae4a9e2d0a7d1aa3528ce26e1",
+    "files": [
+      {
+        "bytes": 12032,
+        "path": "IEEETestCases/IEEELineCodes.DSS",
+        "sha256": "71bc16ef9c6084b9e3bab74fbdf967080b79624683465e1483b787ff160f58b3"
+      },
+      {
+        "bytes": 8354,
+        "path": "IEEETestCases/13Bus/IEEE13Nodeckt.dss",
+        "sha256": "033ccd4005c6538e9de5b2218e83001802ce14fbc5b6c312896ae8cbc5d4a504"
+      },
+      {
+        "bytes": 30,
+        "path": "IEEETestCases/13Bus/IEEELineCodes.DSS",
+        "sha256": "40ef533dfcb22738edb1125b1e15e4a1a5d41b2cca4a2f969f5d955c9784daeb"
+      },
+      {
+        "bytes": 243,
+        "path": "IEEETestCases/13Bus/IEEE13Node_BusXY.csv",
+        "sha256": "f8dd1528c72f339ebf41bf1355ed64ef12fbe30864fcc839ed5e5e9dc527846e"
+      }
+    ],
+    "license": {
+      "bytes": 1816,
+      "identifier": "BSD-3-Clause",
+      "path": "examples/fixtures/License.txt",
+      "sha256": "f13543277f32a6437d4f583200858f0988d3acc9598a6a1a292d710009ec21ef"
+    },
+    "repository": "https://github.com/dss-extensions/electricdss-tst",
+    "retrieved": "2026-11-22"
+  },
+  "steps": [
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 8
+        },
+        "RegControl.reg2": {
+          "tap": 6
+        },
+        "RegControl.reg3": {
+          "tap": 8
+        }
+      },
+      "converged": true,
+      "hour": 1,
+      "iterations": 7,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9970177096264021
+      },
+      "totals": {
+        "load_kvar": 1455.1143851640993,
+        "load_kw": 2399.365304530277,
+        "losses_kvar": 142.39312743523485,
+        "losses_kw": 49.191775945704016,
+        "source_kvar": -879.5569054152356,
+        "source_kw": -2448.5432420620764
+      }
+    },
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 7
+        },
+        "RegControl.reg2": {
+          "tap": 6
+        },
+        "RegControl.reg3": {
+          "tap": 7
+        }
+      },
+      "converged": true,
+      "hour": 2,
+      "iterations": 6,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9969355872269334
+      },
+      "totals": {
+        "load_kvar": 1349.129791620565,
+        "load_kw": 2224.836686256426,
+        "losses_kvar": 121.38808754971137,
+        "losses_kw": 42.01345399461003,
+        "source_kvar": -753.119132939022,
+        "source_kw": -2266.7365888103727
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 7
+        },
+        "RegControl.reg2": {
+          "tap": 6
+        },
+        "RegControl.reg3": {
+          "tap": 7
+        }
+      },
+      "converged": true,
+      "hour": 3,
+      "iterations": 3,
+      "lowest_bus": {
+        "name": "650",
+        "pu_vmag": 1.000008531015595
+      },
+      "totals": {
+        "load_kvar": 1287.0570784121965,
+        "load_kw": 2122.1816485802583,
+        "losses_kvar": 109.10584893260004,
+        "losses_kw": 37.82399493784353,
+        "source_kvar": -675.053486821566,
+        "source_kw": -2160.058784089052
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 7
+        },
+        "RegControl.reg2": {
+          "tap": 6
+        },
+        "RegControl.reg3": {
+          "tap": 7
+        }
+      },
+      "converged": true,
+      "hour": 4,
+      "iterations": 3,
+      "lowest_bus": {
+        "name": "650",
+        "pu_vmag": 1.00001091973262
+      },
+      "totals": {
+        "load_kvar": 1266.2641504093147,
+        "load_kw": 2087.9182732392105,
+        "losses_kvar": 105.17173432230629,
+        "losses_kw": 36.48209332615626,
+        "source_kvar": -649.1081904273736,
+        "source_kw": -2124.4176914940413
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 7
+        },
+        "RegControl.reg2": {
+          "tap": 6
+        },
+        "RegControl.reg3": {
+          "tap": 7
+        }
+      },
+      "converged": true,
+      "hour": 5,
+      "iterations": 3,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9996311251909228
+      },
+      "totals": {
+        "load_kvar": 1307.7320142443216,
+        "load_kw": 2156.4162896015473,
+        "losses_kvar": 113.10784875717232,
+        "losses_kw": 39.18924254902904,
+        "source_kvar": -700.9732650179658,
+        "source_kw": -2195.5696439205167
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 7
+        },
+        "RegControl.reg2": {
+          "tap": 6
+        },
+        "RegControl.reg3": {
+          "tap": 7
+        }
+      },
+      "converged": true,
+      "hour": 6,
+      "iterations": 3,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9915033388714697
+      },
+      "totals": {
+        "load_kvar": 1431.911499244331,
+        "load_kw": 2361.468662674359,
+        "losses_kvar": 139.03405177361998,
+        "losses_kw": 48.03079901175853,
+        "source_kvar": -858.4578138682181,
+        "source_kw": -2409.3783313415574
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 7
+        },
+        "RegControl.reg2": {
+          "tap": 6
+        },
+        "RegControl.reg3": {
+          "tap": 7
+        }
+      },
+      "converged": true,
+      "hour": 7,
+      "iterations": 4,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9763558086795009
+      },
+      "totals": {
+        "load_kvar": 1658.6925509127204,
+        "load_kw": 2735.6913227523755,
+        "losses_kvar": 195.06011250558976,
+        "losses_kw": 67.12659070747446,
+        "source_kvar": -1154.8342063236437,
+        "source_kw": -2802.78848676183
+      }
+    },
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 8
+        },
+        "RegControl.reg2": {
+          "tap": 6
+        },
+        "RegControl.reg3": {
+          "tap": 8
+        }
+      },
+      "converged": true,
+      "hour": 8,
+      "iterations": 8,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9679531641349486
+      },
+      "totals": {
+        "load_kvar": 1887.1855838041572,
+        "load_kw": 3112.544736690797,
+        "losses_kvar": 260.0283721830274,
+        "losses_kw": 89.27582301927926,
+        "source_kvar": -1455.3437928255325,
+        "source_kw": -3201.860930920596
+      }
+    },
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 9
+        },
+        "RegControl.reg2": {
+          "tap": 6
+        },
+        "RegControl.reg3": {
+          "tap": 9
+        }
+      },
+      "converged": true,
+      "hour": 9,
+      "iterations": 8,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9636902551759455
+      },
+      "totals": {
+        "load_kvar": 2053.842685139589,
+        "load_kw": 3387.387775694116,
+        "losses_kvar": 313.0299267038078,
+        "losses_kw": 107.34317249448856,
+        "source_kvar": -1678.3889679612896,
+        "source_kw": -3494.786895022251
+      }
+    },
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 9
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 9
+        }
+      },
+      "converged": true,
+      "hour": 10,
+      "iterations": 7,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9579249284973695
+      },
+      "totals": {
+        "load_kvar": 2136.183156920638,
+        "load_kw": 3523.4558648569655,
+        "losses_kvar": 342.5285670822376,
+        "losses_kw": 117.38680562753095,
+        "source_kvar": -1792.5080023218786,
+        "source_kw": -3640.9323115135153
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 9
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 9
+        }
+      },
+      "converged": true,
+      "hour": 11,
+      "iterations": 4,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9622162855720017
+      },
+      "totals": {
+        "load_kvar": 2075.101425880997,
+        "load_kw": 3422.5897052193886,
+        "losses_kvar": 319.83544068140293,
+        "losses_kw": 109.66215170636843,
+        "source_kvar": -1704.9333406154683,
+        "source_kw": -3532.2836583041476
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 9
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 9
+        }
+      },
+      "converged": true,
+      "hour": 12,
+      "iterations": 4,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.966486582806616
+      },
+      "totals": {
+        "load_kvar": 2013.9336044409797,
+        "load_kw": 3321.562838601953,
+        "losses_kvar": 298.0589516936676,
+        "losses_kw": 102.24834719498348,
+        "source_kvar": -1618.213998513965,
+        "source_kw": -3423.8408268832513
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 9
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 9
+        }
+      },
+      "converged": true,
+      "hour": 13,
+      "iterations": 3,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9693100533582877
+      },
+      "totals": {
+        "load_kvar": 1973.181356991331,
+        "load_kw": 3254.12491173787,
+        "losses_kvar": 284.0691704050228,
+        "losses_kw": 97.48452966888135,
+        "source_kvar": -1560.9423804249573,
+        "source_kw": -3351.7457389282413
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 9
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 9
+        }
+      },
+      "converged": true,
+      "hour": 14,
+      "iterations": 3,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9679140071370179
+      },
+      "totals": {
+        "load_kvar": 1993.4362843154222,
+        "load_kw": 3287.836320893367,
+        "losses_kvar": 290.9724009028925,
+        "losses_kw": 99.83576251128673,
+        "source_kvar": -1589.3887510273605,
+        "source_kw": -3387.603795677207
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 9
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 9
+        }
+      },
+      "converged": true,
+      "hour": 15,
+      "iterations": 4,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.963649230207879
+      },
+      "totals": {
+        "load_kvar": 2054.6701653222526,
+        "load_kw": 3388.926398956174,
+        "losses_kvar": 312.45761643400954,
+        "losses_kw": 107.15080292147859,
+        "source_kvar": -1675.8735957014944,
+        "source_kw": -3496.0465350632476
+      }
+    },
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 9
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 10
+        }
+      },
+      "converged": true,
+      "hour": 16,
+      "iterations": 8,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9621412117075481
+      },
+      "totals": {
+        "load_kvar": 2178.8217433340806,
+        "load_kw": 3593.9700608237476,
+        "losses_kvar": 356.3592699685339,
+        "losses_kw": 122.12108131009151,
+        "source_kvar": -1847.4706016828814,
+        "source_kw": -3716.1266205428888
+      }
+    },
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 10
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 10
+        }
+      },
+      "converged": true,
+      "hour": 17,
+      "iterations": 8,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9521018962720139
+      },
+      "totals": {
+        "load_kvar": 2322.6705314510145,
+        "load_kw": 3831.1258881964163,
+        "losses_kvar": 412.2373879362897,
+        "losses_kw": 141.13182300913135,
+        "source_kvar": -2053.427322726196,
+        "source_kw": -3972.302072665501
+      }
+    },
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 11
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 11
+        }
+      },
+      "converged": true,
+      "hour": 18,
+      "iterations": 8,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9520444393688189
+      },
+      "totals": {
+        "load_kvar": 2428.0256299904695,
+        "load_kw": 4004.670549958446,
+        "losses_kvar": 452.1402653036005,
+        "losses_kw": 154.73209747335093,
+        "source_kvar": -2198.3741704563786,
+        "source_kw": -4159.500108631889
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 11
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 11
+        }
+      },
+      "converged": true,
+      "hour": 19,
+      "iterations": 4,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9578561037589419
+      },
+      "totals": {
+        "load_kvar": 2346.963516084763,
+        "load_kw": 3870.798337695049,
+        "losses_kvar": 416.9237865878615,
+        "losses_kw": 142.7523991336348,
+        "source_kvar": -2076.985027389621,
+        "source_kw": -4013.618947733025
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 11
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 11
+        }
+      },
+      "converged": true,
+      "hour": 20,
+      "iterations": 4,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9679067501317016
+      },
+      "totals": {
+        "load_kvar": 2204.6805857098298,
+        "load_kw": 3635.751370103973,
+        "losses_kvar": 359.3578165078037,
+        "losses_kw": 123.16329483942533,
+        "source_kvar": -1868.2123438588746,
+        "source_kw": -3759.018303458306
+      }
+    },
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 10
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 10
+        }
+      },
+      "converged": true,
+      "hour": 21,
+      "iterations": 8,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9735771970041621
+      },
+      "totals": {
+        "load_kvar": 2017.2563846130888,
+        "load_kw": 3326.8153082558715,
+        "losses_kvar": 295.27869373801684,
+        "losses_kw": 101.32470536915756,
+        "source_kvar": -1612.0742405646436,
+        "source_kw": -3428.0892116961577
+      }
+    },
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 9
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 9
+        }
+      },
+      "converged": true,
+      "hour": 22,
+      "iterations": 8,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9791576950300626
+      },
+      "totals": {
+        "load_kvar": 1829.6983604388024,
+        "load_kw": 3017.4095753851384,
+        "losses_kvar": 238.036842069681,
+        "losses_kw": 81.80667472555095,
+        "source_kvar": -1362.688523131148,
+        "source_kw": -3099.1813735851247
+      }
+    },
+    {
+      "control_iterations": 1,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 9
+        },
+        "RegControl.reg2": {
+          "tap": 7
+        },
+        "RegControl.reg3": {
+          "tap": 9
+        }
+      },
+      "converged": true,
+      "hour": 23,
+      "iterations": 4,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9888556299846287
+      },
+      "totals": {
+        "load_kvar": 1685.8135270921448,
+        "load_kw": 2779.768325996972,
+        "losses_kvar": 196.74054315340106,
+        "losses_kw": 67.73507737569716,
+        "source_kvar": -1168.7696361298586,
+        "source_kw": -2847.5375981868433
+      }
+    },
+    {
+      "control_iterations": 2,
+      "controls": {
+        "Capacitor.cap1": {
+          "states": [
+            1
+          ]
+        },
+        "Capacitor.cap2": {
+          "states": [
+            1
+          ]
+        },
+        "RegControl.reg1": {
+          "tap": 8
+        },
+        "RegControl.reg2": {
+          "tap": 6
+        },
+        "RegControl.reg3": {
+          "tap": 8
+        }
+      },
+      "converged": true,
+      "hour": 24,
+      "iterations": 8,
+      "lowest_bus": {
+        "name": "611",
+        "pu_vmag": 0.9901980973353129
+      },
+      "totals": {
+        "load_kvar": 1558.4519049832093,
+        "load_kw": 2569.9239921311855,
+        "losses_kvar": 166.69096086385252,
+        "losses_kw": 57.4756744907294,
+        "source_kvar": -1013.3727142260249,
+        "source_kw": -2627.378339409382
+      }
+    }
+  ],
+  "update_reason": "Initial IEEE 13 daily golden for Phase 4 package 4.3"
+}

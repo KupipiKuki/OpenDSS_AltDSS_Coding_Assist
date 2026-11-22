@@ -1,0 +1,320 @@
+{
+  "environment": {
+    "python_version": "3.14.6",
+    "altdss_version": "0.2.4",
+    "dss_python_version": "0.15.7",
+    "backend_version": "0.14.5",
+    "platform": "Windows 11 AMD64",
+    "date": "2026-11-22"
+  },
+  "defaults": {
+    "NPts": {
+      "status": "read back",
+      "type": "int",
+      "value": 0
+    },
+    "Interval": {
+      "status": "read back",
+      "type": "float",
+      "value": 1.0
+    },
+    "Hour": {
+      "status": "read back",
+      "type": "ndarray",
+      "value": []
+    },
+    "Mean": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "StdDev": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "CSVFile": {
+      "status": "read back",
+      "type": "str",
+      "value": ""
+    },
+    "SngFile": {
+      "status": "read back",
+      "type": "str",
+      "value": ""
+    },
+    "DblFile": {
+      "status": "read back",
+      "type": "str",
+      "value": ""
+    },
+    "Action": {
+      "status": "action",
+      "python_method": "Action"
+    },
+    "QMult": {
+      "status": "read back",
+      "type": "ndarray",
+      "value": []
+    },
+    "UseActual": {
+      "status": "read back",
+      "type": "bool",
+      "value": false
+    },
+    "PMax": {
+      "status": "read back",
+      "type": "float",
+      "value": 1.0
+    },
+    "QMax": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "SInterval": {
+      "status": "read back",
+      "type": "float",
+      "value": 3600.0
+    },
+    "MInterval": {
+      "status": "read back",
+      "type": "float",
+      "value": 60.0
+    },
+    "PBase": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "QBase": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "PMult": {
+      "status": "read back",
+      "type": "ndarray",
+      "value": []
+    },
+    "PQCSVFile": {
+      "status": "read back",
+      "type": "str",
+      "value": ""
+    },
+    "MemoryMapping": {
+      "status": "read back",
+      "type": "bool",
+      "value": false
+    },
+    "Interpolation": {
+      "status": "read back",
+      "type": "LoadShapeInterpolation",
+      "value": 0,
+      "member": "Avg"
+    },
+    "Like": {
+      "status": "action",
+      "python_method": "Like"
+    }
+  },
+  "empty_shape_csvfile": {
+    "fresh_csv_file": "",
+    "csv_read_after_statistics": {
+      "Mean": "(#61107) LoadShape has no data to be normalized. Check for previous errors.",
+      "StdDev": "(#61107) LoadShape has no data to be normalized. Check for previous errors."
+    },
+    "csv_file_after_error_is_consumed": ""
+  },
+  "length_contract": {
+    "before_npts": "(#20200425) LoadShape.daily24.PMult: Invalid number of elements. Expected 0 elements, got 24.",
+    "too_short": "(#20200425) LoadShape.s1.PMult: Invalid number of elements. Expected 4 elements, got 2.",
+    "too_long": "(#20200425) LoadShape.s1.PMult: Invalid number of elements. Expected 4 elements, got 5.",
+    "exact_length": [
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ]
+  },
+  "npts_growth": {
+    "unsafe_resize": "source-only: NPts changes the count without reallocating populated arrays",
+    "original_npts": 4,
+    "replacement_npts": 6,
+    "replacement_pmult": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0
+    ],
+    "daily_binding": "LoadShape.s1_six_points"
+  },
+  "interval_units": {
+    "columns": [
+      "Interval",
+      "SInterval",
+      "MInterval"
+    ],
+    "initial": [
+      1.0,
+      3600.0,
+      60.0
+    ],
+    "set_seconds": [
+      0.5,
+      1800.0,
+      30.0
+    ],
+    "set_minutes": [
+      0.25,
+      900.0,
+      15.0
+    ],
+    "set_hours": [
+      2.0,
+      7200.0,
+      120.0
+    ],
+    "variable": {
+      "interval": 0.0,
+      "hour": [
+        0.25,
+        1.0,
+        2.5
+      ],
+      "pmult": [
+        0.5,
+        1.0,
+        1.5
+      ],
+      "qmult": [
+        0.4,
+        0.9,
+        1.4
+      ]
+    },
+    "interval_after_hour_write": {
+      "alt_dss_python": 1.0,
+      "dss_text": 0.0
+    }
+  },
+  "actions_and_alias": {
+    "normalize": {
+      "before": {
+        "pmult": [
+          1.0,
+          2.0,
+          4.0
+        ],
+        "pmax": 4.0,
+        "pbase": 0.0
+      },
+      "after_default_base": [
+        0.25,
+        0.5,
+        1.0
+      ],
+      "explicit_bases": {
+        "pbase": 4.0,
+        "qbase": 2.0,
+        "pmult": [
+          0.5,
+          1.0,
+          2.0
+        ],
+        "qmult": [
+          0.5,
+          1.0,
+          2.0
+        ],
+        "use_actual": false
+      }
+    },
+    "text_mult_alias": [
+      0.1,
+      0.2,
+      0.3
+    ],
+    "like": {
+      "npts": 3,
+      "pmult": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "qmult": [
+        0.2,
+        0.3,
+        0.4
+      ],
+      "text_copy_agrees": true
+    },
+    "keyword_errors": {
+      "Action": "'LoadShape' object attribute 'Action' is read-only",
+      "Like": "'LoadShape' object attribute 'Like' is read-only",
+      "Npts": "'LoadShape' object has no attribute 'Npts'",
+      "Stepsize": "'ISolution' object has no attribute 'Stepsize'"
+    }
+  },
+  "stepping": {
+    "python_by_name": [
+      {
+        "hour": 1,
+        "load_kw": 49.99999999999974
+      },
+      {
+        "hour": 2,
+        "load_kw": 99.99999991188082
+      },
+      {
+        "hour": 3,
+        "load_kw": 149.9999997639219
+      }
+    ],
+    "dss_text_by_name": [
+      {
+        "hour": 1,
+        "load_kw": 49.99999809265137
+      },
+      {
+        "hour": 2,
+        "load_kw": 99.99999618530273
+      },
+      {
+        "hour": 3,
+        "load_kw": 150.0
+      }
+    ],
+    "alt_dss_by_object": "LoadShape.daily24",
+    "shape_names": [
+      "default",
+      "daily24"
+    ],
+    "circuit_elements_before_and_after": [
+      2,
+      2
+    ],
+    "number_24": {
+      "start_hour": 0,
+      "after_one_solve": 24,
+      "load_kw": 149.99999978432845
+    }
+  },
+  "use_actual": {
+    "bases_kw_kvar": [
+      200.0,
+      100.0
+    ],
+    "assigned_nominal_kw_kvar": [
+      90.0,
+      30.0
+    ],
+    "first_hour": 1,
+    "first_step_kw_kvar": [
+      49.99999999999986,
+      9.999999999999403
+    ]
+  }
+}
