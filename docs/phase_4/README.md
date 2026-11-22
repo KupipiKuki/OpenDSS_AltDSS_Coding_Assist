@@ -180,13 +180,44 @@ The input `files` and `entry_script` paths are relative to each fixture director
 
 `source_ids` resolve against `sources.json`, so the pinned fixture commit and the pinned engine tags are cited in the same index as every other claim in the library.
 
+### 8.1 Deferred class catalogs (decision 17)
+
+The classes carried as deferred since Phase 3B were measured before being scoped, so the record rests on counts and source availability rather than on impression. Row counts are the annotated keys of the pinned wrapper's `*Properties` class (AltDSS-Python `0.2.4`); the method reproduces the known `RegControl` figure of 35.
+
+The decisive measurement is that neither pinned circuit uses any of them. The complete class inventory of the fixture trees is `load` (83), `linecode` (65), `line` (44), `transformer` (13), `regcontrol` (9) and `capacitor` (4). There is no `CapControl` in either circuit, so the two capacitor banks in package 4.3 are fixed rather than switched.
+
+| Class | Kind | Rows | EPRI concept page | EPRI properties page | In fixtures | Scope (decision 17) |
+|---|---|---|---|---|---|---|
+| `LoadShape` | data object | 22 | `LoadShape.html` | `Properties7.html` | 0 | **In package 4.3** |
+| `GrowthShape` | data object | 7 | `GrowthShape.html` | not found in `Properties1`–`35` | 0 | Deferred |
+| `CapControl` | control | 26 | `CapControl1.html` | `Properties20.html` | 0 | Deferred |
+| `GenDispatcher` | control | 10 | none (`GenDispatcher`, `GenDispatcher1`, `GenDispatcher2`, `GeneratorDispatcher`, `Dispatcher` all 404) | none | 0 | Deferred |
+| `AutoTrans` | transformer variant | 42 | `AutoTrans.html` | `Properties11.html` | 0 | Deferred |
+| `PVSystem` | PC element | 54 | `PVSystem.html` | `Properties5.html`, `Properties6.html` | 0 | Deferred |
+| `Storage` | PC element | 64 | `Storage.html` | `Properties5.html`, `Properties25.html` | 0 | Deferred |
+| `InvControl` | control | 35 | `InvControl.html` | — | 0 | Deferred with the DER set |
+| `ExpControl` | control | 17 | `ExpControl.html` | — | 0 | Deferred with the DER set |
+
+`LoadShape` is in scope because package 4.3 cannot produce a daily profile without it; the catalog is delivered inside 4.3 so the readback matrix and the 24-step golden are validated together. Everything else is deferred on scope grounds — no fixture usage, no package depends on it, and the 203 rows that remain deferred from the seven originally named classes (225 in total, less the 22 now in scope) would add breadth no golden can exercise. CapControl and AutoTrans in particular are **not** deferred for lack of evidence, since EPRI documents both; they are deferred because nothing in Phase 4 needs them. Recorded for a future package: `AutoTrans` extends the Phase 3B `Transformer` catalog, and `RegControl`'s transformer reference already accepts an `AutoTrans` target.
+
+Two measurement cautions were adopted from this survey. EPRI page names are inconsistent — `CapControl.html` is 404 while `CapControl1.html` returns the concept page, and the reverse holds for `RegControl` — so both forms are probed before any page is declared missing, and a single 404 is not evidence of absence. The Doxygen class reference at `dss-extensions.org/dss_capi/` was also checked and does list the property surface (`PTratio`, `CTratio`, `ONsetting`, `OFFsetting` on the CapControl page), but it carries no version string, so it is a cross-check index only and never a citation; pinned property claims cite the engine source at DSS C-API `0.14.5`.
+
+`LoadShape` was probed on the pinned stack so package 4.3 inherits its traps rather than rediscovering them:
+
+- The attribute is `NPts`; `Npts` raises `AttributeError`.
+- Setting `PMult` before `NPts` fails with `(#20200425) LoadShape.daily24.PMult: Invalid number of elements. Expected 0 elements, got 24`. Size the array first, then assign.
+- With `Solution.Number = 24`, each `Solve()` runs a whole day: `Solution.Hour` goes 1 → 24 in one call, so a naive 24-row loop samples the last step 24 times and the profile looks flat. Sample per step with `Number = 1` and 24 solves.
+- `Solution.Hour` is 1-based: the first step reports `Hour = 1` and consumes `PMult[0]`.
+- Scaling was confirmed against multipliers 0.5, 1.0, 1.5 and 2.0, giving 1765.68, 3567.13, 5410.94 and 7085.56 kW from a 3567.05 kW base.
+- The property is `Solution.StepSize`, not `Stepsize`.
+
 ## 9. Package sequence
 
 | Package | Content | Depends on |
 |---|---|---|
 | **4.1 Fixture harness and snapshot goldens** | Fixture tree with `License.txt`, `PROVENANCE.md`; `fixtures.json` + schema; `tools/run_fixtures.py`; `golden.json` for both snapshots; `validate_catalogs.py` extension | Phase 3 complete |
 | **4.2 RegControl catalog** | The Phase 3 six-artifact template for a control class: property catalog, workflow, examples, readback matrix, build audit, QA/QC | 4.1 goldens, because tap positions are already in validated output |
-| **4.3 Daily time-series fixture** | Daily run on `ieee13` with regulators and the two capacitor banks operating; golden for the 24-step profile | 4.1 stable |
+| **4.3 Daily time-series fixture** | The `LoadShape` catalog (22 rows, decision 17) plus a daily run on `ieee13` with regulators active and the two capacitor banks energised and fixed, since the circuit has no `CapControl`; golden for the 24-step profile | 4.1 stable |
 | **4.4 Cross-interface tool** | `tools/compare_interfaces.py` with `opendssdirect.py` 0.9.4 added to `requirements-validation.txt` | 4.1 |
 | **4.5 Phase 4 exit** | `troubleshooting.json` seeded from Phase 3 and Phase 4 QA findings, documentation pass, manifest and plan reconciliation, exit checklist, owner review | 4.1–4.4 |
 
@@ -197,6 +228,7 @@ The input `files` and `entry_script` paths are relative to each fixture director
 | 13 | 2026-11-21 | Fixtures come from `dss-extensions/electricdss-tst` pinned at commit `3b20839`, with the BSD-3-Clause `License.txt` copied verbatim and attribution recorded per fixture |
 | 14 | 2026-11-21 | `RegControl` is catalogued in Phase 4, not deferred, because both fixtures depend on it and the golden results carry tap positions |
 | 15 | 2026-11-21 | Cross-interface comparison is in Phase 4 scope, adding `opendssdirect.py` 0.9.4 to the pinned stack, with its shared-backend limitation stated in the tool and the docs |
+| 17 | 2026-11-21 | The deferred class catalogs are settled: `LoadShape` enters package 4.3 because the daily series cannot vary load without it, and `GrowthShape`, `CapControl`, `GenDispatcher`, `AutoTrans`, `PVSystem`, `Storage`, `InvControl` and `ExpControl` are deferred on scope grounds, not for lack of evidence. Measurements, EPRI page map and row counts in [section 8.1](#81-deferred-class-catalogs-decision-17) |
 
 ## 11. Risks
 
