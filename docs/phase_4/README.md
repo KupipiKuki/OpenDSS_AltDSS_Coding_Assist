@@ -1,6 +1,6 @@
 # Phase 4 — Validation with golden fixtures
 
-**Status** Package 4.1 is accepted by the owner (plan decision 16), so the fixture pin and both revision 1 snapshot goldens are fixed reference data: later packages may add goldens but must not move revision 1. Package 4.2 (RegControl catalog) passed coder validation, independent QA/QC (PASS) and the architect review (PASS WITH FINDINGS) and awaits the owner's disposition. [Build audit](../audits/phase4_fixture_harness_audit.md) · [QA/QC handoff](../handoffs/Phase_4_Fixture_Harness_QAQC_handoff.md) · [Architect review](../audits/phase4_fixture_harness_architect_audit.md) · [Package 4.2 handoff](../handoffs/Phase_4_RegControl_Catalog_Coder_handoff.md)
+**Status** Package 4.1 is accepted by the owner (plan decision 16), so the fixture pin and both revision 1 snapshot goldens are fixed reference data: later packages may add goldens but must not move revision 1. Package 4.2 (RegControl catalog) is accepted by the owner (plan decision 18). Package 4.3 (LoadShape catalog and daily profile) is issued. [Build audit](../audits/phase4_fixture_harness_audit.md) · [QA/QC handoff](../handoffs/Phase_4_Fixture_Harness_QAQC_handoff.md) · [Architect review](../audits/phase4_fixture_harness_architect_audit.md) · [Package 4.2 handoff](../handoffs/Phase_4_RegControl_Catalog_Coder_handoff.md)
 **Governs** [Implementation plan §6](../implementation_plan.md) (intent) · [manifest](../../opendss_altdss_library/manifest.json) (state)
 **Pinned stack** AltDSS-Python `0.2.4` · DSS-Python `0.15.7` · DSS C-API backend `0.14.5`; cross-interface checks add `opendssdirect.py` `0.9.4`.
 
@@ -136,6 +136,36 @@ Rules:
 - **`losses_kw_kvar` is the engine's `Losses()` converted from W/var to kW/kvar, not a dissipation figure.** For power-conversion elements and the source it equals the element's own power: in the ieee13 golden a load records 3454.66 kW, a capacitor bank −685.95 kvar and the source −3567.05 kW. Only passive elements contribute to dissipation, which is why line losses (106.48 kW) plus transformer losses (5.91 kW) equal `totals.losses_kw` (112.39 kW) while the sum over all elements is about zero. **`totals.losses_kw` is the only dissipation figure**; do not read a per-element `losses_kw_kvar` as energy lost in that element. *(Added by the package 4.1 architect review, finding E-1.)*
 - **`elements` includes control objects.** `RegControl` entries appear with zero powers because `NumCircuitElements` counts them: the ieee13 golden's 38 entries are 12 lines, 5 transformers, 15 loads, 2 capacitors, **3 RegControls** and 1 Vsource. Regulator taps are also recorded under `controls`. *(Package 4.1 architect review, O-1.)*
 
+### 5.1 Daily profile golden (package 4.3)
+
+The daily scenario is a **separate file and a separate scenario**, `examples/fixtures/ieee13/golden_daily.json`, so the snapshot goldens stay frozen under decision 16. Same generation rule: produced by the harness, never hand-typed, `golden_revision` starting at 1, and `scenario: "daily"`. The `source`, `environment` and `solver` blocks keep the snapshot shape, with `solver.mode` recording the sequential mode and `solver.step_size_s` the step in seconds.
+
+The shape that drives the profile is recorded **inside** the golden, so the profile can be reproduced from the golden alone without reading the harness:
+
+```json
+"shape": {"name": "daily24", "npts": 24, "interval_h": 1.0, "use_actual": false,
+          "pmult": [1.0, 1.0], "qmult": [], "assignment": "Load.daily"}
+```
+
+`steps` holds one record per solved step, in order:
+
+```json
+"steps": [
+  {"hour": 1, "converged": true, "iterations": 2, "control_iterations": 1,
+   "totals": {"load_kw": 0.0, "load_kvar": 0.0, "losses_kw": 0.0, "losses_kvar": 0.0,
+              "source_kw": 0.0, "source_kvar": 0.0},
+   "controls": {"RegControl.reg1": {"tap": 9}, "Capacitor.C1": {"states": [1, 1, 1]}},
+   "lowest_bus": {"name": "611", "pu_vmag": 0.960843}}
+]
+```
+
+- **`hour` is 1-based** and matches the engine's `Solution.Hour` at that step, so the mapping to `pmult` index is `hour - 1` and an off-by-one is visible in the file rather than hidden in the harness.
+- **`peak_step`** repeats the full snapshot `buses` and `elements` blocks for the step with the highest `totals.load_kw`. The step is **derived from the data**, not hand-picked, so a circuit change cannot leave the reference step pointing at the wrong hour.
+- **`energy_kwh`** records the day's load energy as the sum of each step's `load_kw` times the step length in hours, together with the same integral recomputed from the recorded `steps` array. The two must agree within tolerance, which turns the file into a check on itself rather than only on the engine.
+- Per-step `controls` must include every regulator tap and every capacitor state, because those are the discrete outcomes a time series can silently desynchronise.
+- Tolerances are exactly [section 6](#6-tolerances); discrete quantities (hour, taps, states, iteration counts) compare exactly.
+- Full bus voltages are recorded at the peak step only. Recording all buses at all 24 steps would multiply the file size without adding a discriminating check, since `lowest_bus` already tracks the binding constraint at every step.
+
 ## 6. Tolerances
 
 | Quantity | Comparison | Value |
@@ -188,7 +218,7 @@ The decisive measurement is that neither pinned circuit uses any of them. The co
 
 | Class | Kind | Rows | EPRI concept page | EPRI properties page | In fixtures | Scope (decision 17) |
 |---|---|---|---|---|---|---|
-| `LoadShape` | data object | 22 | `LoadShape.html` | `Properties7.html` | 0 | **In package 4.3** |
+| `LoadShape` | data object | 22 | `LoadShape.html` (carries the property narrative) | none — scanned `Properties1`–`35` for `NPts`, no hit; `Properties7.html` is the *Load* page and only cross-references shapes | 0 | **In package 4.3** |
 | `GrowthShape` | data object | 7 | `GrowthShape.html` | not found in `Properties1`–`35` | 0 | Deferred |
 | `CapControl` | control | 26 | `CapControl1.html` | `Properties20.html` | 0 | Deferred |
 | `GenDispatcher` | control | 10 | none (`GenDispatcher`, `GenDispatcher1`, `GenDispatcher2`, `GeneratorDispatcher`, `Dispatcher` all 404) | none | 0 | Deferred |
