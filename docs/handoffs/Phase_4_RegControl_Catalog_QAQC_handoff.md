@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase4`
 - **Inputs revision** `eb7aca4aac119b1c4478efd958a2aae10fd9d463`
-- **Package revision** Pending commit. Review the package artifacts at the pinned revision.
+- **Package revision** `35a2b7cc4de10c1f8515f5996eca2cdec088bbee`. Review the package artifacts at this commit. The follow-up commit supplies the handoff pin.
 
 Record the reviewed revision and working-tree state. [Coder handoff](Phase_4_RegControl_Catalog_Coder_handoff.md) · [Build audit](../audits/phase4_regcontrol_audit.md) · [Readback matrix](../audits/phase4_regcontrol_readback.json)
 
