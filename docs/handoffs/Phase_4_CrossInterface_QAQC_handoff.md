@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase4`
 - **Inputs revision** `5e323265cda7447f8e933231014b5ffe1ce4db3c`
-- **Package revision** Pending commit. Review the package artifacts at the pinned revision.
+- **Package revision** `159fce02c6a1753ea84933441f2f74f6e8f4dc88`. Review the package artifacts at this commit. The follow-up commit supplies the handoff pin.
 
 Review the snapshot comparison, accessor catalog, example, and recorded report. Each interface uses DSS C-API 0.14.5. The comparison verifies agreement among the wrappers on that engine. [Coder handoff](Phase_4_CrossInterface_Coder_handoff.md) · [Build audit and commands](../audits/phase4_cross_interface_audit.md) · [Comparison report](../audits/phase4_cross_interface_report.json)
 
