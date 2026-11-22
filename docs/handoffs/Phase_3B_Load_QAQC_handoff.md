@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase3`
 - **Baseline** `b896db8a298ad9fe1963d692c6a53649cf9b7ed0`
-- **Package revision** Pending the package commit.
+- **Package revision** `37854f664369e61c9c2a7f22ee05a7295152685c`. Review the package artifacts at this commit. The follow-up commit supplies the handoff pin.
 
 Review Load against the coder handoff at the pinned commit. Record the revision and working-tree state. [Coder handoff](Phase_3B_Load_Coder_handoff.md) · [Build audit](../audits/phase3b_load_audit.md)
 
