@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version** 0.28 (Phase 3 complete; Phase 4 planning next)
+**Plan version** 0.29 (Phase 3 complete; Phase 4 prepared and package 4.1 issued)
 **Plan date:** 2026-11-22
-**Current phase** Phase 3 complete; Phase 4 is next. The owner accepted package 6 (Generator) on 2026-11-21 after coder validation, independent QA/QC (PASS, no required corrections), and the architect review (PASS WITH FINDINGS), directing its two non-blocking findings E-1 and E-2 to be applied; both are applied. That disposition closes the Phase 3 exit gate. The remaining Phase 3 cleanup is the Capacitor schema declaration follow-up (O-1), which can land with the Phase 4 preparation.
+**Current phase** Phase 4 preparation complete; package 4.1 (fixture harness and snapshot goldens) is issued to the coder. Phase 3 is closed: all six element packages are accepted. The Phase 4 design is fixed in [docs/phase_4/README.md](phase_4/README.md), the fixture source is pinned, and the Capacitor schema follow-up (O-1) is closed.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -127,20 +127,27 @@ Package 6 adds the 49-row Generator catalog, two executed examples, and a readba
 
 **Phase 3 exit criteria:** the two API catalogs and the single source index are complete and schema-valid; the six element packages pass independent QA/QC; every published record is version-scoped with a resolvable source; the catalog set validates in one command.
 
-## 6. Phase 4 — Validation with golden fixtures (planned)
+## 6. Phase 4 — Validation with golden fixtures (prepared, package 4.1 issued)
 
 **Objective:** move from property-level evidence to solved-model evidence and satisfy the charter stop gate.
 
-**Owner decision (2026-11-21):** the Phase 4 stop gate requires recorded golden fixture results. Cross-interface consistency alone is not sufficient.
+**Owner decision (2026-11-21):** the Phase 4 stop gate requires recorded golden fixture results. Cross-interface consistency alone is not sufficient, because every Python interface in the stack wraps the same DSS C-API backend.
+
+**Design authority:** [docs/phase_4/README.md](phase_4/README.md). It resolves the open items in this section, records the fixture pin and checksums, the golden format, the tolerance table, the harness contract, the measured coverage, and the package sequence 4.1 to 4.5. Where the two differ, the Phase 4 document is newer and this section is corrected in the same commit.
 
 ### 6.1 Fixture set
 
 | Fixture | Source | Notes |
 |---|---|---|
-| IEEE 13-node | DSS-Extensions test repository at a pinned commit, or the EPRI OpenDSS installation test cases | Distribution feeder with regulator, transformer, and capacitor models; single source of record |
-| IEEE 34-node | Same source family as IEEE 13 | Longer feeder with laterals; exercises more element classes |
+| IEEE 13-node | `dss-extensions/electricdss-tst` @ `3b208397160213cae4a9e2d0a7d1aa3528ce26e1` (2024-06-24), `Version8/Distrib/IEEETestCases/13Bus` | Distribution feeder with 5 transformers, 2 capacitor banks and 3 regulator controls; single source of record |
+| IEEE 34-node | Same repository and commit, `.../34Bus` | Longer feeder with laterals: 8 transformers, 2 capacitor banks, 6 regulator controls |
+
+The owner chose the git pin over the EPRI installer (decision 13) because only a commit allows bit-for-bit reproduction. `License.txt` from the same commit is copied verbatim into the fixtures tree: BSD-3-Clause with the DSS-Extensions and EPRI copyright notices, which must be retained. Measured on the pinned stack during preparation: ieee13 compiles and converges in 2 iterations over 16 buses and 38 elements; ieee34 needs 6 control iterations and 25 total iterations over 37 buses and 117 elements.
 
 - Copy fixture files unmodified into `opendss_altdss_library/examples/fixtures/ieee13/` and `.../ieee34/`; do not hand-edit circuits. Any required edit is an overlay file plus a rationale.
+- A fixture is the **redirect closure**, not one folder. Each bus folder's `IEEELineCodes.DSS` is a 30-byte stub that reads `redirect ../IEEELineCodes.DSS`, so the shared `IEEETestCases/IEEELineCodes.DSS` must be copied too, with the upstream relative layout preserved so no file needs editing.
+- Add `examples/fixtures/.gitattributes` with `* -text`. The repository runs with `core.autocrlf = true`, so a normally committed CRLF fixture would be stored as LF and its recorded SHA-256 would match neither the blob nor a Linux checkout. Byte identity is proved with `git cat-file -p <rev>:<path> | sha256sum`.
+- The upstream `Run_*.dss` drivers are deliberately not copied: they contain `plot` commands and a second compile pass with forced regulator taps. The harness drives `ieee34Mod1.dss` directly, which has no solve of its own.
 - Each fixture directory carries `PROVENANCE.md`: upstream repository and commit or installer version, file list, license/attribution, retrieval date, and SHA-256 checksums of the circuit files.
 - Add `references/fixtures.json` plus `schemas/catalogs/fixtures.schema.json` with fixture id, file list and checksums, `source_ids`, golden file path, tolerances, engine versions, and `golden_revision`.
 
@@ -170,7 +177,7 @@ Package 6 adds the 49-row Generator catalog, two executed examples, and a readba
 
 | Tool | Purpose | Contract |
 |---|---|---|
-| `tools/run_fixtures.py` | Compile, solve, export results in the golden format, and diff against `golden.json` | Exit 0 when every fixture matches within tolerance; `--update-golden` writes a new revision and requires owner approval recorded in `references/fixtures.json` |
+| `tools/run_fixtures.py` | Verify checksums, compile, solve, export results in the golden format, and diff against `golden.json` | Exit 0 when every fixture matches within tolerance and every checksum matches; `--update-golden` requires `--reason`, refuses when fixture files have uncommitted changes, writes a new revision, and requires owner approval recorded in `references/fixtures.json` |
 | `tools/compare_interfaces.py` | Run the same fixture through `altdss`, `dss`, and `opendssdirect` on the pinned versions | Report per-quantity deltas; exit 0 when deltas are within tolerance or explicitly dispositioned |
 | `tools/validate_catalogs.py` | Existing schema validation, extended to `fixtures.json` | Unchanged contract |
 
@@ -180,7 +187,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 
 | Dimension | Phase 4 coverage |
 |---|---|
-| Element classes | Those delivered in Phase 3 plus regulator, transformer, capacitor, and load controls exercised by the fixtures |
+| Element classes | Those delivered in Phase 3, plus **RegControl catalogued in Phase 4** (decision 14) because both fixtures depend on it and the goldens carry tap positions; capacitor banks are exercised but their control class (CapControl) is not present in either fixture |
 | Operation modes | Snapshot (both fixtures); daily or QSTS (one fixture) |
 | Behavior | Batch creation, edit contexts, property side effects (for example `Switch`), unit conversions, error paths |
 | Interfaces | `altdss` primary; `dss` and `opendssdirect` comparison only |
@@ -195,7 +202,19 @@ Both new tools read the pinned environment and refuse to run when installed vers
 5. Independent QA/QC signs off; the manifest's `validation.runtime` states scope, environment, and residual gaps.
 6. Golden regeneration happens only through `--update-golden` with an owner-approved reason and a new revision number.
 
-### 6.6 Risks specific to golden fixtures
+#### 6.7 Package sequence (prepared 2026-11-21)
+
+| Package | Content | Depends on |
+|---|---|---|
+| 4.1 Fixture harness and snapshot goldens | Fixture tree with `License.txt` and `PROVENANCE.md`; `fixtures.json` + schema; `tools/run_fixtures.py`; goldens for both snapshots | Phase 3 complete |
+| 4.2 RegControl catalog | Six-artifact template for the control class (catalog, workflow, examples, readback matrix, build audit, QA/QC) | 4.1 |
+| 4.3 Daily time-series fixture | 24-step daily run on `ieee13` with regulators and both capacitor banks operating | 4.1 |
+| 4.4 Cross-interface tool | `tools/compare_interfaces.py` with `opendssdirect.py` 0.9.4 added to the pinned stack (decision 15), stating that all interfaces share backend 0.14.5 | 4.1 |
+| 4.5 Phase 4 exit | `troubleshooting.json` seeded from Phase 3 and 4 findings, documentation pass, exit checklist, owner review | 4.1-4.4 |
+
+The 4.1 handoff is [Phase_4_Fixture_Harness_Coder_handoff.md](handoffs/Phase_4_Fixture_Harness_Coder_handoff.md).
+
+## 6.6 Risks specific to golden fixtures
 
 | Risk | Mitigation |
 |---|---|
@@ -266,6 +285,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.26 | 2026-11-21 (local runtime date) | Added the Generator package and completed the six-package implementation sequence. Recorded coder validation, declared the Generator metadata fields in the shared row schema, and prepared independent QA/QC. |
 | 0.27 | 2026-11-21 (local) | Recorded the Phase 3B package-6 (Generator) review outcomes: independent QA/QC reproduced the matrix and reported PASS with no required corrections, and the architect review reported PASS WITH FINDINGS after re-deriving the wrapper and engine surfaces, all 252 citations against real file lengths, the constructor defaults, and independent probes of the guards, the `MVA` alias, the `Like` copy, `Refuel`, and an eight-cell `DispMode`/`Status` path matrix. Findings: E-1 (numeric enum text writes silently discarded for `DispMode` and `Status`, documented nowhere), E-2 (EPRI's 0.95/1.05/0.27 not disclosed in the rows), A-1 to A-5 (architect handoff traps corrected, including the same `Like` error previously corrected for Capacitor), and O-1 narrowed to Capacitor (Load and Generator now fully declared). |
 | 0.28 | 2026-11-21 (local) | Recorded the owner's acceptance of Phase 3B package 6 (Generator) and the closing of the Phase 3 exit gate, and applied its two non-blocking findings: E-1 documented that numeric enum text writes are silently discarded for `DispMode` and `Status` (names work, numbers do not, and no error is raised) while a Python attribute write stores an out-of-range integer and makes the next read raise, in both the catalog rows and the workflow; E-2 appended the EPRI divergences to `vminpu` (0.95 vs pinned 0.90), `vmaxpu` (1.05 vs 1.10) and `xdp` (0.27 vs 0.28). No value, type, default, or citation changed; schema validation re-passed 15/15. Phase 4 planning is next. |
+| 0.29 | 2026-11-21 (local) | Prepared Phase 4. Pinned the fixture source to `electricdss-tst` @ `3b20839` with the BSD-3-Clause EPRI notice copied verbatim, resolved the redirect closure (each bus folder's `IEEELineCodes.DSS` is a 30-byte stub), recorded per-file SHA-256 values, and measured both fixtures on the pinned stack (ieee13: 16 buses, 38 elements, 2 iterations; ieee34: 37 buses, 117 elements, 6 control iterations). Fixed the golden format, tolerance table, harness contract, measured coverage and the package sequence 4.1-4.5 in [docs/phase_4/README.md](phase_4/README.md); added the 4.1 coder handoff with the CRLF `gitattributes` trap, the no-solve 34-node file, and the plot-bearing upstream drivers; catalogued RegControl and the cross-interface tool into Phase 4 (decisions 13-15); closed the Capacitor schema follow-up O-1 by declaring the seven remaining row fields, leaving zero undeclared row fields across Load, Capacitor and Generator (15/15 pairs still pass). |
 
 ## 11. Owner decisions
 
@@ -283,3 +303,6 @@ Both new tools read the pinned environment and refuse to run when installed vers
 11. **Phase 3B package 5 acceptance — resolved 2026-11-22.** Owner accepted package 5 after coder validation, independent QA/QC (PASS, no required corrections), and the architect review (PASS WITH FINDINGS), and directed findings E-1 and E-2 to be applied before acceptance; both are applied in the catalog with no value or citation change. The architect-owned handoff traps A-1 (`Like` is also a callable Python method) and A-2 (`State` is an accepted DSS text abbreviation) were corrected during the review. O-1, the undeclared element row fields, remains an open schema follow-up. Package 6 (Generator) is released to the coder.
 
 12. **Phase 3B package 6 acceptance and Phase 3 exit — resolved 2026-11-21 (local).** Owner accepted package 6 after coder validation, independent QA/QC (PASS, no required corrections), and the architect review (PASS WITH FINDINGS), and directed findings E-1 (silent numeric enum text writes) and E-2 (undisclosed EPRI default divergences) to be applied before acceptance; both are applied with no value or citation change. The five architect handoff corrections A-1 to A-5 were applied during the review. Accepting package 6 closes the Phase 3 exit gate: all six element packages (Line/LineGeometry/WireData, Circuit/Vsource, Transformer/XfmrCode, Load, Capacitor, Generator) are accepted. Phase 4 golden fixtures are next, with the Capacitor schema declaration (O-1) carried in alongside.
+13. **Phase 4 fixture source — resolved 2026-11-21.** Fixtures come from `dss-extensions/electricdss-tst` pinned at commit `3b208397160213cae4a9e2d0a7d1aa3528ce26e1` (2024-06-24), with `License.txt` copied verbatim and attribution to DSS-Extensions and EPRI recorded per fixture. Chosen over the EPRI installer because only a commit allows bit-for-bit reproduction.
+14. **RegControl cataloguing — resolved 2026-11-21.** `RegControl` is catalogued in Phase 4 (package 4.2) rather than deferred, because both fixtures depend on it (3 and 6 instances) and the golden results carry regulator tap positions.
+15. **Cross-interface comparison — resolved 2026-11-21.** The comparison tool stays in Phase 4 scope (package 4.4) and adds `opendssdirect.py` 0.9.4 to the pinned stack. Its documentation must state that all three interfaces wrap DSS C-API 0.14.5, so a pass demonstrates API-layer agreement and not independent numerical validation.

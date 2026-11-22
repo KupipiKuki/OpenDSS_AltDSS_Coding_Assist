@@ -1,7 +1,7 @@
 {
   "$schema": "schemas/catalogs/manifest.schema.json",
   "name": "opendss_altdss_library",
-  "status": "phase-3-complete",
+  "status": "phase-4-in-progress",
   "schema_version": "0.3.0-draft",
   "source_check_date": "2026-11-21",
   "plan": "docs/implementation_plan.md",
@@ -59,19 +59,20 @@
     "The Capacitor element has no Spectrum property, unlike Load and Vsource.",
     "The shared element schema now declares enum_type, reference_class, and dss_text_keyword. Optional array and write-path metadata cited in Capacitor architect finding O-1 still needs shared schema declarations.",
     "GenDispatcher, CapControl, InvControl, PVSystem and Storage are deferred controller or element catalogs; the element packages cover element behavior and control hooks only.",
-    "Generator's built-in dispatch settings and separate GenDispatcher control are source-reviewed. The Model 3 snapshots use the default PVFactor; sensitivity to changing it is source-reviewed. Compiled models, dynamic studies, harmonics, and fuel consumption are outside runtime scope."
+    "Generator's built-in dispatch settings and separate GenDispatcher control are source-reviewed. The Model 3 snapshots use the default PVFactor; sensitivity to changing it is source-reviewed. Compiled models, dynamic studies, harmonics, and fuel consumption are outside runtime scope.",
+    "RegControl, CapControl, GenDispatcher, LoadShape, GrowthShape, PVSystem, Storage and AutoTrans remain uncatalogued; RegControl is scheduled for Phase 4 package 4.2, the others are pending an owner scope decision."
   ],
   "phase_2_remediation": [],
   "phase_status": {
     "phase_1": "complete",
     "phase_2": "complete",
     "phase_3": "complete",
-    "phase_4": "planned",
+    "phase_4": "in-progress",
     "phase_5": "planned"
   },
   "next_actions": [
-    "Resolve the remaining shared schema declarations for Capacitor array and write-path metadata: array_element_type, array_length, readback_type, dss_text_write, python_write_status, python_creation_status, python_method (Capacitor architect review O-1).",
-    "Plan the Phase 4 golden fixture set and harness: fixture layout, expected-value format, and the harness that compares them, agreed before the first fixture is added.",
-    "Decide the Phase 4 scope boundary for the deferred controller and class catalogs (CapControl, GenDispatcher, LoadShape, GrowthShape, PVSystem, Storage) and for AutoTrans."
+    "Deliver Phase 4 package 4.1 (fixture harness and snapshot goldens) per docs/handoffs/Phase_4_Fixture_Harness_Coder_handoff.md, then prepare independent QA/QC. Fixture source is pinned to electricdss-tst @ 3b20839.",
+    "Deliver Phase 4 package 4.2 (RegControl catalog) once the 4.1 goldens exist, because the goldens already carry regulator tap positions.",
+    "Decide and record the remaining deferred class catalogs (CapControl, GenDispatcher, LoadShape, GrowthShape, PVSystem, Storage) and AutoTrans: catalogue in a later package or record as out of scope."
   ]
 }
