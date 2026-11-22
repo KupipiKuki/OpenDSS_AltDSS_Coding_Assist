@@ -1,8 +1,8 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version** 0.19 (package 4 QA passed; package 5 handoff prepared)
+**Plan version** 0.20 (package 4 reviewed; owner disposition pending)
 **Plan date:** 2026-11-21
-**Current phase** Phase 3B package 4 (Load). The owner accepted package 3. Package 4 passed coder validation and awaits independent QA/QC and architect review.
+**Current phase** Phase 3B package 4 (Load). The owner accepted package 3. Package 4 passed coder validation, independent QA/QC, and architect review; owner disposition precedes package 5 coding.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
 **Controlling documents:** [Project charter](phase_1/OpenDSS_AltDSS_Library_Charter.md) (build sequence and stop gate) · [Package manifest](../opendss_altdss_library/manifest.json) (machine-readable state) · this plan (work sequencing and gates)
 
@@ -103,7 +103,7 @@ Package 2 has its Circuit command and Vsource catalog, two executed examples, an
 
 Package 3 adds Transformer and XfmrCode for two- and three-winding models, two executed examples, and a runtime matrix. Independent QA/QC and the architect review passed; the review found and corrected one citation that ran past the end of `PDClass.pas` (E-1) and recorded one harness attribution issue (E-2). The owner accepted package 3 on 2026-11-21 and directed package 4, whose coder handoff is issued: [Load coder handoff](handoffs/Phase_3B_Load_Coder_handoff.md). Package 4 covers the `Load` element with the five engine load-specification families as its centerpiece; the `LoadShape` and `GrowthShape` property catalogs are recorded as deferred class catalogs. [Build audit](audits/phase3b_transformer_audit.md) · [QA/QC report](audits/phase3b_transformer_qaqc.md) · [Architect/auditor review](audits/phase3b_transformer_architect_audit.md)
 
-Package 4 adds the 43-row Load catalog, Python and DSS examples, and a readback matrix covering all five load-specification families and assignment effects. Independent QA/QC and architect review precede owner disposition and the start of package 5. [Build audit](audits/phase3b_load_audit.md) · [QA/QC handoff](handoffs/Phase_3B_Load_QAQC_handoff.md)
+Package 4 adds the 43-row Load catalog, Python and DSS examples, and a readback matrix covering all five load-specification families and assignment effects. Independent QA/QC and the architect review both passed with no required corrections to the package; the review re-derived the coverage, citations, defaults, and traps, corrected one architect-owned handoff statement (A-1, the edit-context dependency of attribute writes), and recorded two schema and labelling observations (O-1, O-3). Owner disposition precedes package 5 coding. [Build audit](audits/phase3b_load_audit.md) · [QA/QC report](audits/phase3b_load_qaqc.md) · [Architect/auditor review](audits/phase3b_load_architect_audit.md)
 
 Package 5 covers the Capacitor element, whose defining difficulties are the three capacitance specification families, the array-over-`NumSteps` shape of six properties, and the removal of the entire v6-era property set in the pinned engine. At owner direction the coder handoff was prepared before package 4 was accepted, from an independent read of the pinned sources; coding remains gated on that acceptance. `CapControl` is recorded as a deferred controller catalog. [Capacitor coder handoff](handoffs/Phase_3B_Capacitor_Coder_handoff.md)
 
@@ -255,6 +255,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.17 | 2026-11-21 | Added the Load catalog, workflow, examples, and pinned readback matrix. Recorded coder validation and prepared independent QA/QC. |
 | 0.18 | 2026-11-21 | Prepared the package-5 (Capacitor) coder handoff at owner direction, ahead of package 4 acceptance, from an independent read of `src/PDElements/Capacitor.pas` and `altdss/Capacitor.py`. Records the 21-key wrapper surface against the 13-member engine enum, the three capacitance families, the array-over-`NumSteps` properties, and the verified traps (deleted v6 property set, `Cuf`-family rating anomaly, `States` write path, `Like` read-only, `NormAmps` stickiness). |
 | 0.19 | 2026-11-21 | Corrected the Load handoff's property-vocabulary citation: `Properties17.html` is the Fault page, and the Load vocabulary page is `Properties7.html` (`ZIPV`, `kWhDays`, 13 `Load` mentions in the raw HTML), as the package-4 reviewer flagged. Identified `Properties12.html` as the Capacitor vocabulary page by a token scan of `Properties1..40.html` and added it to the Capacitor handoff. |
+| 0.20 | 2026-11-21 | Recorded the Phase 3B package-4 dispositions: independent QA/QC passed with no blocking findings and no required corrections, and the architect review re-derived the wrapper and engine coverage, all 209 citations, the defaults, and the trap set on a clean environment, then corrected one architect-owned handoff statement about the attribute-write behaviour (A-1) and recorded two observations (O-1 unvalidated row fields, O-3 correct use of not-run). |
 
 ## 11. Owner decisions
 

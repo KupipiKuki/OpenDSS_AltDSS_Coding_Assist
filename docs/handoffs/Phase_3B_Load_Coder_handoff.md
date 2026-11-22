@@ -94,7 +94,13 @@ Reproduce each in your environment and record it; do not copy these numbers with
 12. **`VMinNorm`/`VMinEmerg` default to 0**, which means the circuit's values apply.
 13. **The load uses `Spectrum.defaultload`**, which is a different default object from Vsource's `defaultvsource`.
 14. **`kV` and `Bus1` are `Required` in the engine; the power inputs are `RequiredInSpecSet`.** Use the Line/Vsource convention: `required_properties` records identity plus required model inputs, and the conditional entries record the five families.
-15. **Attribute assignment does not recompute the derived fields the way a single construction does.** Setting `kW` and `PF` as separate attribute writes on an existing load left the *derived* values stale: `b.kW = 50.0; b.PF = 0.9` gave kW 50, **kvar 5.3974, kVA 11.3636** (the constructor's values), while `Load.new("a", kW=50, PF=0.9)` and `New Load... kW=50 PF=0.9` both give kvar 24.2161 and kVA 55.5556. The reverse order (`PF` then `kW`) behaved the same way. Later writes to `kvar` or `kVA` did recompute. Treat this as a probe requirement: demonstrate the divergence and tell users to specify a family in one `new(...)` call or one text command, then read back to confirm. Do not claim a recompute on the attribute path.
+15. **Attribute writes do not recompute derived fields while an edit context is open.** The effect is an edit-state effect, not an attribute-versus-kwargs effect; three cases were measured:
+
+    - `l = Load.new("a")` (the constructor leaves the edit open), then `l.kW = 50.0; l.PF = 0.9` → kW 50, **kvar 5.3974, kVA 11.3636**, the constructor values. Reverse order behaves the same.
+    - `l = Load.new("a"); l.end_edit()`, then `l.kW = 50.0` → kvar 26.9871 at the current PF 0.88; a following `l.PF = 0.9` → kvar 24.2161, kVA 55.5556. Writes after finalization recompute normally.
+    - `l = Load.new("a", begin_edit=False)`, then `l.kW = 50.0; l.PF = 0.9` → kvar 5.3974 persists with **no later recovery** on attribute writes.
+
+    A load constructed with completed kwargs (`Load.new("b", kW=12, PF=0.9)`), or one created by a DSS text command, refreshes on individual writes (`b.kW = 50.0` → kvar 24.2161, kVA 55.5556). Tell users to specify a family in one `new(...)` call, one text command, or to `end_edit()` before reading derived values, and never to rely on `begin_edit=False` plus attribute writes. Do not claim a recompute on the open-edit attribute path.
 
 ## Required approach
 
