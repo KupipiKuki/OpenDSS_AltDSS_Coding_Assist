@@ -133,6 +133,8 @@ Rules:
 - **Stored precision** is full `repr` float precision. Comparison applies the tolerance; the file is not pre-rounded, so a later tolerance change does not require regenerating goldens.
 - **Solver options and engine versions are data**, not commentary. Any change to mode, tolerance, iterations, control settings, or base frequency is a new `golden_revision`.
 - `update_reason` records the owner-approved justification for the revision that produced the file.
+- **`losses_kw_kvar` is the engine's `Losses()` converted from W/var to kW/kvar, not a dissipation figure.** For power-conversion elements and the source it equals the element's own power: in the ieee13 golden a load records 3454.66 kW, a capacitor bank −685.95 kvar and the source −3567.05 kW. Only passive elements contribute to dissipation, which is why line losses (106.48 kW) plus transformer losses (5.91 kW) equal `totals.losses_kw` (112.39 kW) while the sum over all elements is about zero. **`totals.losses_kw` is the only dissipation figure**; do not read a per-element `losses_kw_kvar` as energy lost in that element. *(Added by the package 4.1 architect review, finding E-1.)*
+- **`elements` includes control objects.** `RegControl` entries appear with zero powers because `NumCircuitElements` counts them: the ieee13 golden's 38 entries are 12 lines, 5 transformers, 15 loads, 2 capacitors, **3 RegControls** and 1 Vsource. Regulator taps are also recorded under `controls`. *(Package 4.1 architect review, O-1.)*
 
 ## 6. Tolerances
 
@@ -145,6 +147,8 @@ Rules:
 | Integer and enum quantities (tap steps, capacitor states, iteration counts) | exact | — |
 
 Same engine on the same platform should reproduce to about `1e-9`; `1e-6` leaves headroom for platform floating-point differences without hiding a real regression. Any wider tolerance requires a written reason in the fixture record — a tolerance is a claim, so it is documented like one.
+
+Two `environment` keys are deliberately **excluded** from comparison: `python_version` and `platform`. They are recorded in the golden and printed in the report so drift is visible, but they do not fail a run, because the pins that reproducibility depends on are the engine and wrapper versions, which are compared exactly and also re-checked against `manifest.json` before compiling. A change of interpreter therefore passes with the difference visible in the report rather than silently. *(Package 4.1 architect review, O-2.)*
 
 ## 7. Harness contract
 

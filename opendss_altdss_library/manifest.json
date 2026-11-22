@@ -40,9 +40,9 @@
     "catalogs": "schemas/catalogs/"
   },
   "validation": {
-    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC and required corrections are applied. The owner accepted Phase 3B packages 1 through 6, closing the Phase 3 exit gate. Package 6 (Generator) was accepted after its two non-blocking architect findings were applied (E-1 silent numeric enum text writes documented for DispMode and Status; E-2 EPRI default divergences disclosed for Vminpu, Vmaxpu and Xdp), and its five architect handoff corrections (A-1 to A-5) were applied to the handoff. O-1 remains open for Capacitor only; Load and Generator rows are fully declared.",
+    "source_review": "Line/LineCode, Phase 3A and Phase 3B packages 1 through 6 passed independent QA/QC and architect review and are accepted. Phase 4 package 4.1 (fixture harness and snapshot goldens) passed coder validation, independent QA/QC (PASS, no required corrections) and the architect review (PASS WITH FINDINGS: E-1 per-element loss semantics clarified in the Phase 4 design, O-1 to O-4 recorded) and awaits the owner's disposition. Fixture inputs are byte-identical to electricdss-tst @ 3b20839 in both the working tree and the repository blobs, and both revision 1 goldens reproduce on the pinned stack.",
     "schema_validation": "The Generator validation run passed 15/15 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0); the architect review re-ran it at the same result on 2026-11-21 local.",
-    "runtime": "All 14 catalogued examples passed on Windows 11 AMD64 with Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, and backend 0.14.5; the architect review re-ran the harness and reproduced the package-6 matrix identically, including the environment block. Phase 3B packages 1 through 6 have readback matrices."
+    "runtime": "All 14 catalogued examples passed on the pinned stack, and both IEEE snapshot fixtures pass against their revision 1 goldens (ieee13: 16 buses, 38 elements, 2 total iterations; ieee34: 37 buses, 117 elements, 25 total and 6 control iterations). The architect review re-ran both harnesses at 2026-11-21 local and reproduced the recorded golden hashes."
   },
   "known_gaps": [
     "Three catalog files are still empty pending later phases: opendss_objects, python_interface_comparison, troubleshooting.",
@@ -71,8 +71,9 @@
     "phase_5": "planned"
   },
   "next_actions": [
-    "Deliver Phase 4 package 4.1 (fixture harness and snapshot goldens) per docs/handoffs/Phase_4_Fixture_Harness_Coder_handoff.md, then prepare independent QA/QC. Fixture source is pinned to electricdss-tst @ 3b20839.",
-    "Deliver Phase 4 package 4.2 (RegControl catalog) once the 4.1 goldens exist, because the goldens already carry regulator tap positions.",
+    "Disposition Phase 4 package 4.1 (fixture harness and snapshot goldens). Independent QA/QC and the architect review both report pass; the only finding, E-1, was closed in the Phase 4 design, so no package change is required unless the owner wants a dissipation-only per-element field as a new golden revision.",
+    "Deliver Phase 4 package 4.2 (RegControl catalog) per the Phase 3 six-artifact template, then independent QA/QC; the goldens already carry regulator tap positions for both fixtures.",
+    "Deliver phase 4 packages 4.3 (daily time series on ieee13), 4.4 (cross-interface tool with opendssdirect 0.9.4) and 4.5 (exit: troubleshooting.json, manifest and documentation reconciliation).",
     "Decide and record the remaining deferred class catalogs (CapControl, GenDispatcher, LoadShape, GrowthShape, PVSystem, Storage) and AutoTrans: catalogue in a later package or record as out of scope."
   ]
 }
