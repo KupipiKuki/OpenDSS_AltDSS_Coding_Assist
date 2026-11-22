@@ -38,7 +38,7 @@
     "catalogs": "schemas/catalogs/"
   },
   "validation": {
-    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC and required corrections are applied. The owner accepted Phase 3B packages 1 through 3 after independent QA/QC and architect review. Package 4 (Load) passed independent QA/QC with no blocking findings and the architect review with no required corrections to the package; that review corrected one architect-owned handoff statement (A-1) and recorded two observations (O-1, O-3). Package 5 (Capacitor) handoff is prepared from an independent read of the pinned sources and is gated on package 4 acceptance.",
+    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC and required corrections are applied. The owner accepted Phase 3B packages 1 through 4 after independent QA/QC and architect review. Package 4 (Load) passed both reviews with no required corrections to the package; that review corrected one architect-owned handoff statement (A-1) and recorded two observations (O-1, O-3). Package 5 (Capacitor) is released to the coder with an issued handoff.",
     "schema_validation": "tools/validate_catalogs.py passed 13/13 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0) on 2026-11-21.",
     "runtime": "All ten catalogued examples ran successfully on 2026-11-21 on Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, and backend 0.14.5. Phase 3B packages 1 through 4 have readback matrices; the package-4 matrix was re-run by the architect review and matched the committed file apart from the environment block."
   },
@@ -66,9 +66,8 @@
     "phase_5": "planned"
   },
   "next_actions": [
-    "Record the owner's disposition for Phase 3B package 4 (Load); independent QA/QC and the architect review both passed with no required corrections to the package.",
-    "Deliver Phase 3B package 5 (Capacitor) per docs/handoffs/Phase_3B_Capacitor_Coder_handoff.md once the owner accepts package 4.",
-    "Declare enum_type and reference_class in the shared element schema, or drop them, so the Load row fields stop being unvalidated (architect audit O-1).",
+    "Deliver Phase 3B package 5 (Capacitor) per docs/handoffs/Phase_3B_Capacitor_Coder_handoff.md, then independent QA/QC and architect review.",
+    "Declare enum_type and reference_class in the shared element schema, or drop them, so the Load row fields stop being unvalidated (load architect audit O-1).",
     "Draft the Phase 4 golden fixture layout and harness before the first fixture is added."
   ]
 }
