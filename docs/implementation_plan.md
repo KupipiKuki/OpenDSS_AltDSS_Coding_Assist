@@ -1,6 +1,6 @@
 # Implementation Plan — OpenDSS and AltDSS Reference Library
 
-**Plan version** 0.22 (Phase 3B package 5 ready for independent QA/QC)
+**Plan version** 0.23 (package 5 awaiting review; package 6 handoff prepared)
 **Plan date:** 2026-11-21
 **Current phase** Phase 3B package 5 (Capacitor). The owner accepted package 4. Package 5 passed coder validation and awaits independent QA/QC and architect review.
 **Target stack:** AltDSS-Python `0.2.4`, DSS-Python `0.15.7`, DSS C-API backend `0.14.5` (beta line documented as future compatibility only)
@@ -106,6 +106,8 @@ Package 3 adds Transformer and XfmrCode for two- and three-winding models, two e
 Package 4 adds the 43-row Load catalog, Python and DSS examples, and a readback matrix covering all five load-specification families and assignment effects. Independent QA/QC and the architect review both passed with no required corrections to the package; the review re-derived the coverage, citations, defaults, and traps, corrected one architect-owned handoff statement (A-1, the edit-context dependency of attribute writes), and recorded two schema and labelling observations (O-1, O-3). The owner accepted package 4 on 2026-11-21 and released package 5. [Build audit](audits/phase3b_load_audit.md) · [QA/QC report](audits/phase3b_load_qaqc.md) · [Architect/auditor review](audits/phase3b_load_architect_audit.md)
 
 Package 5 adds the 22-row Capacitor catalog, Python and DSS examples, and a readback matrix for three capacitance families, step arrays, topology, and solved switching. CapControl remains a deferred controller catalog. Independent QA/QC and architect review precede owner disposition and the start of package 6. [Coder handoff](handoffs/Phase_3B_Capacitor_Coder_handoff.md) · [Build audit](audits/phase3b_capacitor_audit.md) · [QA/QC handoff](handoffs/Phase_3B_Capacitor_QAQC_handoff.md)
+
+Package 6 covers the Generator element, the last of the six. Its defining difficulties are that `kVA` and `MVA` are machine ratings rather than power specifications, that the wrapper readbacks are scheduled setpoints while the solved injection appears only in terminal powers with a negative sign, and that `DispMode`, `DispValue`, `Status`, `ForceOn`, and `PVFactor` act only through the deferred `GenDispatcher` control. At owner direction the handoff was prepared before package 5 was reviewed, from an independent read of `src/PCElements/generator.pas` and `altdss/Generator.py`; coding remains gated on that review. [Generator coder handoff](handoffs/Phase_3B_Generator_Coder_handoff.md)
 
 ### 5.4 Element package template (definition of done)
 
@@ -258,6 +260,7 @@ Both new tools read the pinned environment and refuse to run when installed vers
 | 0.20 | 2026-11-21 | Recorded the Phase 3B package-4 dispositions: independent QA/QC passed with no blocking findings and no required corrections, and the architect review re-derived the wrapper and engine coverage, all 209 citations, the defaults, and the trap set on a clean environment, then corrected one architect-owned handoff statement about the attribute-write behaviour (A-1) and recorded two observations (O-1 unvalidated row fields, O-3 correct use of not-run). |
 | 0.21 | 2026-11-21 | Recorded the owner's acceptance of Phase 3B package 4 (Load) after coder validation, independent QA/QC (PASS, no blocking findings), and the architect review (PASS, A-1 applied, O-1/O-2/O-3 recorded), and released package 5 (Capacitor) to the coder per the issued handoff. |
 | 0.22 | 2026-11-21 | Added the Capacitor catalog, workflow, examples, and solved readbacks. Recorded coder validation and prepared independent QA/QC. |
+| 0.23 | 2026-11-21 | Prepared the package-6 (Generator) coder handoff at owner direction, ahead of package 5 review, from an independent read of `src/PCElements/generator.pas` and `altdss/Generator.py`. Records the 47-key wrapper surface against the 44-member engine enum (the wrapper omits the text-only `MVA`), the rating-versus-specification distinction, the scheduled-versus-solved reactive behavior, and 21 verified traps, including the inverted EPRI page naming and the `Model` 6 DLL requirement. |
 
 ## 11. Owner decisions
 
@@ -270,4 +273,5 @@ Both new tools read the pinned environment and refuse to run when installed vers
 7. **Phase 3B package 3 acceptance — resolved 2026-11-21.** Owner accepted package 3 after independent QA/QC (PASS, no blocking findings) and the architect/auditor review (PASS, correction E-1 applied, observation E-2 recorded), and directed package 4 (Load). `LoadShape` and `GrowthShape` property catalogs are deferred; the package-4 catalog covers the `Load` element and its shape-assignment behavior only.
 8. **Phase 3B package 5 preparation — resolved 2026-11-21.** Owner directed the Capacitor package to be prepared while package 4 awaited review. The coder handoff is issued, but coding remains gated on the owner's disposition of package 4; `CapControl` remains a deferred controller catalog.
 9. **Phase 3B package 4 acceptance — resolved 2026-11-21.** Owner accepted package 4 after coder validation, independent QA/QC (PASS, no blocking findings, no required corrections), and the architect review (PASS, correction A-1 applied to the architect-owned handoff, observations O-1 to O-3 recorded), and released package 5 (Capacitor). The schema declaration of `enum_type` and `reference_class` (O-1) remains an open follow-up.
+10. **Phase 3B package 6 preparation — resolved 2026-11-21.** Owner directed the Generator package to be prepared while package 5 was in progress. The coder handoff is issued, but coding remains gated on the owner's disposition of package 5. `GenDispatcher` and the other controller catalogs, `PVSystem`, and `Storage` remain deferred.
 

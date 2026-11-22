@@ -39,7 +39,7 @@
     "catalogs": "schemas/catalogs/"
   },
   "validation": {
-    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC and required corrections are applied. The owner accepted Phase 3B packages 1 through 4 after independent QA/QC and architect review. Package 5 (Capacitor) passed coder validation and awaits independent QA/QC and architect review.",
+    "source_review": "Line/LineCode and Phase 3A passed independent QA/QC and required corrections are applied. The owner accepted Phase 3B packages 1 through 4 after independent QA/QC and architect review. Package 5 (Capacitor) passed coder validation and awaits independent QA/QC and architect review. Package 6 (Generator) handoff is prepared from an independent read of the pinned sources and is gated on package 5 disposition.",
     "schema_validation": "tools/validate_catalogs.py passed 14/14 manifest and catalog schema pairs (Draft 2020-12 with format checking, jsonschema 4.26.0) on 2026-11-21.",
     "runtime": "All 12 catalogued examples ran successfully on 2026-11-21 on Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, and backend 0.14.5. Phase 3B packages 1 through 5 have readback matrices covering their catalogued fields and focused behavior probes."
   },
@@ -56,7 +56,9 @@
     "The legacy line catalog and builder are retained for provenance and are not active inputs.",
     "CapControl is a deferred controller catalog. The Capacitor package covers the Capacitor element and the States control hook only.",
     "The Capacitor element has no Spectrum property, unlike Load and Vsource.",
-    "element_properties.schema.json allows undeclared row fields, so the Load catalog's enum_type and reference_class entries are unvalidated until the shared schema declares them (phase3b_load_architect_audit O-1)."
+    "element_properties.schema.json allows undeclared row fields, so the Load catalog's enum_type and reference_class entries are unvalidated until the shared schema declares them (phase3b_load_architect_audit O-1).",
+    "GenDispatcher, CapControl, InvControl, PVSystem and Storage are deferred controller or element catalogs; the element packages cover element behavior and control hooks only.",
+    "Generator dispatch properties (DispMode, DispValue, Status, ForceOn, PVFactor) act through the deferred GenDispatcher control, so their effects are source-described rather than runtime-demonstrated."
   ],
   "phase_2_remediation": [],
   "phase_status": {
@@ -67,7 +69,8 @@
     "phase_5": "planned"
   },
   "next_actions": [
-    "Review Phase 3B package 5 (Capacitor) per docs/handoffs/Phase_3B_Capacitor_QAQC_handoff.md. Independent QA/QC and architect review precede owner disposition and package 6.",
+    "Review Phase 3B package 5 (Capacitor) per docs/handoffs/Phase_3B_Capacitor_QAQC_handoff.md; independent QA/QC and architect review precede owner disposition.",
+    "Deliver Phase 3B package 6 (Generator) per docs/handoffs/Phase_3B_Generator_Coder_handoff.md once the owner dispositions package 5.",
     "Declare enum_type and reference_class in the shared element schema, or drop them, so the Load row fields stop being unvalidated (load architect audit O-1).",
     "Draft the Phase 4 golden fixture layout and harness before the first fixture is added."
   ]
