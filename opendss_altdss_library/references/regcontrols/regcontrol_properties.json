@@ -1,0 +1,649 @@
+[
+  {
+    "element_class": "RegControl",
+    "epri_doc_url": "https://opendss.epri.com/RegControl.html",
+    "properties": [
+      {
+        "name": "transformer",
+        "data_type": "variant",
+        "default_value": null,
+        "description": "Required reference to a previously defined Transformer. The engine proxy also accepts AutoTrans, which is outside this package. Python reads a typed element reference. Missing or unresolved names surface error #124.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Transformer",
+        "reference_class": "Transformer",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L608",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L253-L266",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L305-L310",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L406-L413",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L580-L635",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L114-L146",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "winding",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "1-based monitored transformer winding. Writing it resets TapWinding to the same value. A winding beyond the target's terminal count raises #122.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Winding",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L609",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L333-L335",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L414-L418",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L537-L539",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L606-L625",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L148-L158",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "vreg",
+        "data_type": "real",
+        "default_value": 120,
+        "description": "Forward-mode setpoint in volts on the PT secondary side. Use the exact Python spelling VReg. In the normal local path the controller compares winding voltage divided by PTRatio, with any line-drop adjustment.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "VReg",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L610",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L348-L350",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1013-L1018",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1036-L1083",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L161-L171",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "band",
+        "data_type": "real",
+        "default_value": 3,
+        "description": "Total forward-mode regulation bandwidth in PT-side volts. The controller tests whether the magnitude of voltage error exceeds half this width.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Band",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L611",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L352",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1061-L1084",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "ptratio",
+        "data_type": "real",
+        "default_value": 60,
+        "description": "Ratio of monitored winding voltage to regulator PT-side voltage. Every write reinitializes RemotePTRatio. Set PTRatio before a distinct remote ratio.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "PTRatio",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L612",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L352-L356",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L419-L420",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1012-L1018",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "ctprim",
+        "data_type": "real",
+        "default_value": 300,
+        "description": "Primary CT rating in amperes. The local line-drop calculation divides the monitored phase current by CTPrim before applying compensation.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "CTPrim",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L613",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L355-L356",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1036-L1048",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "r",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Forward resistive line-drop compensation in volts at rated control current. Used with X in the local R/X compensation branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "R",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L614",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L358-L359",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L571-L578",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1036-L1049",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "x",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Forward reactive line-drop compensation in volts at rated control current. Used with R in the local R/X compensation branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "X",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L615",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L358-L359",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L571-L578",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1036-L1049",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "bus",
+        "data_type": "string",
+        "default_value": "",
+        "description": "Optional remote regulated bus and node. An empty string monitors the specified winding. A nonempty bus selects remote sensing through RemotePTRatio and allocates one phase and two conductors.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Bus",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L616",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L344-L346",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L575-L604",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L618-L625",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L992-L1018",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "delay",
+        "data_type": "real",
+        "default_value": 15,
+        "description": "Initial delay in seconds before the first queued tap correction. InverseTime can shorten the effective delay for larger voltage errors.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Delay",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L617",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L361-L362",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1292-L1298",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1105-L1115",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "reversible",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Allows automatic reverse-mode operation after the configured power threshold and persistence delay in the local sensing branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Reversible",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L618",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L319-L331",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L890-L950",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "revvreg",
+        "data_type": "real",
+        "default_value": 120,
+        "description": "Reverse or cogeneration setpoint in PT-side volts. Use the exact Python spelling RevVReg.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RevVReg",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L619",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L364-L367",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1061-L1079",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "revband",
+        "data_type": "real",
+        "default_value": 3,
+        "description": "Total reverse or cogeneration bandwidth in PT-side volts. The trigger uses half this value on either side of RevVReg.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RevBand",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L620",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L364-L367",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1061-L1084",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "revr",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Resistive line-drop compensation for reverse or cogeneration mode, in volts at rated control current under the R/X branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RevR",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L621",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L364-L367",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1036-L1049",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "revx",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Reactive line-drop compensation for reverse or cogeneration mode, in volts at rated control current under the R/X branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RevX",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L622",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L364-L367",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1036-L1049",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "tapdelay",
+        "data_type": "real",
+        "default_value": 2,
+        "description": "Seconds between successive queued tap changes in event and time-driven control paths.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "TapDelay",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L623",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L369-L370",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L781-L811",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "debugtrace",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Enables a per-regulator REG_<name>.csv debug trace in the DSS output directory.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "DebugTrace",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L624",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L319-L331",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L421-L432",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "maxtapchange",
+        "data_type": "integer",
+        "default_value": 16,
+        "description": "Maximum tap steps per control iteration in static mode. Zero disables sampling for tap changes. A limit of one starting from neutral exceeded the fixture's control-iteration budget in the pinned probe.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "MaxTapChange",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L625",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L337-L338",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L433-L434",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L700-L724",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L881-L888",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "inversetime",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Reduces the first tap delay as the voltage error increases. The delay is bounded by the engine's inverse-time factor.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "InverseTime",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L626",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L319-L331",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1292-L1298",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "tapwinding",
+        "data_type": "integer",
+        "default_value": null,
+        "description": "1-based winding whose tap is moved. It initially follows Winding and is reassigned whenever Winding is written. Set a different TapWinding after Winding.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "TapWinding",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L627",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L340-L342",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L414-L418",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L537-L539",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1140-L1162",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1245-L1262",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "vlimit",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Local terminal voltage ceiling in PT-side volts. Zero disables the ceiling. When remote sensing is active, the controller still uses the locally monitored winding for this limit.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "VLimit",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L628",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L384-L385",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1020-L1034",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1086-L1099",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "ptphase",
+        "data_type": "integer",
+        "default_value": 1,
+        "description": "Hybrid selector for the voltage buffer. A positive integer indexes VBuffer and reads back as int. The named selections min and max read back as RegControlPhaseSelection members (-3 and -2). Use an index that exists for the monitored winding. Use index 1 for the single-phase remote sensing path.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "PTPhase",
+        "enum_type": "RegControlPhaseSelection",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L629",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L253-L262",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L300-L303",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L590-L603",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L639-L680",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L992-L1018",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L412-L429",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L440-L443",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "revthreshold",
+        "data_type": "real",
+        "default_value": 100,
+        "description": "Reverse power threshold in kW. The engine converts it to watts for comparison against the monitored winding power.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RevThreshold",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L630",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L378-L379",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L435-L436",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L903-L920",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "revdelay",
+        "data_type": "real",
+        "default_value": 60,
+        "description": "Seconds that the reverse power condition must persist before the queued mode transition.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RevDelay",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L631",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L381-L382",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L903-L929",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "revneutral",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Requests neutral tap in the reverse or cogeneration control branch when that branch evaluates the flag.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RevNeutral",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L632",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L319-L331",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L964-L985",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "eventlog",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Writes regulator tap-change events to the circuit event log when enabled.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "EventLog",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L633",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L319-L331",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L768-L789",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "remoteptratio",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Remote-bus voltage to PT-side voltage ratio. Initialized from PTRatio and reset by later PTRatio writes. Apply a distinct remote ratio last.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "RemotePTRatio",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L634",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L372-L373",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L419-L420",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L499-L503",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L992-L1013",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "tapnum",
+        "data_type": "integer",
+        "default_value": null,
+        "description": "Signed integer step count measured from the tapped winding's midrange. A write moves TapWinding through the transformer's PresentTap setter, which clamps to winding limits. A subsequent controlled Solve can select a different tap. ControlMode=Off or SolveNoControl held the written tap in the pinned solves.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "TapNum",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L635",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L312-L317",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1145-L1162",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1245-L1262",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L748-L778",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1391-L1426",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L507-L520",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "reset",
+        "data_type": "boolean",
+        "default_value": null,
+        "description": "Boolean control action. Call regulator.Reset() or use DSS Reset=yes. It clears pending tap movement and disarms the control. It left the transformer tap unchanged in the probe. Passing Reset as a Python creation keyword raises AttributeError.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Reset",
+        "python_creation_status": "Raises AttributeError in the pinned constructor path",
+        "python_method": "Reset",
+        "dss_text_write": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L636",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L285-L290",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L387-L389",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1233-L1237",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L523-L529",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L425"
+        ]
+      },
+      {
+        "name": "ldc_z",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Magnitude-only line-drop compensation in volts at rated control current. Positive LDC_Z activates this option and replaces the forward R/X branch for local sensing.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "LDC_Z",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L637",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L375-L376",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L571-L578",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1036-L1057",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "rev_z",
+        "data_type": "real",
+        "default_value": 0,
+        "description": "Reverse or cogeneration magnitude-only line-drop compensation in volts at rated control current. Used in the LDC_Z compensation branch.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Rev_Z",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L638",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L375-L376",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1042-L1057",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "cogen",
+        "data_type": "boolean",
+        "default_value": false,
+        "description": "Enables cogeneration behavior on reverse power. The engine can retain the forward tap-action direction and use reverse voltage and line-drop settings.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Cogen",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L639",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L319-L331",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L836-L855",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L890-L915",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1042-L1055",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L1061-L1079",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L486-L553"
+        ]
+      },
+      {
+        "name": "basefreq",
+        "data_type": "real",
+        "default_value": null,
+        "description": "Inherited base frequency in hertz. The fresh value follows the active circuit fundamental.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "BaseFreq",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L640",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L100",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205"
+        ]
+      },
+      {
+        "name": "enabled",
+        "data_type": "boolean",
+        "default_value": true,
+        "description": "Inherited switch for circuit participation. Disabling the regulator leaves the transformer in service and stops regulation by this controller.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Enabled",
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L641",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElementClass.pas#L89-L100",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/CktElement.pas#L165-L205",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/Solution.pas#L1974-L1985"
+        ]
+      },
+      {
+        "name": "like",
+        "data_type": "string",
+        "default_value": null,
+        "description": "Copy action. Use regulator.Like(name) or DSS Like=source. In the copy probe, voltage setpoint and bandwidth followed the source. Passing Like as a Python creation keyword raises AttributeError.",
+        "evidence_label": "Official-versioned",
+        "supported_in_target": true,
+        "altdss_keyword": "Like",
+        "python_creation_status": "Raises AttributeError in the pinned constructor path",
+        "python_method": "Like",
+        "dss_text_write": true,
+        "source_refs": [
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L642",
+          "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L441-L484",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py#L596-L604",
+          "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L425"
+        ]
+      }
+    ],
+    "required_properties": [
+      "name",
+      "transformer"
+    ],
+    "property_requirements": {
+      "required": [
+        "name",
+        "transformer"
+      ],
+      "conditional": [
+        {
+          "when": "monitoring a winding and moving taps on another winding",
+          "requirement_groups": [
+            [
+              "winding",
+              "tapwinding"
+            ]
+          ],
+          "notes": "Supply the Transformer first. Write Winding before TapWinding because Winding resets the tap selection.",
+          "source_refs": [
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L305-L310",
+            "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L406-L418",
+            "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/DSSObj.py#L414-L425"
+          ]
+        }
+      ]
+    },
+    "altdss_mapping": "ctx.RegControl.new(name, **properties) takes a separate object identifier. Read TapNum for the current tapped-winding step. Use Reset() and Like(name) as methods or DSS text actions.",
+    "evidence_label": "Official-versioned",
+    "target_versions": {
+      "altdss_python": "0.2.4",
+      "dss_python": "0.15.7",
+      "dss_python_backend": "0.14.5",
+      "dss_capi": "0.14.5",
+      "opendss_documentation": "EPRI online documentation is mixed-version"
+    },
+    "sources": [
+      {
+        "title": "EPRI OpenDSS RegControl",
+        "url": "https://opendss.epri.com/RegControl.html",
+        "accessed": "2026-11-22",
+        "scope": "Controller and wiring concepts."
+      },
+      {
+        "title": "EPRI RegControl properties",
+        "url": "https://opendss.epri.com/Properties23.html",
+        "accessed": "2026-11-22",
+        "scope": "RegControl vocabulary. Pinned source and runtime govern API details and defaults."
+      },
+      {
+        "title": "AltDSS-Python RegControl wrapper",
+        "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py",
+        "accessed": "2026-11-22",
+        "scope": "Creation arguments, properties, and action methods."
+      },
+      {
+        "title": "DSS C-API RegControl engine",
+        "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+        "accessed": "2026-11-22",
+        "scope": "Property table, wiring, control decisions, and tap handling."
+      }
+    ],
+    "target_support": {
+      "altdss_python": true,
+      "dss_text": true
+    },
+    "notes": [
+      "The 35 rows describe the advertised wrapper keywords. The required object name is a separate collection argument.",
+      "Null defaults include derived values, unset references, circuit-dependent values and actions. The matrix records the unbound initial readbacks.",
+      "RegControl is a controller. Its TotalPowers() zeros describe a non-injecting control object. Read the transformer for electrical power and RegControl.TapNum for the control result."
+    ]
+  }
+]

@@ -3013,5 +3013,365 @@
       "result": "pass"
     },
     "notes": []
+  },
+  {
+    "id": "capi-regcontrol-property-surface",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Property surface and defaults",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API RegControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+      "section_or_record": "Enum L69-L103; property table L253-L389; constructor L486-L553",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "RegControl with 32 local properties plus inherited BaseFreq, Enabled and Like.",
+    "arguments": null,
+    "returns_or_effects": "Defaults include VReg 120 V, Band 3 V, Winding 1, PTRatio 60, CTPrim 300 A, Delay 15 s, TapDelay 2 s and MaxTapChange 16.",
+    "errors_or_edge_cases": "AltDSS-Python exposes 35 creation keys. Use exact Python spellings VReg and RevVReg.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-binding-guards",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Transformer reference and winding errors",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API RegControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+      "section_or_record": "Proxy L253-L259; required reference L305-L310; recalculation L567-L637",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "Reference an existing Transformer or AutoTrans. Winding selects its monitored terminal.",
+    "arguments": null,
+    "returns_or_effects": "An unset, unknown or wrong-class name raised #124. A winding above the terminal count raised #122.",
+    "errors_or_edge_cases": "#123 is source-only for the supported reference paths. A bare Python creation can defer validation until solve, where the failure is #482.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-deferred-invalid-reference",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "First solve with an unbound regulator",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Solution.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/Solution.pas",
+      "section_or_record": "Solve exception handling L667-L680",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "An empty Python RegControl.new(name) creates an unbound control.",
+    "arguments": null,
+    "returns_or_effects": "Its first solve returned (#482) Error Encountered in Solve: Solution aborted.",
+    "errors_or_edge_cases": "Supply the transformer when creating the regulator.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-tap-winding",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Monitored and moved windings",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API RegControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+      "section_or_record": "Property writes L406-L420; tap setter L1245-L1262",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "Write Winding first and then TapWinding to move a different winding.",
+    "arguments": null,
+    "returns_or_effects": "Assigning Winding resets TapWinding to the same value. A TapNum write moved TapWinding and held the monitored winding's tap fixed in the split-winding probe.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-tap-number",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Immediate tap readback and bounds",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API RegControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+      "section_or_record": "Tap getter L1140-L1163; tap setter L1245-L1262",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "TapNum uses the tapped winding's step increment and tap-range midpoint.",
+    "arguments": null,
+    "returns_or_effects": "Transformer.PresentTap enforces winding bounds. Immediate IEEE 13 queries after +99 and -99 returned +16 and -16 respectively.",
+    "errors_or_edge_cases": "A later controlled solve can replace a manual step.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-tap-control-mode",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Controlled and controls-off solves",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Solution.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/Solution.pas",
+      "section_or_record": "Sample_DoControlActions L1996-L2004",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "A Static Solve() runs controls. ControlMode=Off bypasses control samples and actions.",
+    "arguments": null,
+    "returns_or_effects": "A manual IEEE 13 tap 5 returned to 9 under Static Solve() in 12 total iterations. Off preserved 5.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-solve-no-control",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "SolveNoControl and manual tap retention",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API CAPI_Solution.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/CAPI/CAPI_Solution.pas",
+      "section_or_record": "Solution_SolveNoControl L632-L638",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "AltDSS Solution.SolveNoControl() calls the circuit solve without a control pass.",
+    "arguments": null,
+    "returns_or_effects": "The IEEE 13 probe kept the manual tap 5 and the selected Static mode. ControlIterations retained its previous count.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-tap-step-limit",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Static tap step limit and solve guard",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API RegControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+      "section_or_record": "Property write L433-L436; static actions L700-L724 and L748-L779; sample gate L881-L888",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "MaxTapChange limits movements per control iteration in Static mode. Zero suppresses movement in that mode.",
+    "arguments": null,
+    "returns_or_effects": "Starting IEEE 13 at tap zero with MaxTapChange=1 hit #485. The default 16 reached tap 9 in 12 total iterations.",
+    "errors_or_edge_cases": "The guard depends on the fixture state and the control-iteration budget. See pinned Solution.pas L1170-L1215.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-sensing-ratios",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Local and remote PT ratios",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API RegControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+      "section_or_record": "Property writes L419-L420; sample L992-L1018",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "PTRatio scales local sensing. RemotePTRatio scales sensing on a remote regulated bus.",
+    "arguments": null,
+    "returns_or_effects": "A PTRatio write sets RemotePTRatio to the same value. Write the remote ratio last to keep distinct values.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-phase-selection",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "PT sample-buffer selection",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API RegControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+      "section_or_record": "Hybrid property L261-L266; local index check L595-L603; buffer selection L639-L680",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "PTPhase selects a positive voltage-buffer index or min (-3) / max (-2).",
+    "arguments": null,
+    "returns_or_effects": "The wrapper returned int for indices and RegControlPhaseSelection for min/max. Local index 4 on a three-phase probe reset to 1.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-remote-bus",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Remote voltage sensing topology",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API RegControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+      "section_or_record": "Recalculation L589-L605; sensing L992-L1018",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "Omit Bus to sense the monitored winding. Bus specifies a remote node for voltage sensing.",
+    "arguments": null,
+    "returns_or_effects": "A three-phase local controller switched to one phase and two conductors. Bus=634 on IEEE 13 with the default ratio drove the tap to 16.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-enabled",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Disabled control sampling",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API Solution.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/Solution.pas",
+      "section_or_record": "SampleControlDevices L1974-L1985",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "The solver samples enabled control devices.",
+    "arguments": null,
+    "returns_or_effects": "Changing VReg to 100 with Enabled=False left the IEEE 13 tap at 9 with the transformer operating.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-terminal-powers",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Non-injecting control object",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API ControlElem.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/ControlElem.pas",
+      "section_or_record": "GetCurrents, GetInjCurrents and CalcYPrim L166-L178",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "RegControl is a circuit element that supplies control actions. Generic control terminal currents are zero.",
+    "arguments": null,
+    "returns_or_effects": "RegControl.reg1 reported zero kW and kvar in IEEE 13. The controlled transformer reported electrical power at its terminals.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-actions",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Copy and reset actions",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API RegControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+      "section_or_record": "MakeLike L441-L484; Reset L1233-L1237",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "AltDSS methods Like(name) and Reset(); DSS text Like=source and Reset=yes.",
+    "arguments": null,
+    "returns_or_effects": "Like copied VReg and Band in both paths. Both reset paths left the manual tap at 4 on immediate readback.",
+    "errors_or_edge_cases": "Passing either method as an AltDSS creation keyword raises AttributeError.",
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5 (2026-11-22), RegControl readback matrix",
+      "result": "pass"
+    },
+    "notes": []
+  },
+  {
+    "id": "capi-regcontrol-reverse-and-compensation",
+    "kind": "api",
+    "namespace_or_type": "RegControl",
+    "name": "Reverse, cogen, compensation and timing",
+    "version_range": "0.14.5",
+    "evidence_level": "Official-versioned",
+    "source": {
+      "title": "DSS C-API RegControl.pas",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+      "section_or_record": "Reverse logic L836-L855 and L890-L989; compensation L1020-L1057; delay L1292-L1298",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "signature_or_shape": "The engine exposes reverse-power and cogen modes, voltage limiting, line-drop terms and control delays.",
+    "arguments": null,
+    "returns_or_effects": "The source defines those paths. The package exercises default forward voltage regulation and remote sensing.",
+    "errors_or_edge_cases": null,
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": null,
+      "result": "not-run"
+    },
+    "notes": []
   }
 ]

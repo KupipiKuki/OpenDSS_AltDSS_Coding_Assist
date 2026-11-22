@@ -1465,5 +1465,150 @@
       "BSD-3-Clause"
     ],
     "scope": "Byte-preserved IEEE 13-node and IEEE 34-node Mod 1 redirect closures. The upstream root license is retained in the fixture tree."
+  },
+  {
+    "id": "epri-regcontrol-element",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS RegControl element",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/RegControl.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-22",
+    "topics": [
+      "RegControl",
+      "wiring"
+    ],
+    "scope": "Controller and winding vocabulary."
+  },
+  {
+    "id": "epri-regcontrol-properties",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS RegControl properties",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Properties23.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-22",
+    "topics": [
+      "RegControl",
+      "properties"
+    ],
+    "scope": "Property terminology. Use pinned sources for wrapper spellings and version-specific behavior."
+  },
+  {
+    "id": "altdss-regcontrol-wrapper",
+    "kind": "source",
+    "title": "AltDSS-Python RegControl wrapper",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/RegControl.py",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "RegControl",
+      "creation keywords",
+      "action methods"
+    ],
+    "scope": "The TypedDict defines 35 keys. The collection exposes creation and the object supports callable Reset and Like methods."
+  },
+  {
+    "id": "altdss-regcontrol-phase-selection",
+    "kind": "source",
+    "title": "AltDSS-Python RegControl phase selection",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/enums.py#L440-L443",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "RegControl",
+      "PTPhase"
+    ],
+    "scope": "The enum covers min and max. Positive sample-buffer indices are ordinary integers."
+  },
+  {
+    "id": "capi-regcontrol-engine",
+    "kind": "source",
+    "title": "DSS C-API RegControl engine",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-22",
+    "topics": [
+      "RegControl",
+      "tap regulation",
+      "property defaults"
+    ],
+    "scope": "Engine property table, transformer binding, control algorithm and action functions."
+  },
+  {
+    "id": "capi-regcontrol-transformer-tap",
+    "kind": "source",
+    "title": "DSS C-API Transformer tap range",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Transformer.pas#L1391-L1426",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-22",
+    "topics": [
+      "Transformer",
+      "PresentTap",
+      "RegControl"
+    ],
+    "scope": "The selected winding bounds PresentTap by its min and max."
+  },
+  {
+    "id": "capi-control-terminal-currents",
+    "kind": "source",
+    "title": "DSS C-API control element electrical behavior",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/ControlElem.pas#L166-L178",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-22",
+    "topics": [
+      "RegControl",
+      "control elements",
+      "power"
+    ],
+    "scope": "Generic controls contribute zero terminal currents and no YPrim."
+  },
+  {
+    "id": "capi-solution-control-pass",
+    "kind": "source",
+    "title": "DSS C-API circuit control pass",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Common/Solution.pas#L1974-L2004",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-22",
+    "topics": [
+      "Solve",
+      "ControlMode",
+      "Enabled"
+    ],
+    "scope": "A disabled controller is excluded from sampling. ControlMode=Off bypasses control sampling and actions for the circuit."
+  },
+  {
+    "id": "capi-solution-solve-no-control",
+    "kind": "source",
+    "title": "DSS C-API SolveNoControl implementation",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/CAPI/CAPI_Solution.pas#L632-L638",
+    "version_or_ref": "DSS C-API 0.14.5",
+    "accessed": "2026-11-22",
+    "topics": [
+      "SolveNoControl",
+      "RegControl"
+    ],
+    "scope": "One power-flow call bypasses controls without changing the selected control mode."
+  },
+  {
+    "id": "altdss-solution-solve-no-control",
+    "kind": "source",
+    "title": "AltDSS-Python SolveNoControl entry point",
+    "publisher": "DSS-Extensions",
+    "url": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/Solution.py#L83-L90",
+    "version_or_ref": "AltDSS-Python 0.2.4",
+    "accessed": "2026-11-22",
+    "topics": [
+      "Solve",
+      "SolveNoControl"
+    ],
+    "scope": "The AltDSS Solution wrapper calls the corresponding DSS C-API entry points."
   }
 ]

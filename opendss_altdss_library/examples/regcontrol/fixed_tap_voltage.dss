@@ -1,0 +1,11 @@
+! This solve keeps the manual tap because controls are off.
+! The readback tool asserts tap 4 and a phase-1 PT voltage near 122.91429 V.
+New Circuit.regulator_fixed_tap BasekV=12.47 Bus1=source
+New Transformer.stepdown Phases=3 Windings=2 Buses=[source.1.2.3.0 secondary.1.2.3.0]
+~ Conns=[wye wye] kVs=[12.47 4.16] kVAs=[1000 1000] XHL=5
+New Load.fixture Bus1=secondary.1.2.3.0 Phases=3 Conn=wye kV=4.16 kW=100 kvar=20
+New RegControl.regulator Transformer=stepdown Winding=2 VReg=123 Band=2 PTRatio=20
+Set ControlMode=Off
+Edit RegControl.regulator TapNum=4
+Solve
+? RegControl.regulator.TapNum

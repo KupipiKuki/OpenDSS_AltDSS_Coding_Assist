@@ -375,5 +375,71 @@
       "date": "2026-11-21"
     },
     "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "regcontrol-controlled-voltage-altdss",
+    "task_description": "Run a Static controlled solve of a standalone transformer and load, and verify the selected tap and PT voltage.",
+    "language": "python_altdss",
+    "file": "examples/regcontrol/controlled_voltage.py",
+    "object_classes": [
+      "Circuit",
+      "Transformer",
+      "Load",
+      "RegControl"
+    ],
+    "dependencies": [
+      "DSS C-API 0.14.5",
+      "altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "altdss-regcontrol-wrapper",
+      "epri-regcontrol-element",
+      "capi-regcontrol-engine",
+      "capi-solution-control-pass"
+    ],
+    "expected_result": "TapNum is 3 and the phase-1 PT voltage is about 122.16480 V, within the 122–124 V band.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-22"
+    },
+    "evidence_label": "Observed-working"
+  },
+  {
+    "example_id": "regcontrol-fixed-tap-voltage-dss",
+    "task_description": "Write a manual tap on a standalone transformer and load, then solve with ControlMode=Off and query the tap.",
+    "language": "dss",
+    "file": "examples/regcontrol/fixed_tap_voltage.dss",
+    "object_classes": [
+      "Circuit",
+      "Transformer",
+      "Load",
+      "RegControl"
+    ],
+    "dependencies": [
+      "DSS C-API 0.14.5",
+      "For the Python runner: altdss==0.2.4, dss-python==0.15.7, dss-python-backend==0.14.5"
+    ],
+    "source_ids": [
+      "epri-dss-scripting",
+      "epri-regcontrol-element",
+      "capi-regcontrol-engine",
+      "capi-solution-control-pass"
+    ],
+    "expected_result": "The tap query returns 4. The dedicated RegControl readback asserts the tap and phase-1 PT voltage of about 122.91429 V.",
+    "execution_status": "Observed-working",
+    "environment": {
+      "python_version": "3.14.6",
+      "altdss_version": "0.2.4",
+      "dss_python_version": "0.15.7",
+      "backend_version": "0.14.5",
+      "platform": "Windows 11 AMD64",
+      "date": "2026-11-22"
+    },
+    "evidence_label": "Observed-working"
   }
 ]

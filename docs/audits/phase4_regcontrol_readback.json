@@ -1,0 +1,410 @@
+{
+  "environment": {
+    "python_version": "3.14.6",
+    "altdss_version": "0.2.4",
+    "dss_python_version": "0.15.7",
+    "backend_version": "0.14.5",
+    "platform": "Windows 11 AMD64",
+    "date": "2026-11-22"
+  },
+  "defaults": {
+    "Transformer": {
+      "status": "read back",
+      "type": "NoneType",
+      "value": null
+    },
+    "Winding": {
+      "status": "read back",
+      "type": "int",
+      "value": 1
+    },
+    "VReg": {
+      "status": "read back",
+      "type": "float",
+      "value": 120.0
+    },
+    "Band": {
+      "status": "read back",
+      "type": "float",
+      "value": 3.0
+    },
+    "PTRatio": {
+      "status": "read back",
+      "type": "float",
+      "value": 60.0
+    },
+    "CTPrim": {
+      "status": "read back",
+      "type": "float",
+      "value": 300.0
+    },
+    "R": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "X": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "Bus": {
+      "status": "read back",
+      "type": "str",
+      "value": ""
+    },
+    "Delay": {
+      "status": "read back",
+      "type": "float",
+      "value": 15.0
+    },
+    "Reversible": {
+      "status": "read back",
+      "type": "bool",
+      "value": false
+    },
+    "RevVReg": {
+      "status": "read back",
+      "type": "float",
+      "value": 120.0
+    },
+    "RevBand": {
+      "status": "read back",
+      "type": "float",
+      "value": 3.0
+    },
+    "RevR": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "RevX": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "TapDelay": {
+      "status": "read back",
+      "type": "float",
+      "value": 2.0
+    },
+    "DebugTrace": {
+      "status": "read back",
+      "type": "bool",
+      "value": false
+    },
+    "MaxTapChange": {
+      "status": "read back",
+      "type": "int",
+      "value": 16
+    },
+    "InverseTime": {
+      "status": "read back",
+      "type": "bool",
+      "value": false
+    },
+    "TapWinding": {
+      "status": "read back",
+      "type": "int",
+      "value": 1
+    },
+    "VLimit": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "PTPhase": {
+      "status": "read back",
+      "type": "int",
+      "value": 1
+    },
+    "RevThreshold": {
+      "status": "read back",
+      "type": "float",
+      "value": 100.0
+    },
+    "RevDelay": {
+      "status": "read back",
+      "type": "float",
+      "value": 60.0
+    },
+    "RevNeutral": {
+      "status": "read back",
+      "type": "bool",
+      "value": false
+    },
+    "EventLog": {
+      "status": "read back",
+      "type": "bool",
+      "value": false
+    },
+    "RemotePTRatio": {
+      "status": "read back",
+      "type": "float",
+      "value": 60.0
+    },
+    "TapNum": {
+      "status": "read back",
+      "type": "int",
+      "value": 0
+    },
+    "Reset": {
+      "status": "action",
+      "note": "Callable method with no property getter."
+    },
+    "LDC_Z": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "Rev_Z": {
+      "status": "read back",
+      "type": "float",
+      "value": 0.0
+    },
+    "Cogen": {
+      "status": "read back",
+      "type": "bool",
+      "value": false
+    },
+    "BaseFreq": {
+      "status": "read back",
+      "type": "float",
+      "value": 60.0
+    },
+    "Enabled": {
+      "status": "read back",
+      "type": "bool",
+      "value": true
+    },
+    "Like": {
+      "status": "action",
+      "note": "Callable method with no property getter."
+    }
+  },
+  "tap_paths": {
+    "controlled_solve": {
+      "initial_tap": 9,
+      "manual_tap": 5,
+      "tap": 9,
+      "control_mode": "Static",
+      "control_iterations": 3,
+      "total_iterations": 12
+    },
+    "control_mode_off": {
+      "initial_tap": 9,
+      "manual_tap": 5,
+      "tap": 5,
+      "control_mode": "Off",
+      "control_iterations": 1,
+      "total_iterations": 4
+    },
+    "solve_no_control": {
+      "initial_tap": 9,
+      "manual_tap": 5,
+      "tap": 5,
+      "control_mode": "Static",
+      "total_iterations": 4,
+      "retained_control_iterations": 3
+    }
+  },
+  "tap_range_and_winding": {
+    "clamping": {
+      "min_tap": 0.9,
+      "max_tap": 1.1,
+      "num_taps": 32,
+      "upper": {
+        "request": 99,
+        "tap": 16,
+        "present_tap": 1.1
+      },
+      "lower": {
+        "request": -99,
+        "tap": -16,
+        "present_tap": 0.9
+      }
+    },
+    "separate_windings": {
+      "monitored_winding": 2,
+      "tap_winding": 1,
+      "tap_command": 4,
+      "initial_winding_taps": [
+        1.0,
+        1.05625
+      ],
+      "after_command": [
+        1.025,
+        1.05625
+      ],
+      "tap_winding_after_reassign": 2
+    }
+  },
+  "max_tap_change": {
+    "manual_start_tap": 0,
+    "one_step": {
+      "max_tap_change": 1,
+      "max_control_iterations": 10,
+      "error": "(#485) Warning Max Control Iterations Exceeded.\r\nTip: Show Eventlog to debug control settings.",
+      "tap_at_error": 9,
+      "total_iterations": 35
+    },
+    "default_limit": {
+      "max_tap_change": 16,
+      "tap": 9,
+      "control_mode": "Static",
+      "control_iterations": 3,
+      "total_iterations": 12
+    }
+  },
+  "sensing": {
+    "ratio_columns": [
+      "PTRatio",
+      "RemotePTRatio"
+    ],
+    "after_remote_only": [
+      20.0,
+      10.0
+    ],
+    "after_ptratio": [
+      50.0,
+      50.0
+    ],
+    "after_ordered_edit": [
+      55.0,
+      12.0
+    ],
+    "pt_phase": {
+      "positive_index": {
+        "type": "int",
+        "value": 2
+      },
+      "min": {
+        "type": "RegControlPhaseSelection",
+        "value": -3,
+        "member": "min"
+      },
+      "max": {
+        "type": "RegControlPhaseSelection",
+        "value": -2,
+        "member": "max"
+      },
+      "out_of_range_positive": {
+        "written": 4,
+        "after_edit": 1
+      }
+    },
+    "topology_columns": [
+      "Bus",
+      "phases",
+      "conductors"
+    ],
+    "local_bus": [
+      "",
+      3,
+      3
+    ],
+    "remote_bus": [
+      "secondary.1",
+      1,
+      2
+    ],
+    "remote_ieee13": {
+      "bus": "634",
+      "tap": 16,
+      "control_mode": "Static",
+      "control_iterations": 2,
+      "total_iterations": 9
+    }
+  },
+  "enabled_and_power": {
+    "disabled": {
+      "initial_tap": 9,
+      "new_vreg": 100,
+      "enabled": false,
+      "tap": 9,
+      "control_mode": "Static",
+      "control_iterations": 1,
+      "total_iterations": 2
+    },
+    "element": "RegControl.reg1",
+    "control_terminal_power_kw_kvar": [
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "transformer_terminal_power_kw_kvar": [
+      [
+        1252.0076631337765,
+        684.9905131877356
+      ],
+      [
+        -1251.8855692506,
+        -684.8666548765879
+      ]
+    ]
+  },
+  "actions_and_casing": {
+    "voltage_fields": [
+      "VReg",
+      "Band"
+    ],
+    "before_copy": [
+      110.0,
+      3.0
+    ],
+    "python_like": [
+      122.0,
+      2.0
+    ],
+    "dss_like": [
+      122.0,
+      2.0
+    ],
+    "tap_before_and_after_reset": [
+      4,
+      4
+    ],
+    "errors": {
+      "Vreg": {
+        "attribute": "'RegControl' object has no attribute 'Vreg'",
+        "constructor": "'RegControl' object has no attribute 'Vreg' and no __dict__ for setting new attributes"
+      },
+      "RevVreg": {
+        "attribute": "'RegControl' object has no attribute 'RevVreg'",
+        "constructor": "'RegControl' object has no attribute 'RevVreg' and no __dict__ for setting new attributes"
+      },
+      "Like": "'RegControl' object attribute 'Like' is read-only",
+      "Reset": "'RegControl' object attribute 'Reset' is read-only"
+    }
+  },
+  "guards": {
+    "observed_errors": {
+      "missing": "(#124) Error 124 Reported From OpenDSS Intrinsic Function: \r\nRegControl: \"missing\"\r\n\r\nError Description: \r\nTransformer Element is not set.\r\n\r\nProbable Cause: \r\nElement must be defined previously.",
+      "unknown": "(#124) Error 124 Reported From OpenDSS Intrinsic Function: \r\nRegControl: \"unknown\"\r\n\r\nError Description: \r\nTransformer Element is not set.\r\n\r\nProbable Cause: \r\nElement must be defined previously.",
+      "wrong_class_name": "(#124) Error 124 Reported From OpenDSS Intrinsic Function: \r\nRegControl: \"wrong_class_name\"\r\n\r\nError Description: \r\nTransformer Element is not set.\r\n\r\nProbable Cause: \r\nElement must be defined previously.",
+      "wrong_class_text": "(#124) Error 124 Reported From OpenDSS Intrinsic Function: \r\nRegControl: \"wrong_class_text\"\r\n\r\nError Description: \r\nTransformer Element is not set.\r\n\r\nProbable Cause: \r\nElement must be defined previously.",
+      "bare_solve": "(#482) Error Encountered in Solve: Solution aborted.",
+      "winding": "(#122) Error 122 Reported From OpenDSS Intrinsic Function: \r\nRegControl: \"winding\"\r\n\r\nError Description: \r\nWinding no. \"5\" does not exist.\r\n\r\nProbable Cause: \r\nRespecify Monitored Winding no."
+    },
+    "engine_123": "source-only for the supported reference paths"
+  },
+  "standalone_examples": {
+    "python_model": {
+      "solve_path": "static controlled solve",
+      "pt_voltage_v": 122.16480325795233,
+      "tap": 3,
+      "control_mode": "Static",
+      "control_iterations": 3,
+      "total_iterations": 6
+    },
+    "dss_example": {
+      "solve_path": "manual tap with ControlMode=Off",
+      "pt_voltage_v": 122.91428576185699,
+      "tap": 4,
+      "control_mode": "Off",
+      "control_iterations": 1,
+      "total_iterations": 2
+    }
+  }
+}
