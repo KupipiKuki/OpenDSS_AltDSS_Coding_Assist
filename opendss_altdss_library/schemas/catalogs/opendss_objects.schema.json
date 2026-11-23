@@ -1,93 +1,108 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "OpenDSS Object Catalog",
+  "title": "OpenDSS Object Index",
   "type": "array",
+  "minItems": 24,
+  "maxItems": 24,
   "items": {
     "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "element_class", "status", "evidence_label", "property_catalog", "workflow_path",
+      "altdss", "engine", "example_ids", "readback_evidence", "fixture_usage",
+      "source_ids", "epri_doc_url", "notes"
+    ],
     "properties": {
-      "element_class": {
-        "type": "string"
+      "element_class": {"type": "string", "minLength": 1},
+      "status": {"enum": ["catalogued", "deferred"]},
+      "evidence_label": {"$ref": "../records/common.schema.json#/$defs/evidenceLevel"},
+      "property_catalog": {
+        "type": ["object", "null"],
+        "additionalProperties": false,
+        "required": ["path", "record_count", "property_row_count"],
+        "properties": {
+          "path": {"type": "string", "pattern": "^references/[a-z0-9_/-]+\\.json$"},
+          "record_count": {"type": "integer", "minimum": 1},
+          "property_row_count": {"type": "integer", "minimum": 1}
+        }
       },
-      "description": {
-        "type": "string"
+      "workflow_path": {"type": ["string", "null"], "pattern": "^docs/workflows/[a-z0-9_-]+\\.md$"},
+      "altdss": {
+        "type": ["object", "null"],
+        "additionalProperties": false,
+        "required": ["context_accessor", "class_record", "interface_record"],
+        "properties": {
+          "context_accessor": {"type": "string", "pattern": "^ctx\\.[A-Za-z][A-Za-z0-9_]*$"},
+          "class_record": {"type": "string", "pattern": "^altdss\\.[A-Za-z][A-Za-z0-9_]*$"},
+          "interface_record": {"type": ["string", "null"], "pattern": "^altdss\\.[A-Za-z][A-Za-z0-9_]*:I[A-Za-z][A-Za-z0-9_]*$"}
+        }
       },
-      "epri_doc_url": {
-        "type": "string",
-        "format": "uri"
+      "engine": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["namespaces", "record_count"],
+        "properties": {
+          "namespaces": {"$ref": "#/$defs/stringList"},
+          "record_count": {"type": "integer", "minimum": 0}
+        }
       },
+      "example_ids": {"$ref": "#/$defs/stringList"},
+      "readback_evidence": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {"type": "string", "pattern": "^docs/audits/[a-z0-9_-]+\\.(json|md)$"}
+      },
+      "fixture_usage": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {"enum": ["ieee13 snapshot", "ieee34 snapshot", "ieee13 daily"]}
+      },
+      "source_ids": {"$ref": "#/$defs/stringList", "minItems": 1},
+      "epri_doc_url": {"type": ["string", "null"], "format": "uri"},
+      "notes": {"$ref": "#/$defs/stringList"}
+    },
+    "if": {"properties": {"status": {"const": "deferred"}}},
+    "then": {
       "properties": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "data_type": {
-              "type": "string",
-              "enum": [
-                "string",
-                "real",
-                "integer",
-                "array",
-                "boolean",
-                "variant"
-              ]
-            },
-            "default_value": {},
-            "units": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
-            },
-            "evidence_label": {
-              "type": "string",
-              "enum": [
-                "Official-current",
-                "Official-versioned",
-                "Observed-working",
-                "Observed-export",
-                "Example-only",
-                "Inferred",
-                "Unverified"
-              ]
-            }
-          },
-          "required": [
-            "name",
-            "data_type",
-            "evidence_label"
-          ]
-        }
-      },
-      "required_properties": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "altdss_mapping": {
-        "type": "string"
-      },
-      "evidence_label": {
-        "type": "string",
-        "enum": [
-          "Official-current",
-          "Official-versioned",
-          "Observed-working",
-          "Observed-export",
-          "Example-only",
-          "Inferred",
-          "Unverified"
-        ]
+        "property_catalog": {"type": "null"},
+        "workflow_path": {"type": "null"},
+        "example_ids": {"maxItems": 0},
+        "fixture_usage": {"maxItems": 0}
       }
     },
-    "required": [
-      "element_class",
-      "epri_doc_url",
-      "properties",
-      "evidence_label"
-    ]
+    "else": {"properties": {"property_catalog": {"type": "object"}}}
+  },
+  "allOf": [
+    {"contains": {"properties": {"element_class": {"const": "AutoTrans"}, "status": {"const": "deferred"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "Capacitor"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "CapControl"}, "status": {"const": "deferred"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "Circuit"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "CNData"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "ExpControl"}, "status": {"const": "deferred"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "GenDispatcher"}, "status": {"const": "deferred"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "Generator"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "GrowthShape"}, "status": {"const": "deferred"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "InvControl"}, "status": {"const": "deferred"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "Line"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "LineCode"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "LineGeometry"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "LineSpacing"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "Load"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "LoadShape"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "PVSystem"}, "status": {"const": "deferred"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "RegControl"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "Storage"}, "status": {"const": "deferred"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "Transformer"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "TSData"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "Vsource"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "WireData"}, "status": {"const": "catalogued"}}}, "maxContains": 1},
+    {"contains": {"properties": {"element_class": {"const": "XfmrCode"}, "status": {"const": "catalogued"}}}, "maxContains": 1}
+  ],
+  "$defs": {
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
   }
 }

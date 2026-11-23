@@ -1863,5 +1863,76 @@
       "active object"
     ],
     "scope": "Zero arguments get the active regulator's tap, and one argument sets it. The comparison uses a text query with the full element name."
+  },
+  {
+    "id": "epri-tsdata-cable-modeling",
+    "kind": "documentation",
+    "title": "EPRI cable modeling technote",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/CableModelinginOpenDSS.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-22",
+    "topics": [
+      "TSData",
+      "CNData",
+      "cable modeling"
+    ],
+    "scope": "The shared cable-modeling technote contains a dedicated TSData section. Use the pinned engine and wrapper sources for target-version behavior."
+  },
+  {
+    "id": "epri-pvsystem-element",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS PVSystem",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/PVSystem.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-22",
+    "topics": [
+      "PVSystem",
+      "deferred class"
+    ],
+    "scope": "Class documentation for retrieval. The library defers this property catalog under decision 17."
+  },
+  {
+    "id": "epri-storage-element",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS Storage",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/Storage.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-22",
+    "topics": [
+      "Storage",
+      "deferred class"
+    ],
+    "scope": "Class documentation for retrieval. The library defers this property catalog under decision 17."
+  },
+  {
+    "id": "epri-invcontrol-element",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS InvControl",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/InvControl.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-22",
+    "topics": [
+      "InvControl",
+      "deferred class"
+    ],
+    "scope": "Class documentation for retrieval. The library defers this property catalog under decision 17."
+  },
+  {
+    "id": "epri-expcontrol-element",
+    "kind": "documentation",
+    "title": "EPRI OpenDSS ExpControl",
+    "publisher": "EPRI",
+    "url": "https://opendss.epri.com/ExpControl.html",
+    "version_or_ref": null,
+    "accessed": "2026-11-22",
+    "topics": [
+      "ExpControl",
+      "deferred class"
+    ],
+    "scope": "Class documentation for retrieval. The library defers this property catalog under decision 17."
   }
 ]

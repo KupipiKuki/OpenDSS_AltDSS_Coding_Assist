@@ -1,1 +1,927 @@
-[]
+[
+  {
+    "element_class": "AutoTrans",
+    "status": "deferred",
+    "evidence_label": "Official-versioned",
+    "property_catalog": null,
+    "workflow_path": null,
+    "altdss": {
+      "context_accessor": "ctx.AutoTrans",
+      "class_record": "altdss.AutoTrans",
+      "interface_record": "altdss.AutoTrans:IAutoTrans"
+    },
+    "engine": {
+      "namespaces": [],
+      "record_count": 0
+    },
+    "example_ids": [],
+    "readback_evidence": [],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-autotrans",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/AutoTrans.html",
+    "notes": [
+      "Decision 17 defers this class because the pinned fixtures do not use it."
+    ]
+  },
+  {
+    "element_class": "Capacitor",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/capacitors/capacitor_properties.json",
+      "record_count": 1,
+      "property_row_count": 22
+    },
+    "workflow_path": "docs/workflows/capacitor.md",
+    "altdss": {
+      "context_accessor": "ctx.Capacitor",
+      "class_record": "altdss.Capacitor",
+      "interface_record": "altdss.Capacitor:ICapacitor"
+    },
+    "engine": {
+      "namespaces": [
+        "Capacitor"
+      ],
+      "record_count": 14
+    },
+    "example_ids": [
+      "capacitor-wye-shunt-altdss",
+      "capacitor-stepped-shunt-dss",
+      "ieee13-snapshot-cross-interface"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase3b_capacitor_readback.json"
+    ],
+    "fixture_usage": [
+      "ieee13 snapshot",
+      "ieee34 snapshot",
+      "ieee13 daily"
+    ],
+    "source_ids": [
+      "epri-capacitor-element",
+      "epri-capacitor-properties",
+      "altdss-capacitor-wrapper",
+      "capi-capacitor-engine",
+      "capi-release-0145",
+      "electricdss-tst-ieee-fixtures-3b20839"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/Capacitor1.html",
+    "notes": []
+  },
+  {
+    "element_class": "CapControl",
+    "status": "deferred",
+    "evidence_label": "Official-versioned",
+    "property_catalog": null,
+    "workflow_path": null,
+    "altdss": {
+      "context_accessor": "ctx.CapControl",
+      "class_record": "altdss.CapControl",
+      "interface_record": "altdss.CapControl:ICapControl"
+    },
+    "engine": {
+      "namespaces": [],
+      "record_count": 0
+    },
+    "example_ids": [],
+    "readback_evidence": [],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-capcontrol-element",
+      "capi-capcontrol-step-coupling",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/CapControl1.html",
+    "notes": [
+      "Decision 17 defers this class because the pinned fixtures do not use it."
+    ]
+  },
+  {
+    "element_class": "Circuit",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/circuit/vsource_properties.json",
+      "record_count": 2,
+      "property_row_count": 37
+    },
+    "workflow_path": "docs/workflows/circuit_vsource.md",
+    "altdss": {
+      "context_accessor": "ctx.Commands",
+      "class_record": "altdss.AltDSS",
+      "interface_record": null
+    },
+    "engine": {
+      "namespaces": [
+        "Circuit"
+      ],
+      "record_count": 1
+    },
+    "example_ids": [
+      "line-linecode-altdss",
+      "line-linecode-dss-text",
+      "line-geometry-spacing-altdss",
+      "line-geometry-spacing-dss-text",
+      "circuit-vsource-altdss",
+      "circuit-vsource-dss-text",
+      "transformer-two-winding-altdss",
+      "transformer-three-winding-xfmrcode-dss",
+      "load-power-family-comparison-altdss",
+      "load-zipv-snapshot-dss",
+      "capacitor-wye-shunt-altdss",
+      "capacitor-stepped-shunt-dss",
+      "generator-constant-pq-altdss",
+      "generator-pv-voltage-target-dss",
+      "regcontrol-controlled-voltage-altdss",
+      "regcontrol-fixed-tap-voltage-dss",
+      "loadshape-daily-steps-altdss",
+      "loadshape-daily-monitor-dss"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase3b_circuit_vsource_readback.json"
+    ],
+    "fixture_usage": [
+      "ieee13 snapshot",
+      "ieee34 snapshot",
+      "ieee13 daily"
+    ],
+    "source_ids": [
+      "epri-circuit-interface",
+      "altdss-circuit-command",
+      "capi-circuit-container",
+      "capi-release-0145",
+      "electricdss-tst-ieee-fixtures-3b20839"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/Circuit.html",
+    "notes": [
+      "Circuit creation uses the AltDSS context command path. The API catalog has an AltDSS context record."
+    ]
+  },
+  {
+    "element_class": "CNData",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/lines/line_geometry_wires_properties.json",
+      "record_count": 5,
+      "property_row_count": 82
+    },
+    "workflow_path": "docs/workflows/line_geometry_wires.md",
+    "altdss": {
+      "context_accessor": "ctx.CNData",
+      "class_record": "altdss.CNData",
+      "interface_record": "altdss.CNData:ICNData"
+    },
+    "engine": {
+      "namespaces": [
+        "CNData",
+        "ConductorData",
+        "CableData"
+      ],
+      "record_count": 5
+    },
+    "example_ids": [],
+    "readback_evidence": [
+      "docs/audits/phase3b_line_geometry_wires_readback.json"
+    ],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-cn-data",
+      "altdss-cn-data-wrapper",
+      "capi-cn-data-engine",
+      "capi-conductor-data-engine",
+      "capi-cable-data-engine",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/CNData.html",
+    "notes": []
+  },
+  {
+    "element_class": "ExpControl",
+    "status": "deferred",
+    "evidence_label": "Official-versioned",
+    "property_catalog": null,
+    "workflow_path": null,
+    "altdss": {
+      "context_accessor": "ctx.ExpControl",
+      "class_record": "altdss.ExpControl",
+      "interface_record": "altdss.ExpControl:IExpControl"
+    },
+    "engine": {
+      "namespaces": [],
+      "record_count": 0
+    },
+    "example_ids": [],
+    "readback_evidence": [],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-expcontrol-element",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/ExpControl.html",
+    "notes": [
+      "Decision 17 defers this class because the pinned fixtures do not use it."
+    ]
+  },
+  {
+    "element_class": "GenDispatcher",
+    "status": "deferred",
+    "evidence_label": "Official-versioned",
+    "property_catalog": null,
+    "workflow_path": null,
+    "altdss": {
+      "context_accessor": "ctx.GenDispatcher",
+      "class_record": "altdss.GenDispatcher",
+      "interface_record": "altdss.GenDispatcher:IGenDispatcher"
+    },
+    "engine": {
+      "namespaces": [],
+      "record_count": 0
+    },
+    "example_ids": [],
+    "readback_evidence": [],
+    "fixture_usage": [],
+    "source_ids": [
+      "altdss-generator-dispatcher-scope",
+      "capi-gendispatcher-scope",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": null,
+    "notes": [
+      "Decision 17 defers this class. The pinned fixtures have no GenDispatcher and the source index carries pinned implementation pointers."
+    ]
+  },
+  {
+    "element_class": "Generator",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/generators/generator_properties.json",
+      "record_count": 1,
+      "property_row_count": 49
+    },
+    "workflow_path": "docs/workflows/generator.md",
+    "altdss": {
+      "context_accessor": "ctx.Generator",
+      "class_record": "altdss.Generator",
+      "interface_record": "altdss.Generator:IGenerator"
+    },
+    "engine": {
+      "namespaces": [
+        "Generator"
+      ],
+      "record_count": 17
+    },
+    "example_ids": [
+      "generator-constant-pq-altdss",
+      "generator-pv-voltage-target-dss"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase3b_generator_readback.json"
+    ],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-generator-element",
+      "epri-generator-properties",
+      "altdss-generator-wrapper",
+      "capi-generator-engine",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/Generator.html",
+    "notes": []
+  },
+  {
+    "element_class": "GrowthShape",
+    "status": "deferred",
+    "evidence_label": "Official-versioned",
+    "property_catalog": null,
+    "workflow_path": null,
+    "altdss": {
+      "context_accessor": "ctx.GrowthShape",
+      "class_record": "altdss.GrowthShape",
+      "interface_record": "altdss.GrowthShape:IGrowthShape"
+    },
+    "engine": {
+      "namespaces": [],
+      "record_count": 0
+    },
+    "example_ids": [],
+    "readback_evidence": [],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-growth-shape",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/GrowthShape.html",
+    "notes": [
+      "Decision 17 defers this class because the pinned fixtures do not use it."
+    ]
+  },
+  {
+    "element_class": "InvControl",
+    "status": "deferred",
+    "evidence_label": "Official-versioned",
+    "property_catalog": null,
+    "workflow_path": null,
+    "altdss": {
+      "context_accessor": "ctx.InvControl",
+      "class_record": "altdss.InvControl",
+      "interface_record": "altdss.InvControl:IInvControl"
+    },
+    "engine": {
+      "namespaces": [],
+      "record_count": 0
+    },
+    "example_ids": [],
+    "readback_evidence": [],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-invcontrol-element",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/InvControl.html",
+    "notes": [
+      "Decision 17 defers this class because the pinned fixtures do not use it."
+    ]
+  },
+  {
+    "element_class": "Line",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/lines/opendss_line_linecode_properties.json",
+      "record_count": 2,
+      "property_row_count": 67
+    },
+    "workflow_path": "docs/workflows/line_linecode.md",
+    "altdss": {
+      "context_accessor": "ctx.Line",
+      "class_record": "altdss.Line",
+      "interface_record": "altdss.Line:ILine"
+    },
+    "engine": {
+      "namespaces": [
+        "Line",
+        "TLineObj",
+        "TLineProp"
+      ],
+      "record_count": 17
+    },
+    "example_ids": [
+      "line-linecode-altdss",
+      "line-linecode-dss-text",
+      "line-geometry-spacing-altdss",
+      "line-geometry-spacing-dss-text",
+      "generator-pv-voltage-target-dss",
+      "ieee13-snapshot-cross-interface"
+    ],
+    "readback_evidence": [
+      "docs/audits/line_linecode_phase2_qaqc.md"
+    ],
+    "fixture_usage": [
+      "ieee13 snapshot",
+      "ieee34 snapshot",
+      "ieee13 daily"
+    ],
+    "source_ids": [
+      "epri-line",
+      "altdss-line-new",
+      "capi-line-engine",
+      "capi-release-0145",
+      "electricdss-tst-ieee-fixtures-3b20839"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/Line.html",
+    "notes": []
+  },
+  {
+    "element_class": "LineCode",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/lines/opendss_line_linecode_properties.json",
+      "record_count": 2,
+      "property_row_count": 67
+    },
+    "workflow_path": "docs/workflows/line_linecode.md",
+    "altdss": {
+      "context_accessor": "ctx.LineCode",
+      "class_record": "altdss.LineCode",
+      "interface_record": "altdss.LineCode:ILineCode"
+    },
+    "engine": {
+      "namespaces": [
+        "TLineCodeObj",
+        "TLineCodeProp",
+        "TLineCode"
+      ],
+      "record_count": 10
+    },
+    "example_ids": [
+      "line-linecode-altdss",
+      "line-linecode-dss-text"
+    ],
+    "readback_evidence": [
+      "docs/audits/line_linecode_phase2_qaqc.md"
+    ],
+    "fixture_usage": [
+      "ieee13 snapshot",
+      "ieee34 snapshot",
+      "ieee13 daily"
+    ],
+    "source_ids": [
+      "epri-linecode",
+      "altdss-linecode-new",
+      "capi-linecode-engine",
+      "capi-release-0145",
+      "electricdss-tst-ieee-fixtures-3b20839"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/LineCode1.html",
+    "notes": [
+      "The engine records use internal LineCode namespaces."
+    ]
+  },
+  {
+    "element_class": "LineGeometry",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/lines/line_geometry_wires_properties.json",
+      "record_count": 5,
+      "property_row_count": 82
+    },
+    "workflow_path": "docs/workflows/line_geometry_wires.md",
+    "altdss": {
+      "context_accessor": "ctx.LineGeometry",
+      "class_record": "altdss.LineGeometry",
+      "interface_record": "altdss.LineGeometry:ILineGeometry"
+    },
+    "engine": {
+      "namespaces": [
+        "LineGeometry"
+      ],
+      "record_count": 8
+    },
+    "example_ids": [
+      "line-geometry-spacing-altdss",
+      "line-geometry-spacing-dss-text"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase3b_line_geometry_wires_readback.json"
+    ],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-line-geometry",
+      "altdss-line-geometry-wrapper",
+      "capi-line-geometry-engine",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/LineGeometry.html",
+    "notes": []
+  },
+  {
+    "element_class": "LineSpacing",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/lines/line_geometry_wires_properties.json",
+      "record_count": 5,
+      "property_row_count": 82
+    },
+    "workflow_path": "docs/workflows/line_geometry_wires.md",
+    "altdss": {
+      "context_accessor": "ctx.LineSpacing",
+      "class_record": "altdss.LineSpacing",
+      "interface_record": "altdss.LineSpacing:ILineSpacing"
+    },
+    "engine": {
+      "namespaces": [
+        "LineSpacing"
+      ],
+      "record_count": 2
+    },
+    "example_ids": [
+      "line-geometry-spacing-altdss",
+      "line-geometry-spacing-dss-text"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase3b_line_geometry_wires_readback.json"
+    ],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-line-spacing",
+      "altdss-line-spacing-wrapper",
+      "capi-line-spacing-engine",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/LineSpacing.html",
+    "notes": []
+  },
+  {
+    "element_class": "Load",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/loads/load_properties.json",
+      "record_count": 1,
+      "property_row_count": 43
+    },
+    "workflow_path": "docs/workflows/load.md",
+    "altdss": {
+      "context_accessor": "ctx.Load",
+      "class_record": "altdss.Load",
+      "interface_record": "altdss.Load:ILoad"
+    },
+    "engine": {
+      "namespaces": [
+        "Load"
+      ],
+      "record_count": 13
+    },
+    "example_ids": [
+      "transformer-two-winding-altdss",
+      "transformer-three-winding-xfmrcode-dss",
+      "load-power-family-comparison-altdss",
+      "load-zipv-snapshot-dss",
+      "generator-constant-pq-altdss",
+      "generator-pv-voltage-target-dss",
+      "regcontrol-controlled-voltage-altdss",
+      "regcontrol-fixed-tap-voltage-dss",
+      "loadshape-daily-steps-altdss",
+      "loadshape-daily-monitor-dss",
+      "ieee13-snapshot-cross-interface"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase3b_load_readback.json"
+    ],
+    "fixture_usage": [
+      "ieee13 snapshot",
+      "ieee34 snapshot",
+      "ieee13 daily"
+    ],
+    "source_ids": [
+      "epri-load-element",
+      "epri-load-properties",
+      "altdss-load-wrapper",
+      "capi-load-engine",
+      "capi-release-0145",
+      "electricdss-tst-ieee-fixtures-3b20839"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/Load1.html",
+    "notes": [
+      "The engine index carries a standalone Load.Daily namespace. It remains available as a retrieval key separate from the Load namespace count."
+    ]
+  },
+  {
+    "element_class": "LoadShape",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/loadshapes/loadshape_properties.json",
+      "record_count": 1,
+      "property_row_count": 22
+    },
+    "workflow_path": "docs/workflows/loadshape.md",
+    "altdss": {
+      "context_accessor": "ctx.LoadShape",
+      "class_record": "altdss.LoadShape",
+      "interface_record": "altdss.LoadShape:ILoadShape"
+    },
+    "engine": {
+      "namespaces": [
+        "LoadShape"
+      ],
+      "record_count": 8
+    },
+    "example_ids": [
+      "loadshape-daily-steps-altdss",
+      "loadshape-daily-monitor-dss"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase4_loadshape_readback.json"
+    ],
+    "fixture_usage": [
+      "ieee13 daily"
+    ],
+    "source_ids": [
+      "epri-loadshape",
+      "altdss-loadshape-wrapper",
+      "capi-loadshape-engine",
+      "capi-release-0145",
+      "electricdss-tst-ieee-fixtures-3b20839"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/LoadShape.html",
+    "notes": []
+  },
+  {
+    "element_class": "PVSystem",
+    "status": "deferred",
+    "evidence_label": "Official-versioned",
+    "property_catalog": null,
+    "workflow_path": null,
+    "altdss": {
+      "context_accessor": "ctx.PVSystem",
+      "class_record": "altdss.PVSystem",
+      "interface_record": "altdss.PVSystem:IPVSystem"
+    },
+    "engine": {
+      "namespaces": [],
+      "record_count": 0
+    },
+    "example_ids": [],
+    "readback_evidence": [],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-pvsystem-element",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/PVSystem.html",
+    "notes": [
+      "Decision 17 defers this class because the pinned fixtures do not use it."
+    ]
+  },
+  {
+    "element_class": "RegControl",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/regcontrols/regcontrol_properties.json",
+      "record_count": 1,
+      "property_row_count": 35
+    },
+    "workflow_path": "docs/workflows/regcontrol.md",
+    "altdss": {
+      "context_accessor": "ctx.RegControl",
+      "class_record": "altdss.RegControl",
+      "interface_record": "altdss.RegControl:IRegControl"
+    },
+    "engine": {
+      "namespaces": [
+        "RegControl"
+      ],
+      "record_count": 15
+    },
+    "example_ids": [
+      "regcontrol-controlled-voltage-altdss",
+      "regcontrol-fixed-tap-voltage-dss",
+      "ieee13-snapshot-cross-interface"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase4_regcontrol_readback.json"
+    ],
+    "fixture_usage": [
+      "ieee13 snapshot",
+      "ieee34 snapshot",
+      "ieee13 daily"
+    ],
+    "source_ids": [
+      "epri-regcontrol-element",
+      "epri-regcontrol-properties",
+      "altdss-regcontrol-wrapper",
+      "capi-regcontrol-engine",
+      "capi-release-0145",
+      "electricdss-tst-ieee-fixtures-3b20839"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/RegControl.html",
+    "notes": []
+  },
+  {
+    "element_class": "Storage",
+    "status": "deferred",
+    "evidence_label": "Official-versioned",
+    "property_catalog": null,
+    "workflow_path": null,
+    "altdss": {
+      "context_accessor": "ctx.Storage",
+      "class_record": "altdss.Storage",
+      "interface_record": "altdss.Storage:IStorage"
+    },
+    "engine": {
+      "namespaces": [],
+      "record_count": 0
+    },
+    "example_ids": [],
+    "readback_evidence": [],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-storage-element",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/Storage.html",
+    "notes": [
+      "Decision 17 defers this class because the pinned fixtures do not use it."
+    ]
+  },
+  {
+    "element_class": "Transformer",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/transformers/transformer_properties.json",
+      "record_count": 2,
+      "property_row_count": 104
+    },
+    "workflow_path": "docs/workflows/transformer.md",
+    "altdss": {
+      "context_accessor": "ctx.Transformer",
+      "class_record": "altdss.Transformer",
+      "interface_record": "altdss.Transformer:ITransformer"
+    },
+    "engine": {
+      "namespaces": [
+        "Transformer"
+      ],
+      "record_count": 12
+    },
+    "example_ids": [
+      "transformer-two-winding-altdss",
+      "transformer-three-winding-xfmrcode-dss",
+      "regcontrol-controlled-voltage-altdss",
+      "regcontrol-fixed-tap-voltage-dss",
+      "ieee13-snapshot-cross-interface"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase3b_transformer_readback.json"
+    ],
+    "fixture_usage": [
+      "ieee13 snapshot",
+      "ieee34 snapshot",
+      "ieee13 daily"
+    ],
+    "source_ids": [
+      "epri-transformer",
+      "epri-transformer-properties",
+      "altdss-transformer-wrapper",
+      "capi-transformer-engine",
+      "capi-release-0145",
+      "electricdss-tst-ieee-fixtures-3b20839"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/Transformer1.html",
+    "notes": []
+  },
+  {
+    "element_class": "TSData",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/lines/line_geometry_wires_properties.json",
+      "record_count": 5,
+      "property_row_count": 82
+    },
+    "workflow_path": "docs/workflows/line_geometry_wires.md",
+    "altdss": {
+      "context_accessor": "ctx.TSData",
+      "class_record": "altdss.TSData",
+      "interface_record": "altdss.TSData:ITSData"
+    },
+    "engine": {
+      "namespaces": [
+        "TSData",
+        "ConductorData",
+        "CableData"
+      ],
+      "record_count": 5
+    },
+    "example_ids": [],
+    "readback_evidence": [
+      "docs/audits/phase3b_line_geometry_wires_readback.json"
+    ],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-tsdata-cable-modeling",
+      "altdss-ts-data-wrapper",
+      "capi-ts-data-engine",
+      "capi-conductor-data-engine",
+      "capi-cable-data-engine",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/CableModelinginOpenDSS.html",
+    "notes": [
+      "The linked EPRI cable-modeling technote includes a TSData section."
+    ]
+  },
+  {
+    "element_class": "Vsource",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/circuit/vsource_properties.json",
+      "record_count": 2,
+      "property_row_count": 37
+    },
+    "workflow_path": "docs/workflows/circuit_vsource.md",
+    "altdss": {
+      "context_accessor": "ctx.Vsource",
+      "class_record": "altdss.Vsource",
+      "interface_record": "altdss.Vsource:IVsource"
+    },
+    "engine": {
+      "namespaces": [
+        "Vsource",
+        "TVsourceProp"
+      ],
+      "record_count": 10
+    },
+    "example_ids": [
+      "circuit-vsource-altdss",
+      "circuit-vsource-dss-text",
+      "ieee13-snapshot-cross-interface"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase3b_circuit_vsource_readback.json"
+    ],
+    "fixture_usage": [
+      "ieee13 snapshot",
+      "ieee34 snapshot",
+      "ieee13 daily"
+    ],
+    "source_ids": [
+      "epri-vsource",
+      "altdss-vsource-wrapper",
+      "capi-vsource-engine",
+      "capi-release-0145",
+      "electricdss-tst-ieee-fixtures-3b20839"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/Vsource.html",
+    "notes": []
+  },
+  {
+    "element_class": "WireData",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/lines/line_geometry_wires_properties.json",
+      "record_count": 5,
+      "property_row_count": 82
+    },
+    "workflow_path": "docs/workflows/line_geometry_wires.md",
+    "altdss": {
+      "context_accessor": "ctx.WireData",
+      "class_record": "altdss.WireData",
+      "interface_record": "altdss.WireData:IWireData"
+    },
+    "engine": {
+      "namespaces": [
+        "WireData",
+        "ConductorData"
+      ],
+      "record_count": 4
+    },
+    "example_ids": [
+      "line-geometry-spacing-altdss",
+      "line-geometry-spacing-dss-text"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase3b_line_geometry_wires_readback.json"
+    ],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-wire-data",
+      "altdss-wire-data-wrapper",
+      "capi-wire-data-engine",
+      "capi-conductor-data-engine",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/WireData.html",
+    "notes": []
+  },
+  {
+    "element_class": "XfmrCode",
+    "status": "catalogued",
+    "evidence_label": "Observed-working",
+    "property_catalog": {
+      "path": "references/transformers/transformer_properties.json",
+      "record_count": 2,
+      "property_row_count": 104
+    },
+    "workflow_path": "docs/workflows/transformer.md",
+    "altdss": {
+      "context_accessor": "ctx.XfmrCode",
+      "class_record": "altdss.XfmrCode",
+      "interface_record": "altdss.XfmrCode:IXfmrCode"
+    },
+    "engine": {
+      "namespaces": [
+        "XfmrCode"
+      ],
+      "record_count": 4
+    },
+    "example_ids": [
+      "transformer-three-winding-xfmrcode-dss"
+    ],
+    "readback_evidence": [
+      "docs/audits/phase3b_transformer_readback.json"
+    ],
+    "fixture_usage": [],
+    "source_ids": [
+      "epri-xfmrcode",
+      "altdss-xfmrcode-wrapper",
+      "capi-xfmrcode-engine",
+      "capi-release-0145"
+    ],
+    "epri_doc_url": "https://opendss.epri.com/XfmrCode.html",
+    "notes": []
+  }
+]

@@ -11,6 +11,7 @@
 - `schemas/records/`: reusable evidence, property, API, example, and issue record schemas
 - `schemas/catalogs/`: manifest and catalog schemas
 - `references/`: source catalogs and reference materials, including the shared [source index](references/sources.json)
+- [OpenDSS object index](references/opendss_objects.json) with 16 catalogued and 8 deferred classes, plus the [lookup workflow](../docs/workflows/object_index.md)
 - `references/lines/`: Line and LineCode property catalog (Phase 2 remediated)
 - [AltDSS-Python API catalog](references/altdss_python_api.json) (99 class records) and [DSS C-API engine catalog](references/dss_capi.json) (144 records)
 - [Source index](references/sources.json) shared by catalogs and examples
@@ -47,5 +48,3 @@ python opendss_altdss_library/tools/readback_loadshape.py
 ```
 
 The fixture runner checks recorded goldens. The comparison checks wrapper agreement on the shared DSS C-API engine. Independent numerical validation requires a separate reference. [Phase 4 exit checklist](../docs/phase_4/exit_checklist.md)
-
-`opendss_objects` remains empty for Phase 5 retrieval. [Implementation plan](../docs/implementation_plan.md)
