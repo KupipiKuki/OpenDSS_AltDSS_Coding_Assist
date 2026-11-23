@@ -1,6 +1,6 @@
 # OpenDSS AltDSS Library Package
 
-**Status** The six Phase 3 element packages and Phase 4 packages 4.1–4.4 are accepted. The Phase 4 exit package adds 16 confirmed troubleshooting records and the exit checklist; it passed independent QA/QC and the architect review, with two documentation corrections required before owner acceptance. [Exit checklist](../docs/phase_4/exit_checklist.md) · [Build audit](../docs/audits/phase4_exit_audit.md) · [Implementation plan](../docs/implementation_plan.md)
+**Status** The six Phase 3 element packages and Phase 4 packages 4.1–4.4 are accepted. The Phase 4 exit package adds 16 confirmed troubleshooting records and the exit checklist and is accepted by the owner, closing the Phase 4 stop gate. [Exit checklist](../docs/phase_4/exit_checklist.md) · [Build audit](../docs/audits/phase4_exit_audit.md) · [Implementation plan](../docs/implementation_plan.md)
 
 **Target** AltDSS-Python 0.2.4, DSS-Python 0.15.7, DSS C-API backend 0.14.5, and OpenDSSDirect.py 0.9.4 for cross-interface checks.
 
