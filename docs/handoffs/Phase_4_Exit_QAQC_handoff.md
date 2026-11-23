@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase4`
 - **Inputs revision** `cc8aa92ecaf14bbc4f54a2ee78b177adbf130bb8`
-- **Package revision** Pending commit. Review the package artifacts at the pinned revision.
+- **Package revision** `75c6e1ca9adf8e06f704a31d7d42593cb5ba57c5`. Review the package artifacts at this commit. The follow-up commit supplies the handoff pin.
 
 Review the confirmed troubleshooting records, documentation pass, and evidence for the six exit items. [Coder handoff](Phase_4_Exit_Coder_handoff.md) · [Exit checklist](../phase_4/exit_checklist.md) · [Build audit](../audits/phase4_exit_audit.md)
 
