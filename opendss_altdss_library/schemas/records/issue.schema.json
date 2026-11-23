@@ -17,6 +17,7 @@
       "type": ["array", "null"],
       "items": { "type": "string" }
     },
+    "tested": { "$ref": "common.schema.json#/$defs/tested" },
     "status": {
       "type": "string",
       "enum": ["confirmed", "unresolved", "superseded"]

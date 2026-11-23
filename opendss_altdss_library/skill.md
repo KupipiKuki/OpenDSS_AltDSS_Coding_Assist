@@ -56,6 +56,6 @@ python opendss_altdss_library/tools/readback_generator.py
 python opendss_altdss_library/tools/build_altdss_api_catalog.py --source-dir <extracted-wheel>/altdss --out opendss_altdss_library/references/altdss_python_api.json
 ```
 
-Every catalog declared in `manifest.json` must have a schema pairing in `validate_catalogs.py`; an unpinned catalog fails the run on purpose. When the Phase 4 harness lands, fixture results are compared against `golden.json` within recorded tolerances, and golden files change only through the approved update path.
+Every catalog declared in `manifest.json` must have a schema pairing in `validate_catalogs.py`. Run `tools/run_fixtures.py` to compare the two snapshots and IEEE 13 daily profile within their recorded tolerances. Golden files change only through the approved update path. Use the Phase 4 exit checklist for the comparison, troubleshooting, and review evidence. [Phase 4 exit checklist](../docs/phase_4/exit_checklist.md)
 
 

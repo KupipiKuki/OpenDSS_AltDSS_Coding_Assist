@@ -509,7 +509,7 @@
   {
     "example_id": "ieee13-snapshot-cross-interface",
     "task_description": "Run the IEEE 13 snapshot through AltDSS-Python, DSS-Python and OpenDSSDirect.py, and assert wrapper agreement.",
-    "language": "python_altdss",
+    "language": "python_cross_interface",
     "file": "examples/interfaces/compare_ieee13.py",
     "object_classes": [
       "Vsource",

@@ -7,7 +7,7 @@
     "properties": {
       "example_id": {"type": "string"},
       "task_description": {"type": "string"},
-      "language": {"type": "string", "enum": ["dss", "python_altdss", "python_dss", "python_opendssdirect"]},
+      "language": {"type": "string", "enum": ["dss", "python_altdss", "python_dss", "python_opendssdirect", "python_cross_interface"]},
       "code_snippet": {"type": "string"},
       "file": {"type": "string", "minLength": 1, "description": "Example file path relative to the library directory."},
       "object_classes": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},

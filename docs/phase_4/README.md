@@ -1,6 +1,6 @@
 # Phase 4 — Validation with golden fixtures
 
-**Status** Package 4.1 is accepted by the owner (plan decision 16), so the fixture pin and both revision 1 snapshot goldens are fixed reference data: later packages may add goldens but must not move revision 1. Package 4.2 (RegControl catalog) is accepted by the owner (plan decision 18). Package 4.3 (LoadShape catalog and daily profile) is accepted by the owner (plan decision 19). Package 4.4 (cross-interface comparison) is delivered and reviewed: independent QA/QC and the architect review both passed with no required corrections, and the owner accepted it (decision 20). Package 4.5 (exit) is issued and follows. [Package 4.4 review](../audits/phase4_cross_interface_architect_audit.md) · [Package 4.4 report](../audits/phase4_cross_interface_report.json) · [Build audit](../audits/phase4_fixture_harness_audit.md) · [QA/QC handoff](../handoffs/Phase_4_Fixture_Harness_QAQC_handoff.md) · [Architect review](../audits/phase4_fixture_harness_architect_audit.md) · [Package 4.2 handoff](../handoffs/Phase_4_RegControl_Catalog_Coder_handoff.md)
+**Status** The owner accepted the fixture harness and snapshot goldens (decision 16), RegControl catalog (decision 18), LoadShape catalog and daily golden (decision 19), and cross-interface comparison (decision 20). All three revision 1 goldens are frozen. Package 4.5 delivers the confirmed troubleshooting records and exit evidence. Independent QA/QC and owner acceptance of the exit package are pending. [Exit checklist](exit_checklist.md) · [Exit build audit](../audits/phase4_exit_audit.md) · [Package 4.4 review](../audits/phase4_cross_interface_architect_audit.md)
 **Governs** [Implementation plan §6](../implementation_plan.md) (intent) · [manifest](../../opendss_altdss_library/manifest.json) (state)
 **Pinned stack** AltDSS-Python `0.2.4` · DSS-Python `0.15.7` · DSS C-API backend `0.14.5`; cross-interface checks add `opendssdirect.py` `0.9.4`.
 
@@ -9,6 +9,8 @@ This document resolves the open items in plan §6 and records what was measured 
 ## 1. Stop gate
 
 The owner decision of 2026-11-21 stands: **the Phase 4 exit requires recorded golden fixture results.** Cross-interface agreement alone is not acceptance, because all three Python interfaces wrap the same DSS C-API backend — agreement between them tests the API layer, not the solver.
+
+The exit checklist maps each stop-gate item to its validation command and recorded evidence. [Exit checklist](exit_checklist.md)
 
 ## 2. Fixture source (resolved)
 
@@ -85,10 +87,9 @@ Measured on the pinned stack by compiling each circuit and solving; these are th
 Notes that shaped the design:
 
 - The 34-node case needs **6 control iterations**, so its 25 total iterations exceed the default `MaxIterations` of 15. Solver options are part of the golden metadata for exactly this reason.
-- Each circuit reports a single `LoadShape` named `default`: that is the engine's built-in shape, not a fixture-authored one. Neither circuit defines a shaped load, so Phase 4 does not claim LoadShape coverage from the fixtures.
-- Both fixtures exercise **RegControl** (3 and 6 instances) and capacitor banks (2 each), and neither control class is catalogued. The owner resolved this on 2026-11-21 by adding a RegControl catalog to Phase 4 (decision 13).
+- The upstream snapshot circuits report the engine's built-in `LoadShape.default`. The IEEE 13 daily harness assigns the authored `daily24` shape to all 15 loads. [Daily profile](#51-daily-profile-golden-package-43)
+- Both snapshots exercise RegControl (3 and 6 instances) and capacitor banks (2 each). Package 4.2 delivered the RegControl catalog under decision 14. The banks are fixed because these circuits have no CapControl elements. [RegControl catalog](../../opendss_altdss_library/references/regcontrols/regcontrol_properties.json)
 - `IEEE13Nodeckt.dss` ends with `calcv` and `Solve` (L148-L149) and then `BusCoords IEEE13Node_BusXY.csv` (L150). `ieee34Mod1.dss` ends at `CalcVoltageBases` (L246) with **no solve**. The harness must therefore issue its own `Solve` for both and must not assume either file leaves the circuit solved.
-- Compile-plus-solve costs about 3 ms per fixture, so the daily time-series scenario in package 4.3 is affordable.
 
 ## 5. Golden result format
 
@@ -138,31 +139,34 @@ Rules:
 
 ### 5.1 Daily profile golden (package 4.3)
 
-The daily scenario is a **separate file and a separate scenario**, `examples/fixtures/ieee13/golden_daily.json`, so the snapshot goldens stay frozen under decision 16. Same generation rule: produced by the harness, never hand-typed, `golden_revision` starting at 1, and `scenario: "daily"`. The `source`, `environment` and `solver` blocks keep the snapshot shape, with `solver.mode` recording the sequential mode and `solver.step_size_s` the step in seconds.
+Package 4.3 delivered the IEEE 13 daily golden at revision 1, frozen under decision 19. Its `scenario` is `daily`, `solver.mode` is `Daily`, and `solver.step_size_s` is 3,600 seconds. All 24 steps converged. The profile totals 73,416.540 kWh and peaks at 4,004.671 kW in hour 18. [Daily golden](../../opendss_altdss_library/examples/fixtures/ieee13/golden_daily.json) · [Build audit](../audits/phase4_loadshape_daily_audit.md)
 
-The shape that drives the profile is recorded **inside** the golden, so the profile can be reproduced from the golden alone without reading the harness:
+The golden records the shape settings used with the pinned IEEE 13 input files.
 
 ```json
 "shape": {"name": "daily24", "npts": 24, "interval_h": 1.0, "use_actual": false,
-          "pmult": [1.0, 1.0], "qmult": [], "assignment": "Load.daily"}
+          "pmult": [0.69, 0.64, 0.61, 0.6, 0.62, 0.68, 0.79, 0.9, 0.98, 1.02, 0.99, 0.96,
+                    0.94, 0.95, 0.98, 1.04, 1.11, 1.16, 1.12, 1.05, 0.96, 0.87, 0.8, 0.74],
+          "qmult": [], "assignment": "Load.daily"}
 ```
 
-`steps` holds one record per solved step, in order:
+`steps` holds one record per solved hour. The first step is shown below with rounded values.
 
 ```json
 "steps": [
-  {"hour": 1, "converged": true, "iterations": 2, "control_iterations": 1,
-   "totals": {"load_kw": 0.0, "load_kvar": 0.0, "losses_kw": 0.0, "losses_kvar": 0.0,
-              "source_kw": 0.0, "source_kvar": 0.0},
-   "controls": {"RegControl.reg1": {"tap": 9}, "Capacitor.cap1": {"states": [1]}},
-   "lowest_bus": {"name": "611", "pu_vmag": 0.960843}}
+  {"hour": 1, "converged": true, "iterations": 7, "control_iterations": 2,
+   "totals": {"load_kw": 2399.365305, "load_kvar": 1455.114385, "losses_kw": 49.191776,
+              "losses_kvar": 142.393127, "source_kw": -2448.543242, "source_kvar": -879.556905},
+   "controls": {"RegControl.reg1": {"tap": 8}, "RegControl.reg2": {"tap": 6}, "RegControl.reg3": {"tap": 8},
+                "Capacitor.cap1": {"states": [1]}, "Capacitor.cap2": {"states": [1]}},
+   "lowest_bus": {"name": "611", "pu_vmag": 0.997018}}
 ]
 ```
 
 - **`hour` is 1-based** and matches the engine's `Solution.Hour` at that step, so the mapping to `pmult` index is `hour - 1` and an off-by-one is visible in the file rather than hidden in the harness.
 - **`peak_step`** repeats the full snapshot `buses` and `elements` blocks for the step with the highest `totals.load_kw`. The step is **derived from the data**, not hand-picked, so a circuit change cannot leave the reference step pointing at the wrong hour.
 - **`energy_kwh`** records the day's load energy as the sum of each step's `load_kw` times the step length in hours, together with the same integral recomputed from the recorded `steps` array. The two must agree within tolerance, which turns the file into a check on itself rather than only on the engine.
-- Per-step `controls` must include every regulator tap and every capacitor state, because those are the discrete outcomes a time series can silently desynchronise. The `states` array follows the element's own node count — the ieee13 banks are single-phase, so each records one state.
+- Each step records every regulator tap and capacitor state. `States` has one entry per configured capacitor step. Each IEEE 13 bank has one step. [Capacitor catalog](../../opendss_altdss_library/references/capacitors/capacitor_properties.json)
 - Tolerances are exactly [section 6](#6-tolerances); discrete quantities (hour, taps, states, iteration counts) compare exactly.
 - Full bus voltages are recorded at the peak step only. Recording all buses at all 24 steps would multiply the file size without adding a discriminating check, since `lowest_bus` already tracks the binding constraint at every step.
 
@@ -184,9 +188,9 @@ Two `environment` keys are deliberately **excluded** from comparison: `python_ve
 
 | Tool | Contract |
 |---|---|
-| `tools/run_fixtures.py` | Compile each fixture from its recorded file set, apply the recorded solver options, solve, build the golden structure, and diff against `golden.json`. Exit 0 only when every fixture matches and every checksum matches. `--fixture NAME` limits the run; `--report path` writes a machine-readable diff. |
+| [run_fixtures.py](../../opendss_altdss_library/tools/run_fixtures.py) | Verify input checksums, compile and solve, and compare the two snapshots and the IEEE 13 daily scenario against their goldens. Use `--fixture NAME` and `--scenario snapshot` or `--scenario daily` to select runs. Use `--report path` for a machine-readable diff. |
 | `tools/run_fixtures.py --update-golden --reason "…"` | Refuses without `--reason`. Increments `golden_revision`, writes the file, and requires the owner approval record in `references/fixtures.json` to be updated in the same commit. Refuses when the working tree has uncommitted fixture-file changes, so a golden can never be regenerated against altered inputs in the same step. |
-| `tools/compare_interfaces.py` (package 4.4) | Run the same fixture through `altdss`, `dss`, and `opendssdirect` on the pinned versions; report per-quantity deltas. Its header must state that all three share DSS C-API 0.14.5, so a pass means API-layer agreement, not independent validation. |
+| [compare_interfaces.py](../../opendss_altdss_library/tools/compare_interfaces.py) | Compare the two snapshots through three wrappers of DSS C-API 0.14.5. The result summary records name-matched deltas. Independent numerical validation requires a separate reference. [Report](../audits/phase4_cross_interface_report.json) |
 | `tools/validate_catalogs.py` | Extended to validate `references/fixtures.json` against `schemas/catalogs/fixtures.schema.json`. The existing contract is unchanged. |
 
 Checksum verification happens before compilation: a fixture whose bytes do not match the record is a failure even if it still solves.
@@ -245,11 +249,11 @@ Two measurement cautions were adopted from this survey. EPRI page names are inco
 
 | Package | Content | Depends on |
 |---|---|---|
-| **4.1 Fixture harness and snapshot goldens** | Fixture tree with `License.txt`, `PROVENANCE.md`; `fixtures.json` + schema; `tools/run_fixtures.py`; `golden.json` for both snapshots; `validate_catalogs.py` extension | Phase 3 complete |
-| **4.2 RegControl catalog** | The Phase 3 six-artifact template for a control class: property catalog, workflow, examples, readback matrix, build audit, QA/QC | 4.1 goldens, because tap positions are already in validated output |
-| **4.3 Daily time-series fixture** | The `LoadShape` catalog (22 rows, decision 17) plus a daily run on `ieee13` with regulators active and the two capacitor banks energised and fixed, since the circuit has no `CapControl`; golden for the 24-step profile | 4.1 stable |
-| **4.4 Cross-interface tool** | `tools/compare_interfaces.py` with `opendssdirect.py` 0.9.4 added to `requirements-validation.txt` | 4.1 |
-| **4.5 Phase 4 exit** | `troubleshooting.json` seeded from Phase 3 and Phase 4 QA findings, documentation pass, manifest and plan reconciliation, exit checklist, owner review | 4.1–4.4 |
+| **4.1 Fixture harness and snapshot goldens** | [Pinned fixture tree](../../opendss_altdss_library/examples/fixtures/) · [Fixture catalog](../../opendss_altdss_library/references/fixtures.json) · [Review](../audits/phase4_fixture_harness_architect_audit.md) | Phase 3 complete |
+| **4.2 RegControl catalog** | [Property catalog](../../opendss_altdss_library/references/regcontrols/regcontrol_properties.json) · [Workflow](../workflows/regcontrol.md) · [Review](../audits/phase4_regcontrol_architect_audit.md) | 4.1 goldens |
+| **4.3 Daily time-series fixture** | [LoadShape catalog](../../opendss_altdss_library/references/loadshapes/loadshape_properties.json) · [IEEE 13 daily golden](../../opendss_altdss_library/examples/fixtures/ieee13/golden_daily.json) · [Review](../audits/phase4_loadshape_daily_architect_audit.md) | 4.1 and 4.2 accepted |
+| **4.4 Cross-interface tool** | [Workflow](../workflows/cross_interface.md) · [Result summary](../audits/phase4_cross_interface_report.json) · [Review](../audits/phase4_cross_interface_architect_audit.md) | 4.1 and 4.3 accepted |
+| **4.5 Phase 4 exit** | [Troubleshooting index](../workflows/troubleshooting.md) · [Exit checklist](exit_checklist.md) · [Build audit](../audits/phase4_exit_audit.md) | 4.1–4.4 accepted |
 
 ## 10. Owner decisions recorded
 
@@ -273,11 +277,4 @@ Two measurement cautions were adopted from this survey. EPRI page names are inco
 
 ## 12. Exit checklist
 
-1. Both fixtures compile, converge, and match `golden.json` within tolerance from a clean environment built from `tools/requirements-validation.txt`.
-2. Checksums of every fixture file match `fixtures.json`.
-3. Golden metadata records upstream source, commit, checksums, licence, engine versions, solver options, date, environment and `golden_revision`.
-4. `validate_catalogs.py` passes with the fixtures schema included.
-5. The element classes the fixtures touch are catalogued or explicitly recorded as deferred: Line, LineCode, Transformer, Load, Capacitor, Vsource, RegControl.
-6. Golden regeneration happens only through `--update-golden` with an owner-approved reason and a new revision.
-7. The time-series scenario passes if package 4.3 is delivered; otherwise its absence is recorded as a scope limit.
-8. `troubleshooting.json` is seeded from the Phase 3 and Phase 4 findings.
+[Phase 4 exit checklist](exit_checklist.md) records the six plan gates, the evidence for each, and the validation scope.

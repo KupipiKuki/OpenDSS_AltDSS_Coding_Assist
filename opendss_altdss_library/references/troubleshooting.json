@@ -1,1 +1,492 @@
-[]
+[
+  {
+    "id": "ts-tapnumber-not-indexed",
+    "kind": "issue",
+    "title": "TapNumber follows the active regulator",
+    "symptom": "On IEEE 13, a RegControl ActiveClass walk returned 9, 9 and 9 through OpenDSSDirect.py TapNumber(). Named queries returned 9, 6 and 9.",
+    "cause": "The RegControls proxy reads its active control. In OpenDSSDirect.py the one-argument form writes the active control's tap.",
+    "safe_fix": "In both classic interfaces query ? RegControl.<name>.TapNum and parse the text result. In AltDSS read TapNum on each RegControl object.",
+    "diagnostic_evidence": [
+      "ActiveClass order reg1, reg2, reg3 returned 9, 9, 9 via RegControls.TapNumber().",
+      "Named text queries returned 9, 6, 9.",
+      "With reg2 explicitly selected, TapNumber(7) returned None and changed its tap from 6 to 7 in the test context."
+    ],
+    "affected_versions": [
+      "OpenDSSDirect.py 0.9.4"
+    ],
+    "status": "confirmed",
+    "version_range": "OpenDSSDirect.py 0.9.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "OpenDSSDirect.py RegControls tap accessor",
+      "url_or_path": "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/RegControls.py#L267-L279",
+      "section_or_record": "TapNumber getter and setter",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-dss-text-command-property",
+    "kind": "issue",
+    "title": "DSS-Python Text.Command is a string property",
+    "symptom": "Calling dss.Text.Command(\"Solve\") raised TypeError.",
+    "cause": "DSS-Python exposes Command as a string property and Commands as the command-block method.",
+    "safe_fix": "Set dss.Text.Command = \"Solve\" or call dss.Text.Commands(\"Solve\"). In OpenDSSDirect.py use odd.Text.Command(\"Solve\").",
+    "diagnostic_evidence": [
+      "TypeError: 'str' object is not callable.",
+      "Text.Command assignment redirected the fixture. Text.Commands(\"Solve\") converged."
+    ],
+    "affected_versions": [
+      "DSS-Python 0.15.7"
+    ],
+    "status": "confirmed",
+    "version_range": "DSS-Python 0.15.7 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "DSS-Python text interface",
+      "url_or_path": "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IText.py#L10-L50",
+      "section_or_record": "Command, Result, and Commands",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-dss-solution-via-active-circuit",
+    "kind": "issue",
+    "title": "DSS-Python solution lives on the active circuit",
+    "symptom": "The DSS-Python IDSS object raised AttributeError when accessed as dss.Solution.",
+    "cause": "The DSS-Python wrapper exposes the active circuit on the IDSS instance and attaches its solution interface to that circuit.",
+    "safe_fix": "Access dss.ActiveCircuit.Solution in DSS-Python. Read the tool's interface-specific mapping before moving a call across wrappers.",
+    "diagnostic_evidence": [
+      "AttributeError: 'IDSS' object has no attribute 'Solution'.",
+      "type(dss.ActiveCircuit.Solution).__name__ returned ISolution."
+    ],
+    "affected_versions": [
+      "DSS-Python 0.15.7"
+    ],
+    "status": "confirmed",
+    "version_range": "DSS-Python 0.15.7 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "DSS-Python active circuit access",
+      "url_or_path": "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IDSS.py#L110-L132",
+      "section_or_record": "ActiveCircuit and context initialization",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-totaliterations-accessor-casing",
+    "kind": "issue",
+    "title": "Total iteration accessor spelling differs by wrapper",
+    "symptom": "DSS-Python raised AttributeError for Solution.TotalIterations, although that spelling works as a method in OpenDSSDirect.py.",
+    "cause": "DSS-Python retains the COM-style Totaliterations property spelling.",
+    "safe_fix": "Read dss.ActiveCircuit.Solution.Totaliterations for DSS-Python, odd.Solution.TotalIterations() for OpenDSSDirect.py, and ctx.Solution.TotalIterations for AltDSS.",
+    "diagnostic_evidence": [
+      "AttributeError: 'ISolution' object has no attribute 'TotalIterations'.",
+      "DSS-Python Totaliterations and OpenDSSDirect.py TotalIterations() both returned 2 on the IEEE 13 snapshot."
+    ],
+    "affected_versions": [
+      "DSS-Python 0.15.7",
+      "OpenDSSDirect.py 0.9.4"
+    ],
+    "status": "confirmed",
+    "version_range": "DSS-Python 0.15.7 / OpenDSSDirect.py 0.9.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "DSS-Python total iteration property",
+      "url_or_path": "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/ISolution.py#L535-L542",
+      "section_or_record": "Totaliterations",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-active-class-first-property",
+    "kind": "issue",
+    "title": "DSS-Python ActiveClass.First is an integer property",
+    "symptom": "Calling dss.ActiveCircuit.ActiveClass.First() raised TypeError.",
+    "cause": "Reading First in DSS-Python activates the first member and returns its index. OpenDSSDirect.py exposes a callable First.",
+    "safe_fix": "Use dss.ActiveCircuit.ActiveClass.First in DSS-Python and odd.ActiveClass.First() in OpenDSSDirect.py. Use explicit full names for per-element snapshot reads.",
+    "diagnostic_evidence": [
+      "TypeError: 'int' object is not callable.",
+      "First and First() each returned 1 for the RegControl active class when used on their respective interfaces."
+    ],
+    "affected_versions": [
+      "DSS-Python 0.15.7",
+      "OpenDSSDirect.py 0.9.4"
+    ],
+    "status": "confirmed",
+    "version_range": "DSS-Python 0.15.7 / OpenDSSDirect.py 0.9.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "DSS-Python active-class cursor",
+      "url_or_path": "https://github.com/dss-extensions/DSS-Python/blob/0.15.7/dss/IActiveClass.py#L55-L65",
+      "section_or_record": "First property",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-losses-watts-vs-kilowatts",
+    "kind": "issue",
+    "title": "Losses returns W/var alongside kW/kvar power accessors",
+    "symptom": "On IEEE 13 Line.650632, raw Losses values were 60,728.50 W and 195,986.08 var while TotalPowers returned terminal kW/kvar pairs.",
+    "cause": "The engine returns Losses in W/var and TotalPower or TotalPowers in kW/kvar.",
+    "safe_fix": "Divide both Losses components by 1,000 before comparing on a kW/kvar basis. For feeder dissipation use the circuit loss total.",
+    "diagnostic_evidence": [
+      "odd.CktElement.Losses() returned [60728.5028021296,195986.0785571934] W/var.",
+      "odd.CktElement.TotalPowers() returned [3566.699001113491,1735.849316489821,-3505.9704983113606,-1539.8632379326275] in terminal kW/kvar pairs.",
+      "The terminal sum matched converted losses [60.728502802129604,195.9860785571934] kW/kvar to 1e-8 absolute."
+    ],
+    "affected_versions": [
+      "OpenDSSDirect.py 0.9.4",
+      "DSS C-API 0.14.5"
+    ],
+    "status": "confirmed",
+    "version_range": "OpenDSSDirect.py 0.9.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "OpenDSSDirect.py element loss accessor",
+      "url_or_path": "https://github.com/dss-extensions/OpenDSSDirect.py/blob/v0.9.4/opendssdirect/CktElement.py#L295-L302",
+      "section_or_record": "Losses (W/var)",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    },
+    "notes": [
+      "The cross-interface tool checks the active-loss magnitude on these fixtures as a sanity check for the conversion."
+    ]
+  },
+  {
+    "id": "ts-controlled-solve-retaps",
+    "kind": "issue",
+    "title": "A controlled solve can move a manually written tap",
+    "symptom": "IEEE 13 reg2 read back tap 5 immediately after the write, then moved to tap 6 after a Static solve.",
+    "cause": "A controlled solve samples the enabled regulator and applies a tap change as needed for its setpoint.",
+    "safe_fix": "Read TapNum after the selected solve path. For a single fixed-tap AltDSS solve call Solution.SolveNoControl(). To suppress all controls for subsequent solves, set ControlMode=Off and restore the desired mode afterward.",
+    "diagnostic_evidence": [
+      "TapNum was 5 after the write and 6 after Solution.Solve().",
+      "A second tap-5 write followed by Solution.SolveNoControl() kept tap 5 with Static still selected."
+    ],
+    "affected_versions": [
+      "AltDSS-Python 0.2.4",
+      "DSS C-API 0.14.5"
+    ],
+    "status": "confirmed",
+    "version_range": "AltDSS-Python 0.2.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "RegControl workflow",
+      "url_or_path": "docs/workflows/regcontrol.md",
+      "section_or_record": "Choose how to solve after a manual tap write",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-ptphase-out-of-range",
+    "kind": "issue",
+    "title": "Out-of-range local PTPhase reads back as 1",
+    "symptom": "Writing PTPhase=7 to the locally sensing IEEE 13 reg2 read back 1 in both DSS text and AltDSS.",
+    "cause": "For local winding sensing, the engine resets a positive voltage-buffer index above the monitored phase count to 1.",
+    "safe_fix": "For local sensing select a positive buffer index from 1 through the monitored winding's phase count, or use min/max where appropriate. Read the applied value back after editing.",
+    "diagnostic_evidence": [
+      "Edit RegControl.reg2 PTPhase=7, then ? RegControl.reg2.PTPhase returned 1.",
+      "The AltDSS typed getter also returned 1."
+    ],
+    "affected_versions": [
+      "AltDSS-Python 0.2.4",
+      "DSS C-API 0.14.5"
+    ],
+    "status": "confirmed",
+    "version_range": "AltDSS-Python 0.2.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "DSS C-API RegControl local voltage-buffer setup",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/Controls/RegControl.pas#L589-L604",
+      "section_or_record": "Local phase index reset",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-capacitor-no-spectrum",
+    "kind": "issue",
+    "title": "The Capacitor wrapper has no Spectrum field",
+    "symptom": "Spectrum lookup is absent on Capacitor in both tested wrappers. The corresponding Load accessors expose Spectrum.",
+    "cause": "The capacitor element property table omits Spectrum.",
+    "safe_fix": "Use the capacitor property catalog when editing a bank. Assign Spectrum only to element classes that expose it.",
+    "diagnostic_evidence": [
+      "hasattr(dss.ActiveCircuit.Capacitors, 'Spectrum') was False and hasattr(dss.ActiveCircuit.Loads, 'Spectrum') was True.",
+      "The pinned AltDSS Capacitor and Load object getters had the same capability split."
+    ],
+    "affected_versions": [
+      "AltDSS-Python 0.2.4",
+      "DSS-Python 0.15.7",
+      "DSS C-API 0.14.5"
+    ],
+    "status": "confirmed",
+    "version_range": "AltDSS-Python 0.2.4 / DSS-Python 0.15.7 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "DSS C-API Capacitor property enum",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/PDElements/Capacitor.pas#L68-L83",
+      "section_or_record": "Capacitor properties",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-python-context-isolation",
+    "kind": "issue",
+    "title": "Default classic contexts can share circuit and cursor state",
+    "symptom": "An empty AltDSS context could not see IEEE 13 in another context. The default OpenDSSDirect.py and DSS-Python objects saw and changed the same circuit.",
+    "cause": "AltDSS NewContext creates an isolated engine context. The default classic surfaces can reference a common context in one process.",
+    "safe_fix": "Initialize the circuit in the context you will query. For side-by-side wrapper comparisons, use a separate subprocess for each interface.",
+    "diagnostic_evidence": [
+      "One AltDSS context had 38 elements. Reading NumCircuitElements in a second empty context raised (#8888) There is no active circuit! Create a circuit and retry.",
+      "The default DSS-Python circuit name was visible through odd.Circuit.Name(), and the load created through odd appeared in DSS-Python's AllElementNames.",
+      "A second New Circuit in the shared context raised (#266) Warning: Duplicate new element definition: \"Vsource.source\". Element being redefined."
+    ],
+    "affected_versions": [
+      "AltDSS-Python 0.2.4",
+      "DSS-Python 0.15.7",
+      "OpenDSSDirect.py 0.9.4"
+    ],
+    "status": "confirmed",
+    "version_range": "AltDSS-Python 0.2.4 / DSS-Python 0.15.7 / OpenDSSDirect.py 0.9.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "Cross-interface isolation workflow",
+      "url_or_path": "docs/workflows/cross_interface.md",
+      "section_or_record": "Run both snapshot fixtures",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-loadshape-new-duplicates",
+    "kind": "issue",
+    "title": "LoadShape.new creates a shape when one already has that name",
+    "symptom": "After a DSS text declaration of LoadShape.s1 with NPts=3, ctx.LoadShape.new(\"s1\") created a blank same-named object.",
+    "cause": "The new method is an object constructor. The pinned probe permitted the bare duplicate in this circuit.",
+    "safe_fix": "Fetch an existing object with ctx.LoadShape[name]. Use new for initial creation and choose unique shape names.",
+    "diagnostic_evidence": [
+      "Same-name objects enumerated NPts values [3,0].",
+      "The bare constructor returned 0 points. Name lookup returned 3 points."
+    ],
+    "affected_versions": [
+      "AltDSS-Python 0.2.4",
+      "DSS C-API 0.14.5"
+    ],
+    "status": "confirmed",
+    "version_range": "AltDSS-Python 0.2.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "AltDSS LoadShape constructor",
+      "url_or_path": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L858-L877",
+      "section_or_record": "ILoadShape.new",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-loadshape-lowercase-new",
+    "kind": "issue",
+    "title": "LoadShape construction uses lowercase new",
+    "symptom": "ctx.LoadShape.New(\"x\") raised AttributeError.",
+    "cause": "The AltDSS ILoadShape collection exposes a lowercase new method.",
+    "safe_fix": "Call ctx.LoadShape.new(...) or submit DSS text New LoadShape.<name> ... through ctx.Commands.",
+    "diagnostic_evidence": [
+      "AttributeError: 'ILoadShape' object has no attribute 'New'.",
+      "callable(ctx.LoadShape.new) was True."
+    ],
+    "affected_versions": [
+      "AltDSS-Python 0.2.4"
+    ],
+    "status": "confirmed",
+    "version_range": "AltDSS-Python 0.2.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "AltDSS LoadShape constructor",
+      "url_or_path": "https://github.com/dss-extensions/AltDSS-Python/blob/0.2.4/altdss/LoadShape.py#L858-L877",
+      "section_or_record": "ILoadShape.new",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-loadshape-missing-csv",
+    "kind": "issue",
+    "title": "A missing LoadShape CSV fails at the file assignment",
+    "symptom": "Creating a LoadShape with CSVFile pointing to a nonexistent file raised DSS error #613 during the command.",
+    "cause": "CSVFile assignment invokes the engine's input-file loader. It raises when the file cannot be opened.",
+    "safe_fix": "Resolve the path from the command's working directory or use a valid absolute path, then define the shape with the expected point count and file format.",
+    "diagnostic_evidence": [
+      "(#613) Error opening file: \"phase45_missing_loadshape.csv\"",
+      "A fresh empty shape's CSVFile getter returned an empty string."
+    ],
+    "affected_versions": [
+      "AltDSS-Python 0.2.4",
+      "DSS C-API 0.14.5"
+    ],
+    "status": "confirmed",
+    "version_range": "AltDSS-Python 0.2.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "DSS C-API LoadShape CSV reader",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L1006-L1028",
+      "section_or_record": "File open and error #613",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-loadshape-empty-statistics",
+    "kind": "issue",
+    "title": "Empty LoadShape statistics can leave a pending error",
+    "symptom": "A fresh empty shape returned an empty CSVFile string. Reading Mean returned zero, then the next CSVFile read raised #61107.",
+    "cause": "Mean lazily evaluates the shape data. The pinned getter returns a value with the error pending until a checked wrapper call.",
+    "safe_fix": "Populate the sample data before reading computed Mean or StdDev. If a checked getter reports #61107, inspect the previous statistics access and retry after providing data.",
+    "diagnostic_evidence": [
+      "Fresh CSVFile was empty. Mean returned 0.0.",
+      "(#61107) LoadShape has no data to be normalized. Check for previous errors.",
+      "After the error was consumed, CSVFile again returned an empty string."
+    ],
+    "affected_versions": [
+      "AltDSS-Python 0.2.4",
+      "DSS C-API 0.14.5"
+    ],
+    "status": "confirmed",
+    "version_range": "AltDSS-Python 0.2.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "LoadShape build audit",
+      "url_or_path": "docs/audits/phase4_loadshape_daily_audit.md",
+      "section_or_record": "Findings from the pinned readback",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-loadshape-pmult-length",
+    "kind": "issue",
+    "title": "PMult typed writes require exactly NPts samples",
+    "symptom": "PMult edits before sizing, with too few values, and with too many values all raised #20200425.",
+    "cause": "The typed engine setter checks the input count against the shape's configured size.",
+    "safe_fix": "Set NPts before writing the samples and supply a complete array of exactly that length. Use a fully sized replacement object when growing a populated shape.",
+    "diagnostic_evidence": [
+      "(#20200425) LoadShape.length.PMult: Invalid number of elements. Expected 0 elements, got 2.",
+      "(#20200425) LoadShape.full.PMult: Invalid number of elements. Expected 4 elements, got 2.",
+      "(#20200425) LoadShape.full.PMult: Invalid number of elements. Expected 4 elements, got 5.",
+      "Rejected edits preserved PMult [1.0, 2.0, 3.0, 4.0]."
+    ],
+    "affected_versions": [
+      "AltDSS-Python 0.2.4",
+      "DSS C-API 0.14.5"
+    ],
+    "status": "confirmed",
+    "version_range": "AltDSS-Python 0.2.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "DSS C-API typed array length check",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/DSSObjectHelper.pas#L3489-L3518",
+      "section_or_record": "Exact-size guard",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    }
+  },
+  {
+    "id": "ts-loadshape-npts-without-array",
+    "kind": "issue",
+    "title": "NPts alone does not create sample values",
+    "symptom": "On a fresh LoadShape, setting NPts to 4 left PMult empty until its first full write.",
+    "cause": "NPts sets the count. The virgin shape has no allocated P sample array, so its getter returns an empty array.",
+    "safe_fix": "For a fresh shape set NPts and write all samples before solving. To increase the size of a populated shape, create a new shape and reassign the load before reading or solving.",
+    "diagnostic_evidence": [
+      "After NPts=4 on a blank shape, PMult was an empty float64 array.",
+      "After the first full write, PMult returned [1,2,3,4]."
+    ],
+    "affected_versions": [
+      "AltDSS-Python 0.2.4",
+      "DSS C-API 0.14.5"
+    ],
+    "status": "confirmed",
+    "version_range": "AltDSS-Python 0.2.4 / DSS C-API 0.14.5",
+    "evidence_level": "Observed-working",
+    "source": {
+      "title": "DSS C-API LoadShape count and array getter",
+      "url_or_path": "https://github.com/dss-extensions/dss_capi/blob/0.14.5/src/General/LoadShape.pas#L338-L390",
+      "section_or_record": "Count setter and absent P buffer",
+      "accessed_or_captured": "2026-11-22"
+    },
+    "tested": {
+      "target_version": "0.14.5",
+      "environment": "Windows 11 AMD64, Python 3.14.6, altdss 0.2.4, dss-python 0.15.7, backend 0.14.5, opendssdirect.py 0.9.4, 2026-11-22",
+      "result": "pass"
+    },
+    "notes": [
+      "This recheck used a shape with no existing samples. The populated-buffer resize hazard is covered in the LoadShape workflow."
+    ]
+  }
+]
