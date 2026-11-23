@@ -5,7 +5,7 @@
 **Inputs/baseline revision:** `cc8aa92ecaf14bbc4f54a2ee78b177adbf130bb8` (decision 20, package issued).
 **Review date:** 2026-11-22 (local). **Reviewer environment:** Windows 11 AMD64, Python 3.14.6, `altdss 0.2.4`, `dss-python 0.15.7`, `dss-python-backend 0.14.5` (engine `DSS C-API 0.14.5` revision `87d85c2…`), `opendssdirect.py 0.9.4`, `jsonschema 4.26.0`.
 
-**STATUS:** PASS WITH FINDINGS — two documentation corrections required, no code, catalog or data change requested. Every troubleshooting record and every harness result reproduces.
+**STATUS:** PASS WITH FINDINGS — two documentation corrections required, no code, catalog or data change requested. Every troubleshooting record and every harness result reproduces. **Both corrections were applied at `0187ded` and verified in the addendum below; the stop gate is closed pending owner acceptance.**
 
 ## Run verification (my own runs, not the build audit's)
 
@@ -101,3 +101,34 @@ Add both to `docs/phase_4/exit_checklist.md` (either as rows 7 and 8 or as a "de
 | 6. Golden regeneration only through the approved path | met; guards re-read in code and previously unit-exercised |
 
 With R-1 and R-2 applied, the gate is closed on evidence rather than on assertion.
+
+## Corrections verified (remediation commit `0187ded`)
+
+The remediation touches one file, `docs/phase_4/exit_checklist.md` (+28/−3). I verified the corrections by executing them rather than by reading them.
+
+**R-1, checksum gate.** The row and the header now say the harness verifies inputs *before* compiling. To prove the gate bites rather than merely exists, I copied the library to a scratch tree, appended two comment lines to `IEEETestCases/13Bus/IEEE13Nodeckt.dss`, and ran the harness:
+
+```text
+Checksum mismatch for …IEEE13Nodeckt.dss: expected 8354 bytes and 033ccd40…a504,
+observed 8366 bytes and d82e945f…6cd
+FAIL ieee13 snapshot
+FAIL ieee13 daily
+PASS ieee34 snapshot
+```
+
+The tool exits 1, and only the tampered fixture fails — per-fixture, not global. That is what the gate is supposed to look like.
+
+**R-1, coverage gate.** The new `### Fixture class coverage check` is executable, so I ran it as written with `powershell.exe`:
+
+```text
+Capacitor  Line  LineCode  Load  LoadShape  RegControl  Transformer  Vsource
+exit 0
+```
+
+It resolves because the goldens store `elements` as an object keyed by full name, so `.PSObject.Properties.Name` yields the names and the split recovers the class. I also confirmed the two directions independently: the snapshot goldens contribute Capacitor, Line, Load, RegControl, Transformer and Vsource, the daily harness adds LoadShape, the fixture scripts carry LineCode, and every one of the eight appears as an `element_class` in a property catalog — so the check would have thrown had any been missing.
+
+**R-2, row 5.** Now records QA/QC PASS at `22fd398` with a link to the report, and leaves the manifest/plan reconciliation as the architect's step at acceptance, which is accurate.
+
+**Anchors.** I resolved every new link: `#checksum-proof-three-way-per-file` is `## Checksum proof (three-way, per file)` in the 4.1 QA/QC report, `#stop-gate-against-plan-65` is `## Stop gate against plan §6.5` in this audit, and `#81-deferred-class-catalogs-decision-17` is `### 8.1 Deferred class catalogs (decision 17)` in the Phase 4 design. All three resolve as written.
+
+`validate_catalogs.py` still passes 18/18 after the remediation. Nothing outside the checklist changed, so the accepted catalogs, goldens and tools remain as reviewed.
