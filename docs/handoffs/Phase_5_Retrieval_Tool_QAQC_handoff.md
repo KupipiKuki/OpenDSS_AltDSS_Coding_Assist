@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase5`
 - **Inputs revision** `02fe261e87018d1287a64af21ef9ffc92369a2d5`
-- **Package revision** Pending commit.
+- **Package revision** `4b4430b4869f02514111243f3bb998c4ba57b613`. Review the package artifacts at this commit.
 
 Review the catalog adapters, retrieval workflow, and object index checker. [Coder handoff](Phase_5_Retrieval_Tool_Coder_handoff.md) · [Build audit](../audits/phase5_retrieval_audit.md) · [Retrieval workflow](../workflows/retrieval.md)
 
