@@ -4,7 +4,7 @@
 - **Architect and auditor** DeepSeek
 - **Branch** `wp/phase5`
 - **Inputs revision** `5c7797e29d6d4e24e9ad4aa7b3c82d387e6df0c1`
-- **Package revision** Pending commit.
+- **Package revision** `4f78c264a5f4ad81a09dd5b4d4cc4c23fe0360c9`. Review the package artifacts at this commit. The follow-up commit supplies the handoff pin.
 
 Review the object index, thin schema, sources, and lookup workflow. [Coder handoff](Phase_5_Object_Index_Coder_handoff.md) · [Build audit](../audits/phase5_object_index_audit.md)
 
