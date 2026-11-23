@@ -8,6 +8,8 @@ Keep `altdss`, `dss`, `opendssdirect`, and low-level C-API namespaces distinct. 
 
 ## Where to look
 
+- Use `tools/search_catalogs.py` for exact symbols, concept queries, and source citations. [Retrieval workflow](../docs/workflows/retrieval.md)
+
 - Element properties: use the [Line/LineCode catalog](references/lines/opendss_line_linecode_properties.json) or the [line geometry and conductor catalog](references/lines/line_geometry_wires_properties.json) for LineGeometry, LineSpacing, WireData, CNData, and TSData.
 - Python signatures and property types: [altdss_python_api.json](references/altdss_python_api.json), generated from the pinned 0.2.4 wheel.
 - Engine behavior: [dss_capi.json](references/dss_capi.json), with file and line citations and a `tested` status per record.
