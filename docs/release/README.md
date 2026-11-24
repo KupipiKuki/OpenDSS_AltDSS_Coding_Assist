@@ -1,6 +1,6 @@
 # OpenDSS and AltDSS library release record
 
-This is the Phase 5.3 release candidate. The owner decides the release version and tag at acceptance. [Changelog](../../CHANGELOG.md) · [Build audit](../audits/phase5_release_audit.md)
+**Version** `v1.0.0`, accepted by the owner (decision 25) and tagged at the acceptance commit. This record describes that release; it is the release's front door and its limits are part of what it ships. [Changelog](../../CHANGELOG.md) · [Build audit](../audits/phase5_release_audit.md)
 
 ## Package versions
 
