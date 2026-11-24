@@ -37,6 +37,8 @@ The handoff tally covers the element property rows, generated wrapper members, e
 | `Inferred` | 0 | 0 | Provisional interpretation that still needs primary evidence or a run. |
 | `Unverified` | 1 | 1 | Open question to retain for follow-up. Exclude it from generated calls to the pinned target. |
 
+The 17-file search corpus deliberately excludes the legacy Line/LineCode catalog, the repository's sole catalog with `Official-current` labels, which is retained for provenance and remains outside schema validation and search. [Legacy catalog](../../opendss_altdss_library/references/lines/opendss_line_linecode_properties_legacy.json)
+
 - The `Official-versioned` handoff total is 460 element property rows + 180 wrapper methods + 1094 wrapper properties + 144 engine records. The full corpus also includes 99 wrapper classes, 16 element class records, eight deferred object pointers, and 11 interface records with that label.
 - The `Observed-working` handoff total is 19 examples + 16 troubleshooting records + 16 object-index records. Two interface records bring the full total to 53.
 - The only `Unverified` record is `Line.epsrmedium`, retained from the Line/LineCode starter catalog. It is marked unsupported on the target. [Line/LineCode catalog](../../opendss_altdss_library/references/lines/opendss_line_linecode_properties.json)

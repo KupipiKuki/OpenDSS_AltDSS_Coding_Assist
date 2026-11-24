@@ -13,6 +13,7 @@
 - `references/`: source catalogs and reference materials, including the shared [source index](references/sources.json)
 - [OpenDSS object index](references/opendss_objects.json) with 16 catalogued and 8 deferred classes, plus the [lookup workflow](../docs/workflows/object_index.md)
 - [Catalog retrieval tool](tools/search_catalogs.py) for symbol and concept searches with citations, plus the [retrieval workflow](../docs/workflows/retrieval.md)
+- Schema-validated `TapNumber` → `TapNum` mapping with the record IDs it answers for. [Symbol alias registry](references/symbol_aliases.json)
 - `references/lines/`: Line and LineCode property catalog (Phase 2 remediated)
 - [AltDSS-Python API catalog](references/altdss_python_api.json) (99 class records) and [DSS C-API engine catalog](references/dss_capi.json) (144 records)
 - [Source index](references/sources.json) shared by catalogs and examples
