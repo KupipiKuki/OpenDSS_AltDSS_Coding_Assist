@@ -8,7 +8,8 @@ Keep `altdss`, `dss`, `opendssdirect`, and low-level C-API namespaces distinct. 
 
 ## Where to look
 
-- Use `tools/search_catalogs.py` for exact symbols, concept queries, and source citations. [Retrieval workflow](../docs/workflows/retrieval.md)
+- Use the [retrieval tool](tools/search_catalogs.py) for exact symbols, concept queries, and source citations. [Retrieval workflow](../docs/workflows/retrieval.md)
+- Use the [release record](../docs/release/README.md) for validation levels, known gaps, pinned versions, and supported tasks.
 
 - Element properties: use the [Line/LineCode catalog](references/lines/opendss_line_linecode_properties.json) or the [line geometry and conductor catalog](references/lines/line_geometry_wires_properties.json) for LineGeometry, LineSpacing, WireData, CNData, and TSData.
 - Python signatures and property types: [altdss_python_api.json](references/altdss_python_api.json), generated from the pinned 0.2.4 wheel.
@@ -26,7 +27,7 @@ Keep `altdss`, `dss`, `opendssdirect`, and low-level C-API namespaces distinct. 
 
 ## Phase placement
 
-Phase 1 established schemas, source inventory, package structure, handoffs, audits, and starter catalogs. Phase 2 delivered the Line/LineCode pilot and is complete: catalog, source index, workflow, examples (`Observed-working`), validation harness, and independent QA/QC. Phase 3A added the generated AltDSS-Python API catalog and the DSS C-API engine catalog; Phase 3B continues with dependency-ordered element packages; Phase 4 runs fixture-based validation against recorded golden results; Phase 5 adds retrieval and release packaging. The [implementation plan](../docs/implementation_plan.md) carries scope, order, and exit criteria. Use the Line/LineCode package as the worked example, and confirm any version-sensitive claim against pinned primary evidence before generating code.
+Phase 1 established schemas, source inventory, package structure, handoffs, audits, and starter catalogs. Phase 2 delivered the Line/LineCode pilot with a workflow, executed examples, a validation harness, and independent QA/QC. Phase 3A added the generated AltDSS-Python API and DSS C-API engine catalogs. Phase 3B completed six dependency-ordered element packages. Phase 4 closed with three fixture scenarios checked against recorded goldens. Phase 5 delivered the object index and retrieval tool and prepared the release record for acceptance. The [implementation plan](../docs/implementation_plan.md) carries scope, order, and exit criteria. Use the Line/LineCode package as the worked example and confirm version-sensitive claims against pinned primary evidence before generating code.
 
 For Line and LineCode creation, start with the workflow guide. Use the example catalog to find the script and its execution status, then resolve its `source_ids` in the source index. [Workflow guide](../docs/workflows/line_linecode.md) · [Example catalog](references/examples.json) · [Source index](references/sources.json)
 

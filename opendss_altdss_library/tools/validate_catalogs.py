@@ -67,6 +67,7 @@ SCHEMA_PAIRS = {
         "schemas/catalogs/python_interface_comparison.schema.json"
     ),
     "references/troubleshooting.json": "schemas/catalogs/troubleshooting.schema.json",
+    "references/symbol_aliases.json": "schemas/catalogs/symbol_aliases.schema.json",
 }
 
 

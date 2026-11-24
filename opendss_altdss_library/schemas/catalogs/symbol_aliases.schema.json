@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Symbol Alias Registry",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["alias", "canonical", "element_class", "record_ids", "source_ids"],
+    "properties": {
+      "alias": {"type": "string", "minLength": 1},
+      "canonical": {"type": "string", "minLength": 1},
+      "element_class": {"type": "string", "minLength": 1},
+      "record_ids": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {"type": "string", "minLength": 1}
+      },
+      "source_ids": {
+        "type": "array",
+        "minItems": 1,
+        "items": {"type": "string", "minLength": 1}
+      },
+      "notes": {"type": "array", "items": {"type": "string"}}
+    }
+  }
+}

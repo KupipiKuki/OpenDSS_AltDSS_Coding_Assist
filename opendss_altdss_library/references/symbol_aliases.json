@@ -1,0 +1,14 @@
+[
+  {
+    "alias": "TapNumber",
+    "canonical": "TapNum",
+    "element_class": "RegControl",
+    "record_ids": [
+      "RegControl.tapnum",
+      "altdss.RegControl:RegControl.TapNum",
+      "capi-regcontrol-tap-number"
+    ],
+    "source_ids": ["opendssdirect-active-regulator-tap"],
+    "notes": ["Classic COM spelling retained by DSS-Python and OpenDSSDirect.py for the same engine tap."]
+  }
+]

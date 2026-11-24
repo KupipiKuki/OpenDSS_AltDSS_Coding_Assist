@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Search the committed OpenDSS catalogs and verify the thin object index."""
+"""Search the OpenDSS catalogs and verify the object index and symbol aliases."""
 from __future__ import annotations
 
 import argparse
@@ -21,6 +21,7 @@ SOURCES = "references/sources.json"
 FIXTURES = "references/fixtures.json"
 INTERFACES = "references/python_interface_comparison.json"
 ISSUES = "references/troubleshooting.json"
+ALIASES = "references/symbol_aliases.json"
 EVIDENCE = (
     "Official-current", "Official-versioned", "Observed-working", "Observed-export",
     "Example-only", "Inferred", "Unverified",
@@ -111,6 +112,7 @@ class Corpus:
         }
         self.files = {OBJECTS: self.objects}
         self.files.update({path: read_data(LIBRARY / path) for path in ADAPTERS if path != OBJECTS})
+        self.aliases = read_data(LIBRARY / ALIASES)
         self.sources = {row["id"]: row for row in self.files[SOURCES]}
         self.by_class = {row["element_class"].casefold(): row for row in self.objects}
         self.by_url = defaultdict(list)
@@ -281,6 +283,7 @@ def hit(entry, key, value):
 
 def search(corpus, args, object_record):
     symbol = args.symbol.casefold() if args.symbol else None
+    alias = next((row for row in corpus.aliases if row["alias"].casefold() == symbol), None)
     tokens = args.query.casefold().split() if args.query else []
     matches = []
     for entry in corpus.entries():
@@ -300,12 +303,10 @@ def search(corpus, args, object_record):
             if len(fields) > 1:
                 result["matched_fields"] = [key for key, _ in fields]
             matches.append((entry, result))
-        elif symbol == "tapnumber" and entry.record_id in (
-            "RegControl.tapnum", "altdss.RegControl:RegControl.TapNum", "capi-regcontrol-tap-number"
-        ):
+        elif alias and entry.record_id in alias["record_ids"] and alias["element_class"] in entry.classes:
             result = hit(entry, "alias", args.symbol)
-            result["canonical_symbol"] = "TapNum"
-            result["alias_sources"] = corpus.source_ids(["opendssdirect-active-regulator-tap"])
+            result["canonical_symbol"] = alias["canonical"]
+            result["alias_sources"] = corpus.source_ids(alias["source_ids"])
             matches.append((entry, result))
     if symbol:
         matches = combine_keyword_matches(matches)
@@ -403,6 +404,51 @@ def check_index(corpus):
     return errors
 
 
+def check_aliases(corpus):
+    if not corpus.aliases:
+        return [f"{ALIASES}: no aliases registered"]
+
+    by_id = defaultdict(list)
+    exact_symbols = set()
+    for entry in corpus.entries():
+        by_id[entry.record_id].append(entry)
+        exact_symbols.update(value.casefold() for key in entry.symbol_fields
+                             for value in strings(entry.record.get(key)))
+
+    errors = []
+    seen = set()
+    for row in corpus.aliases:
+        name = row["alias"]
+        symbol = name.casefold()
+        if symbol in seen:
+            errors.append(f"{name}: duplicate alias")
+        seen.add(symbol)
+        if symbol in exact_symbols:
+            errors.append(f"{name}: collides with an exact symbol")
+        canonical = row["canonical"].casefold()
+        signature_symbol = re.compile(rf"(?<!\w){re.escape(canonical)}(?!\w)")
+        for record_id in row["record_ids"]:
+            candidates = by_id.get(record_id, ())
+            entries = [entry for entry in candidates if row["element_class"] in entry.classes]
+            if not candidates:
+                errors.append(f"{name}.record_ids: {record_id!r} does not resolve")
+            elif not entries:
+                errors.append(f"{name}.record_ids: {record_id!r} does not belong to {row['element_class']}")
+            # Engine behavior records can carry the symbol in the signature instead of the name.
+            elif not any(
+                any(entry.matches(canonical, ()))
+                or (entry.catalog == ENGINE and signature_symbol.search(
+                    (entry.record.get("signature_or_shape") or "").casefold()
+                ))
+                for entry in entries
+            ):
+                errors.append(f"{name}.record_ids: {record_id!r} does not carry {row['canonical']!r}")
+        for source_id in row["source_ids"]:
+            if source_id not in corpus.sources:
+                errors.append(f"{name}.source_ids: {source_id!r} does not resolve")
+    return errors
+
+
 def print_stats(stats):
     for name, count in sorted(stats["catalogs"].items()):
         print(f"{name}  {count}")
@@ -461,10 +507,12 @@ def main(argv=None):
         corpus = Corpus(checking=args.check)
         stats = corpus.stats()
         if args.check:
-            failures = check_index(corpus)
+            index_errors = check_index(corpus)
+            alias_errors = check_aliases(corpus)
+            failures = index_errors + alias_errors
     except (KeyError, TypeError, OSError, ValueError) as exc:
         if args.check:
-            print(f"Object index check failed: {exc}", file=sys.stderr)
+            print(f"Catalog check failed: {exc}", file=sys.stderr)
             return 1
         parser.error(str(exc))
     if args.check or args.stats:
@@ -472,13 +520,15 @@ def main(argv=None):
             report = {"corpus": stats}
             if args.check:
                 report["errors"] = failures
+                report["aliases"] = {"records": len(corpus.aliases), "errors": alias_errors}
             print(json.dumps(report, sort_keys=True))
         else:
             print_stats(stats)
             if args.check:
                 for failure in failures:
                     print(failure, file=sys.stderr)
-                print(f"Object index check: {'FAIL' if failures else 'PASS'}")
+                print(f"Object index check: {'FAIL' if index_errors else 'PASS'}")
+                print(f"Symbol alias check: {'FAIL' if alias_errors else 'PASS'} ({len(corpus.aliases)} registered)")
         return int(args.check and bool(failures))
     object_record = None
     if args.class_name:
